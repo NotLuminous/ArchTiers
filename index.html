@@ -6,6 +6,9 @@
 
 <title>Arch Tiers</title>
 
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 
 /* =========================================================
@@ -36,7 +39,6 @@ body {
         sans-serif;
 }
 
-
 /* =========================================================
    SCROLLBAR
 ========================================================= */
@@ -57,7 +59,6 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #39ff78;
 }
-
 
 /* =========================================================
    BACKGROUND
@@ -85,7 +86,6 @@ body::before {
         transparent 85%
     );
 }
-
 
 /* =========================================================
    HEADER
@@ -148,7 +148,6 @@ header::before {
     text-transform: uppercase;
 }
 
-
 /* =========================================================
    NAVIGATION
 ========================================================= */
@@ -178,8 +177,7 @@ nav button {
     cursor: pointer;
     font-size: 13px;
     font-weight: 800;
-    transition:
-        .2s ease;
+    transition: .2s ease;
 }
 
 nav button:hover {
@@ -201,7 +199,6 @@ nav button.active {
     margin-left: 10px;
 }
 
-
 /* =========================================================
    MAIN
 ========================================================= */
@@ -211,7 +208,6 @@ main {
     width: min(1200px, 94%);
     margin: 34px auto 70px;
 }
-
 
 /* =========================================================
    TOP BAR
@@ -267,7 +263,6 @@ main {
     letter-spacing: 1.5px;
 }
 
-
 /* =========================================================
    SEARCH
 ========================================================= */
@@ -306,9 +301,8 @@ main {
         0 0 0 3px rgba(57,255,120,.06);
 }
 
-
 /* =========================================================
-   TIER LIST CONTAINER
+   TIER LIST
 ========================================================= */
 
 .tier-list {
@@ -316,11 +310,6 @@ main {
     flex-direction: column;
     gap: 8px;
 }
-
-
-/* =========================================================
-   TIER ROW
-========================================================= */
 
 .tier {
     position: relative;
@@ -364,11 +353,6 @@ main {
         );
 }
 
-
-/* =========================================================
-   TIER NAME
-========================================================= */
-
 .tier-name {
     position: relative;
     z-index: 2;
@@ -391,7 +375,6 @@ main {
     letter-spacing: 1.5px;
 }
 
-
 /* =========================================================
    TIER COLORS
 ========================================================= */
@@ -403,8 +386,6 @@ main {
             #ff3434,
             #a90e22
         );
-    box-shadow:
-        inset -12px 0 35px rgba(255,255,255,.08);
 }
 
 .LT1 {
@@ -490,9 +471,8 @@ main {
         );
 }
 
-
 /* =========================================================
-   PLAYERS AREA
+   PLAYERS
 ========================================================= */
 
 .players {
@@ -506,11 +486,6 @@ main {
     min-height: 76px;
     padding: 11px 13px;
 }
-
-
-/* =========================================================
-   PLAYER CARD
-========================================================= */
 
 .player {
     display: flex;
@@ -611,17 +586,11 @@ main {
     background: #424a55;
 }
 
-
-/* =========================================================
-   EMPTY
-========================================================= */
-
 .empty {
     color: #4f5966;
     font-size: 12px;
     padding-left: 3px;
 }
-
 
 /* =========================================================
    ADD PLAYER
@@ -711,7 +680,6 @@ main {
         0 7px 20px rgba(57,255,120,.15);
 }
 
-
 /* =========================================================
    MODALS
 ========================================================= */
@@ -783,7 +751,6 @@ main {
     background: #232b35;
 }
 
-
 /* =========================================================
    PROFILE
 ========================================================= */
@@ -854,7 +821,6 @@ main {
 .muted {
     color: #687381;
 }
-
 
 /* =========================================================
    ADMIN
@@ -955,7 +921,6 @@ main {
     resize: vertical;
 }
 
-
 /* =========================================================
    FOOTER
 ========================================================= */
@@ -971,7 +936,6 @@ footer {
 footer strong {
     color: #39ff78;
 }
-
 
 /* =========================================================
    MOBILE
@@ -1061,11 +1025,6 @@ footer strong {
 
 <body>
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <header>
 
     <div class="logo">
@@ -1078,11 +1037,6 @@ footer strong {
     </div>
 
 </header>
-
-
-<!-- =====================================================
-     NAV
-===================================================== -->
 
 <nav>
 
@@ -1119,11 +1073,6 @@ footer strong {
 
 </nav>
 
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
 <main>
 
     <div class="top">
@@ -1151,7 +1100,6 @@ footer strong {
 
         </div>
 
-
         <div class="search-wrapper">
 
             <span class="search-icon">
@@ -1168,16 +1116,10 @@ footer strong {
 
     </div>
 
-
     <div
         id="tierList"
         class="tier-list">
     </div>
-
-
-    <!-- =================================================
-         ADD PLAYER
-    ================================================== -->
 
     <div
         id="addPlayerBox"
@@ -1221,10 +1163,7 @@ footer strong {
 
 </main>
 
-
-<!-- =====================================================
-     PLAYER PROFILE MODAL
-===================================================== -->
+<!-- PLAYER PROFILE -->
 
 <div
     class="modal"
@@ -1238,7 +1177,6 @@ footer strong {
             onclick="closeModal('profileModal')">
             ×
         </button>
-
 
         <div class="profile-head">
 
@@ -1259,19 +1197,15 @@ footer strong {
 
         </div>
 
-
         <div class="profile-section">
 
             <h3>
                 🏆 Rankings
             </h3>
 
-            <div
-                id="profileRanks">
-            </div>
+            <div id="profileRanks"></div>
 
         </div>
-
 
         <div class="profile-section">
 
@@ -1279,12 +1213,9 @@ footer strong {
                 📊 Statistics
             </h3>
 
-            <div
-                id="profileStats">
-            </div>
+            <div id="profileStats"></div>
 
         </div>
-
 
         <div class="profile-section">
 
@@ -1292,12 +1223,9 @@ footer strong {
                 📝 Testing Information
             </h3>
 
-            <div
-                id="profileTesting">
-            </div>
+            <div id="profileTesting"></div>
 
         </div>
-
 
         <div class="profile-section">
 
@@ -1312,16 +1240,13 @@ footer strong {
 
         </div>
 
-
         <div class="profile-section">
 
             <h3>
                 📜 Tier History
             </h3>
 
-            <div
-                id="profileHistory">
-            </div>
+            <div id="profileHistory"></div>
 
         </div>
 
@@ -1329,10 +1254,7 @@ footer strong {
 
 </div>
 
-
-<!-- =====================================================
-     ADMIN MODAL
-===================================================== -->
+<!-- ADMIN -->
 
 <div
     class="modal"
@@ -1346,9 +1268,6 @@ footer strong {
             onclick="closeModal('adminModal')">
             ×
         </button>
-
-
-        <!-- LOGIN -->
 
         <div id="adminLogin">
 
@@ -1389,9 +1308,6 @@ footer strong {
 
         </div>
 
-
-        <!-- ADMIN PANEL -->
-
         <div
             id="adminPanel"
             style="display:none;">
@@ -1415,14 +1331,11 @@ footer strong {
             <div class="notice">
 
                 🛡 You are logged in as an administrator.
-                Changes are saved to this browser.
+                Changes are saved online.
 
             </div>
 
-
-            <div id="adminPlayers">
-            </div>
-
+            <div id="adminPlayers"></div>
 
             <hr
                 style="
@@ -1430,7 +1343,6 @@ footer strong {
                     border-top:1px solid #252d37;
                     margin:25px 0;
                 ">
-
 
             <h3
                 style="
@@ -1442,20 +1354,13 @@ footer strong {
 
             </h3>
 
-
-            <div id="history">
-            </div>
+            <div id="history"></div>
 
         </div>
 
     </div>
 
 </div>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer>
 
@@ -1464,15 +1369,31 @@ footer strong {
 
 </footer>
 
-
 <script>
 
 /* =========================================================
-   ADMIN PASSWORD
-   CHANGE THIS TO YOUR PASSWORD
+   SUPABASE CONNECTION
 ========================================================= */
 
-const ADMIN_PASSWORD = "CHANGE_THIS_PASSWORD";
+const SUPABASE_URL =
+    "https://pjbaxhvknasgwmxlqznn.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_B4MAkr9i-gBIW-Xro-o31A_VHSOIdZ2";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =========================================================
+   ADMIN PASSWORD
+========================================================= */
+
+const ADMIN_PASSWORD =
+    "CHANGE_THIS_PASSWORD";
 
 
 /* =========================================================
@@ -1508,42 +1429,7 @@ let adminLoggedIn = false;
    PLAYER DATABASE
 ========================================================= */
 
-let players = {
-
-    "ExamplePlayer": {
-
-        ranked: true,
-
-        rankings: {
-
-            Bedfight: "HT1",
-            Bedwars: "LT2",
-            UHC: "HT3",
-            Sumo: "LT1"
-
-        },
-
-        stats: {
-
-            wins: 100,
-            losses: 20,
-            tests: 10
-
-        },
-
-        testedDate: "August 11, 2026",
-
-        tester: "Arch",
-
-        lastUpdate: "August 11, 2026",
-
-        notes: "Example player.",
-
-        history: []
-
-    }
-
-};
+let players = {};
 
 
 /* =========================================================
@@ -1564,40 +1450,242 @@ function currentDateTime() {
 
 
 /* =========================================================
-   STORAGE
+   SUPABASE ROW → PLAYER
 ========================================================= */
 
-function saveData() {
+function rowToPlayer(row) {
 
-    localStorage.setItem(
-        "archTiersDatabase",
-        JSON.stringify(players)
-    );
+    return {
+
+        ranked:
+            row.ranked ?? true,
+
+        rankings: {
+
+            Bedfight:
+                row.bedfight || null,
+
+            Bedwars:
+                row.bedwars || null,
+
+            UHC:
+                row.uhc || null,
+
+            Sumo:
+                row.sumo || null
+
+        },
+
+        stats: {
+
+            wins:
+                Number(row.wins || 0),
+
+            losses:
+                Number(row.losses || 0),
+
+            tests:
+                Number(row.tests || 0)
+
+        },
+
+        testedDate:
+            row.tested_date || "",
+
+        tester:
+            row.tester || "",
+
+        lastUpdate:
+            row.last_update || "",
+
+        notes:
+            row.notes || "",
+
+        history:
+            Array.isArray(row.history)
+                ? row.history
+                : []
+
+    };
 
 }
 
 
-function loadData() {
+/* =========================================================
+   PLAYER → SUPABASE ROW
+========================================================= */
 
-    const saved =
-        localStorage.getItem(
-            "archTiersDatabase"
+function playerToRow(name, player) {
+
+    return {
+
+        name: name,
+
+        ranked:
+            !!player.ranked,
+
+        bedfight:
+            player.rankings?.Bedfight || null,
+
+        bedwars:
+            player.rankings?.Bedwars || null,
+
+        uhc:
+            player.rankings?.UHC || null,
+
+        sumo:
+            player.rankings?.Sumo || null,
+
+        wins:
+            Number(player.stats?.wins || 0),
+
+        losses:
+            Number(player.stats?.losses || 0),
+
+        tests:
+            Number(player.stats?.tests || 0),
+
+        tested_date:
+            player.testedDate || "",
+
+        tester:
+            player.tester || "",
+
+        last_update:
+            player.lastUpdate || "",
+
+        notes:
+            player.notes || "",
+
+        history:
+            player.history || []
+
+    };
+
+}
+
+
+/* =========================================================
+   LOAD DATABASE
+========================================================= */
+
+async function loadData() {
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("players")
+        .select("*");
+
+    if (error) {
+
+        console.error(
+            "Supabase load error:",
+            error
         );
 
-    if (!saved)
+        alert(
+            "Could not load Arch Tiers database. Check Supabase settings."
+        );
+
         return;
 
-    try {
+    }
 
-        players = JSON.parse(saved);
+    players = {};
 
-    } catch {
+    data.forEach(row => {
 
-        console.log(
-            "Could not load Arch Tiers data."
-        );
+        players[row.name] =
+            rowToPlayer(row);
+
+    });
+
+    render();
+
+    if (adminLoggedIn) {
+
+        renderAdmin();
 
     }
+
+}
+
+
+/* =========================================================
+   SAVE / UPDATE PLAYER
+========================================================= */
+
+async function savePlayer(name) {
+
+    if (!players[name])
+        return false;
+
+    const row =
+        playerToRow(
+            name,
+            players[name]
+        );
+
+    const {
+        error
+    } = await supabaseClient
+        .from("players")
+        .upsert(
+            row,
+            {
+                onConflict: "name"
+            }
+        );
+
+    if (error) {
+
+        console.error(
+            "Supabase save error:",
+            error
+        );
+
+        alert(
+            "Could not save the change to the online database."
+        );
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+
+/* =========================================================
+   REAL-TIME DATABASE UPDATES
+========================================================= */
+
+function setupRealtime() {
+
+    supabaseClient
+        .channel("arch-tiers-live")
+        .on(
+            "postgres_changes",
+            {
+                event: "*",
+                schema: "public",
+                table: "players"
+            },
+            async payload => {
+
+                console.log(
+                    "Arch Tiers database update:",
+                    payload.eventType
+                );
+
+                await loadData();
+
+            }
+        )
+        .subscribe();
 
 }
 
@@ -1618,19 +1706,16 @@ function changeMode(mode) {
 
         });
 
-
     document
         .getElementById(
             mode + "Btn"
         )
         .classList.add("active");
 
-
     document
         .getElementById("modeTitle")
         .textContent =
         mode + " Rankings";
-
 
     render();
 
@@ -1638,7 +1723,7 @@ function changeMode(mode) {
 
 
 /* =========================================================
-   RENDER TIER LIST
+   RENDER
 ========================================================= */
 
 function render() {
@@ -1650,14 +1735,12 @@ function render() {
 
     container.innerHTML = "";
 
-
     const search =
         document
             .getElementById("search")
             .value
             .toLowerCase()
             .trim();
-
 
     tiers.forEach((tier, index) => {
 
@@ -1666,54 +1749,43 @@ function render() {
 
         row.className = "tier";
 
-
         const tierName =
             document.createElement("div");
 
         tierName.className =
             "tier-name " + tier;
 
-
         const tierLabel =
             document.createElement("strong");
 
         tierLabel.textContent = tier;
-
 
         const tierSmall =
             document.createElement("small");
 
         if (index === 0)
             tierSmall.textContent = "ELITE";
-
         else if (index <= 3)
             tierSmall.textContent = "HIGH";
-
         else if (index <= 6)
             tierSmall.textContent = "MID";
-
         else
             tierSmall.textContent = "LOW";
 
-
         tierName.appendChild(tierLabel);
         tierName.appendChild(tierSmall);
-
 
         const area =
             document.createElement("div");
 
         area.className = "players";
 
-
         let found = false;
-
 
         Object.keys(players).forEach(name => {
 
             const player =
                 players[name];
-
 
             if (
                 player.rankings[currentMode]
@@ -1721,7 +1793,6 @@ function render() {
             ) {
                 return;
             }
-
 
             if (
                 search &&
@@ -1732,15 +1803,12 @@ function render() {
                 return;
             }
 
-
             found = true;
-
 
             const box =
                 document.createElement("div");
 
             box.className = "player";
-
 
             const head =
                 document.createElement("img");
@@ -1754,7 +1822,8 @@ function render() {
                 "/64";
 
             head.alt =
-                name + " Minecraft head";
+                name +
+                " Minecraft head";
 
             head.onerror =
                 function() {
@@ -1762,7 +1831,6 @@ function render() {
                     this.style.opacity = ".25";
 
                 };
-
 
             const playerName =
                 document.createElement("span");
@@ -1776,12 +1844,8 @@ function render() {
             playerName.onclick =
                 () => openProfile(name);
 
-
             box.appendChild(head);
             box.appendChild(playerName);
-
-
-            /* ADMIN CONTROLS */
 
             if (adminLoggedIn) {
 
@@ -1790,7 +1854,6 @@ function render() {
 
                 buttons.className =
                     "player-buttons";
-
 
                 const up =
                     document.createElement("button");
@@ -1805,7 +1868,6 @@ function render() {
                         -1
                     );
 
-
                 const down =
                     document.createElement("button");
 
@@ -1818,7 +1880,6 @@ function render() {
                         name,
                         1
                     );
-
 
                 const remove =
                     document.createElement("button");
@@ -1835,7 +1896,6 @@ function render() {
                 remove.onclick =
                     () => deletePlayer(name);
 
-
                 buttons.appendChild(up);
                 buttons.appendChild(down);
                 buttons.appendChild(remove);
@@ -1844,11 +1904,9 @@ function render() {
 
             }
 
-
             area.appendChild(box);
 
         });
-
 
         if (!found) {
 
@@ -1865,7 +1923,6 @@ function render() {
 
         }
 
-
         row.appendChild(tierName);
         row.appendChild(area);
 
@@ -1880,7 +1937,7 @@ function render() {
    ADD PLAYER
 ========================================================= */
 
-function addPlayer() {
+async function addPlayer() {
 
     if (!adminLoggedIn) {
 
@@ -1892,7 +1949,6 @@ function addPlayer() {
 
     }
 
-
     const input =
         document.getElementById(
             "playerName"
@@ -1903,10 +1959,8 @@ function addPlayer() {
             "playerTier"
         ).value;
 
-
     const name =
         input.value.trim();
-
 
     if (!name) {
 
@@ -1918,7 +1972,6 @@ function addPlayer() {
 
     }
 
-
     if (players[name]) {
 
         alert(
@@ -1929,8 +1982,7 @@ function addPlayer() {
 
     }
 
-
-    players[name] = {
+    const player = {
 
         ranked: true,
 
@@ -1967,16 +2019,24 @@ function addPlayer() {
 
     };
 
-
-    players[name]
-        .rankings[currentMode] =
+    player.rankings[currentMode] =
         tier;
 
+    players[name] =
+        player;
+
+    const success =
+        await savePlayer(name);
+
+    if (!success) {
+
+        delete players[name];
+
+        return;
+
+    }
 
     input.value = "";
-
-
-    saveData();
 
     render();
 
@@ -1989,7 +2049,7 @@ function addPlayer() {
    DELETE PLAYER
 ========================================================= */
 
-function deletePlayer(name) {
+async function deletePlayer(name) {
 
     if (!adminLoggedIn) {
 
@@ -2001,7 +2061,6 @@ function deletePlayer(name) {
 
     }
 
-
     if (
         !confirm(
             "Remove " +
@@ -2012,11 +2071,29 @@ function deletePlayer(name) {
         return;
     }
 
+    const {
+        error
+    } = await supabaseClient
+        .from("players")
+        .delete()
+        .eq("name", name);
+
+    if (error) {
+
+        console.error(
+            "Supabase delete error:",
+            error
+        );
+
+        alert(
+            "Could not remove the player."
+        );
+
+        return;
+
+    }
 
     delete players[name];
-
-
-    saveData();
 
     render();
 
@@ -2029,7 +2106,7 @@ function deletePlayer(name) {
    MOVE PLAYER
 ========================================================= */
 
-function movePlayer(
+async function movePlayer(
     name,
     direction
 ) {
@@ -2044,45 +2121,36 @@ function movePlayer(
 
     }
 
-
     const player =
         players[name];
-
 
     const oldTier =
         player.rankings[currentMode];
 
-
     if (!oldTier)
         return;
-
 
     const oldIndex =
         tiers.indexOf(oldTier);
 
-
     let newIndex =
         oldIndex + direction;
-
 
     if (newIndex < 0)
         newIndex = 0;
 
-
     if (newIndex >= tiers.length)
-        newIndex = tiers.length - 1;
-
+        newIndex =
+            tiers.length - 1;
 
     const newTier =
         tiers[newIndex];
-
 
     if (
         oldTier === newTier
     ) {
         return;
     }
-
 
     recordHistory(
         name,
@@ -2091,16 +2159,17 @@ function movePlayer(
         newTier
     );
 
-
     player.rankings[currentMode] =
         newTier;
-
 
     player.lastUpdate =
         currentDate();
 
+    const success =
+        await savePlayer(name);
 
-    saveData();
+    if (!success)
+        return;
 
     render();
 
@@ -2125,7 +2194,6 @@ function recordHistory(
         players[name].history = [];
 
     }
-
 
     players[name]
         .history
@@ -2161,7 +2229,6 @@ function openAdmin() {
         .getElementById("adminModal")
         .classList.add("show");
 
-
     if (adminLoggedIn) {
 
         showAdmin();
@@ -2184,7 +2251,6 @@ function loginAdmin() {
             )
             .value;
 
-
     if (
         password !==
         ADMIN_PASSWORD
@@ -2197,7 +2263,6 @@ function loginAdmin() {
         return;
 
     }
-
 
     adminLoggedIn = true;
 
@@ -2219,7 +2284,6 @@ function showAdmin() {
         .style.display =
         "none";
 
-
     document
         .getElementById(
             "adminPanel"
@@ -2227,19 +2291,16 @@ function showAdmin() {
         .style.display =
         "block";
 
-
     const addBox =
         document.getElementById(
             "addPlayerBox"
         );
-
 
     addBox.style.setProperty(
         "display",
         "block",
         "important"
     );
-
 
     render();
 
@@ -2256,7 +2317,6 @@ function logoutAdmin() {
 
     adminLoggedIn = false;
 
-
     document
         .getElementById(
             "adminLogin"
@@ -2264,14 +2324,12 @@ function logoutAdmin() {
         .style.display =
         "block";
 
-
     document
         .getElementById(
             "adminPanel"
         )
         .style.display =
         "none";
-
 
     document
         .getElementById(
@@ -2283,13 +2341,11 @@ function logoutAdmin() {
             "important"
         );
 
-
     document
         .getElementById(
             "adminPassword"
         )
         .value = "";
-
 
     render();
 
@@ -2305,15 +2361,12 @@ function renderAdmin() {
     if (!adminLoggedIn)
         return;
 
-
     const container =
         document.getElementById(
             "adminPlayers"
         );
 
-
     container.innerHTML = "";
-
 
     Object.keys(players)
         .forEach(name => {
@@ -2321,16 +2374,13 @@ function renderAdmin() {
             const player =
                 players[name];
 
-
             const row =
                 document.createElement(
                     "div"
                 );
 
-
             row.className =
                 "admin-row";
-
 
             row.innerHTML = `
 
@@ -2359,9 +2409,7 @@ function renderAdmin() {
 
                 </div>
 
-
                 <div class="admin-grid">
-
 
                     <label>
                         Bedfight
@@ -2383,7 +2431,6 @@ function renderAdmin() {
 
                     </label>
 
-
                     <label>
                         Bedwars
 
@@ -2403,7 +2450,6 @@ function renderAdmin() {
                         </select>
 
                     </label>
-
 
                     <label>
                         UHC
@@ -2425,7 +2471,6 @@ function renderAdmin() {
 
                     </label>
 
-
                     <label>
                         Sumo
 
@@ -2445,7 +2490,6 @@ function renderAdmin() {
                         </select>
 
                     </label>
-
 
                     <label>
                         Ranked Status
@@ -2483,7 +2527,6 @@ function renderAdmin() {
 
                     </label>
 
-
                     <label>
                         Tester / Reviewer
 
@@ -2500,7 +2543,6 @@ function renderAdmin() {
                             ">
 
                     </label>
-
 
                     <label>
                         Test Date
@@ -2519,7 +2561,6 @@ function renderAdmin() {
 
                     </label>
 
-
                     <label>
                         Last Update
 
@@ -2536,7 +2577,6 @@ function renderAdmin() {
                             ">
 
                     </label>
-
 
                     <label>
                         Wins
@@ -2557,7 +2597,6 @@ function renderAdmin() {
 
                     </label>
 
-
                     <label>
                         Losses
 
@@ -2576,7 +2615,6 @@ function renderAdmin() {
                             ">
 
                     </label>
-
 
                     <label>
                         Tests
@@ -2597,9 +2635,7 @@ function renderAdmin() {
 
                     </label>
 
-
                 </div>
-
 
                 <label style="
                     display:block;
@@ -2623,11 +2659,9 @@ function renderAdmin() {
 
             `;
 
-
             container.appendChild(row);
 
         });
-
 
     renderHistory();
 
@@ -2638,7 +2672,7 @@ function renderAdmin() {
    ADMIN TIER CHANGE
 ========================================================= */
 
-function adminTier(
+async function adminTier(
     name,
     mode,
     newTier
@@ -2654,39 +2688,39 @@ function adminTier(
 
     }
 
-
     const player =
         players[name];
-
 
     const oldTier =
         player.rankings[mode];
 
+    const actualNewTier =
+        newTier || null;
 
     if (
-        oldTier === newTier
+        oldTier === actualNewTier
     ) {
         return;
     }
-
 
     recordHistory(
         name,
         mode,
         oldTier,
-        newTier
+        actualNewTier
     );
 
-
     player.rankings[mode] =
-        newTier || null;
-
+        actualNewTier;
 
     player.lastUpdate =
         currentDate();
 
+    const success =
+        await savePlayer(name);
 
-    saveData();
+    if (!success)
+        return;
 
     render();
 
@@ -2699,7 +2733,7 @@ function adminTier(
    UPDATE FIELD
 ========================================================= */
 
-function updateField(
+async function updateField(
     name,
     field,
     value
@@ -2715,14 +2749,11 @@ function updateField(
 
     }
 
-
     if (!players[name])
         return;
 
-
     players[name][field] =
         value;
-
 
     if (
         field !== "lastUpdate"
@@ -2733,8 +2764,7 @@ function updateField(
 
     }
 
-
-    saveData();
+    await savePlayer(name);
 
     render();
 
@@ -2745,7 +2775,7 @@ function updateField(
    UPDATE STATS
 ========================================================= */
 
-function updateStat(
+async function updateStat(
     name,
     stat,
     value
@@ -2761,10 +2791,8 @@ function updateStat(
 
     }
 
-
     if (!players[name])
         return;
-
 
     if (!players[name].stats) {
 
@@ -2778,7 +2806,6 @@ function updateStat(
 
     }
 
-
     players[name]
         .stats[stat] =
         Math.max(
@@ -2786,12 +2813,10 @@ function updateStat(
             Number(value) || 0
         );
 
-
     players[name].lastUpdate =
         currentDate();
 
-
-    saveData();
+    await savePlayer(name);
 
     render();
 
@@ -2811,7 +2836,6 @@ function tierOptions(current) {
         </option>
 
     `;
-
 
     tiers.forEach(tier => {
 
@@ -2833,7 +2857,6 @@ function tierOptions(current) {
 
     });
 
-
     return html;
 
 }
@@ -2850,16 +2873,12 @@ function renderHistory() {
             "history"
         );
 
-
     if (!container)
         return;
 
-
     container.innerHTML = "";
 
-
     let count = 0;
-
 
     Object.keys(players)
         .forEach(name => {
@@ -2867,26 +2886,21 @@ function renderHistory() {
             const player =
                 players[name];
 
-
             if (!player.history)
                 return;
-
 
             player.history.forEach(
                 change => {
 
                     count++;
 
-
                     const item =
                         document.createElement(
                             "div"
                         );
 
-
                     item.className =
                         "history";
-
 
                     item.innerHTML = `
 
@@ -2928,7 +2942,6 @@ function renderHistory() {
 
                     `;
 
-
                     container.appendChild(
                         item
                     );
@@ -2937,7 +2950,6 @@ function renderHistory() {
             );
 
         });
-
 
     if (count === 0) {
 
@@ -2963,10 +2975,8 @@ function openProfile(name) {
     const player =
         players[name];
 
-
     if (!player)
         return;
-
 
     document
         .getElementById(
@@ -2974,7 +2984,6 @@ function openProfile(name) {
         )
         .textContent =
         name;
-
 
     document
         .getElementById(
@@ -2985,33 +2994,27 @@ function openProfile(name) {
         encodeURIComponent(name) +
         "/100";
 
-
     const status =
         document.getElementById(
             "profileStatus"
         );
-
 
     status.textContent =
         player.ranked
             ? "● Ranked"
             : "● Unranked";
 
-
     status.style.color =
         player.ranked
             ? "#39ff78"
             : "#ff626b";
-
 
     const ranks =
         document.getElementById(
             "profileRanks"
         );
 
-
     ranks.innerHTML = "";
-
 
     modes.forEach(mode => {
 
@@ -3020,30 +3023,24 @@ function openProfile(name) {
                 "div"
             );
 
-
         row.className =
             "rank";
-
 
         const left =
             document.createElement(
                 "span"
             );
 
-
         left.textContent =
             mode;
-
 
         const right =
             document.createElement(
                 "span"
             );
 
-
         const tier =
             player.rankings[mode];
-
 
         if (tier) {
 
@@ -3072,19 +3069,15 @@ function openProfile(name) {
 
         }
 
-
         row.appendChild(left);
         row.appendChild(right);
-
 
         ranks.appendChild(row);
 
     });
 
-
     const stats =
         player.stats || {};
-
 
     document
         .getElementById(
@@ -3114,7 +3107,6 @@ function openProfile(name) {
             </div>
 
         `;
-
 
     document
         .getElementById(
@@ -3160,7 +3152,6 @@ function openProfile(name) {
 
         `;
 
-
     document
         .getElementById(
             "profileNotes"
@@ -3169,15 +3160,12 @@ function openProfile(name) {
         player.notes ||
         "No notes available.";
 
-
     const history =
         document.getElementById(
             "profileHistory"
         );
 
-
     history.innerHTML = "";
-
 
     if (
         !player.history ||
@@ -3202,10 +3190,8 @@ function openProfile(name) {
                         "div"
                     );
 
-
                 item.className =
                     "history";
-
 
                 item.innerHTML = `
 
@@ -3243,7 +3229,6 @@ function openProfile(name) {
 
                 `;
 
-
                 history.appendChild(
                     item
                 );
@@ -3252,7 +3237,6 @@ function openProfile(name) {
         );
 
     }
-
 
     document
         .getElementById(
@@ -3274,7 +3258,6 @@ function closeModal(id) {
         .classList.remove("show");
 
 }
-
 
 function outside(
     event,
@@ -3319,7 +3302,6 @@ function escapeHTML(value) {
         );
 
 }
-
 
 function escapeJS(value) {
 
@@ -3366,27 +3348,27 @@ document.addEventListener(
    START
 ========================================================= */
 
-loadData();
+async function startArchTiers() {
 
+    document
+        .getElementById(
+            "addPlayerBox"
+        )
+        .style.setProperty(
+            "display",
+            "none",
+            "important"
+        );
 
-/*
-   IMPORTANT:
-   ADD PLAYER IS ALWAYS HIDDEN
-   UNTIL ADMIN LOGIN.
-*/
+    render();
 
-document
-    .getElementById(
-        "addPlayerBox"
-    )
-    .style.setProperty(
-        "display",
-        "none",
-        "important"
-    );
+    await loadData();
 
+    setupRealtime();
 
-render();
+}
+
+startArchTiers();
 
 </script>
 
