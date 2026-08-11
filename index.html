@@ -1,613 +1,637 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Arch Tiers</title>
+<title>Arch Tiers</title>
 
-    <style>
+<style>
 
-        * {
-            box-sizing: border-box;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            margin: 0;
-            background: #08090d;
-            color: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+body {
+    margin: 0;
+    background: #080a0f;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-        /* =========================
-           HEADER
-        ========================= */
+/* HEADER */
 
-        header {
-            background: #0d1016;
-            border-bottom: 1px solid #242a35;
-            padding: 28px 20px;
-            text-align: center;
-        }
+header {
+    background: #0d1118;
+    border-bottom: 1px solid #252c37;
+    padding: 25px;
+    text-align: center;
+}
 
-        .logo {
-            font-size: 38px;
-            font-weight: 900;
-            letter-spacing: 3px;
-            color: #ffffff;
-        }
+.logo {
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
 
-        .logo span {
-            color: #55ff55;
-        }
+.logo span {
+    color: #55ff55;
+}
 
-        .subtitle {
-            color: #7f8999;
-            margin-top: 8px;
-            font-size: 14px;
-        }
+.subtitle {
+    color: #7e8999;
+    margin-top: 7px;
+}
 
+/* NAV */
 
-        /* =========================
-           NAVIGATION
-        ========================= */
+nav {
+    background: #0a0d12;
+    border-bottom: 1px solid #222936;
 
-        nav {
-            background: #0a0d12;
-            border-bottom: 1px solid #202631;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+    gap: 8px;
+    padding: 14px;
 
-            gap: 8px;
-            padding: 14px;
+    flex-wrap: wrap;
+}
 
-            flex-wrap: wrap;
-        }
+nav button {
+    background: #151a23;
+    color: #c4cad4;
 
-        nav button {
-            border: 1px solid #303744;
-            background: #151922;
-            color: #bfc6d1;
+    border: 1px solid #303744;
 
-            padding: 10px 20px;
+    padding: 10px 18px;
 
-            border-radius: 7px;
+    border-radius: 7px;
 
-            font-weight: 700;
-            cursor: pointer;
+    font-weight: bold;
 
-            transition: 0.15s;
-        }
+    cursor: pointer;
+}
 
-        nav button:hover {
-            background: #1d2430;
-            color: white;
-        }
+nav button:hover {
+    background: #202732;
+    color: white;
+}
 
-        nav button.active {
-            background: #55ff55;
-            color: #071007;
-            border-color: #55ff55;
-        }
+nav button.active {
+    background: #55ff55;
+    color: #061006;
+    border-color: #55ff55;
+}
 
+/* MAIN */
 
-        /* =========================
-           MAIN
-        ========================= */
+main {
+    width: 95%;
+    max-width: 1250px;
+    margin: 30px auto;
+}
 
-        main {
-            width: 95%;
-            max-width: 1250px;
-            margin: 30px auto;
-        }
+/* TOP BAR */
 
+.top {
+    display: flex;
 
-        /* =========================
-           TOP BAR
-        ========================= */
+    justify-content: space-between;
+    align-items: center;
 
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+    gap: 15px;
 
-            gap: 15px;
+    margin-bottom: 20px;
 
-            margin-bottom: 20px;
+    flex-wrap: wrap;
+}
 
-            flex-wrap: wrap;
-        }
+.title {
+    font-size: 24px;
+    font-weight: 900;
+}
 
-        .mode-title {
-            font-size: 24px;
-            font-weight: 800;
-        }
+.title span {
+    color: #55ff55;
+}
 
-        .mode-title span {
-            color: #55ff55;
-        }
+.search {
+    background: #10151d;
 
-        .search {
-            background: #10141b;
-            border: 1px solid #2a313d;
-            color: white;
+    color: white;
 
-            padding: 11px 14px;
+    border: 1px solid #303744;
 
-            border-radius: 7px;
+    border-radius: 7px;
 
-            outline: none;
+    padding: 11px 14px;
 
-            width: 240px;
-        }
+    width: 250px;
 
-        .search:focus {
-            border-color: #55ff55;
-        }
+    outline: none;
+}
 
+.search:focus {
+    border-color: #55ff55;
+}
 
-        /* =========================
-           TIER ROW
-        ========================= */
+/* TIERS */
 
-        .tier-row {
-            display: grid;
+.tier {
+    display: grid;
 
-            grid-template-columns: 105px 1fr;
+    grid-template-columns: 105px 1fr;
 
-            min-height: 70px;
+    min-height: 70px;
 
-            margin-bottom: 7px;
+    margin-bottom: 7px;
 
-            background: #10141b;
+    background: #10151d;
 
-            border: 1px solid #252c37;
+    border: 1px solid #252c37;
 
-            border-radius: 7px;
+    border-radius: 7px;
 
-            overflow: hidden;
-        }
+    overflow: hidden;
+}
 
-        .tier-name {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+.tier-name {
+    display: flex;
 
-            font-size: 18px;
-            font-weight: 900;
-        }
+    align-items: center;
+    justify-content: center;
 
+    font-size: 18px;
 
-        /* =========================
-           TIER COLORS
-        ========================= */
+    font-weight: 900;
+}
 
-        .HT1 {
-            background: #ff3b3b;
-        }
+/* COLORS */
 
-        .LT1 {
-            background: #ff6767;
-        }
+.HT1 {
+    background: #ff3b3b;
+}
 
-        .HT2 {
-            background: #ff9438;
-        }
+.LT1 {
+    background: #ff6868;
+}
 
-        .LT2 {
-            background: #ffb25e;
-        }
+.HT2 {
+    background: #ff9638;
+}
 
-        .HT3 {
-            background: #f0cf3e;
-            color: #151515;
-        }
+.LT2 {
+    background: #ffb45f;
+}
 
-        .LT3 {
-            background: #f5e36c;
-            color: #151515;
-        }
+.HT3 {
+    background: #f1d044;
+    color: #111;
+}
 
-        .HT4 {
-            background: #42c979;
-        }
+.LT3 {
+    background: #f6e56f;
+    color: #111;
+}
 
-        .LT4 {
-            background: #68dc97;
-        }
+.HT4 {
+    background: #42c979;
+}
 
-        .HT5 {
-            background: #459be9;
-        }
+.LT4 {
+    background: #6bdd99;
+}
 
-        .LT5 {
-            background: #71b5ef;
-        }
+.HT5 {
+    background: #459be9;
+}
 
+.LT5 {
+    background: #72b7ef;
+}
 
-        /* =========================
-           PLAYERS AREA
-        ========================= */
+/* PLAYERS */
 
-        .players {
-            display: flex;
+.players {
+    display: flex;
 
-            align-items: center;
+    align-items: center;
 
-            flex-wrap: wrap;
+    flex-wrap: wrap;
 
-            gap: 8px;
+    gap: 8px;
 
-            padding: 10px;
-        }
+    padding: 10px;
+}
 
+.player {
+    display: flex;
 
-        /* =========================
-           PLAYER CARD
-        ========================= */
+    align-items: center;
 
-        .player {
-            display: flex;
-            align-items: center;
+    gap: 7px;
 
-            gap: 7px;
+    background: #191f28;
 
-            background: #191e27;
+    border: 1px solid #303744;
 
-            border: 1px solid #303744;
+    border-radius: 7px;
 
-            border-radius: 7px;
+    padding: 7px 9px;
 
-            padding: 7px 9px;
+    font-weight: bold;
+}
 
-            font-weight: 700;
+.player-name {
+    cursor: pointer;
+}
 
-            transition: 0.15s;
-        }
+.player-name:hover {
+    color: #55ff55;
+}
 
-        .player:hover {
-            border-color: #4a5566;
-            background: #1d232e;
-        }
+.player button {
+    width: 23px;
+    height: 23px;
 
-        .player-name {
-            cursor: pointer;
-            color: #ffffff;
-        }
+    border: none;
 
-        .player-name:hover {
-            color: #55ff55;
-        }
+    border-radius: 5px;
 
+    color: white;
 
-        /* =========================
-           PLAYER BUTTONS
-        ========================= */
+    font-weight: bold;
 
-        .player button {
-            border: none;
+    cursor: pointer;
+}
 
-            width: 23px;
-            height: 23px;
+.up {
+    background: #2d994f;
+}
 
-            border-radius: 5px;
+.down {
+    background: #a43e3e;
+}
 
-            color: white;
+.delete {
+    background: #515864;
+}
 
-            font-weight: 900;
+/* ADD */
 
-            cursor: pointer;
-        }
+.add {
+    background: #10151d;
 
-        .up {
-            background: #29924c;
-        }
+    border: 1px solid #252c37;
 
-        .down {
-            background: #a63c3c;
-        }
+    border-radius: 9px;
 
-        .delete {
-            background: #4b515c;
-        }
+    padding: 20px;
 
-        .player button:hover {
-            filter: brightness(1.25);
-        }
+    margin-top: 25px;
+}
 
+.add h2 {
+    margin-top: 0;
+}
 
-        /* =========================
-           EMPTY TIER
-        ========================= */
+.form {
+    display: flex;
 
-        .empty {
-            color: #555f6e;
-            font-size: 13px;
-            padding-left: 4px;
-        }
+    gap: 8px;
 
+    flex-wrap: wrap;
+}
 
-        /* =========================
-           ADD PLAYER
-        ========================= */
+.form input,
+.form select {
+    background: #080b10;
 
-        .add-box {
-            margin-top: 25px;
+    color: white;
 
-            background: #10141b;
+    border: 1px solid #303744;
 
-            border: 1px solid #252c37;
+    border-radius: 6px;
 
-            border-radius: 9px;
+    padding: 11px;
+}
 
-            padding: 20px;
-        }
+.form input {
+    flex: 1;
+    min-width: 200px;
+}
 
-        .add-box h2 {
-            margin: 0 0 15px 0;
-            font-size: 18px;
-        }
+.add-btn {
+    background: #55ff55;
 
-        .form {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
+    color: #061006;
 
-        .form input,
-        .form select {
-            background: #080b10;
+    border: none;
 
-            color: white;
+    border-radius: 6px;
 
-            border: 1px solid #303744;
+    padding: 11px 18px;
 
-            border-radius: 6px;
+    font-weight: 900;
 
-            padding: 11px;
+    cursor: pointer;
+}
 
-            outline: none;
-        }
+/* MODALS */
 
-        .form input {
-            flex: 1;
-            min-width: 200px;
-        }
+.modal {
+    display: none;
 
-        .form input:focus,
-        .form select:focus {
-            border-color: #55ff55;
-        }
+    position: fixed;
 
-        .add-button {
-            background: #55ff55;
+    inset: 0;
 
-            color: #061006;
+    z-index: 1000;
 
-            border: none;
+    background: rgba(0,0,0,.84);
 
-            border-radius: 6px;
+    align-items: center;
 
-            padding: 11px 18px;
+    justify-content: center;
 
-            font-weight: 800;
+    padding: 20px;
+}
 
-            cursor: pointer;
-        }
+.modal.show {
+    display: flex;
+}
 
-        .add-button:hover {
-            background: #78ff78;
-        }
+.card {
+    width: 100%;
+    max-width: 600px;
 
+    max-height: 90vh;
 
-        /* =========================
-           PROFILE MODAL
-        ========================= */
+    overflow-y: auto;
 
-        .modal {
-            position: fixed;
+    background: #10151d;
 
-            inset: 0;
+    border: 1px solid #303744;
 
-            background: rgba(0, 0, 0, 0.82);
+    border-radius: 12px;
 
-            display: none;
+    padding: 25px;
 
-            align-items: center;
+    position: relative;
+}
 
-            justify-content: center;
+.close {
+    position: absolute;
 
-            padding: 20px;
+    top: 15px;
+    right: 15px;
 
-            z-index: 999;
-        }
+    width: 34px;
+    height: 34px;
 
-        .modal.show {
-            display: flex;
-        }
+    border: none;
 
-        .profile {
-            width: 100%;
-            max-width: 520px;
+    border-radius: 7px;
 
-            background: #10141b;
+    background: #292f39;
 
-            border: 1px solid #303744;
+    color: white;
 
-            border-radius: 12px;
+    font-size: 20px;
 
-            padding: 25px;
+    cursor: pointer;
+}
 
-            position: relative;
+.close:hover {
+    background: #e43f3f;
+}
 
-            box-shadow:
-                0 20px 70px rgba(0,0,0,0.7);
-        }
+/* PROFILE */
 
+.profile-head {
+    text-align: center;
 
-        /* CLOSE */
+    border-bottom: 1px solid #2a313c;
 
-        .close {
-            position: absolute;
+    padding-bottom: 20px;
+}
 
-            top: 15px;
-            right: 15px;
+.skin {
+    width: 100px;
+    height: 100px;
 
-            width: 34px;
-            height: 34px;
+    image-rendering: pixelated;
 
-            border: none;
+    border: 3px solid #55ff55;
 
-            border-radius: 7px;
+    border-radius: 10px;
+}
 
-            background: #252b35;
+.profile-name {
+    font-size: 28px;
 
-            color: white;
+    font-weight: 900;
 
-            font-size: 20px;
+    margin-top: 10px;
+}
 
-            cursor: pointer;
-        }
+.status {
+    color: #55ff55;
 
-        .close:hover {
-            background: #ef4444;
-        }
+    font-weight: bold;
 
+    margin-top: 5px;
+}
 
-        /* PROFILE HEADER */
+.profile-section {
+    margin-top: 20px;
+}
 
-        .profile-header {
-            text-align: center;
+.profile-section h3 {
+    color: #55ff55;
+}
 
-            padding-bottom: 20px;
+.rank {
+    display: flex;
 
-            border-bottom: 1px solid #272e39;
-        }
+    justify-content: space-between;
 
-        .skin {
-            width: 100px;
-            height: 100px;
+    align-items: center;
 
-            image-rendering: pixelated;
+    background: #191f28;
 
-            border-radius: 10px;
+    border: 1px solid #303744;
 
-            border: 3px solid #55ff55;
+    padding: 12px;
 
-            background: #080b10;
-        }
+    border-radius: 7px;
 
-        .profile-name {
-            margin: 12px 0 5px;
+    margin-bottom: 7px;
+}
 
-            font-size: 27px;
+.notes {
+    background: #191f28;
 
-            font-weight: 900;
-        }
+    border: 1px solid #303744;
 
-        .profile-subtitle {
-            color: #7f8999;
+    padding: 12px;
 
-            font-size: 13px;
-        }
+    border-radius: 7px;
 
+    color: #c4cad4;
 
-        /* =========================
-           PROFILE RANKINGS
-        ========================= */
+    white-space: pre-wrap;
+}
 
-        .rankings {
-            margin-top: 20px;
+/* ADMIN */
 
-            display: grid;
+.admin-login input,
+.admin-login textarea,
+.admin-login select {
 
-            gap: 8px;
-        }
+    width: 100%;
 
-        .ranking {
-            display: flex;
+    background: #080b10;
 
-            justify-content: space-between;
+    color: white;
 
-            align-items: center;
+    border: 1px solid #303744;
 
-            background: #191e27;
+    border-radius: 6px;
 
-            border: 1px solid #303744;
+    padding: 11px;
 
-            padding: 12px;
+    margin-bottom: 10px;
 
-            border-radius: 7px;
-        }
+    outline: none;
+}
 
-        .ranking-mode {
-            font-weight: 700;
-        }
+.admin-btn {
+    background: #55ff55;
 
-        .ranking-tier {
-            padding: 6px 12px;
+    color: #061006;
 
-            border-radius: 5px;
+    border: none;
 
-            font-weight: 900;
-        }
+    padding: 11px 18px;
 
-        .unranked {
-            color: #667080;
-            font-weight: 700;
-        }
+    border-radius: 6px;
 
+    font-weight: 900;
 
-        /* =========================
-           MOBILE
-        ========================= */
+    cursor: pointer;
+}
 
-        @media(max-width: 650px) {
+.logout {
+    background: #d94141;
 
-            .logo {
-                font-size: 30px;
-            }
+    color: white;
 
-            .tier-row {
-                grid-template-columns: 70px 1fr;
-            }
+    border: none;
 
-            .tier-name {
-                font-size: 14px;
-            }
+    padding: 9px 14px;
 
-            .search {
-                width: 100%;
-            }
+    border-radius: 6px;
 
-            .top-bar {
-                align-items: stretch;
-            }
+    font-weight: bold;
 
-            .form {
-                flex-direction: column;
-            }
+    cursor: pointer;
+}
 
-            .form input,
-            .form select,
-            .add-button {
-                width: 100%;
-            }
+.admin-panel {
+    display: none;
+}
 
-        }
+.admin-panel.show {
+    display: block;
+}
 
-    </style>
+.admin-row {
+    background: #191f28;
+
+    border: 1px solid #303744;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    margin-bottom: 8px;
+}
+
+.admin-row input,
+.admin-row select,
+.admin-row textarea {
+
+    width: 100%;
+
+    margin-top: 7px;
+
+    background: #080b10;
+
+    color: white;
+
+    border: 1px solid #303744;
+
+    border-radius: 6px;
+
+    padding: 9px;
+}
+
+.history {
+    background: #191f28;
+
+    border: 1px solid #303744;
+
+    border-radius: 7px;
+
+    padding: 10px;
+
+    margin-bottom: 7px;
+
+    color: #bfc7d2;
+}
+
+/* MOBILE */
+
+@media(max-width:650px) {
+
+    .logo {
+        font-size: 30px;
+    }
+
+    .tier {
+        grid-template-columns: 70px 1fr;
+    }
+
+    .tier-name {
+        font-size: 14px;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .form {
+        flex-direction: column;
+    }
+
+    .form input,
+    .form select,
+    .add-btn {
+        width: 100%;
+    }
+
+}
+
+</style>
 </head>
-
 
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- HEADER -->
 
 <header>
 
@@ -622,9 +646,7 @@
 </header>
 
 
-<!-- =========================
-     MODES
-========================= -->
+<!-- NAV -->
 
 <nav>
 
@@ -653,27 +675,34 @@
         Sumo
     </button>
 
+    <button
+        onclick="openAdmin()">
+        Admin
+    </button>
+
 </nav>
 
-
-<!-- =========================
-     MAIN
-========================= -->
 
 <main>
 
 
-    <div class="top-bar">
+    <!-- TOP -->
 
-        <div class="mode-title">
-            <span>ARCH</span> TIERS —
-            <span id="currentMode">Bedfight</span>
+    <div class="top">
+
+        <div class="title">
+
+            <span>ARCH</span>
+            TIERS —
+            <span id="modeTitle">
+                Bedfight
+            </span>
+
         </div>
 
         <input
             class="search"
             id="search"
-            type="text"
             placeholder="Search player..."
             oninput="render()">
 
@@ -685,11 +714,9 @@
     <div id="tierList"></div>
 
 
-    <!-- =========================
-         ADD PLAYER
-    ========================= -->
+    <!-- ADD PLAYER -->
 
-    <div class="add-box">
+    <div class="add">
 
         <h2>Add Player</h2>
 
@@ -697,30 +724,29 @@
 
             <input
                 id="playerName"
-                type="text"
                 placeholder="Minecraft username">
 
             <select id="playerTier">
 
-                <option value="HT1">HT1</option>
-                <option value="LT1">LT1</option>
+                <option>HT1</option>
+                <option>LT1</option>
 
-                <option value="HT2">HT2</option>
-                <option value="LT2">LT2</option>
+                <option>HT2</option>
+                <option>LT2</option>
 
-                <option value="HT3">HT3</option>
-                <option value="LT3">LT3</option>
+                <option>HT3</option>
+                <option>LT3</option>
 
-                <option value="HT4">HT4</option>
-                <option value="LT4">LT4</option>
+                <option>HT4</option>
+                <option>LT4</option>
 
-                <option value="HT5">HT5</option>
-                <option value="LT5">LT5</option>
+                <option>HT5</option>
+                <option>LT5</option>
 
             </select>
 
             <button
-                class="add-button"
+                class="add-btn"
                 onclick="addPlayer()">
                 Add Player
             </button>
@@ -732,31 +758,26 @@
 </main>
 
 
-<!-- =========================
-     PLAYER PROFILE
-========================= -->
+<!-- PROFILE -->
 
 <div
     class="modal"
     id="profileModal"
     onclick="outsideClose(event)">
 
-    <div class="profile">
+    <div class="card">
 
         <button
             class="close"
-            onclick="closeProfile()">
+            onclick="closeModal('profileModal')">
             ×
         </button>
 
-
-        <div class="profile-header">
+        <div class="profile-head">
 
             <img
-                id="skin"
-                class="skin"
-                src=""
-                alt="Minecraft Player">
+                id="profileSkin"
+                class="skin">
 
             <div
                 class="profile-name"
@@ -764,16 +785,159 @@
                 Player
             </div>
 
-            <div class="profile-subtitle">
-                Arch Tiers Player Profile
+            <div
+                class="status"
+                id="profileStatus">
+                Ranked
             </div>
 
         </div>
 
 
+        <div class="profile-section">
+
+            <h3>
+                Rankings
+            </h3>
+
+            <div id="profileRanks"></div>
+
+        </div>
+
+
+        <div class="profile-section">
+
+            <h3>
+                Statistics
+            </h3>
+
+            <div id="profileStats"></div>
+
+        </div>
+
+
+        <div class="profile-section">
+
+            <h3>
+                Testing Information
+            </h3>
+
+            <div id="profileTesting"></div>
+
+        </div>
+
+
+        <div class="profile-section">
+
+            <h3>
+                Notes
+            </h3>
+
+            <div
+                class="notes"
+                id="profileNotes">
+            </div>
+
+        </div>
+
+
+        <div class="profile-section">
+
+            <h3>
+                Tier History
+            </h3>
+
+            <div id="profileHistory"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ADMIN -->
+
+<div
+    class="modal"
+    id="adminModal"
+    onclick="outsideAdmin(event)">
+
+    <div class="card">
+
+        <button
+            class="close"
+            onclick="closeModal('adminModal')">
+            ×
+        </button>
+
+
+        <!-- LOGIN -->
+
         <div
-            class="rankings"
-            id="rankings">
+            class="admin-login"
+            id="adminLogin">
+
+            <h2>
+                Admin Login
+            </h2>
+
+            <p style="color:#7f8999;">
+                Enter the admin password.
+            </p>
+
+            <input
+                id="adminPassword"
+                type="password"
+                placeholder="Password">
+
+            <button
+                class="admin-btn"
+                onclick="loginAdmin()">
+                Login
+            </button>
+
+        </div>
+
+
+        <!-- PANEL -->
+
+        <div
+            class="admin-panel"
+            id="adminPanel">
+
+            <h2>
+                Admin Panel
+            </h2>
+
+            <button
+                class="logout"
+                onclick="logoutAdmin()">
+                Logout
+            </button>
+
+
+            <div class="profile-section">
+
+                <h3>
+                    Edit Players
+                </h3>
+
+                <div id="adminPlayers"></div>
+
+            </div>
+
+
+            <div class="profile-section">
+
+                <h3>
+                    Tier Change History
+                </h3>
+
+                <div id="history"></div>
+
+            </div>
+
         </div>
 
     </div>
@@ -784,44 +948,58 @@
 <script>
 
 
-/* =========================
-   DATABASE
-========================= */
-
-/*
-    ADD YOUR PLAYERS HERE.
-
-    Example:
-
-    "Steve": "HT1"
-
-*/
+/* ==========================================
+   ARCH TIERS DATABASE
+========================================== */
 
 let players = {
 
-    Bedfight: {
-        "ExamplePlayer": "HT1",
-        "ExamplePlayer2": "LT2"
-    },
+    "ExamplePlayer": {
 
-    Bedwars: {
-        "ExamplePlayer": "HT2"
-    },
+        ranked: true,
 
-    UHC: {
-        "ExamplePlayer": "HT3"
-    },
+        rankings: {
 
-    Sumo: {
-        "ExamplePlayer": "LT1"
+            Bedfight: "HT1",
+            Bedwars: "LT2",
+            UHC: "HT3",
+            Sumo: "LT1"
+
+        },
+
+        stats: {
+
+            wins: 100,
+            losses: 20,
+            tests: 10
+
+        },
+
+        testedDate: "August 11, 2026",
+
+        tester: "Arch",
+
+        lastUpdate: "August 11, 2026",
+
+        notes: "Example player.",
+
+        history: []
+
     }
 
 };
 
 
-/* =========================
+/* ==========================================
    SETTINGS
-========================= */
+========================================== */
+
+const modes = [
+    "Bedfight",
+    "Bedwars",
+    "UHC",
+    "Sumo"
+];
 
 const tiers = [
     "HT1",
@@ -836,62 +1014,73 @@ const tiers = [
     "LT5"
 ];
 
-const modes = [
-    "Bedfight",
-    "Bedwars",
-    "UHC",
-    "Sumo"
-];
-
 let currentMode = "Bedfight";
 
+let adminLoggedIn = false;
 
-/* =========================
+
+/*
+IMPORTANT:
+
+This password is only for the
+browser version.
+
+It is NOT secure for a real
+public admin system.
+*/
+
+const ADMIN_PASSWORD =
+    "CHANGE_THIS_PASSWORD";
+
+
+/* ==========================================
    SAVE
-========================= */
+========================================== */
 
 function saveData() {
 
     localStorage.setItem(
-        "archTiersData",
+        "archTiersDatabase",
         JSON.stringify(players)
     );
 
 }
 
 
-/* =========================
+/* ==========================================
    LOAD
-========================= */
+========================================== */
 
 function loadData() {
 
     const saved =
-        localStorage.getItem("archTiersData");
+        localStorage.getItem(
+            "archTiersDatabase"
+        );
 
-    if (saved) {
+    if (!saved) {
+        return;
+    }
 
-        try {
+    try {
 
-            players =
-                JSON.parse(saved);
+        players =
+            JSON.parse(saved);
 
-        } catch {
+    } catch {
 
-            console.log(
-                "Could not load saved data."
-            );
-
-        }
+        console.log(
+            "Could not load database."
+        );
 
     }
 
 }
 
 
-/* =========================
-   CHANGE MODE
-========================= */
+/* ==========================================
+   MODE
+========================================== */
 
 function changeMode(mode) {
 
@@ -901,33 +1090,45 @@ function changeMode(mode) {
         .querySelectorAll("nav button")
         .forEach(button => {
 
-            button.classList.remove("active");
+            button.classList.remove(
+                "active"
+            );
 
         });
 
-    document
-        .getElementById(mode + "Btn")
-        .classList.add("active");
 
     document
-        .getElementById("currentMode")
+        .getElementById(
+            mode + "Btn"
+        )
+        .classList.add("active");
+
+
+    document
+        .getElementById(
+            "modeTitle"
+        )
         .textContent = mode;
+
 
     render();
 
 }
 
 
-/* =========================
-   RENDER
-========================= */
+/* ==========================================
+   RENDER TIER LIST
+========================================== */
 
 function render() {
 
     const container =
-        document.getElementById("tierList");
+        document.getElementById(
+            "tierList"
+        );
 
     container.innerHTML = "";
+
 
     const search =
         document
@@ -940,46 +1141,59 @@ function render() {
     tiers.forEach(tier => {
 
         const row =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        row.className = "tier-row";
-
-
-        const tierTitle =
-            document.createElement("div");
-
-        tierTitle.className =
-            `tier-name ${tier}`;
-
-        tierTitle.textContent = tier;
+        row.className = "tier";
 
 
-        const playersArea =
-            document.createElement("div");
+        const tierName =
+            document.createElement(
+                "div"
+            );
 
-        playersArea.className = "players";
+        tierName.className =
+            "tier-name " + tier;
+
+        tierName.textContent =
+            tier;
 
 
-        let count = 0;
+        const area =
+            document.createElement(
+                "div"
+            );
+
+        area.className =
+            "players";
+
+
+        let found = false;
 
 
         for (
-            const player
-            in players[currentMode]
+            const name in players
         ) {
 
-            const playerTier =
-                players[currentMode][player];
+            const player =
+                players[name];
 
 
-            if (playerTier !== tier) {
+            if (
+                player.rankings[
+                    currentMode
+                ] !== tier
+            ) {
+
                 continue;
+
             }
 
 
             if (
                 search &&
-                !player
+                !name
                     .toLowerCase()
                     .includes(search)
             ) {
@@ -989,143 +1203,164 @@ function render() {
             }
 
 
-            count++;
+            found = true;
 
 
-            const playerBox =
-                document.createElement("div");
+            const box =
+                document.createElement(
+                    "div"
+                );
 
-            playerBox.className = "player";
+            box.className =
+                "player";
 
 
-            const name =
-                document.createElement("span");
+            const playerName =
+                document.createElement(
+                    "span"
+                );
 
-            name.className =
+            playerName.className =
                 "player-name";
 
-            name.textContent =
-                player;
+            playerName.textContent =
+                name;
 
-            name.onclick = function() {
-
-                openProfile(player);
-
-            };
+            playerName.onclick =
+                () => openProfile(name);
 
 
             const up =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
 
             up.className = "up";
 
             up.textContent = "↑";
 
-            up.onclick = function(event) {
-
-                event.stopPropagation();
-
-                movePlayer(player, -1);
-
-            };
+            up.onclick = () =>
+                movePlayer(name, -1);
 
 
             const down =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
 
             down.className = "down";
 
             down.textContent = "↓";
 
-            down.onclick = function(event) {
-
-                event.stopPropagation();
-
-                movePlayer(player, 1);
-
-            };
+            down.onclick = () =>
+                movePlayer(name, 1);
 
 
             const remove =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
 
-            remove.className = "delete";
+            remove.className =
+                "delete";
 
-            remove.textContent = "×";
+            remove.textContent =
+                "×";
 
-            remove.onclick = function(event) {
-
-                event.stopPropagation();
-
-                deletePlayer(player);
-
-            };
+            remove.onclick = () =>
+                deletePlayer(name);
 
 
-            playerBox.appendChild(name);
+            box.appendChild(
+                playerName
+            );
 
-            playerBox.appendChild(up);
+            box.appendChild(up);
 
-            playerBox.appendChild(down);
+            box.appendChild(down);
 
-            playerBox.appendChild(remove);
+            box.appendChild(remove);
 
-            playersArea.appendChild(playerBox);
+            area.appendChild(box);
 
         }
 
 
-        if (count === 0) {
+        if (!found) {
 
             const empty =
-                document.createElement("span");
+                document.createElement(
+                    "span"
+                );
 
-            empty.className = "empty";
+            empty.className =
+                "empty";
 
             empty.textContent =
                 "No players";
 
-            playersArea.appendChild(empty);
+            area.appendChild(empty);
 
         }
 
 
-        row.appendChild(tierTitle);
+        row.appendChild(
+            tierName
+        );
 
-        row.appendChild(playersArea);
+        row.appendChild(
+            area
+        );
 
-        container.appendChild(row);
+        container.appendChild(
+            row
+        );
 
     });
 
 }
 
 
-/* =========================
+/* ==========================================
    MOVE PLAYER
-========================= */
+========================================== */
 
-function movePlayer(player, direction) {
+function movePlayer(
+    name,
+    direction
+) {
 
-    const currentTier =
-        players[currentMode][player];
-
-    const currentIndex =
-        tiers.indexOf(currentTier);
-
-
-    let newIndex =
-        currentIndex + direction;
+    const player =
+        players[name];
 
 
-    if (newIndex < 0) {
+    const oldTier =
+        player.rankings[
+            currentMode
+        ];
 
-        newIndex = 0;
 
+    if (!oldTier) {
+        return;
     }
 
 
-    if (newIndex >= tiers.length) {
+    const oldIndex =
+        tiers.indexOf(oldTier);
+
+
+    let newIndex =
+        oldIndex + direction;
+
+
+    if (newIndex < 0) {
+        newIndex = 0;
+    }
+
+
+    if (
+        newIndex >= tiers.length
+    ) {
 
         newIndex =
             tiers.length - 1;
@@ -1133,35 +1368,45 @@ function movePlayer(player, direction) {
     }
 
 
-    players[currentMode][player] =
+    const newTier =
         tiers[newIndex];
 
 
-    saveData();
+    if (
+        oldTier === newTier
+    ) {
 
-    render();
-
-}
-
-
-/* =========================
-   DELETE PLAYER
-========================= */
-
-function deletePlayer(player) {
-
-    const confirmed =
-        confirm(
-            `Remove ${player} from ${currentMode}?`
-        );
-
-
-    if (!confirmed) {
         return;
+
     }
 
 
-    delete players[currentMode][player];
+    player.rankings[
+        currentMode
+    ] = newTier;
+
+
+    player.lastUpdate =
+        new Date().toLocaleDateString();
+
+
+    player.history.unshift({
+
+        mode: currentMode,
+
+        from: oldTier,
+
+        to: newTier,
+
+        date:
+            new Date()
+                .toLocaleString(),
+
+        tester:
+            player.tester || "Admin"
+
+    });
+
 
     saveData();
 
@@ -1170,9 +1415,9 @@ function deletePlayer(player) {
 }
 
 
-/* =========================
+/* ==========================================
    ADD PLAYER
-========================= */
+========================================== */
 
 function addPlayer() {
 
@@ -1181,20 +1426,21 @@ function addPlayer() {
             "playerName"
         );
 
+
+    const name =
+        input.value.trim();
+
+
     const tier =
         document.getElementById(
             "playerTier"
         ).value;
 
 
-    const name =
-        input.value.trim();
-
-
     if (!name) {
 
         alert(
-            "Please enter a Minecraft username."
+            "Enter a Minecraft username."
         );
 
         return;
@@ -1202,7 +1448,57 @@ function addPlayer() {
     }
 
 
-    players[currentMode][name] =
+    if (players[name]) {
+
+        alert(
+            "That player already exists."
+        );
+
+        return;
+
+    }
+
+
+    players[name] = {
+
+        ranked: true,
+
+        rankings: {
+
+            Bedfight: null,
+            Bedwars: null,
+            UHC: null,
+            Sumo: null
+
+        },
+
+        stats: {
+
+            wins: 0,
+            losses: 0,
+            tests: 0
+
+        },
+
+        testedDate:
+            new Date()
+                .toLocaleDateString(),
+
+        tester: "Admin",
+
+        lastUpdate:
+            new Date()
+                .toLocaleDateString(),
+
+        notes: "",
+
+        history: []
+
+    };
+
+
+    players[name]
+        .rankings[currentMode] =
         tier;
 
 
@@ -1216,114 +1512,320 @@ function addPlayer() {
 }
 
 
-/* =========================
-   OPEN PROFILE
-========================= */
+/* ==========================================
+   DELETE PLAYER
+========================================== */
 
-function openProfile(player) {
+function deletePlayer(name) {
+
+    if (!adminLoggedIn) {
+
+        alert(
+            "Admin login required to delete players."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !confirm(
+            `Delete ${name}?`
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    delete players[name];
+
+    saveData();
+
+    render();
+
+    renderAdmin();
+
+}
+
+
+/* ==========================================
+   PROFILE
+========================================== */
+
+function openProfile(name) {
+
+    const player =
+        players[name];
+
+
+    if (!player) {
+        return;
+    }
+
 
     document
-        .getElementById("profileName")
-        .textContent = player;
+        .getElementById(
+            "profileName"
+        )
+        .textContent = name;
 
-
-    /*
-       Minecraft player head.
-    */
 
     document
-        .getElementById("skin")
+        .getElementById(
+            "profileSkin"
+        )
         .src =
         "https://mc-heads.net/avatar/" +
-        encodeURIComponent(player) +
+        encodeURIComponent(name) +
         "/100";
 
 
-    const rankings =
+    document
+        .getElementById(
+            "profileStatus"
+        )
+        .textContent =
+        player.ranked
+            ? "● Ranked"
+            : "● Unranked";
+
+
+    document
+        .getElementById(
+            "profileStatus"
+        )
+        .style.color =
+        player.ranked
+            ? "#55ff55"
+            : "#ff6666";
+
+
+    /* RANKINGS */
+
+    const ranks =
         document.getElementById(
-            "rankings"
+            "profileRanks"
         );
 
-
-    rankings.innerHTML = "";
+    ranks.innerHTML = "";
 
 
     modes.forEach(mode => {
 
-        const tier =
-            players[mode][player];
-
-
         const row =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         row.className =
-            "ranking";
+            "rank";
 
 
-        const modeName =
-            document.createElement("span");
+        const left =
+            document.createElement(
+                "span"
+            );
 
-        modeName.className =
-            "ranking-mode";
-
-        modeName.textContent =
+        left.textContent =
             mode;
+
+
+        const tier =
+            player.rankings[mode];
+
+
+        const right =
+            document.createElement(
+                "span"
+            );
 
 
         if (tier) {
 
-            const tierBox =
-                document.createElement("span");
-
-            tierBox.className =
-                `ranking-tier ${tier}`;
-
-            tierBox.textContent =
+            right.className =
+                "ranking-tier " +
                 tier;
 
-            row.appendChild(modeName);
-
-            row.appendChild(tierBox);
+            right.textContent =
+                tier;
 
         } else {
 
-            const unranked =
-                document.createElement("span");
-
-            unranked.className =
-                "unranked";
-
-            unranked.textContent =
+            right.textContent =
                 "Unranked";
 
-            row.appendChild(modeName);
-
-            row.appendChild(unranked);
+            right.style.color =
+                "#667080";
 
         }
 
 
-        rankings.appendChild(row);
+        row.appendChild(left);
+
+        row.appendChild(right);
+
+        ranks.appendChild(row);
 
     });
 
 
+    /* STATS */
+
+    const stats =
+        player.stats || {};
+
+
     document
-        .getElementById("profileModal")
+        .getElementById(
+            "profileStats"
+        )
+        .innerHTML = `
+
+        <div class="rank">
+            <span>Wins</span>
+            <b>${stats.wins || 0}</b>
+        </div>
+
+        <div class="rank">
+            <span>Losses</span>
+            <b>${stats.losses || 0}</b>
+        </div>
+
+        <div class="rank">
+            <span>Tests</span>
+            <b>${stats.tests || 0}</b>
+        </div>
+
+    `;
+
+
+    /* TESTING */
+
+    document
+        .getElementById(
+            "profileTesting"
+        )
+        .innerHTML = `
+
+        <div class="rank">
+            <span>Tested</span>
+            <b>
+                ${player.testedDate || "Unknown"}
+            </b>
+        </div>
+
+        <div class="rank">
+            <span>Tester</span>
+            <b>
+                ${player.tester || "Unknown"}
+            </b>
+        </div>
+
+        <div class="rank">
+            <span>Last Update</span>
+            <b>
+                ${player.lastUpdate || "Unknown"}
+            </b>
+        </div>
+
+    `;
+
+
+    /* NOTES */
+
+    document
+        .getElementById(
+            "profileNotes"
+        )
+        .textContent =
+        player.notes ||
+        "No notes available.";
+
+
+    /* HISTORY */
+
+    const history =
+        document.getElementById(
+            "profileHistory"
+        );
+
+
+    history.innerHTML = "";
+
+
+    if (
+        !player.history ||
+        player.history.length === 0
+    ) {
+
+        history.innerHTML =
+            '<div class="history">No tier changes yet.</div>';
+
+    } else {
+
+        player.history.forEach(
+            change => {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+                item.className =
+                    "history";
+
+                item.innerHTML = `
+
+                    <b>
+                        ${change.mode}
+                    </b>
+
+                    <br>
+
+                    ${change.from}
+                    →
+                    ${change.to}
+
+                    <br>
+
+                    <small>
+                        ${change.date}
+                        ·
+                        ${change.tester}
+                    </small>
+
+                `;
+
+                history.appendChild(
+                    item
+                );
+
+            }
+        );
+
+    }
+
+
+    document
+        .getElementById(
+            "profileModal"
+        )
         .classList.add("show");
 
 }
 
 
-/* =========================
-   CLOSE PROFILE
-========================= */
+/* ==========================================
+   MODALS
+========================================== */
 
-function closeProfile() {
+function closeModal(id) {
 
     document
-        .getElementById("profileModal")
+        .getElementById(id)
         .classList.remove("show");
 
 }
@@ -1336,34 +1838,495 @@ function outsideClose(event) {
         "profileModal"
     ) {
 
-        closeProfile();
+        closeModal(
+            "profileModal"
+        );
 
     }
 
 }
 
 
-/* =========================
-   ESCAPE KEY
-========================= */
+function outsideAdmin(event) {
 
-document.addEventListener(
-    "keydown",
-    function(event) {
+    if (
+        event.target.id ===
+        "adminModal"
+    ) {
 
-        if (event.key === "Escape") {
+        closeModal(
+            "adminModal"
+        );
 
-            closeProfile();
+    }
+
+}
+
+
+/* ==========================================
+   ADMIN
+========================================== */
+
+function openAdmin() {
+
+    document
+        .getElementById(
+            "adminModal"
+        )
+        .classList.add("show");
+
+
+    if (adminLoggedIn) {
+
+        showAdmin();
+
+    }
+
+}
+
+
+/* LOGIN */
+
+function loginAdmin() {
+
+    const password =
+        document
+            .getElementById(
+                "adminPassword"
+            )
+            .value;
+
+
+    if (
+        password !==
+        ADMIN_PASSWORD
+    ) {
+
+        alert(
+            "Incorrect password."
+        );
+
+        return;
+
+    }
+
+
+    adminLoggedIn = true;
+
+
+    showAdmin();
+
+}
+
+
+/* SHOW ADMIN */
+
+function showAdmin() {
+
+    document
+        .getElementById(
+            "adminLogin"
+        )
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById(
+            "adminPanel"
+        )
+        .classList.add("show");
+
+
+    renderAdmin();
+
+}
+
+
+/* LOGOUT */
+
+function logoutAdmin() {
+
+    adminLoggedIn = false;
+
+
+    document
+        .getElementById(
+            "adminLogin"
+        )
+        .style.display =
+        "block";
+
+
+    document
+        .getElementById(
+            "adminPanel"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "adminPassword"
+        )
+        .value = "";
+
+}
+
+
+/* ADMIN PLAYER LIST */
+
+function renderAdmin() {
+
+    const container =
+        document.getElementById(
+            "adminPlayers"
+        );
+
+
+    container.innerHTML = "";
+
+
+    for (
+        const name in players
+    ) {
+
+        const player =
+            players[name];
+
+
+        const row =
+            document.createElement(
+                "div"
+            );
+
+        row.className =
+            "admin-row";
+
+
+        row.innerHTML = `
+
+            <b>${name}</b>
+
+            <label>
+                Bedfight
+                <select
+                    onchange="adminTier('${name}','Bedfight',this.value)">
+                    ${tierOptions(
+                        player.rankings.Bedfight
+                    )}
+                </select>
+            </label>
+
+            <label>
+                Bedwars
+                <select
+                    onchange="adminTier('${name}','Bedwars',this.value)">
+                    ${tierOptions(
+                        player.rankings.Bedwars
+                    )}
+                </select>
+            </label>
+
+            <label>
+                UHC
+                <select
+                    onchange="adminTier('${name}','UHC',this.value)">
+                    ${tierOptions(
+                        player.rankings.UHC
+                    )}
+                </select>
+            </label>
+
+            <label>
+                Sumo
+                <select
+                    onchange="adminTier('${name}','Sumo',this.value)">
+                    ${tierOptions(
+                        player.rankings.Sumo
+                    )}
+                </select>
+            </label>
+
+            <label>
+                Tester
+                <input
+                    value="${escapeHTML(
+                        player.tester || ""
+                    )}"
+                    onchange="updateTester('${name}',this.value)">
+            </label>
+
+            <label>
+                Notes
+                <textarea
+                    onchange="updateNotes('${name}',this.value)"
+                    placeholder="Player notes...">${escapeHTML(
+                        player.notes || ""
+                    )}</textarea>
+            </label>
+
+            <button
+                class="logout"
+                onclick="deletePlayer('${name}')">
+                Delete Player
+            </button>
+
+        `;
+
+
+        container.appendChild(row);
+
+    }
+
+
+    renderHistory();
+
+}
+
+
+/* TIER OPTIONS */
+
+function tierOptions(current) {
+
+    let html =
+        `<option value="">Unranked</option>`;
+
+
+    tiers.forEach(tier => {
+
+        html += `
+            <option
+                value="${tier}"
+                ${current === tier ? "selected" : ""}>
+                ${tier}
+            </option>
+        `;
+
+    });
+
+
+    return html;
+
+}
+
+
+/* ADMIN CHANGE TIER */
+
+function adminTier(
+    name,
+    mode,
+    newTier
+) {
+
+    const player =
+        players[name];
+
+
+    const oldTier =
+        player.rankings[mode];
+
+
+    if (oldTier === newTier) {
+        return;
+    }
+
+
+    player.rankings[mode] =
+        newTier || null;
+
+
+    player.lastUpdate =
+        new Date()
+            .toLocaleDateString();
+
+
+    player.history.unshift({
+
+        mode: mode,
+
+        from:
+            oldTier || "Unranked",
+
+        to:
+            newTier || "Unranked",
+
+        date:
+            new Date()
+                .toLocaleString(),
+
+        tester:
+            player.tester ||
+            "Admin"
+
+    });
+
+
+    saveData();
+
+    render();
+
+    renderAdmin();
+
+}
+
+
+/* UPDATE TESTER */
+
+function updateTester(
+    name,
+    value
+) {
+
+    players[name].tester =
+        value;
+
+
+    players[name].lastUpdate =
+        new Date()
+            .toLocaleDateString();
+
+
+    saveData();
+
+}
+
+
+/* UPDATE NOTES */
+
+function updateNotes(
+    name,
+    value
+) {
+
+    players[name].notes =
+        value;
+
+
+    players[name].lastUpdate =
+        new Date()
+            .toLocaleDateString();
+
+
+    saveData();
+
+}
+
+
+/* HISTORY */
+
+function renderHistory() {
+
+    const container =
+        document.getElementById(
+            "history"
+        );
+
+
+    container.innerHTML = "";
+
+
+    let count = 0;
+
+
+    for (
+        const name in players
+    ) {
+
+        const player =
+            players[name];
+
+
+        if (
+            !player.history
+        ) {
+
+            continue;
 
         }
 
+
+        player.history.forEach(
+            change => {
+
+                count++;
+
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+                item.className =
+                    "history";
+
+
+                item.innerHTML = `
+
+                    <b>${name}</b>
+
+                    ·
+
+                    ${change.mode}
+
+                    <br>
+
+                    ${change.from}
+                    →
+                    ${change.to}
+
+                    <br>
+
+                    <small>
+                        ${change.date}
+                        ·
+                        ${change.tester}
+                    </small>
+
+                `;
+
+
+                container.appendChild(
+                    item
+                );
+
+            }
+        );
+
     }
-);
 
 
-/* =========================
+    if (count === 0) {
+
+        container.innerHTML =
+            '<div class="history">No history yet.</div>';
+
+    }
+
+}
+
+
+/* ==========================================
+   HTML ESCAPE
+========================================== */
+
+function escapeHTML(text) {
+
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* ==========================================
    START
-========================= */
+========================================== */
 
 loadData();
 
