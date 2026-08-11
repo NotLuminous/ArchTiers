@@ -19,7 +19,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 header {
     background: #0d1118;
@@ -43,34 +43,25 @@ header {
     margin-top: 7px;
 }
 
-/* NAVIGATION */
+/* ================= NAV ================= */
 
 nav {
     background: #0a0d12;
     border-bottom: 1px solid #222936;
-
     display: flex;
     justify-content: center;
-    align-items: center;
-
     gap: 8px;
     padding: 14px;
-
     flex-wrap: wrap;
 }
 
 nav button {
     background: #151a23;
     color: #c4cad4;
-
     border: 1px solid #303744;
-
     padding: 10px 18px;
-
     border-radius: 7px;
-
     font-weight: bold;
-
     cursor: pointer;
 }
 
@@ -82,31 +73,23 @@ nav button:hover {
 nav button.active {
     background: #55ff55;
     color: #061006;
-
     border-color: #55ff55;
 }
 
-/* MAIN */
+/* ================= MAIN ================= */
 
 main {
     width: 95%;
     max-width: 1250px;
-
     margin: 30px auto;
 }
 
-/* TOP */
-
 .top {
     display: flex;
-
     justify-content: space-between;
     align-items: center;
-
     gap: 15px;
-
     margin-bottom: 20px;
-
     flex-wrap: wrap;
 }
 
@@ -121,17 +104,11 @@ main {
 
 .search {
     background: #10151d;
-
     color: white;
-
     border: 1px solid #303744;
-
     border-radius: 7px;
-
     padding: 11px 14px;
-
     width: 250px;
-
     outline: none;
 }
 
@@ -139,38 +116,26 @@ main {
     border-color: #55ff55;
 }
 
-/* TIER ROW */
+/* ================= TIERS ================= */
 
 .tier {
     display: grid;
-
     grid-template-columns: 105px 1fr;
-
     min-height: 70px;
-
     margin-bottom: 7px;
-
     background: #10151d;
-
     border: 1px solid #252c37;
-
     border-radius: 7px;
-
     overflow: hidden;
 }
 
 .tier-name {
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     font-size: 18px;
-
     font-weight: 900;
 }
-
-/* TIER COLORS */
 
 .HT1 {
     background: #ff3b3b;
@@ -214,35 +179,24 @@ main {
     background: #72b7ef;
 }
 
-/* PLAYERS */
+/* ================= PLAYERS ================= */
 
 .players {
     display: flex;
-
     align-items: center;
-
     flex-wrap: wrap;
-
     gap: 8px;
-
     padding: 10px;
 }
 
 .player {
     display: flex;
-
     align-items: center;
-
     gap: 7px;
-
     background: #191f28;
-
     border: 1px solid #303744;
-
     border-radius: 7px;
-
     padding: 7px 9px;
-
     font-weight: bold;
 }
 
@@ -257,15 +211,10 @@ main {
 .player button {
     width: 23px;
     height: 23px;
-
     border: none;
-
     border-radius: 5px;
-
     color: white;
-
     font-weight: bold;
-
     cursor: pointer;
 }
 
@@ -281,17 +230,17 @@ main {
     background: #515864;
 }
 
-/* ADD PLAYER */
+/* ================= ADMIN ADD PLAYER ================= */
+
+#addPlayerBox {
+    display: none;
+}
 
 .add {
     background: #10151d;
-
     border: 1px solid #252c37;
-
     border-radius: 9px;
-
     padding: 20px;
-
     margin-top: 25px;
 }
 
@@ -301,45 +250,32 @@ main {
 
 .form {
     display: flex;
-
     gap: 8px;
-
     flex-wrap: wrap;
 }
 
 .form input,
 .form select {
     background: #080b10;
-
     color: white;
-
     border: 1px solid #303744;
-
     border-radius: 6px;
-
     padding: 11px;
 }
 
 .form input {
     flex: 1;
-
     min-width: 200px;
 }
 
 .add-btn,
 .admin-btn {
     background: #55ff55;
-
     color: #061006;
-
     border: none;
-
     border-radius: 6px;
-
     padding: 11px 18px;
-
     font-weight: 900;
-
     cursor: pointer;
 }
 
@@ -348,23 +284,16 @@ main {
     background: #75ff75;
 }
 
-/* MODALS */
+/* ================= MODALS ================= */
 
 .modal {
     display: none;
-
     position: fixed;
-
     inset: 0;
-
     z-index: 1000;
-
     background: rgba(0,0,0,.86);
-
     align-items: center;
-
     justify-content: center;
-
     padding: 20px;
 }
 
@@ -374,43 +303,27 @@ main {
 
 .card {
     width: 100%;
-
-    max-width: 700px;
-
+    max-width: 750px;
     max-height: 92vh;
-
     overflow-y: auto;
-
     background: #10151d;
-
     border: 1px solid #303744;
-
     border-radius: 12px;
-
     padding: 25px;
-
     position: relative;
 }
 
 .close {
     position: absolute;
-
     top: 15px;
     right: 15px;
-
     width: 34px;
     height: 34px;
-
     border: none;
-
     border-radius: 7px;
-
     background: #292f39;
-
     color: white;
-
     font-size: 20px;
-
     cursor: pointer;
 }
 
@@ -418,38 +331,30 @@ main {
     background: #e43f3f;
 }
 
-/* PROFILE */
+/* ================= PROFILE ================= */
 
 .profile-head {
     text-align: center;
-
     border-bottom: 1px solid #2a313c;
-
     padding-bottom: 20px;
 }
 
 .skin {
     width: 100px;
     height: 100px;
-
     image-rendering: pixelated;
-
     border: 3px solid #55ff55;
-
     border-radius: 10px;
 }
 
 .profile-name {
     font-size: 28px;
-
     font-weight: 900;
-
     margin-top: 10px;
 }
 
 .status {
     font-weight: bold;
-
     margin-top: 5px;
 }
 
@@ -463,34 +368,22 @@ main {
 
 .rank {
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     background: #191f28;
-
     border: 1px solid #303744;
-
     padding: 12px;
-
     border-radius: 7px;
-
     margin-bottom: 7px;
 }
 
 .notes,
 .history {
     background: #191f28;
-
     border: 1px solid #303744;
-
     padding: 12px;
-
     border-radius: 7px;
-
     color: #c4cad4;
-
     margin-bottom: 7px;
 }
 
@@ -498,43 +391,30 @@ main {
     line-height: 1.5;
 }
 
-/* ADMIN */
+/* ================= ADMIN ================= */
 
 .admin-login input {
     width: 100%;
-
     background: #080b10;
-
     color: white;
-
     border: 1px solid #303744;
-
     border-radius: 6px;
-
     padding: 11px;
-
     outline: none;
 }
 
 .admin-row {
     background: #191f28;
-
     border: 1px solid #303744;
-
     padding: 15px;
-
     border-radius: 8px;
-
     margin-bottom: 10px;
 }
 
 .admin-row label {
     display: block;
-
     color: #aeb7c5;
-
     font-size: 13px;
-
     margin-top: 10px;
 }
 
@@ -542,48 +422,33 @@ main {
 .admin-row select,
 .admin-row textarea {
     width: 100%;
-
     margin-top: 6px;
-
     background: #080b10;
-
     color: white;
-
     border: 1px solid #303744;
-
     border-radius: 6px;
-
     padding: 9px;
 }
 
 .admin-row textarea {
     min-height: 80px;
-
     resize: vertical;
 }
 
 .admin-grid {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     gap: 10px;
 }
 
 .logout,
 .danger {
     background: #d94141;
-
     color: white;
-
     border: none;
-
     padding: 9px 14px;
-
     border-radius: 6px;
-
     font-weight: bold;
-
     cursor: pointer;
 }
 
@@ -594,11 +459,8 @@ main {
 
 .section-title {
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     gap: 10px;
 }
 
@@ -608,21 +470,15 @@ main {
 
 .notice {
     background: #2a2110;
-
     border: 1px solid #69501a;
-
     color: #e9cf7b;
-
     padding: 10px;
-
     border-radius: 7px;
-
     margin-bottom: 15px;
-
     font-size: 13px;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media(max-width:650px) {
 
@@ -663,7 +519,7 @@ main {
 
 <body>
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
 
 <header>
 
@@ -678,7 +534,7 @@ main {
 </header>
 
 
-<!-- NAVIGATION -->
+<!-- ================= NAVIGATION ================= -->
 
 <nav>
 
@@ -718,7 +574,7 @@ main {
     <button
         onclick="openAdmin()">
 
-        Admin
+        👑 Admin
 
     </button>
 
@@ -727,8 +583,7 @@ main {
 
 <main>
 
-
-    <!-- TITLE / SEARCH -->
+    <!-- ================= TITLE ================= -->
 
     <div class="top">
 
@@ -736,9 +591,7 @@ main {
 
             <span>ARCH</span>
             TIERS —
-            <span id="modeTitle">
-                Bedfight
-            </span>
+            <span id="modeTitle">Bedfight</span>
 
         </div>
 
@@ -751,17 +604,19 @@ main {
     </div>
 
 
-    <!-- TIER LIST -->
+    <!-- ================= TIER LIST ================= -->
 
     <div id="tierList"></div>
 
 
-    <!-- ADD PLAYER -->
+    <!-- ================= ADMIN ONLY ADD PLAYER ================= -->
 
-    <div class="add">
+    <div
+        class="add"
+        id="addPlayerBox">
 
         <h2>
-            Add Player
+            👑 Add Player
         </h2>
 
         <div class="form">
@@ -804,7 +659,7 @@ main {
 </main>
 
 
-<!-- PLAYER PROFILE -->
+<!-- ================= PLAYER PROFILE ================= -->
 
 <div
     class="modal"
@@ -832,13 +687,11 @@ main {
             <div
                 id="profileName"
                 class="profile-name">
-
             </div>
 
             <div
                 id="profileStatus"
                 class="status">
-
             </div>
 
         </div>
@@ -886,7 +739,6 @@ main {
             <div
                 id="profileNotes"
                 class="notes">
-
             </div>
 
         </div>
@@ -895,7 +747,7 @@ main {
         <div class="profile-section">
 
             <h3>
-                Tier History
+                📜 Tier History
             </h3>
 
             <div id="profileHistory"></div>
@@ -907,7 +759,7 @@ main {
 </div>
 
 
-<!-- ADMIN MODAL -->
+<!-- ================= ADMIN MODAL ================= -->
 
 <div
     class="modal"
@@ -925,7 +777,7 @@ main {
         </button>
 
 
-        <!-- LOGIN -->
+        <!-- ADMIN LOGIN -->
 
         <div id="adminLogin">
 
@@ -935,9 +787,8 @@ main {
 
             <div class="notice">
 
-                This is the one-file GitHub Pages version.
-                The password is visible in the website source
-                and data is stored locally in the browser.
+                Admin access is required to add,
+                remove, or modify players.
 
             </div>
 
@@ -959,7 +810,7 @@ main {
         </div>
 
 
-        <!-- ADMIN DASHBOARD -->
+        <!-- ADMIN PANEL -->
 
         <div
             id="adminPanel"
@@ -984,9 +835,8 @@ main {
 
             <p class="muted">
 
-                Manage players, rankings, stats,
-                notes, testing information,
-                and tier history.
+                Only admins can add, remove,
+                or modify players.
 
             </p>
 
@@ -1020,10 +870,17 @@ main {
 
 <script>
 
-
-/* ==========================================
+/* =========================================================
    SETTINGS
-========================================== */
+========================================================= */
+
+/*
+    CHANGE THIS PASSWORD
+*/
+
+const ADMIN_PASSWORD =
+    "CHANGE_THIS_PASSWORD";
+
 
 const tiers = [
 
@@ -1063,19 +920,9 @@ let adminLoggedIn =
     false;
 
 
-/*
-================================================
-CHANGE THIS PASSWORD
-================================================
-*/
-
-const ADMIN_PASSWORD =
-    "CHANGE_THIS_PASSWORD";
-
-
-/* ==========================================
-   DATABASE
-========================================== */
+/* =========================================================
+   PLAYER DATABASE
+========================================================= */
 
 let players = {
 
@@ -1124,9 +971,9 @@ let players = {
 };
 
 
-/* ==========================================
-   DATE
-========================================== */
+/* =========================================================
+   DATE FUNCTIONS
+========================================================= */
 
 function currentDate() {
 
@@ -1144,26 +991,23 @@ function currentDateTime() {
 }
 
 
-/* ==========================================
-   SAVE DATA
-========================================== */
+/* =========================================================
+   SAVE
+========================================================= */
 
 function saveData() {
 
     localStorage.setItem(
-
         "archTiersDatabase",
-
         JSON.stringify(players)
-
     );
 
 }
 
 
-/* ==========================================
-   LOAD DATA
-========================================== */
+/* =========================================================
+   LOAD
+========================================================= */
 
 function loadData() {
 
@@ -1174,9 +1018,7 @@ function loadData() {
 
 
     if (!saved) {
-
         return;
-
     }
 
 
@@ -1190,7 +1032,7 @@ function loadData() {
     catch {
 
         console.log(
-            "Could not load data."
+            "Could not load database."
         );
 
     }
@@ -1198,9 +1040,9 @@ function loadData() {
 }
 
 
-/* ==========================================
+/* =========================================================
    CHANGE MODE
-========================================== */
+========================================================= */
 
 function changeMode(mode) {
 
@@ -1209,9 +1051,7 @@ function changeMode(mode) {
 
 
     document
-        .querySelectorAll(
-            "nav button"
-        )
+        .querySelectorAll("nav button")
         .forEach(button => {
 
             button.classList.remove(
@@ -1243,9 +1083,9 @@ function changeMode(mode) {
 }
 
 
-/* ==========================================
+/* =========================================================
    RENDER TIER LIST
-========================================== */
+========================================================= */
 
 function render() {
 
@@ -1321,9 +1161,7 @@ function render() {
                         currentMode
                     ] !== tier
                 ) {
-
                     return;
-
                 }
 
 
@@ -1333,9 +1171,7 @@ function render() {
                         .toLowerCase()
                         .includes(search)
                 ) {
-
                     return;
-
                 }
 
 
@@ -1368,92 +1204,99 @@ function render() {
 
 
                 playerName.onclick =
-                    () =>
-                        openProfile(
-                            name
-                        );
-
-
-                const up =
-                    document.createElement(
-                        "button"
-                    );
-
-
-                up.className =
-                    "up";
-
-
-                up.textContent =
-                    "↑";
-
-
-                up.onclick =
-                    () =>
-                        movePlayer(
-                            name,
-                            -1
-                        );
-
-
-                const down =
-                    document.createElement(
-                        "button"
-                    );
-
-
-                down.className =
-                    "down";
-
-
-                down.textContent =
-                    "↓";
-
-
-                down.onclick =
-                    () =>
-                        movePlayer(
-                            name,
-                            1
-                        );
-
-
-                const remove =
-                    document.createElement(
-                        "button"
-                    );
-
-
-                remove.className =
-                    "delete";
-
-
-                remove.textContent =
-                    "×";
-
-
-                remove.onclick =
-                    () =>
-                        deletePlayer(
-                            name
-                        );
+                    () => openProfile(name);
 
 
                 box.appendChild(
                     playerName
                 );
 
-                box.appendChild(
-                    up
-                );
 
-                box.appendChild(
-                    down
-                );
+                /*
+                    ONLY ADMINS GET
+                    THE MOVE BUTTONS
+                */
 
-                box.appendChild(
-                    remove
-                );
+                if (adminLoggedIn) {
+
+                    const up =
+                        document.createElement(
+                            "button"
+                        );
+
+                    up.className =
+                        "up";
+
+                    up.textContent =
+                        "↑";
+
+                    up.title =
+                        "Move player up";
+
+                    up.onclick =
+                        () =>
+                            movePlayer(
+                                name,
+                                -1
+                            );
+
+
+                    const down =
+                        document.createElement(
+                            "button"
+                        );
+
+                    down.className =
+                        "down";
+
+                    down.textContent =
+                        "↓";
+
+                    down.title =
+                        "Move player down";
+
+                    down.onclick =
+                        () =>
+                            movePlayer(
+                                name,
+                                1
+                            );
+
+
+                    const remove =
+                        document.createElement(
+                            "button"
+                        );
+
+                    remove.className =
+                        "delete";
+
+                    remove.textContent =
+                        "×";
+
+                    remove.title =
+                        "Remove player";
+
+                    remove.onclick =
+                        () =>
+                            deletePlayer(
+                                name
+                            );
+
+
+                    box.appendChild(
+                        up
+                    );
+
+                    box.appendChild(
+                        down
+                    );
+
+                    box.appendChild(
+                        remove
+                    );
+
+                }
 
 
                 area.appendChild(
@@ -1505,166 +1348,22 @@ function render() {
 }
 
 
-/* ==========================================
-   RECORD HISTORY
-========================================== */
+/* =========================================================
+   ADD PLAYER
+========================================================= */
 
-function recordHistory(
-    name,
-    mode,
-    from,
-    to
-) {
-
-    const player =
-        players[name];
-
-
-    if (!player.history) {
-
-        player.history =
-            [];
-
-    }
-
-
-    player.history.unshift({
-
-        mode:
-            mode,
-
-        from:
-            from || "Unranked",
-
-        to:
-            to || "Unranked",
-
-        date:
-            currentDateTime(),
-
-        tester:
-            player.tester ||
-            "Admin"
-
-    });
-
-}
-
-
-/* ==========================================
-   MOVE PLAYER
-========================================== */
-
-function movePlayer(
-    name,
-    direction
-) {
+function addPlayer() {
 
     if (!adminLoggedIn) {
 
         alert(
-            "Admin login required to change tiers."
+            "Only admins can add players."
         );
 
         return;
 
     }
 
-
-    const player =
-        players[name];
-
-
-    const oldTier =
-        player.rankings[
-            currentMode
-        ];
-
-
-    if (!oldTier) {
-
-        return;
-
-    }
-
-
-    const oldIndex =
-        tiers.indexOf(
-            oldTier
-        );
-
-
-    let newIndex =
-        oldIndex + direction;
-
-
-    if (newIndex < 0) {
-
-        newIndex = 0;
-
-    }
-
-
-    if (
-        newIndex >=
-        tiers.length
-    ) {
-
-        newIndex =
-            tiers.length - 1;
-
-    }
-
-
-    const newTier =
-        tiers[newIndex];
-
-
-    if (
-        oldTier === newTier
-    ) {
-
-        return;
-
-    }
-
-
-    recordHistory(
-        name,
-        currentMode,
-        oldTier,
-        newTier
-    );
-
-
-    player.rankings[
-        currentMode
-    ] =
-        newTier;
-
-
-    player.lastUpdate =
-        currentDate();
-
-
-    saveData();
-
-    render();
-
-    if (adminLoggedIn) {
-
-        renderAdmin();
-
-    }
-
-}
-
-
-/* ==========================================
-   ADD PLAYER
-========================================== */
-
-function addPlayer() {
 
     const name =
         document
@@ -1749,9 +1448,7 @@ function addPlayer() {
 
 
     players[name]
-        .rankings[
-            currentMode
-        ] =
+        .rankings[currentMode] =
         tier;
 
 
@@ -1767,26 +1464,21 @@ function addPlayer() {
 
     render();
 
-
-    if (adminLoggedIn) {
-
-        renderAdmin();
-
-    }
+    renderAdmin();
 
 }
 
 
-/* ==========================================
+/* =========================================================
    DELETE PLAYER
-========================================== */
+========================================================= */
 
 function deletePlayer(name) {
 
     if (!adminLoggedIn) {
 
         alert(
-            "Admin login required to delete players."
+            "Only admins can remove players."
         );
 
         return;
@@ -1796,9 +1488,9 @@ function deletePlayer(name) {
 
     if (
         !confirm(
-            "Delete " +
+            "Remove " +
             name +
-            "?"
+            " from Arch Tiers?"
         )
     ) {
 
@@ -1819,9 +1511,157 @@ function deletePlayer(name) {
 }
 
 
-/* ==========================================
-   PLAYER PROFILE
-========================================== */
+/* =========================================================
+   MOVE PLAYER
+========================================================= */
+
+function movePlayer(
+    name,
+    direction
+) {
+
+    if (!adminLoggedIn) {
+
+        alert(
+            "Only admins can change tiers."
+        );
+
+        return;
+
+    }
+
+
+    const player =
+        players[name];
+
+
+    const oldTier =
+        player.rankings[
+            currentMode
+        ];
+
+
+    if (!oldTier) {
+        return;
+    }
+
+
+    const oldIndex =
+        tiers.indexOf(
+            oldTier
+        );
+
+
+    let newIndex =
+        oldIndex + direction;
+
+
+    if (newIndex < 0) {
+
+        newIndex = 0;
+
+    }
+
+
+    if (
+        newIndex >=
+        tiers.length
+    ) {
+
+        newIndex =
+            tiers.length - 1;
+
+    }
+
+
+    const newTier =
+        tiers[newIndex];
+
+
+    if (
+        oldTier === newTier
+    ) {
+
+        return;
+
+    }
+
+
+    recordHistory(
+        name,
+        currentMode,
+        oldTier,
+        newTier
+    );
+
+
+    player.rankings[
+        currentMode
+    ] =
+        newTier;
+
+
+    player.lastUpdate =
+        currentDate();
+
+
+    saveData();
+
+    render();
+
+    renderAdmin();
+
+}
+
+
+/* =========================================================
+   RECORD HISTORY
+========================================================= */
+
+function recordHistory(
+    name,
+    mode,
+    from,
+    to
+) {
+
+    const player =
+        players[name];
+
+
+    if (!player.history) {
+
+        player.history = [];
+
+    }
+
+
+    player.history.unshift({
+
+        mode:
+            mode,
+
+        from:
+            from || "Unranked",
+
+        to:
+            to || "Unranked",
+
+        date:
+            currentDateTime(),
+
+        tester:
+            player.tester ||
+            "Admin"
+
+    });
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
 
 function openProfile(name) {
 
@@ -1830,9 +1670,7 @@ function openProfile(name) {
 
 
     if (!player) {
-
         return;
-
     }
 
 
@@ -1850,9 +1688,7 @@ function openProfile(name) {
         )
         .src =
         "https://mc-heads.net/avatar/" +
-        encodeURIComponent(
-            name
-        ) +
+        encodeURIComponent(name) +
         "/100";
 
 
@@ -1927,29 +1763,22 @@ function openProfile(name) {
             right.className =
                 tier;
 
-
             right.style.padding =
                 "6px 12px";
-
 
             right.style.borderRadius =
                 "5px";
 
-
             right.style.fontWeight =
                 "900";
-
 
             right.textContent =
                 tier;
 
-        }
-
-        else {
+        } else {
 
             right.textContent =
                 "Unranked";
-
 
             right.className =
                 "muted";
@@ -1961,11 +1790,9 @@ function openProfile(name) {
             left
         );
 
-
         row.appendChild(
             right
         );
-
 
         ranks.appendChild(
             row
@@ -1977,8 +1804,7 @@ function openProfile(name) {
     /* STATS */
 
     const stats =
-        player.stats ||
-        {};
+        player.stats || {};
 
 
     document
@@ -1987,28 +1813,45 @@ function openProfile(name) {
         )
         .innerHTML = `
 
-        <div class="rank">
-            <span>Wins</span>
-            <b>
-                ${stats.wins || 0}
-            </b>
-        </div>
+            <div class="rank">
 
-        <div class="rank">
-            <span>Losses</span>
-            <b>
-                ${stats.losses || 0}
-            </b>
-        </div>
+                <span>
+                    Wins
+                </span>
 
-        <div class="rank">
-            <span>Tests</span>
-            <b>
-                ${stats.tests || 0}
-            </b>
-        </div>
+                <b>
+                    ${stats.wins || 0}
+                </b>
 
-    `;
+            </div>
+
+
+            <div class="rank">
+
+                <span>
+                    Losses
+                </span>
+
+                <b>
+                    ${stats.losses || 0}
+                </b>
+
+            </div>
+
+
+            <div class="rank">
+
+                <span>
+                    Tests
+                </span>
+
+                <b>
+                    ${stats.tests || 0}
+                </b>
+
+            </div>
+
+        `;
 
 
     /* TESTING */
@@ -2019,46 +1862,54 @@ function openProfile(name) {
         )
         .innerHTML = `
 
-        <div class="rank">
-            <span>
-                Tested
-            </span>
+            <div class="rank">
 
-            <b>
-                ${escapeHTML(
-                    player.testedDate ||
-                    "Unknown"
-                )}
-            </b>
-        </div>
+                <span>
+                    Tested
+                </span>
 
-        <div class="rank">
-            <span>
-                Tester
-            </span>
+                <b>
+                    ${escapeHTML(
+                        player.testedDate ||
+                        "Unknown"
+                    )}
+                </b>
 
-            <b>
-                ${escapeHTML(
-                    player.tester ||
-                    "Unknown"
-                )}
-            </b>
-        </div>
+            </div>
 
-        <div class="rank">
-            <span>
-                Last Update
-            </span>
 
-            <b>
-                ${escapeHTML(
-                    player.lastUpdate ||
-                    "Unknown"
-                )}
-            </b>
-        </div>
+            <div class="rank">
 
-    `;
+                <span>
+                    Tester
+                </span>
+
+                <b>
+                    ${escapeHTML(
+                        player.tester ||
+                        "Unknown"
+                    )}
+                </b>
+
+            </div>
+
+
+            <div class="rank">
+
+                <span>
+                    Last Update
+                </span>
+
+                <b>
+                    ${escapeHTML(
+                        player.lastUpdate ||
+                        "Unknown"
+                    )}
+                </b>
+
+            </div>
+
+        `;
 
 
     /* NOTES */
@@ -2090,12 +1941,17 @@ function openProfile(name) {
         player.history.length === 0
     ) {
 
-        history.innerHTML =
-            '<div class="history">No tier changes yet.</div>';
+        history.innerHTML = `
 
-    }
+            <div class="history">
 
-    else {
+                No tier changes yet.
+
+            </div>
+
+        `;
+
+    } else {
 
         player.history.forEach(
             change => {
@@ -2170,9 +2026,9 @@ function openProfile(name) {
 }
 
 
-/* ==========================================
-   ADMIN
-========================================== */
+/* =========================================================
+   ADMIN LOGIN
+========================================================= */
 
 function openAdmin() {
 
@@ -2193,8 +2049,6 @@ function openAdmin() {
 
 }
 
-
-/* LOGIN */
 
 function loginAdmin() {
 
@@ -2229,8 +2083,6 @@ function loginAdmin() {
 }
 
 
-/* SHOW ADMIN */
-
 function showAdmin() {
 
     document
@@ -2249,12 +2101,25 @@ function showAdmin() {
         "block";
 
 
+    /*
+        SHOW ADD PLAYER
+        ONLY AFTER LOGIN
+    */
+
+    document
+        .getElementById(
+            "addPlayerBox"
+        )
+        .style.display =
+        "block";
+
+
+    render();
+
     renderAdmin();
 
 }
 
-
-/* LOGOUT */
 
 function logoutAdmin() {
 
@@ -2278,6 +2143,19 @@ function logoutAdmin() {
         "none";
 
 
+    /*
+        HIDE ADD PLAYER
+        AFTER LOGOUT
+    */
+
+    document
+        .getElementById(
+            "addPlayerBox"
+        )
+        .style.display =
+        "none";
+
+
     document
         .getElementById(
             "adminPassword"
@@ -2285,19 +2163,24 @@ function logoutAdmin() {
         .value =
         "";
 
+
+    render();
+
 }
 
 
-/* ==========================================
-   ADMIN TIER OPTIONS
-========================================== */
+/* =========================================================
+   TIER OPTIONS
+========================================================= */
 
 function tierOptions(current) {
 
     let html = `
 
         <option value="">
+
             Unranked
+
         </option>
 
     `;
@@ -2329,9 +2212,9 @@ function tierOptions(current) {
 }
 
 
-/* ==========================================
-   RENDER ADMIN PLAYERS
-========================================== */
+/* =========================================================
+   ADMIN DASHBOARD
+========================================================= */
 
 function renderAdmin() {
 
@@ -2340,6 +2223,11 @@ function renderAdmin() {
             .getElementById(
                 "adminPlayers"
             );
+
+
+    if (!container) {
+        return;
+    }
 
 
     container.innerHTML =
@@ -2368,16 +2256,14 @@ function renderAdmin() {
                 <div class="section-title">
 
                     <b>
-                        ${escapeHTML(
-                            name
-                        )}
+                        ${escapeHTML(name)}
                     </b>
 
                     <button
                         class="danger"
                         onclick="deletePlayer('${escapeJS(name)}')">
 
-                        Delete
+                        Remove Player
 
                     </button>
 
@@ -2386,8 +2272,6 @@ function renderAdmin() {
 
                 <div class="admin-grid">
 
-
-                    <!-- BEDFIGHT -->
 
                     <label>
 
@@ -2409,8 +2293,6 @@ function renderAdmin() {
                     </label>
 
 
-                    <!-- BEDWARS -->
-
                     <label>
 
                         Bedwars
@@ -2430,8 +2312,6 @@ function renderAdmin() {
 
                     </label>
 
-
-                    <!-- UHC -->
 
                     <label>
 
@@ -2453,8 +2333,6 @@ function renderAdmin() {
                     </label>
 
 
-                    <!-- SUMO -->
-
                     <label>
 
                         Sumo
@@ -2474,8 +2352,6 @@ function renderAdmin() {
 
                     </label>
 
-
-                    <!-- STATUS -->
 
                     <label>
 
@@ -2517,8 +2393,6 @@ function renderAdmin() {
                     </label>
 
 
-                    <!-- TEST DATE -->
-
                     <label>
 
                         Test Date
@@ -2536,8 +2410,6 @@ function renderAdmin() {
 
                     </label>
 
-
-                    <!-- TESTER -->
 
                     <label>
 
@@ -2557,8 +2429,6 @@ function renderAdmin() {
                     </label>
 
 
-                    <!-- LAST UPDATE -->
-
                     <label>
 
                         Last Tier Update
@@ -2577,8 +2447,6 @@ function renderAdmin() {
                     </label>
 
 
-                    <!-- WINS -->
-
                     <label>
 
                         Wins
@@ -2587,8 +2455,7 @@ function renderAdmin() {
                             type="number"
                             min="0"
                             value="${
-                                player.stats?.wins ||
-                                0
+                                player.stats?.wins || 0
                             }"
                             onchange="updateStat(
                                 '${escapeJS(name)}',
@@ -2599,8 +2466,6 @@ function renderAdmin() {
                     </label>
 
 
-                    <!-- LOSSES -->
-
                     <label>
 
                         Losses
@@ -2609,8 +2474,7 @@ function renderAdmin() {
                             type="number"
                             min="0"
                             value="${
-                                player.stats?.losses ||
-                                0
+                                player.stats?.losses || 0
                             }"
                             onchange="updateStat(
                                 '${escapeJS(name)}',
@@ -2621,8 +2485,6 @@ function renderAdmin() {
                     </label>
 
 
-                    <!-- TESTS -->
-
                     <label>
 
                         Tests
@@ -2631,8 +2493,7 @@ function renderAdmin() {
                             type="number"
                             min="0"
                             value="${
-                                player.stats?.tests ||
-                                0
+                                player.stats?.tests || 0
                             }"
                             onchange="updateStat(
                                 '${escapeJS(name)}',
@@ -2644,8 +2505,6 @@ function renderAdmin() {
 
                 </div>
 
-
-                <!-- NOTES -->
 
                 <label>
 
@@ -2678,15 +2537,26 @@ function renderAdmin() {
 }
 
 
-/* ==========================================
+/* =========================================================
    ADMIN CHANGE TIER
-========================================== */
+========================================================= */
 
 function adminTier(
     name,
     mode,
     newTier
 ) {
+
+    if (!adminLoggedIn) {
+
+        alert(
+            "Only admins can change tiers."
+        );
+
+        return;
+
+    }
+
 
     const player =
         players[name];
@@ -2735,9 +2605,9 @@ function adminTier(
 }
 
 
-/* ==========================================
+/* =========================================================
    UPDATE PLAYER FIELD
-========================================== */
+========================================================= */
 
 function updateField(
     name,
@@ -2745,10 +2615,19 @@ function updateField(
     value
 ) {
 
-    if (!players[name]) {
+    if (!adminLoggedIn) {
+
+        alert(
+            "Only admins can edit players."
+        );
 
         return;
 
+    }
+
+
+    if (!players[name]) {
+        return;
     }
 
 
@@ -2777,9 +2656,9 @@ function updateField(
 }
 
 
-/* ==========================================
-   UPDATE STAT
-========================================== */
+/* =========================================================
+   UPDATE STATS
+========================================================= */
 
 function updateStat(
     name,
@@ -2787,16 +2666,23 @@ function updateStat(
     value
 ) {
 
-    if (!players[name]) {
+    if (!adminLoggedIn) {
+
+        alert(
+            "Only admins can edit statistics."
+        );
 
         return;
 
     }
 
 
-    if (
-        !players[name].stats
-    ) {
+    if (!players[name]) {
+        return;
+    }
+
+
+    if (!players[name].stats) {
 
         players[name].stats = {
 
@@ -2831,9 +2717,9 @@ function updateStat(
 }
 
 
-/* ==========================================
-   HISTORY
-========================================== */
+/* =========================================================
+   ADMIN HISTORY
+========================================================= */
 
 function renderHistory() {
 
@@ -2842,6 +2728,11 @@ function renderHistory() {
             .getElementById(
                 "history"
             );
+
+
+    if (!container) {
+        return;
+    }
 
 
     container.innerHTML =
@@ -2862,14 +2753,12 @@ function renderHistory() {
             if (
                 !player.history
             ) {
-
                 return;
-
             }
 
 
-            player.history
-                .forEach(change => {
+            player.history.forEach(
+                change => {
 
                     count++;
 
@@ -2933,7 +2822,8 @@ function renderHistory() {
                         item
                     );
 
-                });
+                }
+            );
 
         });
 
@@ -2955,9 +2845,9 @@ function renderHistory() {
 }
 
 
-/* ==========================================
+/* =========================================================
    MODALS
-========================================== */
+========================================================= */
 
 function closeModal(id) {
 
@@ -2976,8 +2866,7 @@ function outside(
 ) {
 
     if (
-        event.target.id ===
-        id
+        event.target.id === id
     ) {
 
         closeModal(id);
@@ -2987,9 +2876,9 @@ function outside(
 }
 
 
-/* ==========================================
+/* =========================================================
    ESCAPE HTML
-========================================== */
+========================================================= */
 
 function escapeHTML(value) {
 
@@ -3020,9 +2909,9 @@ function escapeHTML(value) {
 }
 
 
-/* ==========================================
-   ESCAPE JAVASCRIPT STRING
-========================================== */
+/* =========================================================
+   ESCAPE JAVASCRIPT
+========================================================= */
 
 function escapeJS(value) {
 
@@ -3041,17 +2930,16 @@ function escapeJS(value) {
 }
 
 
-/* ==========================================
+/* =========================================================
    ESC KEY
-========================================== */
+========================================================= */
 
 document.addEventListener(
     "keydown",
     function(event) {
 
         if (
-            event.key ===
-            "Escape"
+            event.key === "Escape"
         ) {
 
             closeModal(
@@ -3068,9 +2956,9 @@ document.addEventListener(
 );
 
 
-/* ==========================================
-   START WEBSITE
-========================================== */
+/* =========================================================
+   START
+========================================================= */
 
 loadData();
 
