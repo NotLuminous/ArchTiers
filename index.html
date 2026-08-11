@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MC Tiers</title>
+<title>Arch Tiers</title>
 
 <style>
 * {
@@ -14,38 +14,39 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: #090b10;
+    background: #080a0f;
     color: white;
 }
 
 /* HEADER */
 
 header {
-    background: #11151d;
-    border-bottom: 1px solid #252b36;
-    padding: 20px;
+    background: #10141c;
+    border-bottom: 1px solid #252c38;
+    padding: 25px;
     text-align: center;
 }
 
 header h1 {
     margin: 0;
     color: #55ff55;
-    font-size: 32px;
+    font-size: 38px;
+    letter-spacing: 2px;
 }
 
 header p {
-    margin: 7px 0 0;
-    color: #8f98a8;
+    margin: 8px 0 0;
+    color: #8d97a8;
 }
 
-/* MODE BUTTONS */
+/* NAVIGATION */
 
 nav {
     display: flex;
     justify-content: center;
     gap: 10px;
     padding: 15px;
-    background: #0d1016;
+    background: #0c0f15;
     border-bottom: 1px solid #202630;
     flex-wrap: wrap;
 }
@@ -53,8 +54,8 @@ nav {
 nav button {
     background: #171c25;
     color: #ddd;
-    border: 1px solid #2c3441;
-    padding: 10px 18px;
+    border: 1px solid #303846;
+    padding: 11px 20px;
     border-radius: 7px;
     cursor: pointer;
     font-weight: bold;
@@ -80,11 +81,11 @@ main {
     display: grid;
     grid-template-columns: 100px 1fr;
     margin-bottom: 8px;
-    min-height: 65px;
+    min-height: 70px;
     border-radius: 7px;
     overflow: hidden;
     background: #11151d;
-    border: 1px solid #242b36;
+    border: 1px solid #252c38;
 }
 
 .tier-name {
@@ -152,12 +153,20 @@ main {
 .player {
     display: flex;
     align-items: center;
-    gap: 7px;
-    background: #1a202a;
+    gap: 8px;
+    background: #191f29;
     border: 1px solid #303846;
-    border-radius: 6px;
+    border-radius: 7px;
     padding: 8px 10px;
     font-weight: bold;
+}
+
+.player-name {
+    cursor: pointer;
+}
+
+.player-name:hover {
+    color: #55ff55;
 }
 
 .player button {
@@ -220,6 +229,103 @@ select {
     background: #79ff79;
 }
 
+/* PROFILE MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.78);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.profile-card {
+    width: 100%;
+    max-width: 500px;
+    background: #11151d;
+    border: 1px solid #303846;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 15px 50px rgba(0,0,0,.6);
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 18px;
+    top: 15px;
+    background: #292f39;
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.close:hover {
+    background: #ff4444;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.profile-head {
+    width: 100px;
+    height: 100px;
+    image-rendering: pixelated;
+    border-radius: 10px;
+    border: 3px solid #55ff55;
+    margin-bottom: 12px;
+}
+
+.profile-header h2 {
+    margin: 5px 0;
+    font-size: 28px;
+}
+
+.profile-header p {
+    color: #8d97a8;
+}
+
+.profile-rankings {
+    display: grid;
+    gap: 8px;
+}
+
+.profile-ranking {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #191f29;
+    border: 1px solid #303846;
+    padding: 12px;
+    border-radius: 7px;
+}
+
+.profile-mode {
+    font-weight: bold;
+}
+
+.profile-tier {
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
 /* MOBILE */
 
 @media (max-width: 600px) {
@@ -245,7 +351,7 @@ select {
 <body>
 
 <header>
-    <h1>MC TIERS</h1>
+    <h1>ARCH TIERS</h1>
     <p>Minecraft PvP Tier Rankings</p>
 </header>
 
@@ -295,16 +401,12 @@ select {
 
             <option>HT1</option>
             <option>LT1</option>
-
             <option>HT2</option>
             <option>LT2</option>
-
             <option>HT3</option>
             <option>LT3</option>
-
             <option>HT4</option>
             <option>LT4</option>
-
             <option>HT5</option>
             <option>LT5</option>
 
@@ -320,19 +422,55 @@ select {
 
 </main>
 
+
+<!-- PROFILE POPUP -->
+
+<div
+    class="modal"
+    id="profileModal"
+    onclick="closeOutside(event)">
+
+    <div class="profile-card">
+
+        <button
+            class="close"
+            onclick="closeProfile()">
+            ×
+        </button>
+
+        <div class="profile-header">
+
+            <img
+                id="profileHead"
+                class="profile-head"
+                src=""
+                alt="Minecraft Head">
+
+            <h2 id="profileName">
+                Player
+            </h2>
+
+            <p>
+                Arch Tiers Player Profile
+            </p>
+
+        </div>
+
+        <div
+            class="profile-rankings"
+            id="profileRankings">
+        </div>
+
+    </div>
+
+</div>
+
+
 <script>
 
 /*
 ==================================================
 PLAYERS
-==================================================
-
-You can also add players here manually.
-
-Example:
-
-"Notch": "HT1"
-
 ==================================================
 */
 
@@ -377,19 +515,26 @@ const tiers = [
     "LT5"
 ];
 
+const modes = [
+    "Bedfight",
+    "Bedwars",
+    "UHC",
+    "Sumo"
+];
+
 let currentMode = "Bedfight";
 
 
 /*
 ==================================================
-SAVE
+SAVE DATA
 ==================================================
 */
 
 function saveData() {
 
     localStorage.setItem(
-        "mcTiersPlayers",
+        "archTiersPlayers",
         JSON.stringify(players)
     );
 
@@ -398,17 +543,20 @@ function saveData() {
 
 /*
 ==================================================
-LOAD
+LOAD DATA
 ==================================================
 */
 
 function loadData() {
 
     const saved =
-        localStorage.getItem("mcTiersPlayers");
+        localStorage.getItem("archTiersPlayers");
 
     if (saved) {
-        players = JSON.parse(saved);
+
+        players =
+            JSON.parse(saved);
+
     }
 
 }
@@ -427,7 +575,9 @@ function changeMode(mode) {
     document
         .querySelectorAll("nav button")
         .forEach(button => {
+
             button.classList.remove("active");
+
         });
 
     document
@@ -492,7 +642,11 @@ function render() {
 
         playerBox.innerHTML = `
 
-            <span>${player}</span>
+            <span
+                class="player-name"
+                onclick="openProfile('${player}')">
+                ${player}
+            </span>
 
             <button
                 class="up"
@@ -632,7 +786,122 @@ function addPlayer() {
 
 /*
 ==================================================
-START WEBSITE
+OPEN PLAYER PROFILE
+==================================================
+*/
+
+function openProfile(player) {
+
+    document
+        .getElementById("profileName")
+        .textContent = player;
+
+    /*
+    Minecraft skin/head
+    */
+
+    document
+        .getElementById("profileHead")
+        .src =
+        "https://mc-heads.net/avatar/" +
+        encodeURIComponent(player) +
+        "/100";
+
+    const rankings =
+        document.getElementById(
+            "profileRankings"
+        );
+
+    rankings.innerHTML = "";
+
+    modes.forEach(mode => {
+
+        const tier =
+            players[mode][player];
+
+        const row =
+            document.createElement("div");
+
+        row.className =
+            "profile-ranking";
+
+        if (tier) {
+
+            row.innerHTML = `
+
+                <span class="profile-mode">
+                    ${mode}
+                </span>
+
+                <span
+                    class="profile-tier ${tier}">
+                    ${tier}
+                </span>
+
+            `;
+
+        } else {
+
+            row.innerHTML = `
+
+                <span class="profile-mode">
+                    ${mode}
+                </span>
+
+                <span
+                    style="
+                    color:#737d8c;
+                    font-weight:bold;">
+                    Unranked
+                </span>
+
+            `;
+
+        }
+
+        rankings.appendChild(row);
+
+    });
+
+    document
+        .getElementById("profileModal")
+        .classList.add("active");
+
+}
+
+
+/*
+==================================================
+CLOSE PROFILE
+==================================================
+*/
+
+function closeProfile() {
+
+    document
+        .getElementById("profileModal")
+        .classList.remove("active");
+
+}
+
+
+function closeOutside(event) {
+
+    if (
+        event.target.id ===
+        "profileModal"
+    ) {
+
+        closeProfile();
+
+    }
+
+}
+
+
+/*
+==================================================
+START
 ==================================================
 */
 
