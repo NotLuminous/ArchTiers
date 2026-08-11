@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Arch Tiers</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -18,8 +16,6 @@ body {
     color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
-
-/* ================= HEADER ================= */
 
 header {
     background: #0d1118;
@@ -42,8 +38,6 @@ header {
     color: #7e8999;
     margin-top: 7px;
 }
-
-/* ================= NAV ================= */
 
 nav {
     background: #0a0d12;
@@ -75,8 +69,6 @@ nav button.active {
     color: #061006;
     border-color: #55ff55;
 }
-
-/* ================= MAIN ================= */
 
 main {
     width: 95%;
@@ -116,8 +108,6 @@ main {
     border-color: #55ff55;
 }
 
-/* ================= TIERS ================= */
-
 .tier {
     display: grid;
     grid-template-columns: 105px 1fr;
@@ -137,49 +127,16 @@ main {
     font-weight: 900;
 }
 
-.HT1 {
-    background: #ff3b3b;
-}
-
-.LT1 {
-    background: #ff6868;
-}
-
-.HT2 {
-    background: #ff9638;
-}
-
-.LT2 {
-    background: #ffb45f;
-}
-
-.HT3 {
-    background: #f1d044;
-    color: #111;
-}
-
-.LT3 {
-    background: #f6e56f;
-    color: #111;
-}
-
-.HT4 {
-    background: #42c979;
-}
-
-.LT4 {
-    background: #6bdd99;
-}
-
-.HT5 {
-    background: #459be9;
-}
-
-.LT5 {
-    background: #72b7ef;
-}
-
-/* ================= PLAYERS ================= */
+.HT1 { background: #ff3b3b; }
+.LT1 { background: #ff6868; }
+.HT2 { background: #ff9638; }
+.LT2 { background: #ffb45f; }
+.HT3 { background: #f1d044; color: #111; }
+.LT3 { background: #f6e56f; color: #111; }
+.HT4 { background: #42c979; }
+.LT4 { background: #6bdd99; }
+.HT5 { background: #459be9; }
+.LT5 { background: #72b7ef; }
 
 .players {
     display: flex;
@@ -218,22 +175,17 @@ main {
     cursor: pointer;
 }
 
-.up {
-    background: #2d994f;
+.up { background: #2d994f; }
+.down { background: #a43e3e; }
+.delete { background: #515864; }
+
+.muted {
+    color: #7f8999;
 }
 
-.down {
-    background: #a43e3e;
-}
-
-.delete {
-    background: #515864;
-}
-
-/* ================= ADMIN ADD PLAYER ================= */
-
+/* ADD PLAYER IS HIDDEN BY DEFAULT */
 #addPlayerBox {
-    display: none;
+    display: none !important;
 }
 
 .add {
@@ -279,13 +231,6 @@ main {
     cursor: pointer;
 }
 
-.add-btn:hover,
-.admin-btn:hover {
-    background: #75ff75;
-}
-
-/* ================= MODALS ================= */
-
 .modal {
     display: none;
     position: fixed;
@@ -326,12 +271,6 @@ main {
     font-size: 20px;
     cursor: pointer;
 }
-
-.close:hover {
-    background: #e43f3f;
-}
-
-/* ================= PROFILE ================= */
 
 .profile-head {
     text-align: center;
@@ -387,20 +326,14 @@ main {
     margin-bottom: 7px;
 }
 
-.history {
-    line-height: 1.5;
-}
-
-/* ================= ADMIN ================= */
-
-.admin-login input {
-    width: 100%;
-    background: #080b10;
-    color: white;
-    border: 1px solid #303744;
-    border-radius: 6px;
-    padding: 11px;
-    outline: none;
+.notice {
+    background: #2a2110;
+    border: 1px solid #69501a;
+    color: #e9cf7b;
+    padding: 10px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    font-size: 13px;
 }
 
 .admin-row {
@@ -452,11 +385,6 @@ main {
     cursor: pointer;
 }
 
-.logout:hover,
-.danger:hover {
-    background: #ef4c4c;
-}
-
 .section-title {
     display: flex;
     justify-content: space-between;
@@ -464,24 +392,7 @@ main {
     gap: 10px;
 }
 
-.muted {
-    color: #7f8999;
-}
-
-.notice {
-    background: #2a2110;
-    border: 1px solid #69501a;
-    color: #e9cf7b;
-    padding: 10px;
-    border-radius: 7px;
-    margin-bottom: 15px;
-    font-size: 13px;
-}
-
-/* ================= MOBILE ================= */
-
 @media(max-width:650px) {
-
     .logo {
         font-size: 30px;
     }
@@ -511,18 +422,13 @@ main {
     .admin-grid {
         grid-template-columns: 1fr;
     }
-
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
-
 <header>
-
     <div class="logo">
         ARCH <span>TIERS</span>
     </div>
@@ -530,69 +436,45 @@ main {
     <div class="subtitle">
         Minecraft PvP Tier Rankings
     </div>
-
 </header>
-
-
-<!-- ================= NAVIGATION ================= -->
 
 <nav>
 
-    <button
-        id="BedfightBtn"
-        class="active"
-        onclick="changeMode('Bedfight')">
-
+    <button id="BedfightBtn"
+            class="active"
+            onclick="changeMode('Bedfight')">
         Bedfight
-
     </button>
 
-    <button
-        id="BedwarsBtn"
-        onclick="changeMode('Bedwars')">
-
+    <button id="BedwarsBtn"
+            onclick="changeMode('Bedwars')">
         Bedwars
-
     </button>
 
-    <button
-        id="UHCBtn"
-        onclick="changeMode('UHC')">
-
+    <button id="UHCBtn"
+            onclick="changeMode('UHC')">
         UHC
-
     </button>
 
-    <button
-        id="SumoBtn"
-        onclick="changeMode('Sumo')">
-
+    <button id="SumoBtn"
+            onclick="changeMode('Sumo')">
         Sumo
-
     </button>
 
-    <button
-        onclick="openAdmin()">
-
+    <button onclick="openAdmin()">
         👑 Admin
-
     </button>
 
 </nav>
 
-
 <main>
-
-    <!-- ================= TITLE ================= -->
 
     <div class="top">
 
         <div class="title">
-
             <span>ARCH</span>
             TIERS —
             <span id="modeTitle">Bedfight</span>
-
         </div>
 
         <input
@@ -603,21 +485,15 @@ main {
 
     </div>
 
-
-    <!-- ================= TIER LIST ================= -->
-
     <div id="tierList"></div>
 
-
-    <!-- ================= ADMIN ONLY ADD PLAYER ================= -->
-
+    <!-- THIS IS COMPLETELY HIDDEN UNTIL ADMIN LOGIN -->
     <div
+        id="addPlayerBox"
         class="add"
-        id="addPlayerBox">
+        style="display:none !important;">
 
-        <h2>
-            👑 Add Player
-        </h2>
+        <h2>👑 Add Player</h2>
 
         <div class="form">
 
@@ -626,40 +502,30 @@ main {
                 placeholder="Minecraft username">
 
             <select id="playerTier">
-
                 <option>HT1</option>
                 <option>LT1</option>
-
                 <option>HT2</option>
                 <option>LT2</option>
-
                 <option>HT3</option>
                 <option>LT3</option>
-
                 <option>HT4</option>
                 <option>LT4</option>
-
                 <option>HT5</option>
                 <option>LT5</option>
-
             </select>
 
             <button
                 class="add-btn"
                 onclick="addPlayer()">
-
                 Add Player
-
             </button>
 
         </div>
-
     </div>
 
 </main>
 
-
-<!-- ================= PLAYER PROFILE ================= -->
+<!-- PLAYER PROFILE -->
 
 <div
     class="modal"
@@ -671,11 +537,8 @@ main {
         <button
             class="close"
             onclick="closeModal('profileModal')">
-
             ×
-
         </button>
-
 
         <div class="profile-head">
 
@@ -696,70 +559,35 @@ main {
 
         </div>
 
-
         <div class="profile-section">
-
-            <h3>
-                Rankings
-            </h3>
-
+            <h3>Rankings</h3>
             <div id="profileRanks"></div>
-
         </div>
 
-
         <div class="profile-section">
-
-            <h3>
-                Statistics
-            </h3>
-
+            <h3>Statistics</h3>
             <div id="profileStats"></div>
-
         </div>
 
-
         <div class="profile-section">
-
-            <h3>
-                Testing Information
-            </h3>
-
+            <h3>Testing Information</h3>
             <div id="profileTesting"></div>
-
         </div>
 
-
         <div class="profile-section">
-
-            <h3>
-                Notes
-            </h3>
-
-            <div
-                id="profileNotes"
-                class="notes">
-            </div>
-
+            <h3>Notes</h3>
+            <div id="profileNotes" class="notes"></div>
         </div>
 
-
         <div class="profile-section">
-
-            <h3>
-                📜 Tier History
-            </h3>
-
+            <h3>📜 Tier History</h3>
             <div id="profileHistory"></div>
-
         </div>
 
     </div>
-
 </div>
 
-
-<!-- ================= ADMIN MODAL ================= -->
+<!-- ADMIN -->
 
 <div
     class="modal"
@@ -771,44 +599,41 @@ main {
         <button
             class="close"
             onclick="closeModal('adminModal')">
-
             ×
-
         </button>
 
-
-        <!-- ADMIN LOGIN -->
+        <!-- LOGIN -->
 
         <div id="adminLogin">
 
-            <h2>
-                👑 Admin Login
-            </h2>
+            <h2>👑 Admin Login</h2>
 
             <div class="notice">
-
-                Admin access is required to add,
-                remove, or modify players.
-
+                Only admins can add, remove, or edit players.
             </div>
 
             <input
                 id="adminPassword"
                 type="password"
-                placeholder="Admin password">
+                placeholder="Admin password"
+                style="
+                    width:100%;
+                    background:#080b10;
+                    color:white;
+                    border:1px solid #303744;
+                    border-radius:6px;
+                    padding:11px;
+                ">
 
             <br><br>
 
             <button
                 class="admin-btn"
                 onclick="loginAdmin()">
-
                 Login
-
             </button>
 
         </div>
-
 
         <!-- ADMIN PANEL -->
 
@@ -818,196 +643,126 @@ main {
 
             <div class="section-title">
 
-                <h2>
-                    👑 Admin Dashboard
-                </h2>
+                <h2>👑 Admin Dashboard</h2>
 
                 <button
                     class="logout"
                     onclick="logoutAdmin()">
-
                     Logout
-
                 </button>
 
             </div>
 
-
             <p class="muted">
-
-                Only admins can add, remove,
-                or modify players.
-
+                You are logged in as an administrator.
             </p>
-
 
             <div id="adminPlayers"></div>
 
+            <hr style="border-color:#2a313c;margin:25px 0;">
 
-            <hr
-                style="
-                    border-color:#2a313c;
-                    margin:25px 0;
-                ">
-
-
-            <h3
-                style="color:#55ff55;">
-
+            <h3 style="color:#55ff55;">
                 📜 Full Tier History
-
             </h3>
-
 
             <div id="history"></div>
 
         </div>
 
     </div>
-
 </div>
-
 
 <script>
 
-/* =========================================================
+/* =====================================================
+   ADMIN PASSWORD
+   CHANGE THIS
+===================================================== */
+
+const ADMIN_PASSWORD = "CHANGE_THIS_PASSWORD";
+
+
+/* =====================================================
    SETTINGS
-========================================================= */
-
-/*
-    CHANGE THIS PASSWORD
-*/
-
-const ADMIN_PASSWORD =
-    "CHANGE_THIS_PASSWORD";
-
+===================================================== */
 
 const tiers = [
-
-    "HT1",
-    "LT1",
-
-    "HT2",
-    "LT2",
-
-    "HT3",
-    "LT3",
-
-    "HT4",
-    "LT4",
-
-    "HT5",
-    "LT5"
-
+    "HT1","LT1",
+    "HT2","LT2",
+    "HT3","LT3",
+    "HT4","LT4",
+    "HT5","LT5"
 ];
 
-
 const modes = [
-
     "Bedfight",
     "Bedwars",
     "UHC",
     "Sumo"
-
 ];
 
+let currentMode = "Bedfight";
 
-let currentMode =
-    "Bedfight";
-
-
-let adminLoggedIn =
-    false;
+let adminLoggedIn = false;
 
 
-/* =========================================================
-   PLAYER DATABASE
-========================================================= */
+/* =====================================================
+   PLAYER DATA
+===================================================== */
 
 let players = {
-
     "ExamplePlayer": {
 
         ranked: true,
 
         rankings: {
-
             Bedfight: "HT1",
-
             Bedwars: "LT2",
-
             UHC: "HT3",
-
             Sumo: "LT1"
-
         },
 
         stats: {
-
             wins: 100,
-
             losses: 20,
-
             tests: 10
-
         },
 
-        testedDate:
-            "August 11, 2026",
+        testedDate: "August 11, 2026",
+        tester: "Arch",
+        lastUpdate: "August 11, 2026",
 
-        tester:
-            "Arch",
-
-        lastUpdate:
-            "August 11, 2026",
-
-        notes:
-            "Example player.",
+        notes: "Example player.",
 
         history: []
 
     }
-
 };
 
 
-/* =========================================================
-   DATE FUNCTIONS
-========================================================= */
+/* =====================================================
+   DATE
+===================================================== */
 
 function currentDate() {
-
-    return new Date()
-        .toLocaleDateString();
-
+    return new Date().toLocaleDateString();
 }
-
 
 function currentDateTime() {
-
-    return new Date()
-        .toLocaleString();
-
+    return new Date().toLocaleString();
 }
 
 
-/* =========================================================
-   SAVE
-========================================================= */
+/* =====================================================
+   SAVE / LOAD
+===================================================== */
 
 function saveData() {
-
     localStorage.setItem(
         "archTiersDatabase",
         JSON.stringify(players)
     );
-
 }
-
-
-/* =========================================================
-   LOAD
-========================================================= */
 
 function loadData() {
 
@@ -1016,576 +771,313 @@ function loadData() {
             "archTiersDatabase"
         );
 
-
-    if (!saved) {
-        return;
-    }
-
+    if (!saved) return;
 
     try {
-
-        players =
-            JSON.parse(saved);
-
+        players = JSON.parse(saved);
     }
 
     catch {
-
-        console.log(
-            "Could not load database."
-        );
-
+        console.log("Could not load database.");
     }
-
 }
 
 
-/* =========================================================
+/* =====================================================
    CHANGE MODE
-========================================================= */
+===================================================== */
 
 function changeMode(mode) {
 
-    currentMode =
-        mode;
-
+    currentMode = mode;
 
     document
         .querySelectorAll("nav button")
         .forEach(button => {
-
-            button.classList.remove(
-                "active"
-            );
-
+            button.classList.remove("active");
         });
 
+    document
+        .getElementById(mode + "Btn")
+        .classList.add("active");
 
     document
-        .getElementById(
-            mode + "Btn"
-        )
-        .classList.add(
-            "active"
-        );
-
-
-    document
-        .getElementById(
-            "modeTitle"
-        )
-        .textContent =
-        mode;
-
+        .getElementById("modeTitle")
+        .textContent = mode;
 
     render();
-
 }
 
 
-/* =========================================================
-   RENDER TIER LIST
-========================================================= */
+/* =====================================================
+   RENDER
+===================================================== */
 
 function render() {
 
     const container =
-        document.getElementById(
-            "tierList"
-        );
+        document.getElementById("tierList");
 
-
-    container.innerHTML =
-        "";
-
+    container.innerHTML = "";
 
     const search =
         document
-            .getElementById(
-                "search"
-            )
+            .getElementById("search")
             .value
             .toLowerCase()
             .trim();
 
-
     tiers.forEach(tier => {
 
         const row =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
-
-        row.className =
-            "tier";
-
+        row.className = "tier";
 
         const tierName =
-            document.createElement(
-                "div"
-            );
-
+            document.createElement("div");
 
         tierName.className =
             "tier-name " + tier;
 
-
-        tierName.textContent =
-            tier;
-
+        tierName.textContent = tier;
 
         const area =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
+        area.className = "players";
 
-        area.className =
-            "players";
+        let found = false;
 
+        Object.keys(players).forEach(name => {
 
-        let found =
-            false;
+            const player = players[name];
 
+            if (
+                player.rankings[currentMode] !== tier
+            ) {
+                return;
+            }
 
-        Object.keys(players)
-            .forEach(name => {
+            if (
+                search &&
+                !name.toLowerCase().includes(search)
+            ) {
+                return;
+            }
 
-                const player =
-                    players[name];
+            found = true;
 
+            const box =
+                document.createElement("div");
 
-                if (
-                    player.rankings[
-                        currentMode
-                    ] !== tier
-                ) {
-                    return;
-                }
+            box.className = "player";
 
+            const playerName =
+                document.createElement("span");
 
-                if (
-                    search &&
-                    !name
-                        .toLowerCase()
-                        .includes(search)
-                ) {
-                    return;
-                }
+            playerName.className = "player-name";
 
+            playerName.textContent = name;
 
-                found =
-                    true;
+            playerName.onclick =
+                () => openProfile(name);
 
+            box.appendChild(playerName);
 
-                const box =
-                    document.createElement(
-                        "div"
-                    );
+            /* ADMIN BUTTONS ONLY */
 
+            if (adminLoggedIn) {
 
-                box.className =
-                    "player";
+                const up =
+                    document.createElement("button");
 
+                up.className = "up";
+                up.textContent = "↑";
 
-                const playerName =
-                    document.createElement(
-                        "span"
-                    );
+                up.onclick =
+                    () => movePlayer(name, -1);
 
+                const down =
+                    document.createElement("button");
 
-                playerName.className =
-                    "player-name";
+                down.className = "down";
+                down.textContent = "↓";
 
+                down.onclick =
+                    () => movePlayer(name, 1);
 
-                playerName.textContent =
-                    name;
+                const remove =
+                    document.createElement("button");
 
+                remove.className = "delete";
+                remove.textContent = "×";
 
-                playerName.onclick =
-                    () => openProfile(name);
+                remove.onclick =
+                    () => deletePlayer(name);
 
+                box.appendChild(up);
+                box.appendChild(down);
+                box.appendChild(remove);
+            }
 
-                box.appendChild(
-                    playerName
-                );
+            area.appendChild(box);
 
-
-                /*
-                    ONLY ADMINS GET
-                    THE MOVE BUTTONS
-                */
-
-                if (adminLoggedIn) {
-
-                    const up =
-                        document.createElement(
-                            "button"
-                        );
-
-                    up.className =
-                        "up";
-
-                    up.textContent =
-                        "↑";
-
-                    up.title =
-                        "Move player up";
-
-                    up.onclick =
-                        () =>
-                            movePlayer(
-                                name,
-                                -1
-                            );
-
-
-                    const down =
-                        document.createElement(
-                            "button"
-                        );
-
-                    down.className =
-                        "down";
-
-                    down.textContent =
-                        "↓";
-
-                    down.title =
-                        "Move player down";
-
-                    down.onclick =
-                        () =>
-                            movePlayer(
-                                name,
-                                1
-                            );
-
-
-                    const remove =
-                        document.createElement(
-                            "button"
-                        );
-
-                    remove.className =
-                        "delete";
-
-                    remove.textContent =
-                        "×";
-
-                    remove.title =
-                        "Remove player";
-
-                    remove.onclick =
-                        () =>
-                            deletePlayer(
-                                name
-                            );
-
-
-                    box.appendChild(
-                        up
-                    );
-
-                    box.appendChild(
-                        down
-                    );
-
-                    box.appendChild(
-                        remove
-                    );
-
-                }
-
-
-                area.appendChild(
-                    box
-                );
-
-            });
-
+        });
 
         if (!found) {
 
             const empty =
-                document.createElement(
-                    "span"
-                );
+                document.createElement("span");
 
+            empty.className = "muted";
+            empty.textContent = "No players";
 
-            empty.className =
-                "muted";
-
-
-            empty.textContent =
-                "No players";
-
-
-            area.appendChild(
-                empty
-            );
-
+            area.appendChild(empty);
         }
 
+        row.appendChild(tierName);
+        row.appendChild(area);
 
-        row.appendChild(
-            tierName
-        );
-
-
-        row.appendChild(
-            area
-        );
-
-
-        container.appendChild(
-            row
-        );
+        container.appendChild(row);
 
     });
-
 }
 
 
-/* =========================================================
+/* =====================================================
    ADD PLAYER
-========================================================= */
+===================================================== */
 
 function addPlayer() {
 
     if (!adminLoggedIn) {
-
-        alert(
-            "Only admins can add players."
-        );
-
+        alert("Only admins can add players.");
         return;
-
     }
-
 
     const name =
         document
-            .getElementById(
-                "playerName"
-            )
+            .getElementById("playerName")
             .value
             .trim();
 
-
     const tier =
         document
-            .getElementById(
-                "playerTier"
-            )
+            .getElementById("playerTier")
             .value;
 
-
     if (!name) {
-
-        alert(
-            "Enter a Minecraft username."
-        );
-
+        alert("Enter a Minecraft username.");
         return;
-
     }
-
 
     if (players[name]) {
-
-        alert(
-            "That player already exists."
-        );
-
+        alert("That player already exists.");
         return;
-
     }
-
 
     players[name] = {
 
         ranked: true,
 
         rankings: {
-
             Bedfight: null,
-
             Bedwars: null,
-
             UHC: null,
-
             Sumo: null
-
         },
 
         stats: {
-
             wins: 0,
-
             losses: 0,
-
             tests: 0
-
         },
 
-        testedDate:
-            currentDate(),
-
-        tester:
-            "Admin",
-
-        lastUpdate:
-            currentDate(),
-
-        notes:
-            "",
-
+        testedDate: currentDate(),
+        tester: "Admin",
+        lastUpdate: currentDate(),
+        notes: "",
         history: []
 
     };
 
-
-    players[name]
-        .rankings[currentMode] =
-        tier;
-
+    players[name].rankings[currentMode] = tier;
 
     document
-        .getElementById(
-            "playerName"
-        )
-        .value =
-        "";
-
+        .getElementById("playerName")
+        .value = "";
 
     saveData();
 
     render();
-
     renderAdmin();
-
 }
 
 
-/* =========================================================
+/* =====================================================
    DELETE PLAYER
-========================================================= */
+===================================================== */
 
 function deletePlayer(name) {
 
     if (!adminLoggedIn) {
-
-        alert(
-            "Only admins can remove players."
-        );
-
+        alert("Only admins can remove players.");
         return;
-
     }
-
 
     if (
         !confirm(
-            "Remove " +
-            name +
-            " from Arch Tiers?"
+            "Remove " + name + " from Arch Tiers?"
         )
     ) {
-
         return;
-
     }
 
-
     delete players[name];
-
 
     saveData();
 
     render();
-
     renderAdmin();
-
 }
 
 
-/* =========================================================
+/* =====================================================
    MOVE PLAYER
-========================================================= */
+===================================================== */
 
-function movePlayer(
-    name,
-    direction
-) {
+function movePlayer(name, direction) {
 
     if (!adminLoggedIn) {
-
-        alert(
-            "Only admins can change tiers."
-        );
-
+        alert("Only admins can change tiers.");
         return;
-
     }
 
-
-    const player =
-        players[name];
-
+    const player = players[name];
 
     const oldTier =
-        player.rankings[
-            currentMode
-        ];
+        player.rankings[currentMode];
 
-
-    if (!oldTier) {
-        return;
-    }
-
+    if (!oldTier) return;
 
     const oldIndex =
-        tiers.indexOf(
-            oldTier
-        );
-
+        tiers.indexOf(oldTier);
 
     let newIndex =
         oldIndex + direction;
 
-
-    if (newIndex < 0) {
-
+    if (newIndex < 0)
         newIndex = 0;
 
-    }
-
-
-    if (
-        newIndex >=
-        tiers.length
-    ) {
-
-        newIndex =
-            tiers.length - 1;
-
-    }
-
+    if (newIndex >= tiers.length)
+        newIndex = tiers.length - 1;
 
     const newTier =
         tiers[newIndex];
 
-
-    if (
-        oldTier === newTier
-    ) {
-
+    if (oldTier === newTier)
         return;
-
-    }
-
 
     recordHistory(
         name,
@@ -1594,29 +1086,19 @@ function movePlayer(
         newTier
     );
 
-
-    player.rankings[
-        currentMode
-    ] =
-        newTier;
-
-
-    player.lastUpdate =
-        currentDate();
-
+    player.rankings[currentMode] = newTier;
+    player.lastUpdate = currentDate();
 
     saveData();
 
     render();
-
     renderAdmin();
-
 }
 
 
-/* =========================================================
-   RECORD HISTORY
-========================================================= */
+/* =====================================================
+   HISTORY
+===================================================== */
 
 function recordHistory(
     name,
@@ -1625,428 +1107,40 @@ function recordHistory(
     to
 ) {
 
-    const player =
-        players[name];
-
-
-    if (!player.history) {
-
-        player.history = [];
-
+    if (!players[name].history) {
+        players[name].history = [];
     }
 
+    players[name].history.unshift({
 
-    player.history.unshift({
+        mode: mode,
 
-        mode:
-            mode,
+        from: from || "Unranked",
 
-        from:
-            from || "Unranked",
+        to: to || "Unranked",
 
-        to:
-            to || "Unranked",
-
-        date:
-            currentDateTime(),
+        date: currentDateTime(),
 
         tester:
-            player.tester ||
-            "Admin"
+            players[name].tester || "Admin"
 
     });
-
 }
 
 
-/* =========================================================
-   PROFILE
-========================================================= */
-
-function openProfile(name) {
-
-    const player =
-        players[name];
-
-
-    if (!player) {
-        return;
-    }
-
-
-    document
-        .getElementById(
-            "profileName"
-        )
-        .textContent =
-        name;
-
-
-    document
-        .getElementById(
-            "profileSkin"
-        )
-        .src =
-        "https://mc-heads.net/avatar/" +
-        encodeURIComponent(name) +
-        "/100";
-
-
-    const status =
-        document
-            .getElementById(
-                "profileStatus"
-            );
-
-
-    status.textContent =
-        player.ranked
-            ? "● Ranked"
-            : "● Unranked";
-
-
-    status.style.color =
-        player.ranked
-            ? "#55ff55"
-            : "#ff6666";
-
-
-    /* RANKINGS */
-
-    const ranks =
-        document
-            .getElementById(
-                "profileRanks"
-            );
-
-
-    ranks.innerHTML =
-        "";
-
-
-    modes.forEach(mode => {
-
-        const row =
-            document.createElement(
-                "div"
-            );
-
-
-        row.className =
-            "rank";
-
-
-        const left =
-            document.createElement(
-                "span"
-            );
-
-
-        left.textContent =
-            mode;
-
-
-        const right =
-            document.createElement(
-                "span"
-            );
-
-
-        const tier =
-            player.rankings[
-                mode
-            ];
-
-
-        if (tier) {
-
-            right.className =
-                tier;
-
-            right.style.padding =
-                "6px 12px";
-
-            right.style.borderRadius =
-                "5px";
-
-            right.style.fontWeight =
-                "900";
-
-            right.textContent =
-                tier;
-
-        } else {
-
-            right.textContent =
-                "Unranked";
-
-            right.className =
-                "muted";
-
-        }
-
-
-        row.appendChild(
-            left
-        );
-
-        row.appendChild(
-            right
-        );
-
-        ranks.appendChild(
-            row
-        );
-
-    });
-
-
-    /* STATS */
-
-    const stats =
-        player.stats || {};
-
-
-    document
-        .getElementById(
-            "profileStats"
-        )
-        .innerHTML = `
-
-            <div class="rank">
-
-                <span>
-                    Wins
-                </span>
-
-                <b>
-                    ${stats.wins || 0}
-                </b>
-
-            </div>
-
-
-            <div class="rank">
-
-                <span>
-                    Losses
-                </span>
-
-                <b>
-                    ${stats.losses || 0}
-                </b>
-
-            </div>
-
-
-            <div class="rank">
-
-                <span>
-                    Tests
-                </span>
-
-                <b>
-                    ${stats.tests || 0}
-                </b>
-
-            </div>
-
-        `;
-
-
-    /* TESTING */
-
-    document
-        .getElementById(
-            "profileTesting"
-        )
-        .innerHTML = `
-
-            <div class="rank">
-
-                <span>
-                    Tested
-                </span>
-
-                <b>
-                    ${escapeHTML(
-                        player.testedDate ||
-                        "Unknown"
-                    )}
-                </b>
-
-            </div>
-
-
-            <div class="rank">
-
-                <span>
-                    Tester
-                </span>
-
-                <b>
-                    ${escapeHTML(
-                        player.tester ||
-                        "Unknown"
-                    )}
-                </b>
-
-            </div>
-
-
-            <div class="rank">
-
-                <span>
-                    Last Update
-                </span>
-
-                <b>
-                    ${escapeHTML(
-                        player.lastUpdate ||
-                        "Unknown"
-                    )}
-                </b>
-
-            </div>
-
-        `;
-
-
-    /* NOTES */
-
-    document
-        .getElementById(
-            "profileNotes"
-        )
-        .textContent =
-        player.notes ||
-        "No notes available.";
-
-
-    /* HISTORY */
-
-    const history =
-        document
-            .getElementById(
-                "profileHistory"
-            );
-
-
-    history.innerHTML =
-        "";
-
-
-    if (
-        !player.history ||
-        player.history.length === 0
-    ) {
-
-        history.innerHTML = `
-
-            <div class="history">
-
-                No tier changes yet.
-
-            </div>
-
-        `;
-
-    } else {
-
-        player.history.forEach(
-            change => {
-
-                const item =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                item.className =
-                    "history";
-
-
-                item.innerHTML = `
-
-                    <b>
-                        ${escapeHTML(
-                            change.mode
-                        )}
-                    </b>
-
-                    <br>
-
-                    ${escapeHTML(
-                        change.from
-                    )}
-
-                    →
-
-                    ${escapeHTML(
-                        change.to
-                    )}
-
-                    <br>
-
-                    <small>
-
-                        ${escapeHTML(
-                            change.date
-                        )}
-
-                        ·
-
-                        ${escapeHTML(
-                            change.tester
-                        )}
-
-                    </small>
-
-                `;
-
-
-                history.appendChild(
-                    item
-                );
-
-            }
-        );
-
-    }
-
-
-    document
-        .getElementById(
-            "profileModal"
-        )
-        .classList.add(
-            "show"
-        );
-
-}
-
-
-/* =========================================================
+/* =====================================================
    ADMIN LOGIN
-========================================================= */
+===================================================== */
 
 function openAdmin() {
 
     document
-        .getElementById(
-            "adminModal"
-        )
-        .classList.add(
-            "show"
-        );
-
+        .getElementById("adminModal")
+        .classList.add("show");
 
     if (adminLoggedIn) {
-
         showAdmin();
-
     }
-
 }
 
 
@@ -2054,492 +1148,332 @@ function loginAdmin() {
 
     const password =
         document
-            .getElementById(
-                "adminPassword"
-            )
+            .getElementById("adminPassword")
             .value;
 
+    if (password !== ADMIN_PASSWORD) {
 
-    if (
-        password !==
-        ADMIN_PASSWORD
-    ) {
-
-        alert(
-            "Incorrect password."
-        );
+        alert("Incorrect password.");
 
         return;
-
     }
 
-
-    adminLoggedIn =
-        true;
-
+    adminLoggedIn = true;
 
     showAdmin();
-
 }
 
 
 function showAdmin() {
 
     document
-        .getElementById(
-            "adminLogin"
-        )
-        .style.display =
-        "none";
-
+        .getElementById("adminLogin")
+        .style.display = "none";
 
     document
-        .getElementById(
-            "adminPanel"
-        )
-        .style.display =
-        "block";
-
+        .getElementById("adminPanel")
+        .style.display = "block";
 
     /*
-        SHOW ADD PLAYER
-        ONLY AFTER LOGIN
+        IMPORTANT:
+        ONLY NOW DO WE SHOW ADD PLAYER
     */
 
-    document
-        .getElementById(
+    const addBox =
+        document.getElementById(
             "addPlayerBox"
-        )
-        .style.display =
-        "block";
+        );
 
+    addBox.style.setProperty(
+        "display",
+        "block",
+        "important"
+    );
 
     render();
-
     renderAdmin();
-
 }
 
 
 function logoutAdmin() {
 
-    adminLoggedIn =
-        false;
-
+    adminLoggedIn = false;
 
     document
-        .getElementById(
-            "adminLogin"
-        )
-        .style.display =
-        "block";
-
+        .getElementById("adminLogin")
+        .style.display = "block";
 
     document
-        .getElementById(
-            "adminPanel"
-        )
-        .style.display =
-        "none";
-
+        .getElementById("adminPanel")
+        .style.display = "none";
 
     /*
         HIDE ADD PLAYER
-        AFTER LOGOUT
     */
 
     document
-        .getElementById(
-            "addPlayerBox"
-        )
-        .style.display =
-        "none";
-
+        .getElementById("addPlayerBox")
+        .style.setProperty(
+            "display",
+            "none",
+            "important"
+        );
 
     document
-        .getElementById(
-            "adminPassword"
-        )
-        .value =
-        "";
-
+        .getElementById("adminPassword")
+        .value = "";
 
     render();
-
 }
 
 
-/* =========================================================
-   TIER OPTIONS
-========================================================= */
-
-function tierOptions(current) {
-
-    let html = `
-
-        <option value="">
-
-            Unranked
-
-        </option>
-
-    `;
-
-
-    tiers.forEach(tier => {
-
-        html += `
-
-            <option
-                value="${tier}"
-                ${
-                    current === tier
-                    ? "selected"
-                    : ""
-                }>
-
-                ${tier}
-
-            </option>
-
-        `;
-
-    });
-
-
-    return html;
-
-}
-
-
-/* =========================================================
+/* =====================================================
    ADMIN DASHBOARD
-========================================================= */
+===================================================== */
 
 function renderAdmin() {
 
-    const container =
-        document
-            .getElementById(
-                "adminPlayers"
-            );
-
-
-    if (!container) {
+    if (!adminLoggedIn)
         return;
-    }
 
+    const container =
+        document.getElementById(
+            "adminPlayers"
+        );
 
-    container.innerHTML =
-        "";
+    container.innerHTML = "";
 
+    Object.keys(players).forEach(name => {
 
-    Object.keys(players)
-        .forEach(name => {
+        const player = players[name];
 
-            const player =
-                players[name];
+        const row =
+            document.createElement("div");
 
+        row.className = "admin-row";
 
-            const row =
-                document.createElement(
-                    "div"
-                );
+        row.innerHTML = `
 
+            <div class="section-title">
 
-            row.className =
-                "admin-row";
+                <b>${escapeHTML(name)}</b>
 
+                <button
+                    class="danger"
+                    onclick="deletePlayer('${escapeJS(name)}')">
 
-            row.innerHTML = `
+                    Remove Player
 
-                <div class="section-title">
+                </button>
 
-                    <b>
-                        ${escapeHTML(name)}
-                    </b>
+            </div>
 
-                    <button
-                        class="danger"
-                        onclick="deletePlayer('${escapeJS(name)}')">
-
-                        Remove Player
-
-                    </button>
-
-                </div>
-
-
-                <div class="admin-grid">
-
-
-                    <label>
-
-                        Bedfight
-
-                        <select
-                            onchange="adminTier(
-                                '${escapeJS(name)}',
-                                'Bedfight',
-                                this.value
-                            )">
-
-                            ${tierOptions(
-                                player.rankings.Bedfight
-                            )}
-
-                        </select>
-
-                    </label>
-
-
-                    <label>
-
-                        Bedwars
-
-                        <select
-                            onchange="adminTier(
-                                '${escapeJS(name)}',
-                                'Bedwars',
-                                this.value
-                            )">
-
-                            ${tierOptions(
-                                player.rankings.Bedwars
-                            )}
-
-                        </select>
-
-                    </label>
-
-
-                    <label>
-
-                        UHC
-
-                        <select
-                            onchange="adminTier(
-                                '${escapeJS(name)}',
-                                'UHC',
-                                this.value
-                            )">
-
-                            ${tierOptions(
-                                player.rankings.UHC
-                            )}
-
-                        </select>
-
-                    </label>
-
-
-                    <label>
-
-                        Sumo
-
-                        <select
-                            onchange="adminTier(
-                                '${escapeJS(name)}',
-                                'Sumo',
-                                this.value
-                            )">
-
-                            ${tierOptions(
-                                player.rankings.Sumo
-                            )}
-
-                        </select>
-
-                    </label>
-
-
-                    <label>
-
-                        Ranked Status
-
-                        <select
-                            onchange="updateField(
-                                '${escapeJS(name)}',
-                                'ranked',
-                                this.value === 'true'
-                            )">
-
-                            <option
-                                value="true"
-                                ${
-                                    player.ranked
-                                    ? "selected"
-                                    : ""
-                                }>
-
-                                Ranked
-
-                            </option>
-
-                            <option
-                                value="false"
-                                ${
-                                    !player.ranked
-                                    ? "selected"
-                                    : ""
-                                }>
-
-                                Unranked
-
-                            </option>
-
-                        </select>
-
-                    </label>
-
-
-                    <label>
-
-                        Test Date
-
-                        <input
-                            value="${escapeHTML(
-                                player.testedDate ||
-                                ""
-                            )}"
-                            onchange="updateField(
-                                '${escapeJS(name)}',
-                                'testedDate',
-                                this.value
-                            )">
-
-                    </label>
-
-
-                    <label>
-
-                        Tester / Reviewer
-
-                        <input
-                            value="${escapeHTML(
-                                player.tester ||
-                                ""
-                            )}"
-                            onchange="updateField(
-                                '${escapeJS(name)}',
-                                'tester',
-                                this.value
-                            )">
-
-                    </label>
-
-
-                    <label>
-
-                        Last Tier Update
-
-                        <input
-                            value="${escapeHTML(
-                                player.lastUpdate ||
-                                ""
-                            )}"
-                            onchange="updateField(
-                                '${escapeJS(name)}',
-                                'lastUpdate',
-                                this.value
-                            )">
-
-                    </label>
-
-
-                    <label>
-
-                        Wins
-
-                        <input
-                            type="number"
-                            min="0"
-                            value="${
-                                player.stats?.wins || 0
-                            }"
-                            onchange="updateStat(
-                                '${escapeJS(name)}',
-                                'wins',
-                                this.value
-                            )">
-
-                    </label>
-
-
-                    <label>
-
-                        Losses
-
-                        <input
-                            type="number"
-                            min="0"
-                            value="${
-                                player.stats?.losses || 0
-                            }"
-                            onchange="updateStat(
-                                '${escapeJS(name)}',
-                                'losses',
-                                this.value
-                            )">
-
-                    </label>
-
-
-                    <label>
-
-                        Tests
-
-                        <input
-                            type="number"
-                            min="0"
-                            value="${
-                                player.stats?.tests || 0
-                            }"
-                            onchange="updateStat(
-                                '${escapeJS(name)}',
-                                'tests',
-                                this.value
-                            )">
-
-                    </label>
-
-                </div>
-
+            <div class="admin-grid">
 
                 <label>
+                    Bedfight
 
-                    Admin Notes
-
-                    <textarea
-                        onchange="updateField(
+                    <select
+                        onchange="adminTier(
                             '${escapeJS(name)}',
-                            'notes',
+                            'Bedfight',
                             this.value
-                        )">${escapeHTML(
-                            player.notes ||
-                            ""
-                        )}</textarea>
+                        )">
 
+                        ${tierOptions(
+                            player.rankings.Bedfight
+                        )}
+
+                    </select>
                 </label>
 
-            `;
+                <label>
+                    Bedwars
 
+                    <select
+                        onchange="adminTier(
+                            '${escapeJS(name)}',
+                            'Bedwars',
+                            this.value
+                        )">
 
-            container.appendChild(
-                row
-            );
+                        ${tierOptions(
+                            player.rankings.Bedwars
+                        )}
 
-        });
+                    </select>
+                </label>
 
+                <label>
+                    UHC
+
+                    <select
+                        onchange="adminTier(
+                            '${escapeJS(name)}',
+                            'UHC',
+                            this.value
+                        )">
+
+                        ${tierOptions(
+                            player.rankings.UHC
+                        )}
+
+                    </select>
+                </label>
+
+                <label>
+                    Sumo
+
+                    <select
+                        onchange="adminTier(
+                            '${escapeJS(name)}',
+                            'Sumo',
+                            this.value
+                        )">
+
+                        ${tierOptions(
+                            player.rankings.Sumo
+                        )}
+
+                    </select>
+                </label>
+
+                <label>
+                    Ranked Status
+
+                    <select
+                        onchange="updateField(
+                            '${escapeJS(name)}',
+                            'ranked',
+                            this.value === 'true'
+                        )">
+
+                        <option
+                            value="true"
+                            ${player.ranked ? "selected" : ""}>
+                            Ranked
+                        </option>
+
+                        <option
+                            value="false"
+                            ${!player.ranked ? "selected" : ""}>
+                            Unranked
+                        </option>
+
+                    </select>
+                </label>
+
+                <label>
+                    Tester / Reviewer
+
+                    <input
+                        value="${escapeHTML(
+                            player.tester || ""
+                        )}"
+                        onchange="updateField(
+                            '${escapeJS(name)}',
+                            'tester',
+                            this.value
+                        )">
+                </label>
+
+                <label>
+                    Test Date
+
+                    <input
+                        value="${escapeHTML(
+                            player.testedDate || ""
+                        )}"
+                        onchange="updateField(
+                            '${escapeJS(name)}',
+                            'testedDate',
+                            this.value
+                        )">
+                </label>
+
+                <label>
+                    Last Update
+
+                    <input
+                        value="${escapeHTML(
+                            player.lastUpdate || ""
+                        )}"
+                        onchange="updateField(
+                            '${escapeJS(name)}',
+                            'lastUpdate',
+                            this.value
+                        )">
+                </label>
+
+                <label>
+                    Wins
+
+                    <input
+                        type="number"
+                        min="0"
+                        value="${player.stats?.wins || 0}"
+                        onchange="updateStat(
+                            '${escapeJS(name)}',
+                            'wins',
+                            this.value
+                        )">
+                </label>
+
+                <label>
+                    Losses
+
+                    <input
+                        type="number"
+                        min="0"
+                        value="${player.stats?.losses || 0}"
+                        onchange="updateStat(
+                            '${escapeJS(name)}',
+                            'losses',
+                            this.value
+                        )">
+                </label>
+
+                <label>
+                    Tests
+
+                    <input
+                        type="number"
+                        min="0"
+                        value="${player.stats?.tests || 0}"
+                        onchange="updateStat(
+                            '${escapeJS(name)}',
+                            'tests',
+                            this.value
+                        )">
+                </label>
+
+            </div>
+
+            <label>
+                Admin Notes
+
+                <textarea
+                    onchange="updateField(
+                        '${escapeJS(name)}',
+                        'notes',
+                        this.value
+                    )">${escapeHTML(
+                        player.notes || ""
+                    )}</textarea>
+
+            </label>
+        `;
+
+        container.appendChild(row);
+    });
 
     renderHistory();
-
 }
 
 
-/* =========================================================
-   ADMIN CHANGE TIER
-========================================================= */
+/* =====================================================
+   ADMIN TIER EDIT
+===================================================== */
 
 function adminTier(
     name,
@@ -2548,34 +1482,17 @@ function adminTier(
 ) {
 
     if (!adminLoggedIn) {
-
-        alert(
-            "Only admins can change tiers."
-        );
-
+        alert("Only admins can change tiers.");
         return;
-
     }
 
-
-    const player =
-        players[name];
-
+    const player = players[name];
 
     const oldTier =
-        player.rankings[
-            mode
-        ];
+        player.rankings[mode];
 
-
-    if (
-        oldTier === newTier
-    ) {
-
+    if (oldTier === newTier)
         return;
-
-    }
-
 
     recordHistory(
         name,
@@ -2584,30 +1501,22 @@ function adminTier(
         newTier
     );
 
-
-    player.rankings[
-        mode
-    ] =
-        newTier ||
-        null;
-
+    player.rankings[mode] =
+        newTier || null;
 
     player.lastUpdate =
         currentDate();
 
-
     saveData();
 
     render();
-
     renderAdmin();
-
 }
 
 
-/* =========================================================
-   UPDATE PLAYER FIELD
-========================================================= */
+/* =====================================================
+   UPDATE FIELD
+===================================================== */
 
 function updateField(
     name,
@@ -2616,49 +1525,30 @@ function updateField(
 ) {
 
     if (!adminLoggedIn) {
-
-        alert(
-            "Only admins can edit players."
-        );
-
-        return;
-
-    }
-
-
-    if (!players[name]) {
+        alert("Only admins can edit players.");
         return;
     }
 
+    if (!players[name])
+        return;
 
-    players[name][field] =
-        value;
+    players[name][field] = value;
 
-
-    if (
-        field !==
-        "lastUpdate"
-    ) {
-
-        players[name]
-            .lastUpdate =
+    if (field !== "lastUpdate") {
+        players[name].lastUpdate =
             currentDate();
-
     }
-
 
     saveData();
 
     render();
-
     renderAdmin();
-
 }
 
 
-/* =========================================================
+/* =====================================================
    UPDATE STATS
-========================================================= */
+===================================================== */
 
 function updateStat(
     name,
@@ -2667,300 +1557,407 @@ function updateStat(
 ) {
 
     if (!adminLoggedIn) {
-
-        alert(
-            "Only admins can edit statistics."
-        );
-
-        return;
-
-    }
-
-
-    if (!players[name]) {
+        alert("Only admins can edit statistics.");
         return;
     }
 
+    if (!players[name])
+        return;
 
     if (!players[name].stats) {
 
         players[name].stats = {
-
             wins: 0,
-
             losses: 0,
-
             tests: 0
-
         };
-
     }
 
-
-    players[name]
-        .stats[stat] =
+    players[name].stats[stat] =
         Math.max(
             0,
             Number(value) || 0
         );
 
-
-    players[name]
-        .lastUpdate =
+    players[name].lastUpdate =
         currentDate();
-
 
     saveData();
 
     render();
-
 }
 
 
-/* =========================================================
-   ADMIN HISTORY
-========================================================= */
+/* =====================================================
+   TIER OPTIONS
+===================================================== */
+
+function tierOptions(current) {
+
+    let html = `
+        <option value="">
+            Unranked
+        </option>
+    `;
+
+    tiers.forEach(tier => {
+
+        html += `
+            <option
+                value="${tier}"
+                ${current === tier ? "selected" : ""}>
+                ${tier}
+            </option>
+        `;
+
+    });
+
+    return html;
+}
+
+
+/* =====================================================
+   HISTORY DISPLAY
+===================================================== */
 
 function renderHistory() {
 
     const container =
-        document
-            .getElementById(
-                "history"
-            );
+        document.getElementById(
+            "history"
+        );
 
-
-    if (!container) {
+    if (!container)
         return;
-    }
 
+    container.innerHTML = "";
 
-    container.innerHTML =
-        "";
+    let count = 0;
 
+    Object.keys(players).forEach(name => {
 
-    let count =
-        0;
+        const player = players[name];
 
+        if (!player.history)
+            return;
 
-    Object.keys(players)
-        .forEach(name => {
+        player.history.forEach(change => {
 
-            const player =
-                players[name];
+            count++;
 
+            const item =
+                document.createElement("div");
 
-            if (
-                !player.history
-            ) {
-                return;
-            }
+            item.className = "history";
 
+            item.innerHTML = `
 
-            player.history.forEach(
-                change => {
+                <b>${escapeHTML(name)}</b>
+                ·
+                ${escapeHTML(change.mode)}
 
-                    count++;
+                <br>
 
+                ${escapeHTML(change.from)}
+                →
+                ${escapeHTML(change.to)}
 
-                    const item =
-                        document.createElement(
-                            "div"
-                        );
+                <br>
 
+                <small>
+                    ${escapeHTML(change.date)}
+                    ·
+                    ${escapeHTML(change.tester)}
+                </small>
+            `;
 
-                    item.className =
-                        "history";
-
-
-                    item.innerHTML = `
-
-                        <b>
-                            ${escapeHTML(
-                                name
-                            )}
-                        </b>
-
-                        ·
-
-                        ${escapeHTML(
-                            change.mode
-                        )}
-
-                        <br>
-
-                        ${escapeHTML(
-                            change.from
-                        )}
-
-                        →
-
-                        ${escapeHTML(
-                            change.to
-                        )}
-
-                        <br>
-
-                        <small>
-
-                            ${escapeHTML(
-                                change.date
-                            )}
-
-                            ·
-
-                            ${escapeHTML(
-                                change.tester
-                            )}
-
-                        </small>
-
-                    `;
-
-
-                    container.appendChild(
-                        item
-                    );
-
-                }
-            );
-
+            container.appendChild(item);
         });
-
+    });
 
     if (count === 0) {
 
         container.innerHTML = `
-
             <div class="history">
-
                 No tier changes yet.
-
             </div>
-
         `;
-
     }
-
 }
 
 
-/* =========================================================
+/* =====================================================
+   PLAYER PROFILE
+===================================================== */
+
+function openProfile(name) {
+
+    const player = players[name];
+
+    if (!player)
+        return;
+
+    document
+        .getElementById("profileName")
+        .textContent = name;
+
+    document
+        .getElementById("profileSkin")
+        .src =
+        "https://mc-heads.net/avatar/" +
+        encodeURIComponent(name) +
+        "/100";
+
+    const status =
+        document.getElementById(
+            "profileStatus"
+        );
+
+    status.textContent =
+        player.ranked
+            ? "● Ranked"
+            : "● Unranked";
+
+    status.style.color =
+        player.ranked
+            ? "#55ff55"
+            : "#ff6666";
+
+    const ranks =
+        document.getElementById(
+            "profileRanks"
+        );
+
+    ranks.innerHTML = "";
+
+    modes.forEach(mode => {
+
+        const row =
+            document.createElement("div");
+
+        row.className = "rank";
+
+        const left =
+            document.createElement("span");
+
+        left.textContent = mode;
+
+        const right =
+            document.createElement("span");
+
+        const tier =
+            player.rankings[mode];
+
+        if (tier) {
+
+            right.className = tier;
+            right.textContent = tier;
+            right.style.padding = "6px 12px";
+            right.style.borderRadius = "5px";
+            right.style.fontWeight = "900";
+
+        } else {
+
+            right.textContent = "Unranked";
+            right.className = "muted";
+        }
+
+        row.appendChild(left);
+        row.appendChild(right);
+
+        ranks.appendChild(row);
+    });
+
+    const stats =
+        player.stats || {};
+
+    document
+        .getElementById("profileStats")
+        .innerHTML = `
+
+            <div class="rank">
+                <span>Wins</span>
+                <b>${stats.wins || 0}</b>
+            </div>
+
+            <div class="rank">
+                <span>Losses</span>
+                <b>${stats.losses || 0}</b>
+            </div>
+
+            <div class="rank">
+                <span>Tests</span>
+                <b>${stats.tests || 0}</b>
+            </div>
+        `;
+
+    document
+        .getElementById("profileTesting")
+        .innerHTML = `
+
+            <div class="rank">
+                <span>Tested</span>
+                <b>
+                    ${escapeHTML(
+                        player.testedDate || "Unknown"
+                    )}
+                </b>
+            </div>
+
+            <div class="rank">
+                <span>Tester</span>
+                <b>
+                    ${escapeHTML(
+                        player.tester || "Unknown"
+                    )}
+                </b>
+            </div>
+
+            <div class="rank">
+                <span>Last Update</span>
+                <b>
+                    ${escapeHTML(
+                        player.lastUpdate || "Unknown"
+                    )}
+                </b>
+            </div>
+        `;
+
+    document
+        .getElementById("profileNotes")
+        .textContent =
+        player.notes ||
+        "No notes available.";
+
+    const history =
+        document.getElementById(
+            "profileHistory"
+        );
+
+    history.innerHTML = "";
+
+    if (
+        !player.history ||
+        player.history.length === 0
+    ) {
+
+        history.innerHTML = `
+            <div class="history">
+                No tier changes yet.
+            </div>
+        `;
+
+    } else {
+
+        player.history.forEach(change => {
+
+            const item =
+                document.createElement("div");
+
+            item.className = "history";
+
+            item.innerHTML = `
+
+                <b>
+                    ${escapeHTML(change.mode)}
+                </b>
+
+                <br>
+
+                ${escapeHTML(change.from)}
+                →
+                ${escapeHTML(change.to)}
+
+                <br>
+
+                <small>
+                    ${escapeHTML(change.date)}
+                    ·
+                    ${escapeHTML(change.tester)}
+                </small>
+            `;
+
+            history.appendChild(item);
+        });
+    }
+
+    document
+        .getElementById("profileModal")
+        .classList.add("show");
+}
+
+
+/* =====================================================
    MODALS
-========================================================= */
+===================================================== */
 
 function closeModal(id) {
 
     document
         .getElementById(id)
-        .classList.remove(
-            "show"
-        );
-
+        .classList.remove("show");
 }
 
+function outside(event, id) {
 
-function outside(
-    event,
-    id
-) {
-
-    if (
-        event.target.id === id
-    ) {
-
+    if (event.target.id === id) {
         closeModal(id);
-
     }
-
 }
 
 
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
+/* =====================================================
+   SECURITY HELPERS
+===================================================== */
 
 function escapeHTML(value) {
 
-    return String(
-        value ?? ""
-    )
-
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-
-    .replace(
-        /</g,
-        "&lt;"
-    )
-
-    .replace(
-        />/g,
-        "&gt;"
-    )
-
-    .replace(
-        /"/g,
-        "&quot;"
-    );
-
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
 }
-
-
-/* =========================================================
-   ESCAPE JAVASCRIPT
-========================================================= */
 
 function escapeJS(value) {
 
     return String(value)
-
-        .replace(
-            /\\/g,
-            "\\\\"
-        )
-
-        .replace(
-            /'/g,
-            "\\'"
-        );
-
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'");
 }
 
 
-/* =========================================================
-   ESC KEY
-========================================================= */
+/* =====================================================
+   ESCAPE KEY
+===================================================== */
 
 document.addEventListener(
     "keydown",
     function(event) {
 
-        if (
-            event.key === "Escape"
-        ) {
+        if (event.key === "Escape") {
 
-            closeModal(
-                "profileModal"
-            );
-
-            closeModal(
-                "adminModal"
-            );
-
+            closeModal("profileModal");
+            closeModal("adminModal");
         }
-
     }
 );
 
 
-/* =========================================================
-   START
-========================================================= */
+/* =====================================================
+   START WEBSITE
+===================================================== */
 
 loadData();
+
+/* MAKE ABSOLUTELY SURE ADD PLAYER IS HIDDEN */
+document
+    .getElementById("addPlayerBox")
+    .style.setProperty(
+        "display",
+        "none",
+        "important"
+    );
 
 render();
 
