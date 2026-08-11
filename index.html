@@ -1,436 +1,747 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Arch Tiers</title>
+    <title>Arch Tiers</title>
 
-<style>
-* {
-    box-sizing: border-box;
-}
+    <style>
 
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #080a0f;
-    color: white;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-/* HEADER */
+        body {
+            margin: 0;
+            background: #08090d;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-header {
-    background: #10141c;
-    border-bottom: 1px solid #252c38;
-    padding: 25px;
-    text-align: center;
-}
+        /* =========================
+           HEADER
+        ========================= */
 
-header h1 {
-    margin: 0;
-    color: #55ff55;
-    font-size: 38px;
-    letter-spacing: 2px;
-}
+        header {
+            background: #0d1016;
+            border-bottom: 1px solid #242a35;
+            padding: 28px 20px;
+            text-align: center;
+        }
 
-header p {
-    margin: 8px 0 0;
-    color: #8d97a8;
-}
+        .logo {
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #ffffff;
+        }
 
-/* NAVIGATION */
+        .logo span {
+            color: #55ff55;
+        }
 
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding: 15px;
-    background: #0c0f15;
-    border-bottom: 1px solid #202630;
-    flex-wrap: wrap;
-}
+        .subtitle {
+            color: #7f8999;
+            margin-top: 8px;
+            font-size: 14px;
+        }
 
-nav button {
-    background: #171c25;
-    color: #ddd;
-    border: 1px solid #303846;
-    padding: 11px 20px;
-    border-radius: 7px;
-    cursor: pointer;
-    font-weight: bold;
-}
 
-nav button:hover,
-nav button.active {
-    background: #55ff55;
-    color: #071007;
-}
+        /* =========================
+           NAVIGATION
+        ========================= */
 
-/* MAIN */
+        nav {
+            background: #0a0d12;
+            border-bottom: 1px solid #202631;
 
-main {
-    width: 95%;
-    max-width: 1200px;
-    margin: 30px auto;
-}
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-/* TIER ROW */
+            gap: 8px;
+            padding: 14px;
 
-.tier-row {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    margin-bottom: 8px;
-    min-height: 70px;
-    border-radius: 7px;
-    overflow: hidden;
-    background: #11151d;
-    border: 1px solid #252c38;
-}
+            flex-wrap: wrap;
+        }
 
-.tier-name {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    font-weight: bold;
-}
+        nav button {
+            border: 1px solid #303744;
+            background: #151922;
+            color: #bfc6d1;
 
-/* TIER COLORS */
+            padding: 10px 20px;
 
-.HT1 {
-    background: #ff3b3b;
-}
+            border-radius: 7px;
 
-.LT1 {
-    background: #ff6b6b;
-}
+            font-weight: 700;
+            cursor: pointer;
 
-.HT2 {
-    background: #ff9838;
-}
+            transition: 0.15s;
+        }
 
-.LT2 {
-    background: #ffb45e;
-}
+        nav button:hover {
+            background: #1d2430;
+            color: white;
+        }
 
-.HT3 {
-    background: #f4d03f;
-    color: #111;
-}
+        nav button.active {
+            background: #55ff55;
+            color: #071007;
+            border-color: #55ff55;
+        }
 
-.LT3 {
-    background: #f7e56b;
-    color: #111;
-}
 
-.HT4 {
-    background: #43c978;
-}
+        /* =========================
+           MAIN
+        ========================= */
 
-.LT4 {
-    background: #68dc96;
-}
+        main {
+            width: 95%;
+            max-width: 1250px;
+            margin: 30px auto;
+        }
 
-.HT5 {
-    background: #4199ed;
-}
 
-.LT5 {
-    background: #70b4f2;
-}
+        /* =========================
+           TOP BAR
+        ========================= */
 
-/* PLAYERS */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-.players {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 10px;
-}
+            gap: 15px;
 
-.player {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #191f29;
-    border: 1px solid #303846;
-    border-radius: 7px;
-    padding: 8px 10px;
-    font-weight: bold;
-}
+            margin-bottom: 20px;
 
-.player-name {
-    cursor: pointer;
-}
+            flex-wrap: wrap;
+        }
 
-.player-name:hover {
-    color: #55ff55;
-}
+        .mode-title {
+            font-size: 24px;
+            font-weight: 800;
+        }
 
-.player button {
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    width: 23px;
-    height: 23px;
-    color: white;
-    font-weight: bold;
-}
+        .mode-title span {
+            color: #55ff55;
+        }
 
-.up {
-    background: #2d9d52;
-}
+        .search {
+            background: #10141b;
+            border: 1px solid #2a313d;
+            color: white;
 
-.down {
-    background: #b33c3c;
-}
+            padding: 11px 14px;
 
-.delete {
-    background: #555;
-}
+            border-radius: 7px;
 
-/* ADD PLAYER */
+            outline: none;
 
-.add-player {
-    background: #11151d;
-    border: 1px solid #252c38;
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 25px;
-}
+            width: 240px;
+        }
 
-.add-player h2 {
-    margin-top: 0;
-}
+        .search:focus {
+            border-color: #55ff55;
+        }
 
-input,
-select {
-    background: #0b0e13;
-    color: white;
-    border: 1px solid #303846;
-    padding: 10px;
-    border-radius: 6px;
-    margin-right: 8px;
-}
 
-.add-btn {
-    background: #55ff55;
-    color: #071007;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-}
+        /* =========================
+           TIER ROW
+        ========================= */
 
-.add-btn:hover {
-    background: #79ff79;
-}
+        .tier-row {
+            display: grid;
 
-/* PROFILE MODAL */
+            grid-template-columns: 105px 1fr;
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.78);
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
+            min-height: 70px;
 
-.modal.active {
-    display: flex;
-}
+            margin-bottom: 7px;
 
-.profile-card {
-    width: 100%;
-    max-width: 500px;
-    background: #11151d;
-    border: 1px solid #303846;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 15px 50px rgba(0,0,0,.6);
-    position: relative;
-}
+            background: #10141b;
 
-.close {
-    position: absolute;
-    right: 18px;
-    top: 15px;
-    background: #292f39;
-    border: none;
-    color: white;
-    width: 32px;
-    height: 32px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 18px;
-}
+            border: 1px solid #252c37;
 
-.close:hover {
-    background: #ff4444;
-}
+            border-radius: 7px;
 
-.profile-header {
-    text-align: center;
-    margin-bottom: 25px;
-}
+            overflow: hidden;
+        }
 
-.profile-head {
-    width: 100px;
-    height: 100px;
-    image-rendering: pixelated;
-    border-radius: 10px;
-    border: 3px solid #55ff55;
-    margin-bottom: 12px;
-}
+        .tier-name {
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-.profile-header h2 {
-    margin: 5px 0;
-    font-size: 28px;
-}
+            font-size: 18px;
+            font-weight: 900;
+        }
 
-.profile-header p {
-    color: #8d97a8;
-}
 
-.profile-rankings {
-    display: grid;
-    gap: 8px;
-}
+        /* =========================
+           TIER COLORS
+        ========================= */
 
-.profile-ranking {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #191f29;
-    border: 1px solid #303846;
-    padding: 12px;
-    border-radius: 7px;
-}
+        .HT1 {
+            background: #ff3b3b;
+        }
 
-.profile-mode {
-    font-weight: bold;
-}
+        .LT1 {
+            background: #ff6767;
+        }
 
-.profile-tier {
-    padding: 6px 12px;
-    border-radius: 5px;
-    font-weight: bold;
-}
+        .HT2 {
+            background: #ff9438;
+        }
 
-/* MOBILE */
+        .LT2 {
+            background: #ffb25e;
+        }
 
-@media (max-width: 600px) {
+        .HT3 {
+            background: #f0cf3e;
+            color: #151515;
+        }
 
-    .tier-row {
-        grid-template-columns: 75px 1fr;
-    }
+        .LT3 {
+            background: #f5e36c;
+            color: #151515;
+        }
 
-    .tier-name {
-        font-size: 14px;
-    }
+        .HT4 {
+            background: #42c979;
+        }
 
-    input,
-    select,
-    .add-btn {
-        width: 100%;
-        margin: 5px 0;
-    }
-}
-</style>
+        .LT4 {
+            background: #68dc97;
+        }
+
+        .HT5 {
+            background: #459be9;
+        }
+
+        .LT5 {
+            background: #71b5ef;
+        }
+
+
+        /* =========================
+           PLAYERS AREA
+        ========================= */
+
+        .players {
+            display: flex;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            padding: 10px;
+        }
+
+
+        /* =========================
+           PLAYER CARD
+        ========================= */
+
+        .player {
+            display: flex;
+            align-items: center;
+
+            gap: 7px;
+
+            background: #191e27;
+
+            border: 1px solid #303744;
+
+            border-radius: 7px;
+
+            padding: 7px 9px;
+
+            font-weight: 700;
+
+            transition: 0.15s;
+        }
+
+        .player:hover {
+            border-color: #4a5566;
+            background: #1d232e;
+        }
+
+        .player-name {
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        .player-name:hover {
+            color: #55ff55;
+        }
+
+
+        /* =========================
+           PLAYER BUTTONS
+        ========================= */
+
+        .player button {
+            border: none;
+
+            width: 23px;
+            height: 23px;
+
+            border-radius: 5px;
+
+            color: white;
+
+            font-weight: 900;
+
+            cursor: pointer;
+        }
+
+        .up {
+            background: #29924c;
+        }
+
+        .down {
+            background: #a63c3c;
+        }
+
+        .delete {
+            background: #4b515c;
+        }
+
+        .player button:hover {
+            filter: brightness(1.25);
+        }
+
+
+        /* =========================
+           EMPTY TIER
+        ========================= */
+
+        .empty {
+            color: #555f6e;
+            font-size: 13px;
+            padding-left: 4px;
+        }
+
+
+        /* =========================
+           ADD PLAYER
+        ========================= */
+
+        .add-box {
+            margin-top: 25px;
+
+            background: #10141b;
+
+            border: 1px solid #252c37;
+
+            border-radius: 9px;
+
+            padding: 20px;
+        }
+
+        .add-box h2 {
+            margin: 0 0 15px 0;
+            font-size: 18px;
+        }
+
+        .form {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .form input,
+        .form select {
+            background: #080b10;
+
+            color: white;
+
+            border: 1px solid #303744;
+
+            border-radius: 6px;
+
+            padding: 11px;
+
+            outline: none;
+        }
+
+        .form input {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .form input:focus,
+        .form select:focus {
+            border-color: #55ff55;
+        }
+
+        .add-button {
+            background: #55ff55;
+
+            color: #061006;
+
+            border: none;
+
+            border-radius: 6px;
+
+            padding: 11px 18px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+        .add-button:hover {
+            background: #78ff78;
+        }
+
+
+        /* =========================
+           PROFILE MODAL
+        ========================= */
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.82);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 999;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .profile {
+            width: 100%;
+            max-width: 520px;
+
+            background: #10141b;
+
+            border: 1px solid #303744;
+
+            border-radius: 12px;
+
+            padding: 25px;
+
+            position: relative;
+
+            box-shadow:
+                0 20px 70px rgba(0,0,0,0.7);
+        }
+
+
+        /* CLOSE */
+
+        .close {
+            position: absolute;
+
+            top: 15px;
+            right: 15px;
+
+            width: 34px;
+            height: 34px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #252b35;
+
+            color: white;
+
+            font-size: 20px;
+
+            cursor: pointer;
+        }
+
+        .close:hover {
+            background: #ef4444;
+        }
+
+
+        /* PROFILE HEADER */
+
+        .profile-header {
+            text-align: center;
+
+            padding-bottom: 20px;
+
+            border-bottom: 1px solid #272e39;
+        }
+
+        .skin {
+            width: 100px;
+            height: 100px;
+
+            image-rendering: pixelated;
+
+            border-radius: 10px;
+
+            border: 3px solid #55ff55;
+
+            background: #080b10;
+        }
+
+        .profile-name {
+            margin: 12px 0 5px;
+
+            font-size: 27px;
+
+            font-weight: 900;
+        }
+
+        .profile-subtitle {
+            color: #7f8999;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           PROFILE RANKINGS
+        ========================= */
+
+        .rankings {
+            margin-top: 20px;
+
+            display: grid;
+
+            gap: 8px;
+        }
+
+        .ranking {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            background: #191e27;
+
+            border: 1px solid #303744;
+
+            padding: 12px;
+
+            border-radius: 7px;
+        }
+
+        .ranking-mode {
+            font-weight: 700;
+        }
+
+        .ranking-tier {
+            padding: 6px 12px;
+
+            border-radius: 5px;
+
+            font-weight: 900;
+        }
+
+        .unranked {
+            color: #667080;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width: 650px) {
+
+            .logo {
+                font-size: 30px;
+            }
+
+            .tier-row {
+                grid-template-columns: 70px 1fr;
+            }
+
+            .tier-name {
+                font-size: 14px;
+            }
+
+            .search {
+                width: 100%;
+            }
+
+            .top-bar {
+                align-items: stretch;
+            }
+
+            .form {
+                flex-direction: column;
+            }
+
+            .form input,
+            .form select,
+            .add-button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
-    <h1>ARCH TIERS</h1>
-    <p>Minecraft PvP Tier Rankings</p>
+
+    <div class="logo">
+        ARCH <span>TIERS</span>
+    </div>
+
+    <div class="subtitle">
+        Minecraft PvP Tier Rankings
+    </div>
+
 </header>
+
+
+<!-- =========================
+     MODES
+========================= -->
 
 <nav>
 
     <button
-        onclick="changeMode('Bedfight')"
         id="BedfightBtn"
-        class="active">
+        class="active"
+        onclick="changeMode('Bedfight')">
         Bedfight
     </button>
 
     <button
-        onclick="changeMode('Bedwars')"
-        id="BedwarsBtn">
+        id="BedwarsBtn"
+        onclick="changeMode('Bedwars')">
         Bedwars
     </button>
 
     <button
-        onclick="changeMode('UHC')"
-        id="UHCBtn">
+        id="UHCBtn"
+        onclick="changeMode('UHC')">
         UHC
     </button>
 
     <button
-        onclick="changeMode('Sumo')"
-        id="SumoBtn">
+        id="SumoBtn"
+        onclick="changeMode('Sumo')">
         Sumo
     </button>
 
 </nav>
 
+
+<!-- =========================
+     MAIN
+========================= -->
+
 <main>
+
+
+    <div class="top-bar">
+
+        <div class="mode-title">
+            <span>ARCH</span> TIERS —
+            <span id="currentMode">Bedfight</span>
+        </div>
+
+        <input
+            class="search"
+            id="search"
+            type="text"
+            placeholder="Search player..."
+            oninput="render()">
+
+    </div>
+
+
+    <!-- TIER LIST -->
 
     <div id="tierList"></div>
 
-    <div class="add-player">
+
+    <!-- =========================
+         ADD PLAYER
+    ========================= -->
+
+    <div class="add-box">
 
         <h2>Add Player</h2>
 
-        <input
-            id="playerName"
-            type="text"
-            placeholder="Minecraft username">
+        <div class="form">
 
-        <select id="playerTier">
+            <input
+                id="playerName"
+                type="text"
+                placeholder="Minecraft username">
 
-            <option>HT1</option>
-            <option>LT1</option>
-            <option>HT2</option>
-            <option>LT2</option>
-            <option>HT3</option>
-            <option>LT3</option>
-            <option>HT4</option>
-            <option>LT4</option>
-            <option>HT5</option>
-            <option>LT5</option>
+            <select id="playerTier">
 
-        </select>
+                <option value="HT1">HT1</option>
+                <option value="LT1">LT1</option>
 
-        <button
-            class="add-btn"
-            onclick="addPlayer()">
-            Add Player
-        </button>
+                <option value="HT2">HT2</option>
+                <option value="LT2">LT2</option>
+
+                <option value="HT3">HT3</option>
+                <option value="LT3">LT3</option>
+
+                <option value="HT4">HT4</option>
+                <option value="LT4">LT4</option>
+
+                <option value="HT5">HT5</option>
+                <option value="LT5">LT5</option>
+
+            </select>
+
+            <button
+                class="add-button"
+                onclick="addPlayer()">
+                Add Player
+            </button>
+
+        </div>
 
     </div>
 
 </main>
 
 
-<!-- PROFILE POPUP -->
+<!-- =========================
+     PLAYER PROFILE
+========================= -->
 
 <div
     class="modal"
     id="profileModal"
-    onclick="closeOutside(event)">
+    onclick="outsideClose(event)">
 
-    <div class="profile-card">
+    <div class="profile">
 
         <button
             class="close"
@@ -438,27 +749,31 @@ select {
             ×
         </button>
 
+
         <div class="profile-header">
 
             <img
-                id="profileHead"
-                class="profile-head"
+                id="skin"
+                class="skin"
                 src=""
-                alt="Minecraft Head">
+                alt="Minecraft Player">
 
-            <h2 id="profileName">
+            <div
+                class="profile-name"
+                id="profileName">
                 Player
-            </h2>
+            </div>
 
-            <p>
+            <div class="profile-subtitle">
                 Arch Tiers Player Profile
-            </p>
+            </div>
 
         </div>
 
+
         <div
-            class="profile-rankings"
-            id="profileRankings">
+            class="rankings"
+            id="rankings">
         </div>
 
     </div>
@@ -468,10 +783,18 @@ select {
 
 <script>
 
+
+/* =========================
+   DATABASE
+========================= */
+
 /*
-==================================================
-PLAYERS
-==================================================
+    ADD YOUR PLAYERS HERE.
+
+    Example:
+
+    "Steve": "HT1"
+
 */
 
 let players = {
@@ -496,11 +819,9 @@ let players = {
 };
 
 
-/*
-==================================================
-TIER ORDER
-==================================================
-*/
+/* =========================
+   SETTINGS
+========================= */
 
 const tiers = [
     "HT1",
@@ -525,48 +846,52 @@ const modes = [
 let currentMode = "Bedfight";
 
 
-/*
-==================================================
-SAVE DATA
-==================================================
-*/
+/* =========================
+   SAVE
+========================= */
 
 function saveData() {
 
     localStorage.setItem(
-        "archTiersPlayers",
+        "archTiersData",
         JSON.stringify(players)
     );
 
 }
 
 
-/*
-==================================================
-LOAD DATA
-==================================================
-*/
+/* =========================
+   LOAD
+========================= */
 
 function loadData() {
 
     const saved =
-        localStorage.getItem("archTiersPlayers");
+        localStorage.getItem("archTiersData");
 
     if (saved) {
 
-        players =
-            JSON.parse(saved);
+        try {
+
+            players =
+                JSON.parse(saved);
+
+        } catch {
+
+            console.log(
+                "Could not load saved data."
+            );
+
+        }
 
     }
 
 }
 
 
-/*
-==================================================
-CHANGE MODE
-==================================================
-*/
+/* =========================
+   CHANGE MODE
+========================= */
 
 function changeMode(mode) {
 
@@ -584,16 +909,18 @@ function changeMode(mode) {
         .getElementById(mode + "Btn")
         .classList.add("active");
 
+    document
+        .getElementById("currentMode")
+        .textContent = mode;
+
     render();
 
 }
 
 
-/*
-==================================================
-DISPLAY TIER LIST
-==================================================
-*/
+/* =========================
+   RENDER
+========================= */
 
 function render() {
 
@@ -602,6 +929,14 @@ function render() {
 
     container.innerHTML = "";
 
+    const search =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase()
+            .trim();
+
+
     tiers.forEach(tier => {
 
         const row =
@@ -609,79 +944,166 @@ function render() {
 
         row.className = "tier-row";
 
-        row.innerHTML = `
 
-            <div class="tier-name ${tier}">
-                ${tier}
-            </div>
+        const tierTitle =
+            document.createElement("div");
 
-            <div
-                class="players"
-                id="${tier}">
-            </div>
+        tierTitle.className =
+            `tier-name ${tier}`;
 
-        `;
+        tierTitle.textContent = tier;
+
+
+        const playersArea =
+            document.createElement("div");
+
+        playersArea.className = "players";
+
+
+        let count = 0;
+
+
+        for (
+            const player
+            in players[currentMode]
+        ) {
+
+            const playerTier =
+                players[currentMode][player];
+
+
+            if (playerTier !== tier) {
+                continue;
+            }
+
+
+            if (
+                search &&
+                !player
+                    .toLowerCase()
+                    .includes(search)
+            ) {
+
+                continue;
+
+            }
+
+
+            count++;
+
+
+            const playerBox =
+                document.createElement("div");
+
+            playerBox.className = "player";
+
+
+            const name =
+                document.createElement("span");
+
+            name.className =
+                "player-name";
+
+            name.textContent =
+                player;
+
+            name.onclick = function() {
+
+                openProfile(player);
+
+            };
+
+
+            const up =
+                document.createElement("button");
+
+            up.className = "up";
+
+            up.textContent = "↑";
+
+            up.onclick = function(event) {
+
+                event.stopPropagation();
+
+                movePlayer(player, -1);
+
+            };
+
+
+            const down =
+                document.createElement("button");
+
+            down.className = "down";
+
+            down.textContent = "↓";
+
+            down.onclick = function(event) {
+
+                event.stopPropagation();
+
+                movePlayer(player, 1);
+
+            };
+
+
+            const remove =
+                document.createElement("button");
+
+            remove.className = "delete";
+
+            remove.textContent = "×";
+
+            remove.onclick = function(event) {
+
+                event.stopPropagation();
+
+                deletePlayer(player);
+
+            };
+
+
+            playerBox.appendChild(name);
+
+            playerBox.appendChild(up);
+
+            playerBox.appendChild(down);
+
+            playerBox.appendChild(remove);
+
+            playersArea.appendChild(playerBox);
+
+        }
+
+
+        if (count === 0) {
+
+            const empty =
+                document.createElement("span");
+
+            empty.className = "empty";
+
+            empty.textContent =
+                "No players";
+
+            playersArea.appendChild(empty);
+
+        }
+
+
+        row.appendChild(tierTitle);
+
+        row.appendChild(playersArea);
 
         container.appendChild(row);
 
     });
 
-
-    for (
-        const player
-        in players[currentMode]
-    ) {
-
-        const tier =
-            players[currentMode][player];
-
-        const playerBox =
-            document.createElement("div");
-
-        playerBox.className = "player";
-
-        playerBox.innerHTML = `
-
-            <span
-                class="player-name"
-                onclick="openProfile('${player}')">
-                ${player}
-            </span>
-
-            <button
-                class="up"
-                onclick="movePlayer('${player}', -1)">
-                ↑
-            </button>
-
-            <button
-                class="down"
-                onclick="movePlayer('${player}', 1)">
-                ↓
-            </button>
-
-            <button
-                class="delete"
-                onclick="deletePlayer('${player}')">
-                ×
-            </button>
-
-        `;
-
-        document
-            .getElementById(tier)
-            .appendChild(playerBox);
-
-    }
-
 }
 
 
-/*
-==================================================
-MOVE PLAYER
-==================================================
-*/
+/* =========================
+   MOVE PLAYER
+========================= */
 
 function movePlayer(player, direction) {
 
@@ -691,19 +1113,29 @@ function movePlayer(player, direction) {
     const currentIndex =
         tiers.indexOf(currentTier);
 
+
     let newIndex =
         currentIndex + direction;
 
+
     if (newIndex < 0) {
+
         newIndex = 0;
+
     }
 
+
     if (newIndex >= tiers.length) {
-        newIndex = tiers.length - 1;
+
+        newIndex =
+            tiers.length - 1;
+
     }
+
 
     players[currentMode][player] =
         tiers[newIndex];
+
 
     saveData();
 
@@ -712,70 +1144,70 @@ function movePlayer(player, direction) {
 }
 
 
-/*
-==================================================
-DELETE PLAYER
-==================================================
-*/
+/* =========================
+   DELETE PLAYER
+========================= */
 
 function deletePlayer(player) {
 
-    if (
+    const confirmed =
         confirm(
-            "Remove " +
-            player +
-            " from " +
-            currentMode +
-            "?"
-        )
-    ) {
+            `Remove ${player} from ${currentMode}?`
+        );
 
-        delete players[currentMode][player];
 
-        saveData();
-
-        render();
-
+    if (!confirmed) {
+        return;
     }
+
+
+    delete players[currentMode][player];
+
+    saveData();
+
+    render();
 
 }
 
 
-/*
-==================================================
-ADD PLAYER
-==================================================
-*/
+/* =========================
+   ADD PLAYER
+========================= */
 
 function addPlayer() {
 
-    const name =
-        document
-            .getElementById("playerName")
-            .value
-            .trim();
+    const input =
+        document.getElementById(
+            "playerName"
+        );
 
     const tier =
-        document
-            .getElementById("playerTier")
-            .value;
+        document.getElementById(
+            "playerTier"
+        ).value;
+
+
+    const name =
+        input.value.trim();
+
 
     if (!name) {
 
         alert(
-            "Enter a Minecraft username."
+            "Please enter a Minecraft username."
         );
 
         return;
 
     }
 
+
     players[currentMode][name] =
         tier;
 
-    document
-        .getElementById("playerName")
-        .value = "";
+
+    input.value = "";
+
 
     saveData();
 
@@ -784,11 +1216,9 @@ function addPlayer() {
 }
 
 
-/*
-==================================================
-OPEN PLAYER PROFILE
-==================================================
-*/
+/* =========================
+   OPEN PROFILE
+========================= */
 
 function openProfile(player) {
 
@@ -796,96 +1226,110 @@ function openProfile(player) {
         .getElementById("profileName")
         .textContent = player;
 
+
     /*
-    Minecraft skin/head
+       Minecraft player head.
     */
 
     document
-        .getElementById("profileHead")
+        .getElementById("skin")
         .src =
         "https://mc-heads.net/avatar/" +
         encodeURIComponent(player) +
         "/100";
 
+
     const rankings =
         document.getElementById(
-            "profileRankings"
+            "rankings"
         );
 
+
     rankings.innerHTML = "";
+
 
     modes.forEach(mode => {
 
         const tier =
             players[mode][player];
 
+
         const row =
             document.createElement("div");
 
         row.className =
-            "profile-ranking";
+            "ranking";
+
+
+        const modeName =
+            document.createElement("span");
+
+        modeName.className =
+            "ranking-mode";
+
+        modeName.textContent =
+            mode;
+
 
         if (tier) {
 
-            row.innerHTML = `
+            const tierBox =
+                document.createElement("span");
 
-                <span class="profile-mode">
-                    ${mode}
-                </span>
+            tierBox.className =
+                `ranking-tier ${tier}`;
 
-                <span
-                    class="profile-tier ${tier}">
-                    ${tier}
-                </span>
+            tierBox.textContent =
+                tier;
 
-            `;
+            row.appendChild(modeName);
+
+            row.appendChild(tierBox);
 
         } else {
 
-            row.innerHTML = `
+            const unranked =
+                document.createElement("span");
 
-                <span class="profile-mode">
-                    ${mode}
-                </span>
+            unranked.className =
+                "unranked";
 
-                <span
-                    style="
-                    color:#737d8c;
-                    font-weight:bold;">
-                    Unranked
-                </span>
+            unranked.textContent =
+                "Unranked";
 
-            `;
+            row.appendChild(modeName);
+
+            row.appendChild(unranked);
 
         }
+
 
         rankings.appendChild(row);
 
     });
 
+
     document
         .getElementById("profileModal")
-        .classList.add("active");
+        .classList.add("show");
 
 }
 
 
-/*
-==================================================
-CLOSE PROFILE
-==================================================
-*/
+/* =========================
+   CLOSE PROFILE
+========================= */
 
 function closeProfile() {
 
     document
         .getElementById("profileModal")
-        .classList.remove("active");
+        .classList.remove("show");
 
 }
 
 
-function closeOutside(event) {
+function outsideClose(event) {
 
     if (
         event.target.id ===
@@ -899,11 +1343,27 @@ function closeOutside(event) {
 }
 
 
-/*
-==================================================
-START
-==================================================
-*/
+/* =========================
+   ESCAPE KEY
+========================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeProfile();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   START
+========================= */
 
 loadData();
 
