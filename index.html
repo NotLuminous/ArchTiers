@@ -1,1 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>MC Tiers</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #090b10;
+    color: white;
+}
+
+/* HEADER */
+
+header {
+    background: #11151d;
+    border-bottom: 1px solid #252b36;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #55ff55;
+    font-size: 32px;
+}
+
+header p {
+    margin: 7px 0 0;
+    color: #8f98a8;
+}
+
+/* MODE BUTTONS */
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    background: #0d1016;
+    border-bottom: 1px solid #202630;
+    flex-wrap: wrap;
+}
+
+nav button {
+    background: #171c25;
+    color: #ddd;
+    border: 1px solid #2c3441;
+    padding: 10px 18px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+nav button:hover,
+nav button.active {
+    background: #55ff55;
+    color: #071007;
+}
+
+/* MAIN */
+
+main {
+    width: 95%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+/* TIER ROW */
+
+.tier-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    margin-bottom: 8px;
+    min-height: 65px;
+    border-radius: 7px;
+    overflow: hidden;
+    background: #11151d;
+    border: 1px solid #242b36;
+}
+
+.tier-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* TIER COLORS */
+
+.HT1 {
+    background: #ff3b3b;
+}
+
+.LT1 {
+    background: #ff6b6b;
+}
+
+.HT2 {
+    background: #ff9838;
+}
+
+.LT2 {
+    background: #ffb45e;
+}
+
+.HT3 {
+    background: #f4d03f;
+    color: #111;
+}
+
+.LT3 {
+    background: #f7e56b;
+    color: #111;
+}
+
+.HT4 {
+    background: #43c978;
+}
+
+.LT4 {
+    background: #68dc96;
+}
+
+.HT5 {
+    background: #4199ed;
+}
+
+.LT5 {
+    background: #70b4f2;
+}
+
+/* PLAYERS */
+
+.players {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+}
+
+.player {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: #1a202a;
+    border: 1px solid #303846;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-weight: bold;
+}
+
+.player button {
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 23px;
+    height: 23px;
+    color: white;
+    font-weight: bold;
+}
+
+.up {
+    background: #2d9d52;
+}
+
+.down {
+    background: #b33c3c;
+}
+
+.delete {
+    background: #555;
+}
+
+/* ADD PLAYER */
+
+.add-player {
+    background: #11151d;
+    border: 1px solid #252c38;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 25px;
+}
+
+.add-player h2 {
+    margin-top: 0;
+}
+
+input,
+select {
+    background: #0b0e13;
+    color: white;
+    border: 1px solid #303846;
+    padding: 10px;
+    border-radius: 6px;
+    margin-right: 8px;
+}
+
+.add-btn {
+    background: #55ff55;
+    color: #071007;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background: #79ff79;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .tier-row {
+        grid-template-columns: 75px 1fr;
+    }
+
+    .tier-name {
+        font-size: 14px;
+    }
+
+    input,
+    select,
+    .add-btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>MC TIERS</h1>
+    <p>Minecraft PvP Tier Rankings</p>
+</header>
+
+<nav>
+
+    <button
+        onclick="changeMode('Bedfight')"
+        id="BedfightBtn"
+        class="active">
+        Bedfight
+    </button>
+
+    <button
+        onclick="changeMode('Bedwars')"
+        id="BedwarsBtn">
+        Bedwars
+    </button>
+
+    <button
+        onclick="changeMode('UHC')"
+        id="UHCBtn">
+        UHC
+    </button>
+
+    <button
+        onclick="changeMode('Sumo')"
+        id="SumoBtn">
+        Sumo
+    </button>
+
+</nav>
+
+<main>
+
+    <div id="tierList"></div>
+
+    <div class="add-player">
+
+        <h2>Add Player</h2>
+
+        <input
+            id="playerName"
+            type="text"
+            placeholder="Minecraft username">
+
+        <select id="playerTier">
+
+            <option>HT1</option>
+            <option>LT1</option>
+
+            <option>HT2</option>
+            <option>LT2</option>
+
+            <option>HT3</option>
+            <option>LT3</option>
+
+            <option>HT4</option>
+            <option>LT4</option>
+
+            <option>HT5</option>
+            <option>LT5</option>
+
+        </select>
+
+        <button
+            class="add-btn"
+            onclick="addPlayer()">
+            Add Player
+        </button>
+
+    </div>
+
+</main>
+
+<script>
+
+/*
+==================================================
+PLAYERS
+==================================================
+
+You can also add players here manually.
+
+Example:
+
+"Notch": "HT1"
+
+==================================================
+*/
+
+let players = {
+
+    Bedfight: {
+        "ExamplePlayer": "HT1",
+        "ExamplePlayer2": "LT2"
+    },
+
+    Bedwars: {
+        "ExamplePlayer": "HT2"
+    },
+
+    UHC: {
+        "ExamplePlayer": "HT3"
+    },
+
+    Sumo: {
+        "ExamplePlayer": "LT1"
+    }
+
+};
+
+
+/*
+==================================================
+TIER ORDER
+==================================================
+*/
+
+const tiers = [
+    "HT1",
+    "LT1",
+    "HT2",
+    "LT2",
+    "HT3",
+    "LT3",
+    "HT4",
+    "LT4",
+    "HT5",
+    "LT5"
+];
+
+let currentMode = "Bedfight";
+
+
+/*
+==================================================
+SAVE
+==================================================
+*/
+
+function saveData() {
+
+    localStorage.setItem(
+        "mcTiersPlayers",
+        JSON.stringify(players)
+    );
+
+}
+
+
+/*
+==================================================
+LOAD
+==================================================
+*/
+
+function loadData() {
+
+    const saved =
+        localStorage.getItem("mcTiersPlayers");
+
+    if (saved) {
+        players = JSON.parse(saved);
+    }
+
+}
+
+
+/*
+==================================================
+CHANGE MODE
+==================================================
+*/
+
+function changeMode(mode) {
+
+    currentMode = mode;
+
+    document
+        .querySelectorAll("nav button")
+        .forEach(button => {
+            button.classList.remove("active");
+        });
+
+    document
+        .getElementById(mode + "Btn")
+        .classList.add("active");
+
+    render();
+
+}
+
+
+/*
+==================================================
+DISPLAY TIER LIST
+==================================================
+*/
+
+function render() {
+
+    const container =
+        document.getElementById("tierList");
+
+    container.innerHTML = "";
+
+    tiers.forEach(tier => {
+
+        const row =
+            document.createElement("div");
+
+        row.className = "tier-row";
+
+        row.innerHTML = `
+
+            <div class="tier-name ${tier}">
+                ${tier}
+            </div>
+
+            <div
+                class="players"
+                id="${tier}">
+            </div>
+
+        `;
+
+        container.appendChild(row);
+
+    });
+
+
+    for (
+        const player
+        in players[currentMode]
+    ) {
+
+        const tier =
+            players[currentMode][player];
+
+        const playerBox =
+            document.createElement("div");
+
+        playerBox.className = "player";
+
+        playerBox.innerHTML = `
+
+            <span>${player}</span>
+
+            <button
+                class="up"
+                onclick="movePlayer('${player}', -1)">
+                ↑
+            </button>
+
+            <button
+                class="down"
+                onclick="movePlayer('${player}', 1)">
+                ↓
+            </button>
+
+            <button
+                class="delete"
+                onclick="deletePlayer('${player}')">
+                ×
+            </button>
+
+        `;
+
+        document
+            .getElementById(tier)
+            .appendChild(playerBox);
+
+    }
+
+}
+
+
+/*
+==================================================
+MOVE PLAYER
+==================================================
+*/
+
+function movePlayer(player, direction) {
+
+    const currentTier =
+        players[currentMode][player];
+
+    const currentIndex =
+        tiers.indexOf(currentTier);
+
+    let newIndex =
+        currentIndex + direction;
+
+    if (newIndex < 0) {
+        newIndex = 0;
+    }
+
+    if (newIndex >= tiers.length) {
+        newIndex = tiers.length - 1;
+    }
+
+    players[currentMode][player] =
+        tiers[newIndex];
+
+    saveData();
+
+    render();
+
+}
+
+
+/*
+==================================================
+DELETE PLAYER
+==================================================
+*/
+
+function deletePlayer(player) {
+
+    if (
+        confirm(
+            "Remove " +
+            player +
+            " from " +
+            currentMode +
+            "?"
+        )
+    ) {
+
+        delete players[currentMode][player];
+
+        saveData();
+
+        render();
+
+    }
+
+}
+
+
+/*
+==================================================
+ADD PLAYER
+==================================================
+*/
+
+function addPlayer() {
+
+    const name =
+        document
+            .getElementById("playerName")
+            .value
+            .trim();
+
+    const tier =
+        document
+            .getElementById("playerTier")
+            .value;
+
+    if (!name) {
+
+        alert(
+            "Enter a Minecraft username."
+        );
+
+        return;
+
+    }
+
+    players[currentMode][name] =
+        tier;
+
+    document
+        .getElementById("playerName")
+        .value = "";
+
+    saveData();
+
+    render();
+
+}
+
+
+/*
+==================================================
+START WEBSITE
+==================================================
+*/
+
+loadData();
+
+render();
+
+</script>
+
+</body>
+</html>
