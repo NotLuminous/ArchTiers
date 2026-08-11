@@ -3,204 +3,669 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Arch Tiers</title>
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
-    background: #080a0f;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 20% 0%, rgba(45,255,120,.08), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(50,120,255,.06), transparent 30%),
+        #05070a;
+    color: #f4f7fb;
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
 }
 
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #07090d;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #26302b;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #39ff78;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.015) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.015) 1px,
+            transparent 1px
+        );
+    background-size: 40px 40px;
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 85%
+    );
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
 header {
-    background: #0d1118;
-    border-bottom: 1px solid #252c37;
-    padding: 25px;
+    position: relative;
+    padding: 55px 20px 42px;
     text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    background:
+        linear-gradient(
+            180deg,
+            rgba(15,20,26,.95),
+            rgba(5,7,10,.75)
+        );
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    width: 450px;
+    height: 180px;
+    left: 50%;
+    top: -100px;
+    transform: translateX(-50%);
+    background: #39ff78;
+    filter: blur(120px);
+    opacity: .12;
 }
 
 .logo {
-    font-size: 38px;
-    font-weight: 900;
-    letter-spacing: 3px;
+    position: relative;
+    font-size: clamp(38px, 7vw, 70px);
+    line-height: 1;
+    font-weight: 1000;
+    letter-spacing: -3px;
+    text-transform: uppercase;
+    text-shadow:
+        0 0 20px rgba(57,255,120,.12);
 }
 
-.logo span {
-    color: #55ff55;
+.logo .arch {
+    color: #ffffff;
+}
+
+.logo .tiers {
+    color: #39ff78;
+    text-shadow:
+        0 0 25px rgba(57,255,120,.35);
 }
 
 .subtitle {
-    color: #7e8999;
-    margin-top: 7px;
+    position: relative;
+    margin-top: 14px;
+    color: #7e8997;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
 nav {
-    background: #0a0d12;
-    border-bottom: 1px solid #222936;
+    position: sticky;
+    top: 0;
+    z-index: 100;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 8px;
-    padding: 14px;
     flex-wrap: wrap;
+    padding: 13px 15px;
+    background: rgba(7,10,14,.86);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    backdrop-filter: blur(18px);
 }
 
 nav button {
-    background: #151a23;
-    color: #c4cad4;
-    border: 1px solid #303744;
-    padding: 10px 18px;
-    border-radius: 7px;
-    font-weight: bold;
+    position: relative;
+    border: 1px solid #252d37;
+    background: #10151b;
+    color: #87919f;
+    border-radius: 9px;
+    padding: 10px 17px;
     cursor: pointer;
+    font-size: 13px;
+    font-weight: 800;
+    transition:
+        .2s ease;
 }
 
 nav button:hover {
-    background: #202732;
     color: white;
+    border-color: #39434f;
+    background: #151b23;
+    transform: translateY(-1px);
 }
 
 nav button.active {
-    background: #55ff55;
-    color: #061006;
-    border-color: #55ff55;
+    color: #041009;
+    background: #39ff78;
+    border-color: #39ff78;
+    box-shadow:
+        0 0 20px rgba(57,255,120,.15);
 }
 
-main {
-    width: 95%;
-    max-width: 1250px;
-    margin: 30px auto;
+.admin-nav {
+    margin-left: 10px;
 }
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+    position: relative;
+    width: min(1200px, 94%);
+    margin: 34px auto 70px;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
 
 .top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 18px;
+    margin-bottom: 22px;
     flex-wrap: wrap;
+}
+
+.title-area {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.title-icon {
+    display: grid;
+    place-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(57,255,120,.2),
+            rgba(57,255,120,.04)
+        );
+    border: 1px solid rgba(57,255,120,.25);
+    box-shadow:
+        inset 0 0 20px rgba(57,255,120,.04);
+    font-size: 22px;
 }
 
 .title {
-    font-size: 24px;
-    font-weight: 900;
+    font-size: 22px;
+    font-weight: 950;
 }
 
-.title span {
-    color: #55ff55;
+.title .green {
+    color: #39ff78;
+}
+
+.mode-label {
+    color: #717c8b;
+    font-size: 12px;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-wrapper {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #687381;
+    pointer-events: none;
 }
 
 .search {
-    background: #10151d;
-    color: white;
-    border: 1px solid #303744;
-    border-radius: 7px;
-    padding: 11px 14px;
-    width: 250px;
+    width: 260px;
+    padding: 12px 14px 12px 40px;
+    border-radius: 10px;
+    border: 1px solid #252d37;
     outline: none;
+    background: #0c1117;
+    color: white;
+    transition: .2s ease;
+}
+
+.search::placeholder {
+    color: #596370;
 }
 
 .search:focus {
-    border-color: #55ff55;
+    border-color: rgba(57,255,120,.5);
+    box-shadow:
+        0 0 0 3px rgba(57,255,120,.06);
 }
+
+
+/* =========================================================
+   TIER LIST CONTAINER
+========================================================= */
+
+.tier-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+/* =========================================================
+   TIER ROW
+========================================================= */
 
 .tier {
+    position: relative;
     display: grid;
     grid-template-columns: 105px 1fr;
-    min-height: 70px;
-    margin-bottom: 7px;
-    background: #10151d;
-    border: 1px solid #252c37;
-    border-radius: 7px;
+    min-height: 76px;
     overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.065);
+    background:
+        linear-gradient(
+            110deg,
+            rgba(18,23,30,.98),
+            rgba(11,15,20,.98)
+        );
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.15);
+    transition:
+        transform .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
 }
+
+.tier:hover {
+    transform: translateX(3px);
+    border-color: rgba(255,255,255,.12);
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.22);
+}
+
+.tier::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.015),
+            transparent 35%
+        );
+}
+
+
+/* =========================================================
+   TIER NAME
+========================================================= */
 
 .tier-name {
+    position: relative;
+    z-index: 2;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 18px;
-    font-weight: 900;
+    align-items: center;
+    flex-direction: column;
+    gap: 3px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 1000;
+    letter-spacing: .5px;
+    text-shadow:
+        0 2px 8px rgba(0,0,0,.4);
 }
 
-.HT1 { background: #ff3b3b; }
-.LT1 { background: #ff6868; }
-.HT2 { background: #ff9638; }
-.LT2 { background: #ffb45f; }
-.HT3 { background: #f1d044; color: #111; }
-.LT3 { background: #f6e56f; color: #111; }
-.HT4 { background: #42c979; }
-.LT4 { background: #6bdd99; }
-.HT5 { background: #459be9; }
-.LT5 { background: #72b7ef; }
+.tier-name small {
+    font-size: 8px;
+    opacity: .65;
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================================
+   TIER COLORS
+========================================================= */
+
+.HT1 {
+    background:
+        linear-gradient(
+            135deg,
+            #ff3434,
+            #a90e22
+        );
+    box-shadow:
+        inset -12px 0 35px rgba(255,255,255,.08);
+}
+
+.LT1 {
+    background:
+        linear-gradient(
+            135deg,
+            #ff5d5d,
+            #bd2535
+        );
+}
+
+.HT2 {
+    background:
+        linear-gradient(
+            135deg,
+            #ff9a38,
+            #c95c12
+        );
+}
+
+.LT2 {
+    background:
+        linear-gradient(
+            135deg,
+            #ffb85a,
+            #d47c1f
+        );
+}
+
+.HT3 {
+    color: #151006;
+    background:
+        linear-gradient(
+            135deg,
+            #f4d33f,
+            #b99a19
+        );
+}
+
+.LT3 {
+    color: #151006;
+    background:
+        linear-gradient(
+            135deg,
+            #f5e276,
+            #c7b543
+        );
+}
+
+.HT4 {
+    background:
+        linear-gradient(
+            135deg,
+            #3bd87c,
+            #19884d
+        );
+}
+
+.LT4 {
+    background:
+        linear-gradient(
+            135deg,
+            #63e99a,
+            #26965d
+        );
+}
+
+.HT5 {
+    background:
+        linear-gradient(
+            135deg,
+            #419fee,
+            #2166a9
+        );
+}
+
+.LT5 {
+    background:
+        linear-gradient(
+            135deg,
+            #69b7f4,
+            #347db8
+        );
+}
+
+
+/* =========================================================
+   PLAYERS AREA
+========================================================= */
 
 .players {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
+    align-content: center;
     flex-wrap: wrap;
     gap: 8px;
-    padding: 10px;
+    min-height: 76px;
+    padding: 11px 13px;
 }
+
+
+/* =========================================================
+   PLAYER CARD
+========================================================= */
 
 .player {
     display: flex;
     align-items: center;
-    gap: 7px;
-    background: #191f28;
-    border: 1px solid #303744;
-    border-radius: 7px;
-    padding: 7px 9px;
-    font-weight: bold;
+    gap: 8px;
+    min-height: 43px;
+    padding: 5px 8px 5px 5px;
+    border-radius: 9px;
+    border: 1px solid #29313c;
+    background:
+        linear-gradient(
+            135deg,
+            #1a212a,
+            #11161d
+        );
+    box-shadow:
+        0 4px 12px rgba(0,0,0,.18);
+    transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease;
+    animation: playerIn .25s ease both;
+}
+
+@keyframes playerIn {
+    from {
+        opacity: 0;
+        transform: scale(.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.player:hover {
+    transform: translateY(-2px);
+    border-color: rgba(57,255,120,.35);
+    box-shadow:
+        0 7px 20px rgba(0,0,0,.28),
+        0 0 16px rgba(57,255,120,.04);
+}
+
+.player-head {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    image-rendering: pixelated;
+    background: #080b0f;
+    border: 1px solid #39434f;
 }
 
 .player-name {
+    color: #e9edf2;
+    font-size: 13px;
+    font-weight: 850;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .player-name:hover {
-    color: #55ff55;
+    color: #39ff78;
+}
+
+.player-buttons {
+    display: flex;
+    gap: 3px;
+    margin-left: 2px;
 }
 
 .player button {
-    width: 23px;
-    height: 23px;
+    width: 22px;
+    height: 22px;
+    padding: 0;
     border: none;
     border-radius: 5px;
     color: white;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: 900;
     cursor: pointer;
+    transition: .15s ease;
 }
 
-.up { background: #2d994f; }
-.down { background: #a43e3e; }
-.delete { background: #515864; }
-
-.muted {
-    color: #7f8999;
+.player button:hover {
+    transform: scale(1.08);
 }
 
-/* ADD PLAYER IS HIDDEN BY DEFAULT */
+.up {
+    background: #218e4b;
+}
+
+.down {
+    background: #a33a43;
+}
+
+.delete {
+    background: #424a55;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty {
+    color: #4f5966;
+    font-size: 12px;
+    padding-left: 3px;
+}
+
+
+/* =========================================================
+   ADD PLAYER
+========================================================= */
+
 #addPlayerBox {
     display: none !important;
 }
 
 .add {
-    background: #10151d;
-    border: 1px solid #252c37;
-    border-radius: 9px;
-    padding: 20px;
+    position: relative;
     margin-top: 25px;
+    padding: 22px;
+    overflow: hidden;
+    border: 1px solid rgba(57,255,120,.15);
+    border-radius: 13px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(19,28,23,.96),
+            rgba(12,17,21,.96)
+        );
+}
+
+.add::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    top: -100px;
+    right: -50px;
+    background: #39ff78;
+    opacity: .07;
+    filter: blur(60px);
 }
 
 .add h2 {
-    margin-top: 0;
+    position: relative;
+    margin-bottom: 15px;
+    font-size: 17px;
 }
 
 .form {
+    position: relative;
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
@@ -208,38 +673,59 @@ main {
 
 .form input,
 .form select {
-    background: #080b10;
+    background: #080c10;
     color: white;
-    border: 1px solid #303744;
-    border-radius: 6px;
-    padding: 11px;
+    border: 1px solid #303944;
+    border-radius: 8px;
+    padding: 11px 12px;
+    outline: none;
 }
 
 .form input {
     flex: 1;
-    min-width: 200px;
+    min-width: 220px;
+}
+
+.form input:focus,
+.form select:focus {
+    border-color: rgba(57,255,120,.45);
 }
 
 .add-btn,
 .admin-btn {
-    background: #55ff55;
-    color: #061006;
+    background: #39ff78;
+    color: #031008;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 11px 18px;
-    font-weight: 900;
+    font-weight: 950;
     cursor: pointer;
+    transition: .2s ease;
 }
+
+.add-btn:hover,
+.admin-btn:hover {
+    background: #6aff9a;
+    transform: translateY(-1px);
+    box-shadow:
+        0 7px 20px rgba(57,255,120,.15);
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
 
 .modal {
     display: none;
     position: fixed;
     inset: 0;
     z-index: 1000;
-    background: rgba(0,0,0,.86);
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 18px;
+    background: rgba(0,0,0,.78);
+    backdrop-filter: blur(10px);
 }
 
 .modal.show {
@@ -247,108 +733,202 @@ main {
 }
 
 .card {
-    width: 100%;
-    max-width: 750px;
+    position: relative;
+    width: min(760px, 100%);
     max-height: 92vh;
     overflow-y: auto;
-    background: #10151d;
-    border: 1px solid #303744;
-    border-radius: 12px;
-    padding: 25px;
-    position: relative;
+    padding: 27px;
+    border: 1px solid #2b343f;
+    border-radius: 16px;
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(57,255,120,.05),
+            transparent 35%
+        ),
+        #0d1218;
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.6);
+    animation: modalIn .2s ease;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .close {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 34px;
-    height: 34px;
-    border: none;
-    border-radius: 7px;
-    background: #292f39;
-    color: white;
+    right: 16px;
+    top: 16px;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #303945;
+    border-radius: 8px;
+    background: #171d25;
+    color: #aeb6c1;
     font-size: 20px;
     cursor: pointer;
 }
 
+.close:hover {
+    color: white;
+    background: #232b35;
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
 .profile-head {
     text-align: center;
-    border-bottom: 1px solid #2a313c;
-    padding-bottom: 20px;
+    padding: 10px 0 24px;
+    border-bottom: 1px solid #252d37;
 }
 
 .skin {
-    width: 100px;
-    height: 100px;
+    width: 105px;
+    height: 105px;
     image-rendering: pixelated;
-    border: 3px solid #55ff55;
-    border-radius: 10px;
+    border-radius: 13px;
+    border: 2px solid #39ff78;
+    box-shadow:
+        0 0 25px rgba(57,255,120,.14);
 }
 
 .profile-name {
+    margin-top: 13px;
     font-size: 28px;
-    font-weight: 900;
-    margin-top: 10px;
+    font-weight: 1000;
 }
 
 .status {
-    font-weight: bold;
-    margin-top: 5px;
+    margin-top: 7px;
+    font-size: 13px;
+    font-weight: 800;
 }
 
 .profile-section {
-    margin-top: 20px;
+    margin-top: 24px;
 }
 
 .profile-section h3 {
-    color: #55ff55;
+    margin-bottom: 10px;
+    color: #39ff78;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .rank {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #191f28;
-    border: 1px solid #303744;
-    padding: 12px;
-    border-radius: 7px;
+    gap: 15px;
     margin-bottom: 7px;
+    padding: 12px 14px;
+    border: 1px solid #252d37;
+    border-radius: 9px;
+    background: #141a21;
 }
 
 .notes,
 .history {
-    background: #191f28;
-    border: 1px solid #303744;
-    padding: 12px;
-    border-radius: 7px;
-    color: #c4cad4;
     margin-bottom: 7px;
+    padding: 12px 14px;
+    border: 1px solid #252d37;
+    border-radius: 9px;
+    background: #141a21;
+    color: #aab3bf;
+    line-height: 1.5;
 }
 
+.muted {
+    color: #687381;
+}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
 .notice {
-    background: #2a2110;
-    border: 1px solid #69501a;
-    color: #e9cf7b;
-    padding: 10px;
-    border-radius: 7px;
     margin-bottom: 15px;
+    padding: 11px 13px;
+    border: 1px solid rgba(255,188,66,.18);
+    border-radius: 8px;
+    background: rgba(255,170,40,.06);
+    color: #cdbd93;
     font-size: 13px;
 }
 
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-header h2 {
+    font-size: 21px;
+}
+
+.logout,
+.danger {
+    border: none;
+    border-radius: 7px;
+    padding: 9px 13px;
+    color: white;
+    background: #bd3943;
+    font-weight: 850;
+    cursor: pointer;
+}
+
+.logout:hover,
+.danger:hover {
+    background: #dc4852;
+}
+
 .admin-row {
-    background: #191f28;
-    border: 1px solid #303744;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    padding: 16px;
+    border: 1px solid #28313b;
+    border-radius: 11px;
+    background:
+        linear-gradient(
+            135deg,
+            #141a21,
+            #10151b
+        );
+}
+
+.admin-player-name {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    margin-top: 10px;
 }
 
 .admin-row label {
     display: block;
-    color: #aeb7c5;
-    font-size: 13px;
-    margin-top: 10px;
+    color: #8c97a5;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
 }
 
 .admin-row input,
@@ -356,144 +936,257 @@ main {
 .admin-row textarea {
     width: 100%;
     margin-top: 6px;
-    background: #080b10;
+    padding: 9px 10px;
+    border: 1px solid #303944;
+    border-radius: 7px;
+    outline: none;
+    background: #080c10;
     color: white;
-    border: 1px solid #303744;
-    border-radius: 6px;
-    padding: 9px;
+}
+
+.admin-row input:focus,
+.admin-row select:focus,
+.admin-row textarea:focus {
+    border-color: rgba(57,255,120,.45);
 }
 
 .admin-row textarea {
-    min-height: 80px;
+    min-height: 75px;
     resize: vertical;
 }
 
-.admin-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 25px;
+    text-align: center;
+    color: #46505d;
+    border-top: 1px solid rgba(255,255,255,.05);
+    font-size: 12px;
 }
 
-.logout,
-.danger {
-    background: #d94141;
-    color: white;
-    border: none;
-    padding: 9px 14px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
+footer strong {
+    color: #39ff78;
 }
 
-.section-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
 
-@media(max-width:650px) {
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width: 700px) {
+
+    header {
+        padding: 40px 15px 30px;
+    }
+
     .logo {
-        font-size: 30px;
+        letter-spacing: -2px;
     }
 
-    .tier {
-        grid-template-columns: 70px 1fr;
+    nav {
+        position: relative;
     }
 
-    .tier-name {
-        font-size: 14px;
+    nav button {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .admin-nav {
+        margin-left: 0;
+    }
+
+    main {
+        width: 95%;
+        margin-top: 25px;
     }
 
     .search {
         width: 100%;
     }
 
-    .form {
-        flex-direction: column;
+    .top {
+        align-items: stretch;
     }
 
-    .form input,
-    .form select,
-    .add-btn {
+    .search-wrapper {
         width: 100%;
+    }
+
+    .tier {
+        grid-template-columns: 68px 1fr;
+    }
+
+    .tier-name {
+        font-size: 13px;
+    }
+
+    .tier-name small {
+        font-size: 7px;
+    }
+
+    .players {
+        padding: 8px;
+        min-height: 68px;
+    }
+
+    .player {
+        min-height: 39px;
+    }
+
+    .player-head {
+        width: 29px;
+        height: 29px;
+    }
+
+    .player-name {
+        font-size: 12px;
     }
 
     .admin-grid {
         grid-template-columns: 1fr;
     }
+
+    .card {
+        padding: 20px;
+    }
 }
+
 </style>
 </head>
 
 <body>
 
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header>
+
     <div class="logo">
-        ARCH <span>TIERS</span>
+        <span class="arch">ARCH</span>
+        <span class="tiers"> TIERS</span>
     </div>
 
     <div class="subtitle">
-        Minecraft PvP Tier Rankings
+        Minecraft PvP Competitive Rankings
     </div>
+
 </header>
+
+
+<!-- =====================================================
+     NAV
+===================================================== -->
 
 <nav>
 
-    <button id="BedfightBtn"
-            class="active"
-            onclick="changeMode('Bedfight')">
-        Bedfight
+    <button
+        id="BedfightBtn"
+        class="active"
+        onclick="changeMode('Bedfight')">
+        ⚔ Bedfight
     </button>
 
-    <button id="BedwarsBtn"
-            onclick="changeMode('Bedwars')">
-        Bedwars
+    <button
+        id="BedwarsBtn"
+        onclick="changeMode('Bedwars')">
+        🛏 Bedwars
     </button>
 
-    <button id="UHCBtn"
-            onclick="changeMode('UHC')">
-        UHC
+    <button
+        id="UHCBtn"
+        onclick="changeMode('UHC')">
+        💎 UHC
     </button>
 
-    <button id="SumoBtn"
-            onclick="changeMode('Sumo')">
-        Sumo
+    <button
+        id="SumoBtn"
+        onclick="changeMode('Sumo')">
+        🥊 Sumo
     </button>
 
-    <button onclick="openAdmin()">
+    <button
+        class="admin-nav"
+        onclick="openAdmin()">
         👑 Admin
     </button>
 
 </nav>
 
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
 <main>
 
     <div class="top">
 
-        <div class="title">
-            <span>ARCH</span>
-            TIERS —
-            <span id="modeTitle">Bedfight</span>
+        <div class="title-area">
+
+            <div class="title-icon">
+                🏆
+            </div>
+
+            <div>
+
+                <div class="title">
+                    <span class="green">ARCH</span>
+                    TIERS
+                </div>
+
+                <div
+                    class="mode-label"
+                    id="modeTitle">
+                    Bedfight Rankings
+                </div>
+
+            </div>
+
         </div>
 
-        <input
-            id="search"
-            class="search"
-            placeholder="Search player..."
-            oninput="render()">
+
+        <div class="search-wrapper">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                id="search"
+                class="search"
+                placeholder="Search player..."
+                oninput="render()">
+
+        </div>
 
     </div>
 
-    <div id="tierList"></div>
 
-    <!-- THIS IS COMPLETELY HIDDEN UNTIL ADMIN LOGIN -->
+    <div
+        id="tierList"
+        class="tier-list">
+    </div>
+
+
+    <!-- =================================================
+         ADD PLAYER
+    ================================================== -->
+
     <div
         id="addPlayerBox"
         class="add"
         style="display:none !important;">
 
-        <h2>👑 Add Player</h2>
+        <h2>
+            👑 Add Player
+        </h2>
 
         <div class="form">
 
@@ -502,6 +1195,7 @@ main {
                 placeholder="Minecraft username">
 
             <select id="playerTier">
+
                 <option>HT1</option>
                 <option>LT1</option>
                 <option>HT2</option>
@@ -512,20 +1206,25 @@ main {
                 <option>LT4</option>
                 <option>HT5</option>
                 <option>LT5</option>
+
             </select>
 
             <button
                 class="add-btn"
                 onclick="addPlayer()">
-                Add Player
+                + Add Player
             </button>
 
         </div>
+
     </div>
 
 </main>
 
-<!-- PLAYER PROFILE -->
+
+<!-- =====================================================
+     PLAYER PROFILE MODAL
+===================================================== -->
 
 <div
     class="modal"
@@ -539,6 +1238,7 @@ main {
             onclick="closeModal('profileModal')">
             ×
         </button>
+
 
         <div class="profile-head">
 
@@ -559,35 +1259,80 @@ main {
 
         </div>
 
-        <div class="profile-section">
-            <h3>Rankings</h3>
-            <div id="profileRanks"></div>
-        </div>
 
         <div class="profile-section">
-            <h3>Statistics</h3>
-            <div id="profileStats"></div>
+
+            <h3>
+                🏆 Rankings
+            </h3>
+
+            <div
+                id="profileRanks">
+            </div>
+
         </div>
 
-        <div class="profile-section">
-            <h3>Testing Information</h3>
-            <div id="profileTesting"></div>
-        </div>
 
         <div class="profile-section">
-            <h3>Notes</h3>
-            <div id="profileNotes" class="notes"></div>
+
+            <h3>
+                📊 Statistics
+            </h3>
+
+            <div
+                id="profileStats">
+            </div>
+
         </div>
 
+
         <div class="profile-section">
-            <h3>📜 Tier History</h3>
-            <div id="profileHistory"></div>
+
+            <h3>
+                📝 Testing Information
+            </h3>
+
+            <div
+                id="profileTesting">
+            </div>
+
+        </div>
+
+
+        <div class="profile-section">
+
+            <h3>
+                📌 Notes
+            </h3>
+
+            <div
+                id="profileNotes"
+                class="notes">
+            </div>
+
+        </div>
+
+
+        <div class="profile-section">
+
+            <h3>
+                📜 Tier History
+            </h3>
+
+            <div
+                id="profileHistory">
+            </div>
+
         </div>
 
     </div>
+
 </div>
 
-<!-- ADMIN -->
+
+<!-- =====================================================
+     ADMIN MODAL
+===================================================== -->
 
 <div
     class="modal"
@@ -602,14 +1347,22 @@ main {
             ×
         </button>
 
+
         <!-- LOGIN -->
 
         <div id="adminLogin">
 
-            <h2>👑 Admin Login</h2>
+            <h2>
+                👑 Admin Login
+            </h2>
+
+            <br>
 
             <div class="notice">
-                Only admins can add, remove, or edit players.
+
+                Only administrators can add,
+                remove, or edit players.
+
             </div>
 
             <input
@@ -618,11 +1371,12 @@ main {
                 placeholder="Admin password"
                 style="
                     width:100%;
-                    background:#080b10;
+                    background:#080c10;
                     color:white;
-                    border:1px solid #303744;
-                    border-radius:6px;
-                    padding:11px;
+                    border:1px solid #303944;
+                    border-radius:8px;
+                    padding:12px;
+                    outline:none;
                 ">
 
             <br><br>
@@ -635,15 +1389,18 @@ main {
 
         </div>
 
+
         <!-- ADMIN PANEL -->
 
         <div
             id="adminPanel"
             style="display:none;">
 
-            <div class="section-title">
+            <div class="admin-header">
 
-                <h2>👑 Admin Dashboard</h2>
+                <h2>
+                    👑 Admin Dashboard
+                </h2>
 
                 <button
                     class="logout"
@@ -653,45 +1410,86 @@ main {
 
             </div>
 
-            <p class="muted">
-                You are logged in as an administrator.
-            </p>
+            <br>
 
-            <div id="adminPlayers"></div>
+            <div class="notice">
 
-            <hr style="border-color:#2a313c;margin:25px 0;">
+                🛡 You are logged in as an administrator.
+                Changes are saved to this browser.
 
-            <h3 style="color:#55ff55;">
+            </div>
+
+
+            <div id="adminPlayers">
+            </div>
+
+
+            <hr
+                style="
+                    border:0;
+                    border-top:1px solid #252d37;
+                    margin:25px 0;
+                ">
+
+
+            <h3
+                style="
+                    color:#39ff78;
+                    margin-bottom:10px;
+                ">
+
                 📜 Full Tier History
+
             </h3>
 
-            <div id="history"></div>
+
+            <div id="history">
+            </div>
 
         </div>
 
     </div>
+
 </div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <strong>ARCH TIERS</strong>
+    · Minecraft PvP Rankings
+
+</footer>
+
 
 <script>
 
-/* =====================================================
+/* =========================================================
    ADMIN PASSWORD
-   CHANGE THIS
-===================================================== */
+   CHANGE THIS TO YOUR PASSWORD
+========================================================= */
 
 const ADMIN_PASSWORD = "CHANGE_THIS_PASSWORD";
 
 
-/* =====================================================
+/* =========================================================
    SETTINGS
-===================================================== */
+========================================================= */
 
 const tiers = [
-    "HT1","LT1",
-    "HT2","LT2",
-    "HT3","LT3",
-    "HT4","LT4",
-    "HT5","LT5"
+    "HT1",
+    "LT1",
+    "HT2",
+    "LT2",
+    "HT3",
+    "LT3",
+    "HT4",
+    "LT4",
+    "HT5",
+    "LT5"
 ];
 
 const modes = [
@@ -706,30 +1504,37 @@ let currentMode = "Bedfight";
 let adminLoggedIn = false;
 
 
-/* =====================================================
-   PLAYER DATA
-===================================================== */
+/* =========================================================
+   PLAYER DATABASE
+========================================================= */
 
 let players = {
+
     "ExamplePlayer": {
 
         ranked: true,
 
         rankings: {
+
             Bedfight: "HT1",
             Bedwars: "LT2",
             UHC: "HT3",
             Sumo: "LT1"
+
         },
 
         stats: {
+
             wins: 100,
             losses: 20,
             tests: 10
+
         },
 
         testedDate: "August 11, 2026",
+
         tester: "Arch",
+
         lastUpdate: "August 11, 2026",
 
         notes: "Example player.",
@@ -737,32 +1542,40 @@ let players = {
         history: []
 
     }
+
 };
 
 
-/* =====================================================
+/* =========================================================
    DATE
-===================================================== */
+========================================================= */
 
 function currentDate() {
+
     return new Date().toLocaleDateString();
+
 }
 
 function currentDateTime() {
+
     return new Date().toLocaleString();
+
 }
 
 
-/* =====================================================
-   SAVE / LOAD
-===================================================== */
+/* =========================================================
+   STORAGE
+========================================================= */
 
 function saveData() {
+
     localStorage.setItem(
         "archTiersDatabase",
         JSON.stringify(players)
     );
+
 }
+
 
 function loadData() {
 
@@ -771,21 +1584,27 @@ function loadData() {
             "archTiersDatabase"
         );
 
-    if (!saved) return;
+    if (!saved)
+        return;
 
     try {
+
         players = JSON.parse(saved);
+
+    } catch {
+
+        console.log(
+            "Could not load Arch Tiers data."
+        );
+
     }
 
-    catch {
-        console.log("Could not load database.");
-    }
 }
 
 
-/* =====================================================
+/* =========================================================
    CHANGE MODE
-===================================================== */
+========================================================= */
 
 function changeMode(mode) {
 
@@ -794,31 +1613,43 @@ function changeMode(mode) {
     document
         .querySelectorAll("nav button")
         .forEach(button => {
+
             button.classList.remove("active");
+
         });
 
+
     document
-        .getElementById(mode + "Btn")
+        .getElementById(
+            mode + "Btn"
+        )
         .classList.add("active");
+
 
     document
         .getElementById("modeTitle")
-        .textContent = mode;
+        .textContent =
+        mode + " Rankings";
+
 
     render();
+
 }
 
 
-/* =====================================================
-   RENDER
-===================================================== */
+/* =========================================================
+   RENDER TIER LIST
+========================================================= */
 
 function render() {
 
     const container =
-        document.getElementById("tierList");
+        document.getElementById(
+            "tierList"
+        );
 
     container.innerHTML = "";
+
 
     const search =
         document
@@ -827,12 +1658,14 @@ function render() {
             .toLowerCase()
             .trim();
 
-    tiers.forEach(tier => {
+
+    tiers.forEach((tier, index) => {
 
         const row =
             document.createElement("div");
 
         row.className = "tier";
+
 
         const tierName =
             document.createElement("div");
@@ -840,101 +1673,198 @@ function render() {
         tierName.className =
             "tier-name " + tier;
 
-        tierName.textContent = tier;
+
+        const tierLabel =
+            document.createElement("strong");
+
+        tierLabel.textContent = tier;
+
+
+        const tierSmall =
+            document.createElement("small");
+
+        if (index === 0)
+            tierSmall.textContent = "ELITE";
+
+        else if (index <= 3)
+            tierSmall.textContent = "HIGH";
+
+        else if (index <= 6)
+            tierSmall.textContent = "MID";
+
+        else
+            tierSmall.textContent = "LOW";
+
+
+        tierName.appendChild(tierLabel);
+        tierName.appendChild(tierSmall);
+
 
         const area =
             document.createElement("div");
 
         area.className = "players";
 
+
         let found = false;
+
 
         Object.keys(players).forEach(name => {
 
-            const player = players[name];
+            const player =
+                players[name];
+
 
             if (
-                player.rankings[currentMode] !== tier
+                player.rankings[currentMode]
+                !== tier
             ) {
                 return;
             }
+
 
             if (
                 search &&
-                !name.toLowerCase().includes(search)
+                !name
+                    .toLowerCase()
+                    .includes(search)
             ) {
                 return;
             }
 
+
             found = true;
+
 
             const box =
                 document.createElement("div");
 
             box.className = "player";
 
+
+            const head =
+                document.createElement("img");
+
+            head.className =
+                "player-head";
+
+            head.src =
+                "https://mc-heads.net/avatar/" +
+                encodeURIComponent(name) +
+                "/64";
+
+            head.alt =
+                name + " Minecraft head";
+
+            head.onerror =
+                function() {
+
+                    this.style.opacity = ".25";
+
+                };
+
+
             const playerName =
                 document.createElement("span");
 
-            playerName.className = "player-name";
+            playerName.className =
+                "player-name";
 
-            playerName.textContent = name;
+            playerName.textContent =
+                name;
 
             playerName.onclick =
                 () => openProfile(name);
 
+
+            box.appendChild(head);
             box.appendChild(playerName);
 
-            /* ADMIN BUTTONS ONLY */
+
+            /* ADMIN CONTROLS */
 
             if (adminLoggedIn) {
+
+                const buttons =
+                    document.createElement("div");
+
+                buttons.className =
+                    "player-buttons";
+
 
                 const up =
                     document.createElement("button");
 
                 up.className = "up";
+                up.title = "Move up";
                 up.textContent = "↑";
 
                 up.onclick =
-                    () => movePlayer(name, -1);
+                    () => movePlayer(
+                        name,
+                        -1
+                    );
+
 
                 const down =
                     document.createElement("button");
 
                 down.className = "down";
+                down.title = "Move down";
                 down.textContent = "↓";
 
                 down.onclick =
-                    () => movePlayer(name, 1);
+                    () => movePlayer(
+                        name,
+                        1
+                    );
+
 
                 const remove =
                     document.createElement("button");
 
-                remove.className = "delete";
-                remove.textContent = "×";
+                remove.className =
+                    "delete";
+
+                remove.title =
+                    "Remove player";
+
+                remove.textContent =
+                    "×";
 
                 remove.onclick =
                     () => deletePlayer(name);
 
-                box.appendChild(up);
-                box.appendChild(down);
-                box.appendChild(remove);
+
+                buttons.appendChild(up);
+                buttons.appendChild(down);
+                buttons.appendChild(remove);
+
+                box.appendChild(buttons);
+
             }
+
 
             area.appendChild(box);
 
         });
+
 
         if (!found) {
 
             const empty =
                 document.createElement("span");
 
-            empty.className = "muted";
-            empty.textContent = "No players";
+            empty.className =
+                "empty";
+
+            empty.textContent =
+                "No players in this tier";
 
             area.appendChild(empty);
+
         }
+
 
         row.appendChild(tierName);
         row.appendChild(area);
@@ -942,142 +1872,217 @@ function render() {
         container.appendChild(row);
 
     });
+
 }
 
 
-/* =====================================================
+/* =========================================================
    ADD PLAYER
-===================================================== */
+========================================================= */
 
 function addPlayer() {
 
     if (!adminLoggedIn) {
-        alert("Only admins can add players.");
+
+        alert(
+            "Only admins can add players."
+        );
+
         return;
+
     }
 
-    const name =
-        document
-            .getElementById("playerName")
-            .value
-            .trim();
+
+    const input =
+        document.getElementById(
+            "playerName"
+        );
 
     const tier =
-        document
-            .getElementById("playerTier")
-            .value;
+        document.getElementById(
+            "playerTier"
+        ).value;
+
+
+    const name =
+        input.value.trim();
+
 
     if (!name) {
-        alert("Enter a Minecraft username.");
+
+        alert(
+            "Enter a Minecraft username."
+        );
+
         return;
+
     }
 
+
     if (players[name]) {
-        alert("That player already exists.");
+
+        alert(
+            "That player already exists."
+        );
+
         return;
+
     }
+
 
     players[name] = {
 
         ranked: true,
 
         rankings: {
+
             Bedfight: null,
             Bedwars: null,
             UHC: null,
             Sumo: null
+
         },
 
         stats: {
+
             wins: 0,
             losses: 0,
             tests: 0
+
         },
 
-        testedDate: currentDate(),
-        tester: "Admin",
-        lastUpdate: currentDate(),
-        notes: "",
+        testedDate:
+            currentDate(),
+
+        tester:
+            "Admin",
+
+        lastUpdate:
+            currentDate(),
+
+        notes:
+            "",
+
         history: []
 
     };
 
-    players[name].rankings[currentMode] = tier;
 
-    document
-        .getElementById("playerName")
-        .value = "";
+    players[name]
+        .rankings[currentMode] =
+        tier;
+
+
+    input.value = "";
+
 
     saveData();
 
     render();
+
     renderAdmin();
+
 }
 
 
-/* =====================================================
+/* =========================================================
    DELETE PLAYER
-===================================================== */
+========================================================= */
 
 function deletePlayer(name) {
 
     if (!adminLoggedIn) {
-        alert("Only admins can remove players.");
+
+        alert(
+            "Only admins can remove players."
+        );
+
         return;
+
     }
+
 
     if (
         !confirm(
-            "Remove " + name + " from Arch Tiers?"
+            "Remove " +
+            name +
+            " from Arch Tiers?"
         )
     ) {
         return;
     }
 
+
     delete players[name];
+
 
     saveData();
 
     render();
+
     renderAdmin();
+
 }
 
 
-/* =====================================================
+/* =========================================================
    MOVE PLAYER
-===================================================== */
+========================================================= */
 
-function movePlayer(name, direction) {
+function movePlayer(
+    name,
+    direction
+) {
 
     if (!adminLoggedIn) {
-        alert("Only admins can change tiers.");
+
+        alert(
+            "Only admins can change tiers."
+        );
+
         return;
+
     }
 
-    const player = players[name];
+
+    const player =
+        players[name];
+
 
     const oldTier =
         player.rankings[currentMode];
 
-    if (!oldTier) return;
+
+    if (!oldTier)
+        return;
+
 
     const oldIndex =
         tiers.indexOf(oldTier);
 
+
     let newIndex =
         oldIndex + direction;
+
 
     if (newIndex < 0)
         newIndex = 0;
 
+
     if (newIndex >= tiers.length)
         newIndex = tiers.length - 1;
+
 
     const newTier =
         tiers[newIndex];
 
-    if (oldTier === newTier)
+
+    if (
+        oldTier === newTier
+    ) {
         return;
+    }
+
 
     recordHistory(
         name,
@@ -1086,19 +2091,27 @@ function movePlayer(name, direction) {
         newTier
     );
 
-    player.rankings[currentMode] = newTier;
-    player.lastUpdate = currentDate();
+
+    player.rankings[currentMode] =
+        newTier;
+
+
+    player.lastUpdate =
+        currentDate();
+
 
     saveData();
 
     render();
+
     renderAdmin();
+
 }
 
 
-/* =====================================================
+/* =========================================================
    HISTORY
-===================================================== */
+========================================================= */
 
 function recordHistory(
     name,
@@ -1108,29 +2121,39 @@ function recordHistory(
 ) {
 
     if (!players[name].history) {
+
         players[name].history = [];
+
     }
 
-    players[name].history.unshift({
 
-        mode: mode,
+    players[name]
+        .history
+        .unshift({
 
-        from: from || "Unranked",
+            mode: mode,
 
-        to: to || "Unranked",
+            from:
+                from || "Unranked",
 
-        date: currentDateTime(),
+            to:
+                to || "Unranked",
 
-        tester:
-            players[name].tester || "Admin"
+            date:
+                currentDateTime(),
 
-    });
+            tester:
+                players[name].tester
+                || "Admin"
+
+        });
+
 }
 
 
-/* =====================================================
-   ADMIN LOGIN
-===================================================== */
+/* =========================================================
+   ADMIN OPEN
+========================================================= */
 
 function openAdmin() {
 
@@ -1138,51 +2161,78 @@ function openAdmin() {
         .getElementById("adminModal")
         .classList.add("show");
 
+
     if (adminLoggedIn) {
+
         showAdmin();
+
     }
+
 }
 
+
+/* =========================================================
+   ADMIN LOGIN
+========================================================= */
 
 function loginAdmin() {
 
     const password =
         document
-            .getElementById("adminPassword")
+            .getElementById(
+                "adminPassword"
+            )
             .value;
 
-    if (password !== ADMIN_PASSWORD) {
 
-        alert("Incorrect password.");
+    if (
+        password !==
+        ADMIN_PASSWORD
+    ) {
+
+        alert(
+            "Incorrect admin password."
+        );
 
         return;
+
     }
+
 
     adminLoggedIn = true;
 
     showAdmin();
+
 }
 
+
+/* =========================================================
+   SHOW ADMIN
+========================================================= */
 
 function showAdmin() {
 
     document
-        .getElementById("adminLogin")
-        .style.display = "none";
+        .getElementById(
+            "adminLogin"
+        )
+        .style.display =
+        "none";
+
 
     document
-        .getElementById("adminPanel")
-        .style.display = "block";
+        .getElementById(
+            "adminPanel"
+        )
+        .style.display =
+        "block";
 
-    /*
-        IMPORTANT:
-        ONLY NOW DO WE SHOW ADD PLAYER
-    */
 
     const addBox =
         document.getElementById(
             "addPlayerBox"
         );
+
 
     addBox.style.setProperty(
         "display",
@@ -1190,290 +2240,403 @@ function showAdmin() {
         "important"
     );
 
+
     render();
+
     renderAdmin();
+
 }
 
+
+/* =========================================================
+   LOGOUT
+========================================================= */
 
 function logoutAdmin() {
 
     adminLoggedIn = false;
 
-    document
-        .getElementById("adminLogin")
-        .style.display = "block";
 
     document
-        .getElementById("adminPanel")
-        .style.display = "none";
+        .getElementById(
+            "adminLogin"
+        )
+        .style.display =
+        "block";
 
-    /*
-        HIDE ADD PLAYER
-    */
 
     document
-        .getElementById("addPlayerBox")
+        .getElementById(
+            "adminPanel"
+        )
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById(
+            "addPlayerBox"
+        )
         .style.setProperty(
             "display",
             "none",
             "important"
         );
 
+
     document
-        .getElementById("adminPassword")
+        .getElementById(
+            "adminPassword"
+        )
         .value = "";
 
+
     render();
+
 }
 
 
-/* =====================================================
+/* =========================================================
    ADMIN DASHBOARD
-===================================================== */
+========================================================= */
 
 function renderAdmin() {
 
     if (!adminLoggedIn)
         return;
 
+
     const container =
         document.getElementById(
             "adminPlayers"
         );
 
+
     container.innerHTML = "";
 
-    Object.keys(players).forEach(name => {
 
-        const player = players[name];
+    Object.keys(players)
+        .forEach(name => {
 
-        const row =
-            document.createElement("div");
+            const player =
+                players[name];
 
-        row.className = "admin-row";
 
-        row.innerHTML = `
+            const row =
+                document.createElement(
+                    "div"
+                );
 
-            <div class="section-title">
 
-                <b>${escapeHTML(name)}</b>
+            row.className =
+                "admin-row";
 
-                <button
-                    class="danger"
-                    onclick="deletePlayer('${escapeJS(name)}')">
 
-                    Remove Player
+            row.innerHTML = `
 
-                </button>
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    gap:10px;
+                ">
 
-            </div>
+                    <div class="admin-player-name">
+                        ${escapeHTML(name)}
+                    </div>
 
-            <div class="admin-grid">
+                    <button
+                        class="danger"
+                        onclick="
+                            deletePlayer(
+                                '${escapeJS(name)}'
+                            )
+                        ">
 
-                <label>
-                    Bedfight
+                        Remove
 
-                    <select
-                        onchange="adminTier(
-                            '${escapeJS(name)}',
-                            'Bedfight',
-                            this.value
-                        )">
+                    </button>
 
-                        ${tierOptions(
-                            player.rankings.Bedfight
-                        )}
+                </div>
 
-                    </select>
+
+                <div class="admin-grid">
+
+
+                    <label>
+                        Bedfight
+
+                        <select
+                            onchange="
+                                adminTier(
+                                    '${escapeJS(name)}',
+                                    'Bedfight',
+                                    this.value
+                                )
+                            ">
+
+                            ${tierOptions(
+                                player.rankings.Bedfight
+                            )}
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        Bedwars
+
+                        <select
+                            onchange="
+                                adminTier(
+                                    '${escapeJS(name)}',
+                                    'Bedwars',
+                                    this.value
+                                )
+                            ">
+
+                            ${tierOptions(
+                                player.rankings.Bedwars
+                            )}
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        UHC
+
+                        <select
+                            onchange="
+                                adminTier(
+                                    '${escapeJS(name)}',
+                                    'UHC',
+                                    this.value
+                                )
+                            ">
+
+                            ${tierOptions(
+                                player.rankings.UHC
+                            )}
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        Sumo
+
+                        <select
+                            onchange="
+                                adminTier(
+                                    '${escapeJS(name)}',
+                                    'Sumo',
+                                    this.value
+                                )
+                            ">
+
+                            ${tierOptions(
+                                player.rankings.Sumo
+                            )}
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        Ranked Status
+
+                        <select
+                            onchange="
+                                updateField(
+                                    '${escapeJS(name)}',
+                                    'ranked',
+                                    this.value === 'true'
+                                )
+                            ">
+
+                            <option
+                                value="true"
+                                ${player.ranked
+                                    ? "selected"
+                                    : ""}>
+
+                                Ranked
+
+                            </option>
+
+                            <option
+                                value="false"
+                                ${!player.ranked
+                                    ? "selected"
+                                    : ""}>
+
+                                Unranked
+
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        Tester / Reviewer
+
+                        <input
+                            value="${escapeHTML(
+                                player.tester || ""
+                            )}"
+                            onchange="
+                                updateField(
+                                    '${escapeJS(name)}',
+                                    'tester',
+                                    this.value
+                                )
+                            ">
+
+                    </label>
+
+
+                    <label>
+                        Test Date
+
+                        <input
+                            value="${escapeHTML(
+                                player.testedDate || ""
+                            )}"
+                            onchange="
+                                updateField(
+                                    '${escapeJS(name)}',
+                                    'testedDate',
+                                    this.value
+                                )
+                            ">
+
+                    </label>
+
+
+                    <label>
+                        Last Update
+
+                        <input
+                            value="${escapeHTML(
+                                player.lastUpdate || ""
+                            )}"
+                            onchange="
+                                updateField(
+                                    '${escapeJS(name)}',
+                                    'lastUpdate',
+                                    this.value
+                                )
+                            ">
+
+                    </label>
+
+
+                    <label>
+                        Wins
+
+                        <input
+                            type="number"
+                            min="0"
+                            value="${
+                                player.stats?.wins || 0
+                            }"
+                            onchange="
+                                updateStat(
+                                    '${escapeJS(name)}',
+                                    'wins',
+                                    this.value
+                                )
+                            ">
+
+                    </label>
+
+
+                    <label>
+                        Losses
+
+                        <input
+                            type="number"
+                            min="0"
+                            value="${
+                                player.stats?.losses || 0
+                            }"
+                            onchange="
+                                updateStat(
+                                    '${escapeJS(name)}',
+                                    'losses',
+                                    this.value
+                                )
+                            ">
+
+                    </label>
+
+
+                    <label>
+                        Tests
+
+                        <input
+                            type="number"
+                            min="0"
+                            value="${
+                                player.stats?.tests || 0
+                            }"
+                            onchange="
+                                updateStat(
+                                    '${escapeJS(name)}',
+                                    'tests',
+                                    this.value
+                                )
+                            ">
+
+                    </label>
+
+
+                </div>
+
+
+                <label style="
+                    display:block;
+                    margin-top:10px;
+                ">
+
+                    Admin Notes
+
+                    <textarea
+                        onchange="
+                            updateField(
+                                '${escapeJS(name)}',
+                                'notes',
+                                this.value
+                            )
+                        ">${escapeHTML(
+                            player.notes || ""
+                        )}</textarea>
+
                 </label>
 
-                <label>
-                    Bedwars
+            `;
 
-                    <select
-                        onchange="adminTier(
-                            '${escapeJS(name)}',
-                            'Bedwars',
-                            this.value
-                        )">
 
-                        ${tierOptions(
-                            player.rankings.Bedwars
-                        )}
+            container.appendChild(row);
 
-                    </select>
-                </label>
+        });
 
-                <label>
-                    UHC
-
-                    <select
-                        onchange="adminTier(
-                            '${escapeJS(name)}',
-                            'UHC',
-                            this.value
-                        )">
-
-                        ${tierOptions(
-                            player.rankings.UHC
-                        )}
-
-                    </select>
-                </label>
-
-                <label>
-                    Sumo
-
-                    <select
-                        onchange="adminTier(
-                            '${escapeJS(name)}',
-                            'Sumo',
-                            this.value
-                        )">
-
-                        ${tierOptions(
-                            player.rankings.Sumo
-                        )}
-
-                    </select>
-                </label>
-
-                <label>
-                    Ranked Status
-
-                    <select
-                        onchange="updateField(
-                            '${escapeJS(name)}',
-                            'ranked',
-                            this.value === 'true'
-                        )">
-
-                        <option
-                            value="true"
-                            ${player.ranked ? "selected" : ""}>
-                            Ranked
-                        </option>
-
-                        <option
-                            value="false"
-                            ${!player.ranked ? "selected" : ""}>
-                            Unranked
-                        </option>
-
-                    </select>
-                </label>
-
-                <label>
-                    Tester / Reviewer
-
-                    <input
-                        value="${escapeHTML(
-                            player.tester || ""
-                        )}"
-                        onchange="updateField(
-                            '${escapeJS(name)}',
-                            'tester',
-                            this.value
-                        )">
-                </label>
-
-                <label>
-                    Test Date
-
-                    <input
-                        value="${escapeHTML(
-                            player.testedDate || ""
-                        )}"
-                        onchange="updateField(
-                            '${escapeJS(name)}',
-                            'testedDate',
-                            this.value
-                        )">
-                </label>
-
-                <label>
-                    Last Update
-
-                    <input
-                        value="${escapeHTML(
-                            player.lastUpdate || ""
-                        )}"
-                        onchange="updateField(
-                            '${escapeJS(name)}',
-                            'lastUpdate',
-                            this.value
-                        )">
-                </label>
-
-                <label>
-                    Wins
-
-                    <input
-                        type="number"
-                        min="0"
-                        value="${player.stats?.wins || 0}"
-                        onchange="updateStat(
-                            '${escapeJS(name)}',
-                            'wins',
-                            this.value
-                        )">
-                </label>
-
-                <label>
-                    Losses
-
-                    <input
-                        type="number"
-                        min="0"
-                        value="${player.stats?.losses || 0}"
-                        onchange="updateStat(
-                            '${escapeJS(name)}',
-                            'losses',
-                            this.value
-                        )">
-                </label>
-
-                <label>
-                    Tests
-
-                    <input
-                        type="number"
-                        min="0"
-                        value="${player.stats?.tests || 0}"
-                        onchange="updateStat(
-                            '${escapeJS(name)}',
-                            'tests',
-                            this.value
-                        )">
-                </label>
-
-            </div>
-
-            <label>
-                Admin Notes
-
-                <textarea
-                    onchange="updateField(
-                        '${escapeJS(name)}',
-                        'notes',
-                        this.value
-                    )">${escapeHTML(
-                        player.notes || ""
-                    )}</textarea>
-
-            </label>
-        `;
-
-        container.appendChild(row);
-    });
 
     renderHistory();
+
 }
 
 
-/* =====================================================
-   ADMIN TIER EDIT
-===================================================== */
+/* =========================================================
+   ADMIN TIER CHANGE
+========================================================= */
 
 function adminTier(
     name,
@@ -1482,17 +2645,30 @@ function adminTier(
 ) {
 
     if (!adminLoggedIn) {
-        alert("Only admins can change tiers.");
+
+        alert(
+            "Only admins can change tiers."
+        );
+
         return;
+
     }
 
-    const player = players[name];
+
+    const player =
+        players[name];
+
 
     const oldTier =
         player.rankings[mode];
 
-    if (oldTier === newTier)
+
+    if (
+        oldTier === newTier
+    ) {
         return;
+    }
+
 
     recordHistory(
         name,
@@ -1501,22 +2677,27 @@ function adminTier(
         newTier
     );
 
+
     player.rankings[mode] =
         newTier || null;
+
 
     player.lastUpdate =
         currentDate();
 
+
     saveData();
 
     render();
+
     renderAdmin();
+
 }
 
 
-/* =====================================================
+/* =========================================================
    UPDATE FIELD
-===================================================== */
+========================================================= */
 
 function updateField(
     name,
@@ -1525,30 +2706,44 @@ function updateField(
 ) {
 
     if (!adminLoggedIn) {
-        alert("Only admins can edit players.");
+
+        alert(
+            "Only admins can edit players."
+        );
+
         return;
+
     }
+
 
     if (!players[name])
         return;
 
-    players[name][field] = value;
 
-    if (field !== "lastUpdate") {
+    players[name][field] =
+        value;
+
+
+    if (
+        field !== "lastUpdate"
+    ) {
+
         players[name].lastUpdate =
             currentDate();
+
     }
+
 
     saveData();
 
     render();
-    renderAdmin();
+
 }
 
 
-/* =====================================================
+/* =========================================================
    UPDATE STATS
-===================================================== */
+========================================================= */
 
 function updateStat(
     name,
@@ -1557,68 +2752,96 @@ function updateStat(
 ) {
 
     if (!adminLoggedIn) {
-        alert("Only admins can edit statistics.");
+
+        alert(
+            "Only admins can edit statistics."
+        );
+
         return;
+
     }
+
 
     if (!players[name])
         return;
 
+
     if (!players[name].stats) {
 
         players[name].stats = {
+
             wins: 0,
             losses: 0,
             tests: 0
+
         };
+
     }
 
-    players[name].stats[stat] =
+
+    players[name]
+        .stats[stat] =
         Math.max(
             0,
             Number(value) || 0
         );
 
+
     players[name].lastUpdate =
         currentDate();
+
 
     saveData();
 
     render();
+
 }
 
 
-/* =====================================================
+/* =========================================================
    TIER OPTIONS
-===================================================== */
+========================================================= */
 
 function tierOptions(current) {
 
     let html = `
+
         <option value="">
             Unranked
         </option>
+
     `;
+
 
     tiers.forEach(tier => {
 
         html += `
+
             <option
                 value="${tier}"
-                ${current === tier ? "selected" : ""}>
+                ${
+                    current === tier
+                        ? "selected"
+                        : ""
+                }>
+
                 ${tier}
+
             </option>
+
         `;
 
     });
 
+
     return html;
+
 }
 
 
-/* =====================================================
-   HISTORY DISPLAY
-===================================================== */
+/* =========================================================
+   ADMIN HISTORY
+========================================================= */
 
 function renderHistory() {
 
@@ -1627,214 +2850,334 @@ function renderHistory() {
             "history"
         );
 
+
     if (!container)
         return;
 
+
     container.innerHTML = "";
+
 
     let count = 0;
 
-    Object.keys(players).forEach(name => {
 
-        const player = players[name];
+    Object.keys(players)
+        .forEach(name => {
 
-        if (!player.history)
-            return;
+            const player =
+                players[name];
 
-        player.history.forEach(change => {
 
-            count++;
+            if (!player.history)
+                return;
 
-            const item =
-                document.createElement("div");
 
-            item.className = "history";
+            player.history.forEach(
+                change => {
 
-            item.innerHTML = `
+                    count++;
 
-                <b>${escapeHTML(name)}</b>
-                ·
-                ${escapeHTML(change.mode)}
 
-                <br>
+                    const item =
+                        document.createElement(
+                            "div"
+                        );
 
-                ${escapeHTML(change.from)}
-                →
-                ${escapeHTML(change.to)}
 
-                <br>
+                    item.className =
+                        "history";
 
-                <small>
-                    ${escapeHTML(change.date)}
-                    ·
-                    ${escapeHTML(change.tester)}
-                </small>
-            `;
 
-            container.appendChild(item);
+                    item.innerHTML = `
+
+                        <b>
+                            ${escapeHTML(name)}
+                        </b>
+
+                        ·
+
+                        ${escapeHTML(
+                            change.mode
+                        )}
+
+                        <br>
+
+                        ${escapeHTML(
+                            change.from
+                        )}
+
+                        →
+
+                        ${escapeHTML(
+                            change.to
+                        )}
+
+                        <br>
+
+                        <small>
+                            ${escapeHTML(
+                                change.date
+                            )}
+
+                            ·
+
+                            ${escapeHTML(
+                                change.tester
+                            )}
+                        </small>
+
+                    `;
+
+
+                    container.appendChild(
+                        item
+                    );
+
+                }
+            );
+
         });
-    });
+
 
     if (count === 0) {
 
         container.innerHTML = `
+
             <div class="history">
                 No tier changes yet.
             </div>
+
         `;
+
     }
+
 }
 
 
-/* =====================================================
+/* =========================================================
    PLAYER PROFILE
-===================================================== */
+========================================================= */
 
 function openProfile(name) {
 
-    const player = players[name];
+    const player =
+        players[name];
+
 
     if (!player)
         return;
 
-    document
-        .getElementById("profileName")
-        .textContent = name;
 
     document
-        .getElementById("profileSkin")
+        .getElementById(
+            "profileName"
+        )
+        .textContent =
+        name;
+
+
+    document
+        .getElementById(
+            "profileSkin"
+        )
         .src =
         "https://mc-heads.net/avatar/" +
         encodeURIComponent(name) +
         "/100";
+
 
     const status =
         document.getElementById(
             "profileStatus"
         );
 
+
     status.textContent =
         player.ranked
             ? "● Ranked"
             : "● Unranked";
 
+
     status.style.color =
         player.ranked
-            ? "#55ff55"
-            : "#ff6666";
+            ? "#39ff78"
+            : "#ff626b";
+
 
     const ranks =
         document.getElementById(
             "profileRanks"
         );
 
+
     ranks.innerHTML = "";
+
 
     modes.forEach(mode => {
 
         const row =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        row.className = "rank";
+
+        row.className =
+            "rank";
+
 
         const left =
-            document.createElement("span");
+            document.createElement(
+                "span"
+            );
 
-        left.textContent = mode;
+
+        left.textContent =
+            mode;
+
 
         const right =
-            document.createElement("span");
+            document.createElement(
+                "span"
+            );
+
 
         const tier =
             player.rankings[mode];
 
+
         if (tier) {
 
-            right.className = tier;
-            right.textContent = tier;
-            right.style.padding = "6px 12px";
-            right.style.borderRadius = "5px";
-            right.style.fontWeight = "900";
+            right.className =
+                "tier-badge " + tier;
+
+            right.textContent =
+                tier;
+
+            right.style.padding =
+                "6px 13px";
+
+            right.style.borderRadius =
+                "6px";
+
+            right.style.fontWeight =
+                "950";
 
         } else {
 
-            right.textContent = "Unranked";
-            right.className = "muted";
+            right.textContent =
+                "Unranked";
+
+            right.className =
+                "muted";
+
         }
+
 
         row.appendChild(left);
         row.appendChild(right);
 
+
         ranks.appendChild(row);
+
     });
+
 
     const stats =
         player.stats || {};
 
+
     document
-        .getElementById("profileStats")
+        .getElementById(
+            "profileStats"
+        )
         .innerHTML = `
 
             <div class="rank">
                 <span>Wins</span>
-                <b>${stats.wins || 0}</b>
+                <b>
+                    ${stats.wins || 0}
+                </b>
             </div>
 
             <div class="rank">
                 <span>Losses</span>
-                <b>${stats.losses || 0}</b>
+                <b>
+                    ${stats.losses || 0}
+                </b>
             </div>
 
             <div class="rank">
                 <span>Tests</span>
-                <b>${stats.tests || 0}</b>
+                <b>
+                    ${stats.tests || 0}
+                </b>
             </div>
+
         `;
 
+
     document
-        .getElementById("profileTesting")
+        .getElementById(
+            "profileTesting"
+        )
         .innerHTML = `
 
             <div class="rank">
                 <span>Tested</span>
+
                 <b>
                     ${escapeHTML(
-                        player.testedDate || "Unknown"
+                        player.testedDate ||
+                        "Unknown"
                     )}
                 </b>
+
             </div>
 
             <div class="rank">
                 <span>Tester</span>
+
                 <b>
                     ${escapeHTML(
-                        player.tester || "Unknown"
+                        player.tester ||
+                        "Unknown"
                     )}
                 </b>
+
             </div>
 
             <div class="rank">
                 <span>Last Update</span>
+
                 <b>
                     ${escapeHTML(
-                        player.lastUpdate || "Unknown"
+                        player.lastUpdate ||
+                        "Unknown"
                     )}
                 </b>
+
             </div>
+
         `;
 
+
     document
-        .getElementById("profileNotes")
+        .getElementById(
+            "profileNotes"
+        )
         .textContent =
         player.notes ||
         "No notes available.";
+
 
     const history =
         document.getElementById(
             "profileHistory"
         );
 
+
     history.innerHTML = "";
+
 
     if (
         !player.history ||
@@ -1842,122 +3185,206 @@ function openProfile(name) {
     ) {
 
         history.innerHTML = `
+
             <div class="history">
                 No tier changes yet.
             </div>
+
         `;
 
     } else {
 
-        player.history.forEach(change => {
+        player.history.forEach(
+            change => {
 
-            const item =
-                document.createElement("div");
+                const item =
+                    document.createElement(
+                        "div"
+                    );
 
-            item.className = "history";
 
-            item.innerHTML = `
+                item.className =
+                    "history";
 
-                <b>
-                    ${escapeHTML(change.mode)}
-                </b>
 
-                <br>
+                item.innerHTML = `
 
-                ${escapeHTML(change.from)}
-                →
-                ${escapeHTML(change.to)}
+                    <b>
+                        ${escapeHTML(
+                            change.mode
+                        )}
+                    </b>
 
-                <br>
+                    <br>
 
-                <small>
-                    ${escapeHTML(change.date)}
-                    ·
-                    ${escapeHTML(change.tester)}
-                </small>
-            `;
+                    ${escapeHTML(
+                        change.from
+                    )}
 
-            history.appendChild(item);
-        });
+                    →
+
+                    ${escapeHTML(
+                        change.to
+                    )}
+
+                    <br>
+
+                    <small>
+                        ${escapeHTML(
+                            change.date
+                        )}
+
+                        ·
+
+                        ${escapeHTML(
+                            change.tester
+                        )}
+                    </small>
+
+                `;
+
+
+                history.appendChild(
+                    item
+                );
+
+            }
+        );
+
     }
 
+
     document
-        .getElementById("profileModal")
+        .getElementById(
+            "profileModal"
+        )
         .classList.add("show");
+
 }
 
 
-/* =====================================================
+/* =========================================================
    MODALS
-===================================================== */
+========================================================= */
 
 function closeModal(id) {
 
     document
         .getElementById(id)
         .classList.remove("show");
+
 }
 
-function outside(event, id) {
 
-    if (event.target.id === id) {
+function outside(
+    event,
+    id
+) {
+
+    if (
+        event.target.id === id
+    ) {
+
         closeModal(id);
+
     }
+
 }
 
 
-/* =====================================================
-   SECURITY HELPERS
-===================================================== */
+/* =========================================================
+   SECURITY / HTML
+========================================================= */
 
 function escapeHTML(value) {
 
-    return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
+    return String(
+        value ?? ""
+    )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        );
+
 }
+
 
 function escapeJS(value) {
 
     return String(value)
-        .replace(/\\/g, "\\\\")
-        .replace(/'/g, "\\'");
+        .replace(
+            /\\/g,
+            "\\\\"
+        )
+        .replace(
+            /'/g,
+            "\\'"
+        );
+
 }
 
 
-/* =====================================================
-   ESCAPE KEY
-===================================================== */
+/* =========================================================
+   ESC KEY
+========================================================= */
 
 document.addEventListener(
     "keydown",
     function(event) {
 
-        if (event.key === "Escape") {
+        if (
+            event.key === "Escape"
+        ) {
 
-            closeModal("profileModal");
-            closeModal("adminModal");
+            closeModal(
+                "profileModal"
+            );
+
+            closeModal(
+                "adminModal"
+            );
+
         }
+
     }
 );
 
 
-/* =====================================================
-   START WEBSITE
-===================================================== */
+/* =========================================================
+   START
+========================================================= */
 
 loadData();
 
-/* MAKE ABSOLUTELY SURE ADD PLAYER IS HIDDEN */
+
+/*
+   IMPORTANT:
+   ADD PLAYER IS ALWAYS HIDDEN
+   UNTIL ADMIN LOGIN.
+*/
+
 document
-    .getElementById("addPlayerBox")
+    .getElementById(
+        "addPlayerBox"
+    )
     .style.setProperty(
         "display",
         "none",
         "important"
     );
+
 
 render();
 
