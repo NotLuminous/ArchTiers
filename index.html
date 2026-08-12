@@ -6,6 +6,9 @@
 
 <title>Arch Tiers</title>
 
+<!-- SkinView3D -->
+<script src="https://cdn.jsdelivr.net/npm/skinview3d@3.2.0/bundles/skinview3d.bundle.min.js"></script>
+
 <style>
 /* =========================================================
    ARCH TIERS — PREMIUM RED UI
@@ -25,7 +28,6 @@ html {
     --red: #ff3030;
     --red-bright: #ff4545;
     --red-dark: #9e1515;
-    --red-deep: #5e0d0d;
 
     --bg: #050608;
     --bg2: #080a0e;
@@ -34,11 +36,8 @@ html {
     --card3: #151b22;
 
     --border: rgba(255,255,255,.075);
-    --border-red: rgba(255,48,48,.28);
-
     --text: #f5f7fa;
     --muted: #7c8795;
-    --muted2: #56606d;
 }
 
 body {
@@ -156,7 +155,12 @@ header::before {
     pointer-events: none;
     opacity: .25;
     background:
-        linear-gradient(115deg, transparent 35%, rgba(255,48,48,.08) 50%, transparent 65%);
+        linear-gradient(
+            115deg,
+            transparent 35%,
+            rgba(255,48,48,.08) 50%,
+            transparent 65%
+        );
     background-size: 250% 100%;
     animation: shine 8s linear infinite;
 }
@@ -277,24 +281,6 @@ nav button {
     transition: .25s ease;
 }
 
-nav button::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,.06),
-        transparent
-    );
-    transform: translateX(-100%);
-    transition: .4s;
-}
-
-nav button:hover::before {
-    transform: translateX(100%);
-}
-
 nav button:hover {
     color: #fff;
     background: rgba(255,255,255,.045);
@@ -363,10 +349,6 @@ main {
     letter-spacing: -.4px;
 }
 
-.section-title span {
-    color: #fff;
-}
-
 .section-title::after {
     content: "";
     height: 1px;
@@ -390,10 +372,6 @@ main {
     margin-bottom: 34px;
 }
 
-/* =========================================================
-   FEATURED HERO
-========================================================= */
-
 .featured {
     position: relative;
     min-height: 285px;
@@ -408,46 +386,6 @@ main {
     box-shadow:
         0 20px 60px rgba(0,0,0,.25),
         inset 0 1px rgba(255,255,255,.04);
-}
-
-.featured::before {
-    content: "";
-    position: absolute;
-    width: 260px;
-    height: 260px;
-    right: -90px;
-    bottom: -130px;
-    border-radius: 50%;
-    background: var(--red);
-    filter: blur(100px);
-    opacity: .10;
-}
-
-.featured::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    border-radius: inherit;
-    background:
-        linear-gradient(
-            125deg,
-            transparent 30%,
-            rgba(255,255,255,.025) 50%,
-            transparent 70%
-        );
-    background-size: 250% 100%;
-    animation: heroShine 7s linear infinite;
-}
-
-@keyframes heroShine {
-    from {
-        background-position: 200% 0;
-    }
-
-    to {
-        background-position: -200% 0;
-    }
 }
 
 .featured-label {
@@ -483,14 +421,6 @@ main {
     box-shadow:
         0 0 0 6px rgba(255,48,48,.04),
         0 0 40px rgba(255,48,48,.18);
-    transition: .3s;
-}
-
-.featured:hover .featured-skin {
-    transform: translateY(-4px) scale(1.025);
-    box-shadow:
-        0 0 0 8px rgba(255,48,48,.055),
-        0 0 55px rgba(255,48,48,.25);
 }
 
 .featured-name {
@@ -552,22 +482,9 @@ main {
     transition: .25s ease;
 }
 
-.stat-card::after {
-    content: "";
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    right: -20px;
-    bottom: -25px;
-    background: var(--red);
-    filter: blur(35px);
-    opacity: .08;
-}
-
 .stat-card:hover {
     transform: translateY(-3px);
     border-color: rgba(255,48,48,.25);
-    box-shadow: 0 12px 30px rgba(0,0,0,.22);
 }
 
 .stat-card .number {
@@ -575,7 +492,6 @@ main {
     z-index: 2;
     font-size: 28px;
     font-weight: 1000;
-    letter-spacing: -.7px;
 }
 
 .stat-card .label {
@@ -612,19 +528,6 @@ main {
     transition: .25s ease;
 }
 
-.podium-card::before {
-    content: "";
-    position: absolute;
-    width: 110px;
-    height: 110px;
-    left: 50%;
-    top: -70px;
-    transform: translateX(-50%);
-    background: var(--red);
-    filter: blur(60px);
-    opacity: .04;
-}
-
 .podium-card:hover {
     transform: translateY(-7px);
     border-color: rgba(255,48,48,.35);
@@ -635,13 +538,6 @@ main {
     padding-top: 31px;
     padding-bottom: 31px;
     border-color: rgba(255,48,48,.38);
-    box-shadow:
-        0 0 35px rgba(255,48,48,.06),
-        inset 0 1px rgba(255,255,255,.04);
-}
-
-.podium-card.first::before {
-    opacity: .11;
 }
 
 .podium-number {
@@ -742,25 +638,9 @@ main {
     border-bottom: 0;
 }
 
-.leader-row::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: transparent;
-    transition: .2s;
-}
-
 .leader-row:hover {
     background: linear-gradient(90deg, #141a21, #10161d);
     transform: translateX(3px);
-}
-
-.leader-row:hover::before {
-    background: var(--red);
-    box-shadow: 0 0 12px var(--red);
 }
 
 .leader-row:nth-child(1) {
@@ -769,9 +649,14 @@ main {
         #11161d;
 }
 
+.leader-position {
+    color: #707b88;
+    font-weight: 950;
+    font-size: 14px;
+}
+
 .leader-row:nth-child(1) .leader-position {
     color: #ffd75a;
-    text-shadow: 0 0 12px rgba(255,215,90,.2);
 }
 
 .leader-row:nth-child(2) .leader-position {
@@ -780,12 +665,6 @@ main {
 
 .leader-row:nth-child(3) .leader-position {
     color: #d68b57;
-}
-
-.leader-position {
-    color: #707b88;
-    font-weight: 950;
-    font-size: 14px;
 }
 
 .leader-player {
@@ -802,11 +681,6 @@ main {
     image-rendering: pixelated;
     border-radius: 7px;
     border: 1px solid rgba(255,255,255,.08);
-    transition: .2s;
-}
-
-.leader-row:hover .leader-head {
-    border-color: rgba(255,48,48,.35);
 }
 
 .leader-name {
@@ -843,88 +717,145 @@ main {
     font-weight: 1000;
     text-shadow: 0 1px 3px rgba(0,0,0,.45);
     box-shadow: 0 3px 10px rgba(0,0,0,.15);
-    transition: .2s;
 }
 
-.badge:hover {
-    transform: translateY(-1px);
-}
-
-.HT1 {
-    background: linear-gradient(135deg,#ff3434,#a90e22);
-}
-
-.LT1 {
-    background: linear-gradient(135deg,#ff5d5d,#bd2535);
-}
-
-.HT2 {
-    background: linear-gradient(135deg,#ff9a38,#c95c12);
-}
-
-.LT2 {
-    background: linear-gradient(135deg,#ffb85a,#d47c1f);
-}
-
-.HT3 {
-    background: linear-gradient(135deg,#f4d33f,#b99a19);
-    color: #171006;
-}
-
-.LT3 {
-    background: linear-gradient(135deg,#f5e276,#c7b543);
-    color: #171006;
-}
-
-.HT4 {
-    background: linear-gradient(135deg,#3bd87c,#19884d);
-}
-
-.LT4 {
-    background: linear-gradient(135deg,#63e99a,#26965d);
-}
-
-.HT5 {
-    background: linear-gradient(135deg,#419fee,#2166a9);
-}
-
-.LT5 {
-    background: linear-gradient(135deg,#69b7f4,#347db8);
-}
+.HT1 { background: linear-gradient(135deg,#ff3434,#a90e22); }
+.LT1 { background: linear-gradient(135deg,#ff5d5d,#bd2535); }
+.HT2 { background: linear-gradient(135deg,#ff9a38,#c95c12); }
+.LT2 { background: linear-gradient(135deg,#ffb85a,#d47c1f); }
+.HT3 { background: linear-gradient(135deg,#f4d33f,#b99a19); color:#171006; }
+.LT3 { background: linear-gradient(135deg,#f5e276,#c7b543); color:#171006; }
+.HT4 { background: linear-gradient(135deg,#3bd87c,#19884d); }
+.LT4 { background: linear-gradient(135deg,#63e99a,#26965d); }
+.HT5 { background: linear-gradient(135deg,#419fee,#2166a9); }
+.LT5 { background: linear-gradient(135deg,#69b7f4,#347db8); }
 
 /* =========================================================
-   SEARCH
+   ADVANCED SEARCH
 ========================================================= */
 
-.search-area {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 15px;
-    flex-wrap: wrap;
+.search-panel {
+    position: relative;
+    padding: 20px;
+    margin-bottom: 18px;
+    border: 1px solid #252d37;
+    border-radius: 16px;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(255,48,48,.06), transparent 35%),
+        linear-gradient(135deg,#10151c,#0b1016);
+    box-shadow: 0 15px 35px rgba(0,0,0,.18);
 }
 
-.search {
-    width: 300px;
-    padding: 12px 15px;
-    border: 1px solid #29313b;
-    border-radius: 11px;
-    outline: none;
-    background: rgba(12,17,23,.9);
+.search-panel-title {
+    margin-bottom: 13px;
     color: #fff;
     font-size: 12px;
-    transition: .2s;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
 }
 
-.search::placeholder {
+.search-controls {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 10px;
+}
+
+.search-input,
+.filter-select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #29313b;
+    border-radius: 10px;
+    outline: none;
+    background: #0c1117;
+    color: #fff;
+    font-size: 12px;
+}
+
+.search-input::placeholder {
     color: #58626f;
 }
 
-.search:focus {
+.search-input:focus,
+.filter-select:focus {
     border-color: rgba(255,48,48,.55);
-    box-shadow:
-        0 0 0 3px rgba(255,48,48,.06),
-        0 8px 25px rgba(0,0,0,.15);
+    box-shadow: 0 0 0 3px rgba(255,48,48,.06);
+}
+
+.filter-select {
+    cursor: pointer;
+}
+
+.filter-select option {
+    background: #0d1117;
+    color: #fff;
+}
+
+.search-results {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.search-result-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid #29313b;
+    border-radius: 12px;
+    background: linear-gradient(135deg,#151b22,#0d1218);
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.search-result-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,48,48,.4);
+    box-shadow: 0 10px 25px rgba(0,0,0,.25);
+}
+
+.search-result-head {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    image-rendering: pixelated;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.search-result-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.search-result-name {
+    font-size: 13px;
+    font-weight: 900;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.search-result-mode {
+    margin-top: 4px;
+    color: #687381;
+    font-size: 9px;
+}
+
+.search-result-tiers {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+
+.search-result-tiers .badge {
+    min-width: 38px;
+    padding: 3px 6px;
+    font-size: 8px;
 }
 
 /* =========================================================
@@ -974,25 +905,11 @@ main {
     pointer-events: none;
 }
 
-.tier-name.HT1::after {
-    background: #ff3030;
-}
-
-.tier-name.HT2::after {
-    background: #ff9a38;
-}
-
-.tier-name.HT3::after {
-    background: #f4d33f;
-}
-
-.tier-name.HT4::after {
-    background: #3bd87c;
-}
-
-.tier-name.HT5::after {
-    background: #419fee;
-}
+.tier-name.HT1::after { background:#ff3030; }
+.tier-name.HT2::after { background:#ff9a38; }
+.tier-name.HT3::after { background:#f4d33f; }
+.tier-name.HT4::after { background:#3bd87c; }
+.tier-name.HT5::after { background:#419fee; }
 
 .tier-name small {
     position: relative;
@@ -1013,11 +930,7 @@ main {
     flex-wrap: wrap;
     gap: 8px;
     padding: 11px 13px;
-    background: linear-gradient(
-        90deg,
-        rgba(255,255,255,.012),
-        transparent
-    );
+    background: linear-gradient(90deg,rgba(255,255,255,.012),transparent);
 }
 
 .player {
@@ -1037,9 +950,7 @@ main {
 .player:hover {
     transform: translateY(-3px);
     border-color: rgba(255,48,48,.45);
-    box-shadow:
-        0 8px 20px rgba(0,0,0,.3),
-        0 0 16px rgba(255,48,48,.06);
+    box-shadow: 0 8px 20px rgba(0,0,0,.3);
 }
 
 .player-head {
@@ -1080,12 +991,6 @@ main {
     border: 1px solid #252d37;
     border-radius: 10px;
     background: #11171e;
-    transition: .2s;
-}
-
-.dist-row:hover {
-    border-color: rgba(255,255,255,.13);
-    transform: translateY(-2px);
 }
 
 .dist-bar {
@@ -1099,11 +1004,7 @@ main {
 .dist-fill {
     height: 100%;
     border-radius: 10px;
-    background: linear-gradient(
-        90deg,
-        var(--red-dark),
-        var(--red-bright)
-    );
+    background: linear-gradient(90deg,var(--red-dark),var(--red-bright));
     box-shadow: 0 0 12px rgba(255,48,48,.22);
     transition: width .6s ease;
 }
@@ -1130,25 +1031,14 @@ main {
     padding: 7px 10px;
     border: 1px solid #303945;
     border-radius: 7px;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,48,48,.09),
-            #151b22
-        );
+    background: linear-gradient(135deg,rgba(255,48,48,.09),#151b22);
     color: #cbd2da;
     font-size: 10px;
     font-weight: 850;
-    transition: .2s;
-}
-
-.achievement:hover {
-    border-color: rgba(255,48,48,.3);
-    transform: translateY(-2px);
 }
 
 /* =========================================================
-   RECENT CHANGES
+   CHANGES
 ========================================================= */
 
 .changes {
@@ -1164,7 +1054,6 @@ main {
     border: 1px solid #252d37;
     border-radius: 11px;
     background: #11171e;
-    transition: .2s;
 }
 
 .change::before {
@@ -1176,12 +1065,6 @@ main {
     width: 2px;
     background: var(--red);
     opacity: .55;
-}
-
-.change:hover {
-    transform: translateX(3px);
-    border-color: rgba(255,48,48,.25);
-    background: #141a21;
 }
 
 .change strong {
@@ -1240,18 +1123,13 @@ main {
 }
 
 @keyframes modalBg {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+    from { opacity:0; }
+    to { opacity:1; }
 }
 
 .profile {
     position: relative;
-    width: min(720px,100%);
+    width: min(850px,100%);
     max-height: 92vh;
     overflow-y: auto;
     border: 1px solid rgba(255,255,255,.10);
@@ -1280,24 +1158,21 @@ main {
     position: relative;
     overflow: hidden;
     background:
-        radial-gradient(circle at 20% 20%, rgba(255,48,48,.22), transparent 35%),
-        radial-gradient(circle at 85% 0%, rgba(255,48,48,.12), transparent 35%),
+        radial-gradient(circle at 20% 20%,rgba(255,48,48,.22),transparent 35%),
+        radial-gradient(circle at 85% 0%,rgba(255,48,48,.12),transparent 35%),
         linear-gradient(135deg,#10161c,#0c1117);
     border-bottom: 1px solid #29313b;
 }
 
-.profile-banner::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
-    background-size: 25px 25px;
-}
-
 .profile-body {
     padding: 0 28px 28px;
+}
+
+.profile-top {
+    display: grid;
+    grid-template-columns: 1fr 330px;
+    gap: 25px;
+    align-items: start;
 }
 
 .profile-skin {
@@ -1328,6 +1203,54 @@ main {
     color: #ff5555;
     font-weight: 900;
     font-size: 12px;
+}
+
+.model-box {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    margin-top: -100px;
+    border: 1px solid rgba(255,48,48,.22);
+    border-radius: 16px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 35%,rgba(255,48,48,.12),transparent 45%),
+        linear-gradient(180deg,#10161d,#080c11);
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.04),
+        0 15px 40px rgba(0,0,0,.25);
+}
+
+.model-box::before {
+    content: "3D PLAYER MODEL";
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    z-index: 5;
+    color: rgba(255,255,255,.45);
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+#skinViewer {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.model-hint {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    padding: 5px 9px;
+    border-radius: 20px;
+    background: rgba(0,0,0,.45);
+    color: #687381;
+    font-size: 8px;
+    white-space: nowrap;
 }
 
 .close {
@@ -1365,17 +1288,7 @@ main {
     padding: 15px;
     border: 1px solid #252d37;
     border-radius: 10px;
-    background: linear-gradient(
-        135deg,
-        #121820,
-        #0e141b
-    );
-    transition: .2s;
-}
-
-.profile-stat:hover {
-    border-color: rgba(255,48,48,.25);
-    transform: translateY(-2px);
+    background: linear-gradient(135deg,#121820,#0e141b);
 }
 
 .profile-stat span {
@@ -1414,11 +1327,6 @@ main {
     border: 1px solid #252d37;
     border-radius: 8px;
     background: #121820;
-    transition: .2s;
-}
-
-.rank-row:hover {
-    border-color: rgba(255,48,48,.22);
 }
 
 .history-item {
@@ -1426,12 +1334,7 @@ main {
     padding: 12px 14px;
     margin-bottom: 7px;
     border-left: 3px solid var(--red);
-    background:
-        linear-gradient(
-            90deg,
-            rgba(255,48,48,.07),
-            #121820 35%
-        );
+    background: linear-gradient(90deg,rgba(255,48,48,.07),#121820 35%);
     border-radius: 5px;
 }
 
@@ -1463,11 +1366,27 @@ footer strong {
    MOBILE
 ========================================================= */
 
-@media(max-width:800px) {
+@media(max-width:900px) {
 
     .dashboard {
         grid-template-columns: 1fr;
     }
+
+    .search-results {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .profile-top {
+        grid-template-columns: 1fr;
+    }
+
+    .model-box {
+        margin-top: 15px;
+        height: 300px;
+    }
+}
+
+@media(max-width:800px) {
 
     .podium {
         grid-template-columns: 1fr;
@@ -1556,6 +1475,14 @@ footer strong {
         grid-template-columns: 1fr;
     }
 
+    .search-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .search-results {
+        grid-template-columns: 1fr;
+    }
+
     .tier {
         grid-template-columns: 68px 1fr;
     }
@@ -1569,10 +1496,6 @@ footer strong {
     }
 
     .player {
-        width: 100%;
-    }
-
-    .search {
         width: 100%;
     }
 
@@ -1597,6 +1520,10 @@ footer strong {
 
     .profile-name {
         font-size: 25px;
+    }
+
+    .model-box {
+        height: 260px;
     }
 
     .section-title {
@@ -1639,10 +1566,6 @@ footer strong {
     }
 }
 
-/* =========================================================
-   RED SELECTION
-========================================================= */
-
 ::selection {
     background: rgba(255,48,48,.35);
     color: #fff;
@@ -1653,7 +1576,6 @@ footer strong {
 <body>
 
 <header>
-
     <div class="header-lines"></div>
 
     <div class="logo">
@@ -1669,7 +1591,6 @@ footer strong {
         <span class="status-dot"></span>
         Competitive Rankings Online
     </div>
-
 </header>
 
 <nav>
@@ -1681,7 +1602,9 @@ footer strong {
 
 <main>
 
-<!-- HOME -->
+<!-- =====================================================
+     HOME
+===================================================== -->
 
 <section id="home">
 
@@ -1703,20 +1626,12 @@ footer strong {
 
     </div>
 
-    <div class="section">
-
-        <div class="section-title">
-            📰 <span>Recent Changes</span>
-        </div>
-
-        <div class="changes" id="recentChanges"></div>
-
-    </div>
-
 </section>
 
 
-<!-- LEADERBOARDS -->
+<!-- =====================================================
+     LEADERBOARDS
+===================================================== -->
 
 <section id="leaderboards" style="display:none">
 
@@ -1763,9 +1678,74 @@ footer strong {
 </section>
 
 
-<!-- TIER LIST -->
+<!-- =====================================================
+     TIER LIST + ADVANCED SEARCH
+===================================================== -->
 
 <section id="tiers" style="display:none">
+
+    <div class="section-title">
+        🔎 <span>Advanced Player Search</span>
+    </div>
+
+    <div class="search-panel">
+
+        <div class="search-panel-title">
+            Search Players
+        </div>
+
+        <div class="search-controls">
+
+            <input
+                class="search-input"
+                id="advancedSearch"
+                type="text"
+                placeholder="🔎 Search by Minecraft IGN..."
+                oninput="renderSearchResults()"
+            >
+
+            <select
+                class="filter-select"
+                id="searchMode"
+                onchange="renderSearchResults()">
+
+                <option value="All">All Game Modes</option>
+                <option value="Bedfight">⚔ Bedfight</option>
+                <option value="Bedwars">🛏 Bedwars</option>
+                <option value="UHC">💎 UHC</option>
+                <option value="Sumo">🥊 Sumo</option>
+
+            </select>
+
+            <select
+                class="filter-select"
+                id="searchTier"
+                onchange="renderSearchResults()">
+
+                <option value="All">All Tiers</option>
+                <option value="HT1">HT1</option>
+                <option value="LT1">LT1</option>
+                <option value="HT2">HT2</option>
+                <option value="LT2">LT2</option>
+                <option value="HT3">HT3</option>
+                <option value="LT3">LT3</option>
+                <option value="HT4">HT4</option>
+                <option value="LT4">LT4</option>
+                <option value="HT5">HT5</option>
+                <option value="LT5">LT5</option>
+                <option value="N/A">N/A</option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <div
+        class="search-results"
+        id="searchResults">
+    </div>
+
 
     <div class="search-area section">
 
@@ -1805,13 +1785,6 @@ footer strong {
 
         </div>
 
-        <input
-            class="search"
-            id="search"
-            placeholder="🔎 Search player..."
-            oninput="renderTierList"
-        >
-
     </div>
 
     <div class="tier-list" id="tierList"></div>
@@ -1819,7 +1792,9 @@ footer strong {
 </section>
 
 
-<!-- STATISTICS -->
+<!-- =====================================================
+     STATISTICS
+===================================================== -->
 
 <section id="stats" style="display:none">
 
@@ -1902,7 +1877,9 @@ footer strong {
 </footer>
 
 
-<!-- PROFILE MODAL -->
+<!-- =====================================================
+     PROFILE MODAL
+===================================================== -->
 
 <div
     class="modal"
@@ -1922,26 +1899,44 @@ footer strong {
 
         <div class="profile-body">
 
-            <img
-                id="profileSkin"
-                class="profile-skin"
-                alt="Minecraft Skin"
-            >
+            <div class="profile-top">
 
-            <div
-                id="profileName"
-                class="profile-name">
-            </div>
+                <div>
 
-            <div
-                id="profileOverall"
-                class="overall">
-            </div>
+                    <img
+                        id="profileSkin"
+                        class="profile-skin"
+                        alt="Minecraft Skin"
+                    >
 
-            <div
-                id="profileAchievements"
-                class="achievements"
-                style="margin-top:12px">
+                    <div
+                        id="profileName"
+                        class="profile-name">
+                    </div>
+
+                    <div
+                        id="profileOverall"
+                        class="overall">
+                    </div>
+
+                    <div
+                        id="profileAchievements"
+                        class="achievements"
+                        style="margin-top:12px">
+                    </div>
+
+                </div>
+
+                <div class="model-box">
+
+                    <canvas id="skinViewer"></canvas>
+
+                    <div class="model-hint">
+                        Drag to rotate · Scroll to zoom
+                    </div>
+
+                </div>
+
             </div>
 
             <div class="profile-section">
@@ -1998,14 +1993,14 @@ const players = [
         name: "Luminous",
 
         rankings: {
-            Bedfight: "HT3",
+            Bedfight: null,
             Bedwars: "HT3",
             UHC: null,
             Sumo: null
         },
 
         stats: {
-            wins: 10,
+            wins: 5,
             losses: 0,
             tests: 1
         },
@@ -2111,6 +2106,8 @@ const modes = [
 
 let currentMode = "Bedfight";
 let leaderboardMode = "Overall";
+
+let skinViewer = null;
 
 
 /* =========================================================
@@ -2256,7 +2253,7 @@ function getAchievements(player) {
 
 
 /* =========================================================
-   SKIN
+   SKIN URL
 ========================================================= */
 
 function skinURL(name, size = 100) {
@@ -2270,13 +2267,24 @@ function skinURL(name, size = 100) {
 
 
 /* =========================================================
-   HOME DASHBOARD
+   FULL SKIN URL
+========================================================= */
+
+function fullSkinURL(name) {
+
+    return "https://mc-heads.net/skin/" +
+        encodeURIComponent(name);
+
+}
+
+
+/* =========================================================
+   HOME
 ========================================================= */
 
 function renderHome() {
 
     const ranking = sortedOverall();
-
     const featured = ranking[0];
 
     const featuredBox =
@@ -2421,7 +2429,6 @@ function renderHome() {
     `;
 
     renderPodium();
-    renderRecentChanges();
 
 }
 
@@ -2499,89 +2506,203 @@ function renderPodium() {
 
 
 /* =========================================================
-   RECENT CHANGES
+   ADVANCED SEARCH
 ========================================================= */
 
-function renderRecentChanges() {
+function renderSearchResults() {
 
     const box =
-        document.getElementById("recentChanges");
+        document.getElementById("searchResults");
 
-    const changes = [];
+    const search =
+        document
+            .getElementById("advancedSearch")
+            .value
+            .toLowerCase()
+            .trim();
 
-    players.forEach(player => {
+    const mode =
+        document
+            .getElementById("searchMode")
+            .value;
 
-        (player.history || []).forEach(change => {
+    const selectedTier =
+        document
+            .getElementById("searchTier")
+            .value;
 
-            changes.push({
-                player,
-                change
-            });
+
+    const results =
+        players.filter(player => {
+
+            const nameMatch =
+                !search ||
+                player.name
+                    .toLowerCase()
+                    .includes(search);
+
+            let modeMatch = true;
+            let tierMatch = true;
+
+
+            if (mode !== "All") {
+
+                modeMatch =
+                    Boolean(player.rankings[mode]);
+
+            }
+
+
+            if (selectedTier !== "All") {
+
+                if (selectedTier === "N/A") {
+
+                    if (mode === "All") {
+
+                        tierMatch =
+                            modes.some(
+                                m => !player.rankings[m]
+                            );
+
+                    } else {
+
+                        tierMatch =
+                            !player.rankings[mode];
+
+                    }
+
+                } else {
+
+                    if (mode === "All") {
+
+                        tierMatch =
+                            modes.some(
+                                m =>
+                                    player.rankings[m] === selectedTier
+                            );
+
+                    } else {
+
+                        tierMatch =
+                            player.rankings[mode] === selectedTier;
+
+                    }
+
+                }
+
+            }
+
+
+            return nameMatch && modeMatch && tierMatch;
 
         });
 
-    });
 
-
-    changes.sort(
-        (a, b) =>
-            new Date(b.change.date) -
-            new Date(a.change.date)
-    );
-
-
-    if (!changes.length) {
+    if (!search && mode === "All" && selectedTier === "All") {
 
         box.innerHTML = `
-
-            <div class="no-results">
-
-                <strong>
-                    No Recent Changes
-                </strong>
-
-                Tier promotions and demotions
-                will appear here when added
-                to the player data.
-
+            <div class="no-results" style="grid-column:1/-1;padding:25px">
+                <strong>Search Players</strong>
+                Enter an IGN or use the filters above to find players instantly.
             </div>
-
         `;
 
         return;
+
+    }
+
+
+    if (!results.length) {
+
+        box.innerHTML = `
+            <div class="no-results" style="grid-column:1/-1;padding:25px">
+                <strong>No Players Found</strong>
+                Try changing your search or filters.
+            </div>
+        `;
+
+        return;
+
     }
 
 
     box.innerHTML =
-        changes.slice(0,8).map(item => `
+        results.map(player => {
 
-            <div
-                class="change"
-                onclick="openProfile('${escapeJS(item.player.name)}')"
-                style="cursor:pointer"
-            >
+            const rankedModes =
+                modes.filter(
+                    m => player.rankings[m]
+                );
 
-                <strong>
-                    ${escapeHTML(item.player.name)}
-                </strong>
 
-                →
+            const displayedModes =
+                mode === "All"
+                    ? rankedModes
+                    : [mode];
 
-                <span class="green">
-                    ${escapeHTML(item.change.to)}
-                </span>
 
-                <small>
-                    ${escapeHTML(item.change.mode)}
-                    ·
-                    ${escapeHTML(item.change.date)}
-                    ·
-                    ${escapeHTML(item.change.tester)}
-                </small>
+            return `
 
-            </div>
+                <div
+                    class="search-result-card"
+                    onclick="openProfile('${escapeJS(player.name)}')"
+                >
 
-        `).join("");
+                    <img
+                        class="search-result-head"
+                        src="${skinURL(player.name,48)}"
+                        alt="${escapeHTML(player.name)}"
+                    >
+
+                    <div class="search-result-info">
+
+                        <div class="search-result-name">
+                            ${escapeHTML(player.name)}
+                        </div>
+
+                        <div class="search-result-mode">
+                            ${
+                                mode === "All"
+                                ? "Ranked in " + rankedModes.length + " mode(s)"
+                                : mode + " ranking"
+                            }
+                        </div>
+
+                        <div class="search-result-tiers">
+
+                            ${
+                                displayedModes.map(m => {
+
+                                    const tier =
+                                        player.rankings[m];
+
+                                    return tier
+
+                                        ? `<span
+                                            class="badge ${tier}"
+                                            title="${m}">
+                                            ${tier}
+                                          </span>`
+
+                                        : `<span
+                                            class="badge"
+                                            style="background:#252d37"
+                                            title="${m}">
+                                            N/A
+                                          </span>`;
+
+                                }).join("")
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
 
 }
 
@@ -2793,13 +2914,6 @@ function renderTierList() {
     const box =
         document.getElementById("tierList");
 
-    const search =
-        document
-            .getElementById("search")
-            .value
-            .toLowerCase()
-            .trim();
-
     box.innerHTML = "";
 
     let any = false;
@@ -2810,15 +2924,7 @@ function renderTierList() {
         const matching =
             players.filter(player => {
 
-                return (
-                    player.rankings[currentMode] === tier
-                ) &&
-                (
-                    !search ||
-                    player.name
-                        .toLowerCase()
-                        .includes(search)
-                );
+                return player.rankings[currentMode] === tier;
 
             });
 
@@ -2914,27 +3020,6 @@ function renderTierList() {
         box.appendChild(row);
 
     });
-
-
-    if (search && !any) {
-
-        box.innerHTML = `
-
-            <div class="no-results">
-
-                <strong>
-                    No player found
-                </strong>
-
-                No player matching
-                "<b>${escapeHTML(search)}</b>"
-                was found in ${currentMode}.
-
-            </div>
-
-        `;
-
-    }
 
 }
 
@@ -3168,6 +3253,97 @@ function mostCommonTier() {
 
 
 /* =========================================================
+   3D MINECRAFT PLAYER MODEL
+========================================================= */
+
+async function load3DModel(name) {
+
+    const canvas =
+        document.getElementById("skinViewer");
+
+    if (!canvas)
+        return;
+
+
+    if (skinViewer) {
+
+        try {
+            skinViewer.dispose();
+        } catch(error) {}
+
+        skinViewer = null;
+
+    }
+
+
+    try {
+
+        skinViewer =
+            new skinview3d.SkinViewer({
+                canvas: canvas,
+                width: 330,
+                height: 320
+            });
+
+
+        skinViewer.controls.enableRotate = true;
+        skinViewer.controls.enableZoom = true;
+        skinViewer.controls.enablePan = false;
+
+        skinViewer.camera.position.set(
+            0,
+            0,
+            70
+        );
+
+
+        skinViewer.animation =
+            new skinview3d.IdleAnimation();
+
+
+        await skinViewer.loadSkin(
+            fullSkinURL(name)
+        );
+
+
+        skinViewer.playerObject.skin.rightArm.rotation.z = 0;
+        skinViewer.playerObject.skin.leftArm.rotation.z = 0;
+
+    } catch(error) {
+
+        console.error(
+            "Could not load 3D Minecraft model:",
+            error
+        );
+
+        canvas.parentElement.innerHTML = `
+            <div style="
+                height:100%;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                flex-direction:column;
+                gap:8px;
+                color:#687381;
+                text-align:center;
+                padding:20px;
+            ">
+                <strong style="color:#fff">
+                    3D Model Unavailable
+                </strong>
+
+                <span style="font-size:10px">
+                    The player's Minecraft skin could not be loaded.
+                </span>
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
    PROFILE
 ========================================================= */
 
@@ -3208,9 +3384,7 @@ function openProfile(name) {
         .getElementById("profileOverall")
         .textContent =
             position
-
             ? `🏆 #${position} Overall · ${overallScore(player).toFixed(0)} Score`
-
             : "Unranked";
 
 
@@ -3405,6 +3579,12 @@ function openProfile(name) {
         .getElementById("profileModal")
         .classList.add("show");
 
+
+    /* Load 3D model after modal becomes visible */
+    setTimeout(() => {
+        load3DModel(name);
+    }, 100);
+
 }
 
 
@@ -3472,8 +3652,12 @@ function showSection(section, button) {
     if (section === "leaderboards")
         renderLeaderboards();
 
-    if (section === "tiers")
+    if (section === "tiers") {
+
+        renderSearchResults();
         renderTierList();
+
+    }
 
     if (section === "stats")
         renderStatistics();
