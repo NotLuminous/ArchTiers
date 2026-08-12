@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,14 +7,9 @@
 
 <title>Arch Tiers</title>
 
-<!-- SkinView3D -->
 <script src="https://cdn.jsdelivr.net/npm/skinview3d@3.2.0/bundles/skinview3d.bundle.min.js"></script>
 
 <style>
-/* =========================================================
-   ARCH TIERS — PREMIUM RED UI
-========================================================= */
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -108,9 +104,7 @@ body::after {
     background: var(--red);
 }
 
-/* =========================================================
-   HEADER
-========================================================= */
+/* HEADER */
 
 header {
     position: relative;
@@ -242,9 +236,7 @@ header::before {
     }
 }
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+/* NAVIGATION */
 
 nav {
     position: sticky;
@@ -312,9 +304,7 @@ nav button.active::after {
     box-shadow: 0 0 10px var(--red);
 }
 
-/* =========================================================
-   MAIN
-========================================================= */
+/* MAIN */
 
 main {
     position: relative;
@@ -361,9 +351,7 @@ main {
     );
 }
 
-/* =========================================================
-   DASHBOARD
-========================================================= */
+/* DASHBOARD */
 
 .dashboard {
     display: grid;
@@ -460,9 +448,7 @@ main {
     margin-top: 15px;
 }
 
-/* =========================================================
-   STAT CARDS
-========================================================= */
+/* STAT CARDS */
 
 .stat-grid {
     display: grid;
@@ -505,9 +491,7 @@ main {
     letter-spacing: 1.2px;
 }
 
-/* =========================================================
-   PODIUM
-========================================================= */
+/* PODIUM */
 
 .podium {
     display: grid;
@@ -570,9 +554,7 @@ main {
     font-weight: 850;
 }
 
-/* =========================================================
-   TABS
-========================================================= */
+/* TABS */
 
 .tabs {
     display: flex;
@@ -610,9 +592,7 @@ main {
     box-shadow: 0 0 18px rgba(255,48,48,.08);
 }
 
-/* =========================================================
-   LEADERBOARD
-========================================================= */
+/* LEADERBOARD */
 
 .leaderboard {
     overflow: hidden;
@@ -700,9 +680,7 @@ main {
     font-weight: 950;
 }
 
-/* =========================================================
-   TIER BADGES
-========================================================= */
+/* TIER BADGES */
 
 .badge,
 .tier-badge {
@@ -730,9 +708,7 @@ main {
 .HT5 { background: linear-gradient(135deg,#419fee,#2166a9); }
 .LT5 { background: linear-gradient(135deg,#69b7f4,#347db8); }
 
-/* =========================================================
-   ADVANCED SEARCH
-========================================================= */
+/* ADVANCED SEARCH */
 
 .search-panel {
     position: relative;
@@ -858,9 +834,7 @@ main {
     font-size: 8px;
 }
 
-/* =========================================================
-   TIER LIST
-========================================================= */
+/* TIER LIST */
 
 .tier-list {
     display: flex;
@@ -973,9 +947,7 @@ main {
     padding: 5px;
 }
 
-/* =========================================================
-   DISTRIBUTION
-========================================================= */
+/* DISTRIBUTION */
 
 .distribution {
     display: grid;
@@ -1017,9 +989,7 @@ main {
     font-weight: 900;
 }
 
-/* =========================================================
-   ACHIEVEMENTS
-========================================================= */
+/* ACHIEVEMENTS */
 
 .achievements {
     display: flex;
@@ -1037,9 +1007,7 @@ main {
     font-weight: 850;
 }
 
-/* =========================================================
-   CHANGES
-========================================================= */
+/* CHANGES */
 
 .changes {
     display: flex;
@@ -1081,9 +1049,7 @@ main {
     color: #687381;
 }
 
-/* =========================================================
-   NO RESULTS
-========================================================= */
+/* NO RESULTS */
 
 .no-results {
     padding: 48px 20px;
@@ -1101,9 +1067,7 @@ main {
     font-size: 18px;
 }
 
-/* =========================================================
-   PROFILE MODAL
-========================================================= */
+/* PROFILE MODAL */
 
 .modal {
     display: none;
@@ -1344,9 +1308,7 @@ main {
     color: #687381;
 }
 
-/* =========================================================
-   FOOTER
-========================================================= */
+/* FOOTER */
 
 footer {
     position: relative;
@@ -1362,12 +1324,9 @@ footer strong {
     color: var(--red);
 }
 
-/* =========================================================
-   MOBILE
-========================================================= */
+/* MOBILE */
 
 @media(max-width:900px) {
-
     .dashboard {
         grid-template-columns: 1fr;
     }
@@ -1387,7 +1346,6 @@ footer strong {
 }
 
 @media(max-width:800px) {
-
     .podium {
         grid-template-columns: 1fr;
         align-items: stretch;
@@ -1411,7 +1369,6 @@ footer strong {
 }
 
 @media(max-width:600px) {
-
     header {
         padding: 55px 15px 42px;
     }
@@ -1532,7 +1489,6 @@ footer strong {
 }
 
 @media(max-width:400px) {
-
     .logo {
         font-size: 43px;
     }
@@ -1602,36 +1558,22 @@ footer strong {
 
 <main>
 
-<!-- =====================================================
-     HOME
-===================================================== -->
-
 <section id="home">
 
     <div class="dashboard">
-
         <div class="featured" id="featured"></div>
-
         <div class="stat-grid" id="quickStats"></div>
-
     </div>
 
     <div class="section">
-
         <div class="section-title">
             🥇 <span>Top 3 Overall</span>
         </div>
 
         <div class="podium" id="podium"></div>
-
     </div>
 
 </section>
-
-
-<!-- =====================================================
-     LEADERBOARDS
-===================================================== -->
 
 <section id="leaderboards" style="display:none">
 
@@ -1676,11 +1618,6 @@ footer strong {
     <div class="leaderboard" id="leaderboard"></div>
 
 </section>
-
-
-<!-- =====================================================
-     TIER LIST + ADVANCED SEARCH
-===================================================== -->
 
 <section id="tiers" style="display:none">
 
@@ -1741,11 +1678,7 @@ footer strong {
 
     </div>
 
-    <div
-        class="search-results"
-        id="searchResults">
-    </div>
-
+    <div class="search-results" id="searchResults"></div>
 
     <div class="search-area section">
 
@@ -1790,11 +1723,6 @@ footer strong {
     <div class="tier-list" id="tierList"></div>
 
 </section>
-
-
-<!-- =====================================================
-     STATISTICS
-===================================================== -->
 
 <section id="stats" style="display:none">
 
@@ -1870,30 +1798,16 @@ footer strong {
 
 </main>
 
-
 <footer>
     <strong>ARCH TIERS</strong>
     · Minecraft PvP Rankings
 </footer>
 
-
-<!-- =====================================================
-     PROFILE MODAL
-===================================================== -->
-
-<div
-    class="modal"
-    id="profileModal"
-    onclick="outside(event)"
->
+<div class="modal" id="profileModal" onclick="outside(event)">
 
     <div class="profile">
 
-        <button
-            class="close"
-            onclick="closeProfile()">
-            ×
-        </button>
+        <button class="close" onclick="closeProfile()">×</button>
 
         <div class="profile-banner"></div>
 
@@ -1909,15 +1823,9 @@ footer strong {
                         alt="Minecraft Skin"
                     >
 
-                    <div
-                        id="profileName"
-                        class="profile-name">
-                    </div>
+                    <div id="profileName" class="profile-name"></div>
 
-                    <div
-                        id="profileOverall"
-                        class="overall">
-                    </div>
+                    <div id="profileOverall" class="overall"></div>
 
                     <div
                         id="profileAchievements"
@@ -1951,10 +1859,7 @@ footer strong {
 
                 <h3>📊 Statistics</h3>
 
-                <div
-                    class="profile-grid"
-                    id="profileStats">
-                </div>
+                <div class="profile-grid" id="profileStats"></div>
 
             </div>
 
@@ -1980,11 +1885,10 @@ footer strong {
 
 </div>
 
-
 <script>
 
 /* =========================================================
-   MANUAL PLAYER DATABASE
+   PLAYER DATABASE
 ========================================================= */
 
 const players = [
@@ -2068,6 +1972,50 @@ const players = [
         stats: {
             wins: 2,
             losses: 5,
+            tests: 1
+        },
+
+        tester: "Tester",
+        testDate: "8/12/2026",
+
+        history: []
+    },
+
+    {
+        name: "Zerphat",
+
+        rankings: {
+            Bedfight: null,
+            Bedwars: "HT5",
+            UHC: null,
+            Sumo: null
+        },
+
+        stats: {
+            wins: 1,
+            losses: 4,
+            tests: 1
+        },
+
+        tester: "Head Tester",
+        testDate: "8/12/2026",
+
+        history: []
+    },
+
+    {
+        name: "Mr_Elite_noob",
+
+        rankings: {
+            Bedfight: "LT3",
+            Bedwars: null,
+            UHC: "LT3",
+            Sumo: null
+        },
+
+        stats: {
+            wins: 8,
+            losses: 2,
             tests: 1
         },
 
@@ -2253,7 +2201,7 @@ function getAchievements(player) {
 
 
 /* =========================================================
-   SKIN URL
+   SKIN URLS
 ========================================================= */
 
 function skinURL(name, size = 100) {
@@ -2264,11 +2212,6 @@ function skinURL(name, size = 100) {
         size;
 
 }
-
-
-/* =========================================================
-   FULL SKIN URL
-========================================================= */
 
 function fullSkinURL(name) {
 
@@ -2363,14 +2306,12 @@ function renderHome() {
 
     }
 
-
     const totalWins =
         players.reduce(
             (sum, p) =>
                 sum + Number(p.stats?.wins || 0),
             0
         );
-
 
     const totalTests =
         players.reduce(
@@ -2379,10 +2320,8 @@ function renderHome() {
             0
         );
 
-
     const quick =
         document.getElementById("quickStats");
-
 
     quick.innerHTML = `
 
@@ -2440,7 +2379,7 @@ function renderHome() {
 function renderPodium() {
 
     const ranking =
-        sortedOverall().slice(0,3);
+        sortedOverall().filter(p => overallScore(p) > 0).slice(0,3);
 
     const box =
         document.getElementById("podium");
@@ -2531,7 +2470,6 @@ function renderSearchResults() {
             .getElementById("searchTier")
             .value;
 
-
     const results =
         players.filter(player => {
 
@@ -2544,14 +2482,10 @@ function renderSearchResults() {
             let modeMatch = true;
             let tierMatch = true;
 
-
             if (mode !== "All") {
-
                 modeMatch =
                     Boolean(player.rankings[mode]);
-
             }
-
 
             if (selectedTier !== "All") {
 
@@ -2592,11 +2526,9 @@ function renderSearchResults() {
 
             }
 
-
             return nameMatch && modeMatch && tierMatch;
 
         });
-
 
     if (!search && mode === "All" && selectedTier === "All") {
 
@@ -2611,7 +2543,6 @@ function renderSearchResults() {
 
     }
 
-
     if (!results.length) {
 
         box.innerHTML = `
@@ -2625,7 +2556,6 @@ function renderSearchResults() {
 
     }
 
-
     box.innerHTML =
         results.map(player => {
 
@@ -2634,12 +2564,10 @@ function renderSearchResults() {
                     m => player.rankings[m]
                 );
 
-
             const displayedModes =
                 mode === "All"
                     ? rankedModes
                     : [mode];
-
 
             return `
 
@@ -2735,7 +2663,6 @@ function renderLeaderboards() {
 
     let ranking = [...players];
 
-
     if (leaderboardMode === "Overall") {
 
         ranking.sort(
@@ -2758,7 +2685,6 @@ function renderLeaderboards() {
 
     }
 
-
     ranking =
         ranking.filter(player => {
 
@@ -2770,7 +2696,6 @@ function renderLeaderboards() {
             );
 
         });
-
 
     if (!ranking.length) {
 
@@ -2792,7 +2717,6 @@ function renderLeaderboards() {
         return;
     }
 
-
     box.innerHTML =
         ranking.map((player,index) => {
 
@@ -2801,12 +2725,10 @@ function renderLeaderboards() {
                 ? bestTier(player)
                 : player.rankings[leaderboardMode];
 
-
             const score =
                 leaderboardMode === "Overall"
                 ? overallScore(player).toFixed(0)
                 : tierScore(tier);
-
 
             return `
 
@@ -2918,7 +2840,6 @@ function renderTierList() {
 
     let any = false;
 
-
     tiers.forEach((tier,index) => {
 
         const matching =
@@ -2928,23 +2849,19 @@ function renderTierList() {
 
             });
 
-
         if (matching.length)
             any = true;
-
 
         const row =
             document.createElement("div");
 
         row.className = "tier";
 
-
         const name =
             document.createElement("div");
 
         name.className =
             "tier-name " + tier;
-
 
         name.innerHTML = `
 
@@ -2966,12 +2883,10 @@ function renderTierList() {
 
         `;
 
-
         const playersArea =
             document.createElement("div");
 
         playersArea.className = "players";
-
 
         if (!matching.length) {
 
@@ -2992,7 +2907,6 @@ function renderTierList() {
                 card.onclick =
                     () => openProfile(player.name);
 
-
                 card.innerHTML = `
 
                     <img
@@ -3012,7 +2926,6 @@ function renderTierList() {
             });
 
         }
-
 
         row.appendChild(name);
         row.appendChild(playersArea);
@@ -3037,14 +2950,12 @@ function renderStatistics() {
             0
         );
 
-
     const totalLosses =
         players.reduce(
             (sum,p) =>
                 sum + Number(p.stats?.losses || 0),
             0
         );
-
 
     const totalTests =
         players.reduce(
@@ -3053,10 +2964,8 @@ function renderStatistics() {
             0
         );
 
-
     const overall =
-        sortedOverall()[0];
-
+        sortedOverall().find(p => overallScore(p) > 0);
 
     document
         .getElementById("bigStats")
@@ -3144,11 +3053,9 @@ function renderDistribution() {
 
     const counts = {};
 
-
     tiers.forEach(tier => {
         counts[tier] = 0;
     });
-
 
     players.forEach(player => {
 
@@ -3164,13 +3071,11 @@ function renderDistribution() {
 
     });
 
-
     const max =
         Math.max(
             ...Object.values(counts),
             1
         );
-
 
     box.innerHTML =
         tiers.map(tier => `
@@ -3215,7 +3120,6 @@ function mostCommonTier() {
         counts[t] = 0
     );
 
-
     players.forEach(player => {
 
         modes.forEach(mode => {
@@ -3230,10 +3134,8 @@ function mostCommonTier() {
 
     });
 
-
     let best = "N/A";
     let amount = 0;
-
 
     Object.keys(counts).forEach(tier => {
 
@@ -3245,7 +3147,6 @@ function mostCommonTier() {
         }
 
     });
-
 
     return best;
 
@@ -3264,7 +3165,6 @@ async function load3DModel(name) {
     if (!canvas)
         return;
 
-
     if (skinViewer) {
 
         try {
@@ -3275,7 +3175,6 @@ async function load3DModel(name) {
 
     }
 
-
     try {
 
         skinViewer =
@@ -3284,7 +3183,6 @@ async function load3DModel(name) {
                 width: 330,
                 height: 320
             });
-
 
         skinViewer.controls.enableRotate = true;
         skinViewer.controls.enableZoom = true;
@@ -3296,15 +3194,12 @@ async function load3DModel(name) {
             70
         );
 
-
         skinViewer.animation =
             new skinview3d.IdleAnimation();
-
 
         await skinViewer.loadSkin(
             fullSkinURL(name)
         );
-
 
         skinViewer.playerObject.skin.rightArm.rotation.z = 0;
         skinViewer.playerObject.skin.leftArm.rotation.z = 0;
@@ -3316,7 +3211,9 @@ async function load3DModel(name) {
             error
         );
 
-        canvas.parentElement.innerHTML = `
+        const modelBox = canvas.parentElement;
+
+        modelBox.innerHTML = `
             <div style="
                 height:100%;
                 display:flex;
@@ -3357,36 +3254,32 @@ function openProfile(name) {
     if (!player)
         return;
 
-
     const ranking =
         sortedOverall();
 
-
-    const position =
-        ranking.findIndex(
-            p => p.name === name
-        ) + 1;
-
+    const rankedPosition =
+        ranking
+            .filter(p => overallScore(p) > 0)
+            .findIndex(
+                p => p.name === name
+            ) + 1;
 
     document
         .getElementById("profileSkin")
         .src =
             skinURL(name,120);
 
-
     document
         .getElementById("profileName")
         .textContent =
             name;
 
-
     document
         .getElementById("profileOverall")
         .textContent =
-            position
-            ? `🏆 #${position} Overall · ${overallScore(player).toFixed(0)} Score`
+            rankedPosition
+            ? `🏆 #${rankedPosition} Overall · ${overallScore(player).toFixed(0)} Score`
             : "Unranked";
-
 
     document
         .getElementById("profileAchievements")
@@ -3400,7 +3293,6 @@ function openProfile(name) {
                 )
                 .join("");
 
-
     document
         .getElementById("profileRanks")
         .innerHTML =
@@ -3408,7 +3300,6 @@ function openProfile(name) {
 
                 const tier =
                     player.rankings[mode];
-
 
                 return `
 
@@ -3437,7 +3328,6 @@ function openProfile(name) {
 
             }).join("");
 
-
     const wins =
         Number(player.stats?.wins || 0);
 
@@ -3446,7 +3336,6 @@ function openProfile(name) {
 
     const tests =
         Number(player.stats?.tests || 0);
-
 
     document
         .getElementById("profileStats")
@@ -3473,7 +3362,6 @@ function openProfile(name) {
             </div>
 
         `;
-
 
     document
         .getElementById("profileTesting")
@@ -3509,10 +3397,8 @@ function openProfile(name) {
 
         `;
 
-
     const history =
         player.history || [];
-
 
     if (!history.length) {
 
@@ -3574,13 +3460,10 @@ function openProfile(name) {
 
     }
 
-
     document
         .getElementById("profileModal")
         .classList.add("show");
 
-
-    /* Load 3D model after modal becomes visible */
     setTimeout(() => {
         load3DModel(name);
     }, 100);
@@ -3599,7 +3482,6 @@ function closeProfile() {
         .classList.remove("show");
 
 }
-
 
 function outside(event) {
 
@@ -3635,16 +3517,13 @@ function showSection(section, button) {
 
     });
 
-
     document
         .querySelectorAll("nav button")
         .forEach(b =>
             b.classList.remove("active")
         );
 
-
     button.classList.add("active");
-
 
     if (section === "home")
         renderHome();
@@ -3661,7 +3540,6 @@ function showSection(section, button) {
 
     if (section === "stats")
         renderStatistics();
-
 
     window.scrollTo({
         top: 0,
@@ -3685,7 +3563,6 @@ function escapeHTML(value) {
         .replace(/'/g,"&#039;");
 
 }
-
 
 function escapeJS(value) {
 
@@ -3724,3 +3601,4 @@ renderStatistics();
 
 </body>
 </html>
+```
