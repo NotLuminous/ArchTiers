@@ -7,10 +7,6 @@
 <title>Arch Tiers</title>
 
 <style>
-/* =========================================================
-   RESET
-========================================================= */
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -23,28 +19,37 @@ html {
 
 body {
     min-height: 100vh;
-    background:
-        radial-gradient(circle at 20% 0%, rgba(45,255,120,.08), transparent 30%),
-        radial-gradient(circle at 80% 10%, rgba(50,120,255,.06), transparent 30%),
-        #05070a;
-    color: #f4f7fb;
+    color: #f5f7fa;
     font-family: Inter, Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 15% 0%, rgba(57,255,120,.12), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(80,120,255,.10), transparent 30%),
+        #05070a;
 }
 
-/* =========================================================
-   SCROLLBAR
-========================================================= */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .35;
+    background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
 
 ::-webkit-scrollbar {
     width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #07090d;
+    background: #06080b;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #26302b;
+    background: #28332d;
     border-radius: 20px;
 }
 
@@ -52,97 +57,67 @@ body {
     background: #39ff78;
 }
 
-/* =========================================================
-   BACKGROUND
-========================================================= */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-        linear-gradient(
-            rgba(255,255,255,.015) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.015) 1px,
-            transparent 1px
-        );
-    background-size: 40px 40px;
-    mask-image: linear-gradient(
-        to bottom,
-        black,
-        transparent 85%
-    );
-}
-
-/* =========================================================
+/* =========================
    HEADER
-========================================================= */
+========================= */
 
 header {
     position: relative;
-    padding: 55px 20px 42px;
-    text-align: center;
     overflow: hidden;
+    padding: 65px 20px 55px;
+    text-align: center;
     border-bottom: 1px solid rgba(255,255,255,.07);
     background:
         linear-gradient(
             180deg,
-            rgba(15,20,26,.95),
-            rgba(5,7,10,.75)
+            rgba(12,18,15,.96),
+            rgba(5,7,10,.82)
         );
 }
 
 header::before {
     content: "";
     position: absolute;
-    width: 450px;
-    height: 180px;
+    width: 520px;
+    height: 220px;
     left: 50%;
-    top: -100px;
+    top: -130px;
     transform: translateX(-50%);
     background: #39ff78;
     filter: blur(120px);
-    opacity: .12;
+    opacity: .13;
 }
 
 .logo {
     position: relative;
-    font-size: clamp(38px, 7vw, 70px);
+    font-size: clamp(45px, 9vw, 88px);
     line-height: 1;
     font-weight: 1000;
-    letter-spacing: -3px;
+    letter-spacing: -5px;
     text-transform: uppercase;
-    text-shadow:
-        0 0 20px rgba(57,255,120,.12);
 }
 
 .logo .arch {
-    color: #ffffff;
+    color: white;
 }
 
 .logo .tiers {
     color: #39ff78;
-    text-shadow:
-        0 0 25px rgba(57,255,120,.35);
+    text-shadow: 0 0 35px rgba(57,255,120,.4);
 }
 
 .subtitle {
     position: relative;
-    margin-top: 14px;
-    color: #7e8997;
-    font-size: 14px;
-    letter-spacing: 3px;
+    margin-top: 17px;
+    color: #7d8996;
+    font-size: 13px;
+    letter-spacing: 4px;
     text-transform: uppercase;
 }
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+/* =========================
+   NAV
+========================= */
 
 nav {
     position: sticky;
@@ -150,64 +125,214 @@ nav {
     z-index: 100;
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 8px;
     flex-wrap: wrap;
     padding: 13px 15px;
-    background: rgba(7,10,14,.86);
+    background: rgba(5,8,11,.84);
     border-bottom: 1px solid rgba(255,255,255,.06);
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(20px);
 }
 
 nav button {
-    position: relative;
-    border: 1px solid #252d37;
-    background: #10151b;
-    color: #87919f;
-    border-radius: 9px;
+    border: 1px solid #252e37;
+    border-radius: 10px;
     padding: 10px 17px;
-    cursor: pointer;
+    background: #10151b;
+    color: #8d98a5;
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 850;
+    cursor: pointer;
     transition: .2s ease;
 }
 
 nav button:hover {
     color: white;
-    border-color: #39434f;
-    background: #151b23;
+    border-color: #3b4652;
+    background: #171e26;
     transform: translateY(-1px);
 }
 
 nav button.active {
-    color: #041009;
+    color: #031008;
     background: #39ff78;
     border-color: #39ff78;
-    box-shadow:
-        0 0 20px rgba(57,255,120,.15);
+    box-shadow: 0 0 25px rgba(57,255,120,.18);
 }
 
-/* =========================================================
+/* =========================
    MAIN
-========================================================= */
+========================= */
 
 main {
     position: relative;
-    width: min(1200px, 94%);
-    margin: 34px auto 70px;
+    width: min(1250px, 94%);
+    margin: 35px auto 70px;
 }
 
-/* =========================================================
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.dashboard-card {
+    position: relative;
+    overflow: hidden;
+    padding: 22px;
+    border: 1px solid #242d36;
+    border-radius: 16px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(17,23,29,.98),
+            rgba(10,14,19,.98)
+        );
+    box-shadow: 0 15px 45px rgba(0,0,0,.18);
+}
+
+.dashboard-card::after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    right: -70px;
+    top: -70px;
+    background: #39ff78;
+    filter: blur(60px);
+    opacity: .07;
+}
+
+.dashboard-title {
+    color: #7f8a97;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.dashboard-number {
+    margin-top: 6px;
+    font-size: 32px;
+    font-weight: 1000;
+}
+
+.dashboard-number span {
+    color: #39ff78;
+}
+
+.dashboard-sub {
+    margin-top: 5px;
+    color: #64707d;
+    font-size: 12px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.stat-card {
+    padding: 16px;
+    border: 1px solid #242d36;
+    border-radius: 14px;
+    background: #0d1319;
+}
+
+.stat-number {
+    font-size: 23px;
+    font-weight: 1000;
+}
+
+.stat-label {
+    margin-top: 4px;
+    color: #687481;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/* =========================
+   FEATURED
+========================= */
+
+.featured {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 25px;
+    padding: 24px;
+    border: 1px solid rgba(57,255,120,.2);
+    border-radius: 17px;
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(57,255,120,.11),
+            transparent 35%
+        ),
+        linear-gradient(135deg, #101a15, #0a1014);
+}
+
+.featured-label {
+    color: #39ff78;
+    font-size: 11px;
+    font-weight: 950;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.featured-content {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 13px;
+}
+
+.featured-head {
+    width: 58px;
+    height: 58px;
+    border: 2px solid #39ff78;
+    border-radius: 10px;
+    image-rendering: pixelated;
+    background: #070a0d;
+}
+
+.featured-name {
+    font-size: 23px;
+    font-weight: 1000;
+}
+
+.featured-ranks {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-top: 7px;
+}
+
+.featured-rank {
+    padding: 5px 9px;
+    border-radius: 6px;
+    background: #19231d;
+    color: #b8c4be;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+/* =========================
    TOP BAR
-========================================================= */
+========================= */
 
 .top {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     gap: 18px;
-    margin-bottom: 22px;
     flex-wrap: wrap;
+    margin-bottom: 18px;
 }
 
 .title-area {
@@ -219,41 +344,34 @@ main {
 .title-icon {
     display: grid;
     place-items: center;
-    width: 45px;
-    height: 45px;
-    border-radius: 12px;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(57,255,120,.2),
-            rgba(57,255,120,.04)
-        );
+    width: 46px;
+    height: 46px;
     border: 1px solid rgba(57,255,120,.25);
-    box-shadow:
-        inset 0 0 20px rgba(57,255,120,.04);
+    border-radius: 12px;
+    background: rgba(57,255,120,.07);
     font-size: 22px;
 }
 
 .title {
     font-size: 22px;
-    font-weight: 950;
+    font-weight: 1000;
 }
 
-.title .green {
+.green {
     color: #39ff78;
 }
 
 .mode-label {
-    color: #717c8b;
-    font-size: 12px;
     margin-top: 4px;
-    text-transform: uppercase;
+    color: #6d7885;
+    font-size: 11px;
     letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
-/* =========================================================
+/* =========================
    SEARCH
-========================================================= */
+========================= */
 
 .search-wrapper {
     position: relative;
@@ -264,15 +382,15 @@ main {
     left: 13px;
     top: 50%;
     transform: translateY(-50%);
-    color: #687381;
     pointer-events: none;
+    color: #687481;
 }
 
 .search {
-    width: 260px;
+    width: 280px;
     padding: 12px 14px 12px 40px;
+    border: 1px solid #29323c;
     border-radius: 10px;
-    border: 1px solid #252d37;
     outline: none;
     background: #0c1117;
     color: white;
@@ -280,188 +398,123 @@ main {
 }
 
 .search::placeholder {
-    color: #596370;
+    color: #58636f;
 }
 
 .search:focus {
     border-color: rgba(57,255,120,.5);
-    box-shadow:
-        0 0 0 3px rgba(57,255,120,.06);
+    box-shadow: 0 0 0 3px rgba(57,255,120,.06);
 }
 
-/* =========================================================
+/* =========================
+   SEARCH RESULTS
+========================= */
+
+.search-results {
+    display: none;
+    margin-bottom: 18px;
+}
+
+.search-results.show {
+    display: block;
+}
+
+.search-result {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 14px;
+    border: 1px solid #27313a;
+    border-radius: 12px;
+    background: #0e141a;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.search-result:hover {
+    border-color: rgba(57,255,120,.35);
+    transform: translateY(-2px);
+}
+
+.search-result-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.search-result-head {
+    width: 40px;
+    height: 40px;
+    border-radius: 7px;
+    image-rendering: pixelated;
+}
+
+.search-result-name {
+    font-weight: 900;
+}
+
+.search-result-mode {
+    margin-top: 3px;
+    color: #697582;
+    font-size: 11px;
+}
+
+.search-result-tier {
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 950;
+}
+
+/* =========================
    TIER LIST
-========================================================= */
+========================= */
 
 .tier-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 9px;
 }
 
 .tier {
     position: relative;
     display: grid;
-    grid-template-columns: 105px 1fr;
-    min-height: 76px;
+    grid-template-columns: 110px 1fr;
+    min-height: 82px;
     overflow: hidden;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,.065);
-    background:
-        linear-gradient(
-            110deg,
-            rgba(18,23,30,.98),
-            rgba(11,15,20,.98)
-        );
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.15);
-    transition:
-        transform .2s ease,
-        border-color .2s ease,
-        box-shadow .2s ease;
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 14px;
+    background: linear-gradient(110deg, #151b22, #0d1217);
+    box-shadow: 0 8px 25px rgba(0,0,0,.16);
+    transition: .2s ease;
 }
 
 .tier:hover {
-    transform: translateX(3px);
-    border-color: rgba(255,255,255,.12);
-    box-shadow:
-        0 12px 35px rgba(0,0,0,.22);
-}
-
-.tier::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.015),
-            transparent 35%
-        );
+    transform: translateX(4px);
+    border-color: rgba(255,255,255,.13);
+    box-shadow: 0 14px 35px rgba(0,0,0,.24);
 }
 
 .tier-name {
     position: relative;
     z-index: 2;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     gap: 3px;
-    color: #fff;
-    font-size: 17px;
+    color: white;
+    font-size: 18px;
     font-weight: 1000;
-    letter-spacing: .5px;
-    text-shadow:
-        0 2px 8px rgba(0,0,0,.4);
+    text-shadow: 0 2px 9px rgba(0,0,0,.45);
 }
 
 .tier-name small {
     font-size: 8px;
-    opacity: .65;
+    opacity: .7;
     letter-spacing: 1.5px;
 }
-
-/* =========================================================
-   TIER COLORS
-========================================================= */
-
-.HT1 {
-    background:
-        linear-gradient(
-            135deg,
-            #ff3434,
-            #a90e22
-        );
-}
-
-.LT1 {
-    background:
-        linear-gradient(
-            135deg,
-            #ff5d5d,
-            #bd2535
-        );
-}
-
-.HT2 {
-    background:
-        linear-gradient(
-            135deg,
-            #ff9a38,
-            #c95c12
-        );
-}
-
-.LT2 {
-    background:
-        linear-gradient(
-            135deg,
-            #ffb85a,
-            #d47c1f
-        );
-}
-
-.HT3 {
-    color: #151006;
-    background:
-        linear-gradient(
-            135deg,
-            #f4d33f,
-            #b99a19
-        );
-}
-
-.LT3 {
-    color: #151006;
-    background:
-        linear-gradient(
-            135deg,
-            #f5e276,
-            #c7b543
-        );
-}
-
-.HT4 {
-    background:
-        linear-gradient(
-            135deg,
-            #3bd87c,
-            #19884d
-        );
-}
-
-.LT4 {
-    background:
-        linear-gradient(
-            135deg,
-            #63e99a,
-            #26965d
-        );
-}
-
-.HT5 {
-    background:
-        linear-gradient(
-            135deg,
-            #419fee,
-            #2166a9
-        );
-}
-
-.LT5 {
-    background:
-        linear-gradient(
-            135deg,
-            #69b7f4,
-            #347db8
-        );
-}
-
-/* =========================================================
-   PLAYERS
-========================================================= */
 
 .players {
     position: relative;
@@ -470,84 +523,120 @@ main {
     align-items: center;
     align-content: center;
     flex-wrap: wrap;
-    gap: 8px;
-    min-height: 76px;
-    padding: 11px 13px;
+    gap: 9px;
+    min-height: 82px;
+    padding: 11px 14px;
 }
+
+/* =========================
+   TIER COLORS
+========================= */
+
+.HT1 {
+    background: linear-gradient(135deg, #ff3434, #a90e22);
+}
+
+.LT1 {
+    background: linear-gradient(135deg, #ff5d5d, #bd2535);
+}
+
+.HT2 {
+    background: linear-gradient(135deg, #ff9a38, #c95c12);
+}
+
+.LT2 {
+    background: linear-gradient(135deg, #ffb85a, #d47c1f);
+}
+
+.HT3 {
+    background: linear-gradient(135deg, #f4d33f, #b99a19);
+    color: #151006;
+}
+
+.LT3 {
+    background: linear-gradient(135deg, #f5e276, #c7b543);
+    color: #151006;
+}
+
+.HT4 {
+    background: linear-gradient(135deg, #3bd87c, #19884d);
+}
+
+.LT4 {
+    background: linear-gradient(135deg, #63e99a, #26965d);
+}
+
+.HT5 {
+    background: linear-gradient(135deg, #419fee, #2166a9);
+}
+
+.LT5 {
+    background: linear-gradient(135deg, #69b7f4, #347db8);
+}
+
+/* =========================
+   PLAYER CARD
+========================= */
 
 .player {
     display: flex;
     align-items: center;
-    gap: 8px;
-    min-height: 43px;
-    padding: 5px 8px 5px 5px;
-    border-radius: 9px;
-    border: 1px solid #29313c;
-    background:
-        linear-gradient(
-            135deg,
-            #1a212a,
-            #11161d
-        );
-    box-shadow:
-        0 4px 12px rgba(0,0,0,.18);
-    transition:
-        transform .18s ease,
-        border-color .18s ease,
-        box-shadow .18s ease;
-    animation: playerIn .25s ease both;
-}
-
-@keyframes playerIn {
-    from {
-        opacity: 0;
-        transform: scale(.96);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    gap: 9px;
+    min-height: 46px;
+    padding: 6px 10px 6px 6px;
+    border: 1px solid #29323c;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #1a222b, #11171e);
+    box-shadow: 0 5px 15px rgba(0,0,0,.2);
+    cursor: pointer;
+    transition: .18s ease;
 }
 
 .player:hover {
-    transform: translateY(-2px);
-    border-color: rgba(57,255,120,.35);
+    transform: translateY(-3px);
+    border-color: rgba(57,255,120,.4);
     box-shadow:
-        0 7px 20px rgba(0,0,0,.28),
-        0 0 16px rgba(57,255,120,.04);
+        0 10px 24px rgba(0,0,0,.3),
+        0 0 15px rgba(57,255,120,.04);
 }
 
 .player-head {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #3b4651;
     border-radius: 6px;
     image-rendering: pixelated;
     background: #080b0f;
-    border: 1px solid #39434f;
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 }
 
 .player-name {
-    color: #e9edf2;
+    color: #edf1f5;
     font-size: 13px;
-    font-weight: 850;
-    cursor: pointer;
-    white-space: nowrap;
+    font-weight: 900;
 }
 
-.player-name:hover {
-    color: #39ff78;
+.player-meta {
+    color: #65717e;
+    font-size: 9px;
 }
 
-.empty {
-    color: #4f5966;
-    font-size: 12px;
-    padding-left: 3px;
+.player-badge {
+    margin-left: 3px;
+    padding: 3px 5px;
+    border-radius: 4px;
+    font-size: 8px;
+    font-weight: 1000;
 }
 
-/* =========================================================
-   MODALS
-========================================================= */
+/* =========================
+   MODAL
+========================= */
 
 .modal {
     display: none;
@@ -557,8 +646,8 @@ main {
     align-items: center;
     justify-content: center;
     padding: 18px;
-    background: rgba(0,0,0,.78);
-    backdrop-filter: blur(10px);
+    background: rgba(0,0,0,.8);
+    backdrop-filter: blur(12px);
 }
 
 .modal.show {
@@ -570,25 +659,20 @@ main {
     width: min(760px, 100%);
     max-height: 92vh;
     overflow-y: auto;
-    padding: 27px;
-    border: 1px solid #2b343f;
-    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid #2a343f;
+    border-radius: 18px;
     background:
-        radial-gradient(
-            circle at top right,
-            rgba(57,255,120,.05),
-            transparent 35%
-        ),
-        #0d1218;
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.6);
+        radial-gradient(circle at top right, rgba(57,255,120,.06), transparent 35%),
+        #0c1218;
+    box-shadow: 0 35px 100px rgba(0,0,0,.7);
     animation: modalIn .2s ease;
 }
 
 @keyframes modalIn {
     from {
         opacity: 0;
-        transform: translateY(10px) scale(.98);
+        transform: translateY(12px) scale(.98);
     }
 
     to {
@@ -599,53 +683,61 @@ main {
 
 .close {
     position: absolute;
-    right: 16px;
     top: 16px;
+    right: 16px;
     width: 35px;
     height: 35px;
-    border: 1px solid #303945;
+    border: 1px solid #303a45;
     border-radius: 8px;
-    background: #171d25;
-    color: #aeb6c1;
+    background: #171e26;
+    color: #aab4bf;
     font-size: 20px;
     cursor: pointer;
 }
 
 .close:hover {
     color: white;
-    background: #232b35;
+    background: #242c35;
 }
 
-/* =========================================================
+/* =========================
    PROFILE
-========================================================= */
+========================= */
 
 .profile-head {
-    text-align: center;
     padding: 10px 0 24px;
-    border-bottom: 1px solid #252d37;
+    text-align: center;
+    border-bottom: 1px solid #252e38;
+}
+
+.profile-rank-number {
+    margin-bottom: 12px;
+    color: #39ff78;
+    font-size: 11px;
+    font-weight: 1000;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .skin {
-    width: 105px;
-    height: 105px;
-    image-rendering: pixelated;
-    border-radius: 13px;
+    width: 110px;
+    height: 110px;
     border: 2px solid #39ff78;
-    box-shadow:
-        0 0 25px rgba(57,255,120,.14);
+    border-radius: 14px;
+    image-rendering: pixelated;
+    box-shadow: 0 0 30px rgba(57,255,120,.15);
 }
 
 .profile-name {
-    margin-top: 13px;
-    font-size: 28px;
+    margin-top: 14px;
+    font-size: 30px;
     font-weight: 1000;
 }
 
 .status {
     margin-top: 7px;
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 850;
 }
 
 .profile-section {
@@ -655,46 +747,204 @@ main {
 .profile-section h3 {
     margin-bottom: 10px;
     color: #39ff78;
-    font-size: 14px;
-    text-transform: uppercase;
+    font-size: 13px;
     letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .rank {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     gap: 15px;
     margin-bottom: 7px;
     padding: 12px 14px;
-    border: 1px solid #252d37;
+    border: 1px solid #252e38;
     border-radius: 9px;
     background: #141a21;
 }
 
-.history {
-    margin-bottom: 7px;
+.tier-badge {
+    min-width: 55px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: white;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 1000;
+}
+
+.tier-badge.HT3,
+.tier-badge.LT3 {
+    color: #151006;
+}
+
+.profile-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.profile-stat {
+    padding: 15px;
+    border: 1px solid #252e38;
+    border-radius: 10px;
+    background: #141a21;
+    text-align: center;
+}
+
+.profile-stat-number {
+    font-size: 23px;
+    font-weight: 1000;
+}
+
+.profile-stat-label {
+    margin-top: 4px;
+    color: #687481;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.winrate {
+    margin-top: 10px;
+    padding: 14px;
+    border: 1px solid rgba(57,255,120,.15);
+    border-radius: 10px;
+    background: rgba(57,255,120,.04);
+}
+
+.winrate strong {
+    color: #39ff78;
+}
+
+.testing-row {
+    display: flex;
+    justify-content: space-between;
     padding: 12px 14px;
-    border: 1px solid #252d37;
+    margin-bottom: 7px;
+    border: 1px solid #252e38;
     border-radius: 9px;
     background: #141a21;
-    color: #aab3bf;
-    line-height: 1.5;
 }
 
 .muted {
-    color: #687381;
+    color: #687481;
 }
 
-/* =========================================================
+.history-item {
+    margin-bottom: 8px;
+    padding: 13px 14px;
+    border: 1px solid #252e38;
+    border-radius: 9px;
+    background: #141a21;
+}
+
+.history-mode {
+    color: #39ff78;
+    font-size: 11px;
+    font-weight: 950;
+}
+
+.history-change {
+    margin-top: 5px;
+    font-weight: 850;
+}
+
+.history-date {
+    margin-top: 4px;
+    color: #687481;
+    font-size: 10px;
+}
+
+/* =========================
+   OVERALL
+========================= */
+
+.overall-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.overall-player {
+    display: grid;
+    grid-template-columns: 45px 1fr auto;
+    align-items: center;
+    gap: 13px;
+    padding: 12px;
+    border: 1px solid #252e38;
+    border-radius: 12px;
+    background: #10161c;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.overall-player:hover {
+    border-color: rgba(57,255,120,.3);
+    transform: translateX(3px);
+}
+
+.overall-position {
+    text-align: center;
+    color: #596571;
+    font-size: 18px;
+    font-weight: 1000;
+}
+
+.overall-position.top-one {
+    color: #39ff78;
+}
+
+.overall-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.overall-head {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    image-rendering: pixelated;
+}
+
+.overall-name {
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.overall-sub {
+    margin-top: 3px;
+    color: #65717e;
+    font-size: 9px;
+}
+
+.overall-score {
+    text-align: right;
+}
+
+.overall-score-number {
+    color: #39ff78;
+    font-size: 17px;
+    font-weight: 1000;
+}
+
+.overall-score-label {
+    color: #596571;
+    font-size: 8px;
+    text-transform: uppercase;
+}
+
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 
 footer {
-    padding: 25px;
-    text-align: center;
-    color: #46505d;
+    padding: 28px;
     border-top: 1px solid rgba(255,255,255,.05);
+    color: #46515d;
+    text-align: center;
     font-size: 12px;
 }
 
@@ -702,18 +952,27 @@ footer strong {
     color: #39ff78;
 }
 
-/* =========================================================
+/* =========================
    MOBILE
-========================================================= */
+========================= */
 
-@media(max-width: 700px) {
+@media(max-width: 800px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
 
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 650px) {
     header {
-        padding: 40px 15px 30px;
+        padding: 45px 15px 38px;
     }
 
     .logo {
-        letter-spacing: -2px;
+        letter-spacing: -3px;
     }
 
     nav {
@@ -721,8 +980,8 @@ footer strong {
     }
 
     nav button {
-        padding: 9px 12px;
-        font-size: 12px;
+        padding: 9px 11px;
+        font-size: 11px;
     }
 
     main {
@@ -730,16 +989,13 @@ footer strong {
         margin-top: 25px;
     }
 
+    .search-wrapper,
     .search {
         width: 100%;
     }
 
     .top {
         align-items: stretch;
-    }
-
-    .search-wrapper {
-        width: 100%;
     }
 
     .tier {
@@ -750,17 +1006,13 @@ footer strong {
         font-size: 13px;
     }
 
-    .tier-name small {
-        font-size: 7px;
-    }
-
     .players {
-        padding: 8px;
         min-height: 68px;
+        padding: 8px;
     }
 
     .player {
-        min-height: 39px;
+        min-height: 40px;
     }
 
     .player-head {
@@ -769,11 +1021,23 @@ footer strong {
     }
 
     .player-name {
-        font-size: 12px;
+        font-size: 11px;
+    }
+
+    .featured-content {
+        align-items: flex-start;
+    }
+
+    .profile-stat-grid {
+        grid-template-columns: 1fr;
     }
 
     .card {
-        padding: 20px;
+        padding: 21px;
+    }
+
+    .overall-player {
+        grid-template-columns: 32px 1fr auto;
     }
 }
 </style>
@@ -782,7 +1046,6 @@ footer strong {
 <body>
 
 <header>
-
     <div class="logo">
         <span class="arch">ARCH</span>
         <span class="tiers"> TIERS</span>
@@ -791,39 +1054,103 @@ footer strong {
     <div class="subtitle">
         Minecraft PvP Competitive Rankings
     </div>
-
 </header>
 
 <nav>
-
-    <button
-        id="BedfightBtn"
-        class="active"
-        onclick="changeMode('Bedfight')">
-        ⚔ Bedfight
-    </button>
-
-    <button
-        id="BedwarsBtn"
-        onclick="changeMode('Bedwars')">
-        🛏 Bedwars
-    </button>
-
-    <button
-        id="UHCBtn"
-        onclick="changeMode('UHC')">
-        💎 UHC
-    </button>
-
-    <button
-        id="SumoBtn"
-        onclick="changeMode('Sumo')">
-        🥊 Sumo
-    </button>
-
+    <button id="OverallBtn" onclick="showOverall()">🏆 Overall</button>
+    <button id="BedfightBtn" class="active" onclick="changeMode('Bedfight')">⚔ Bedfight</button>
+    <button id="BedwarsBtn" onclick="changeMode('Bedwars')">🛏 Bedwars</button>
+    <button id="UHCBtn" onclick="changeMode('UHC')">💎 UHC</button>
+    <button id="SumoBtn" onclick="changeMode('Sumo')">🥊 Sumo</button>
 </nav>
 
 <main>
+
+    <!-- DASHBOARD -->
+
+    <section class="dashboard">
+
+        <div class="dashboard-card">
+            <div class="dashboard-title">
+                Current Ranking
+            </div>
+
+            <div class="dashboard-number">
+                <span id="dashboardMode">Bedfight</span>
+            </div>
+
+            <div class="dashboard-sub" id="dashboardSubtitle">
+                Competitive player rankings
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+
+            <div class="stat-card">
+                <div class="stat-number" id="totalPlayers">0</div>
+                <div class="stat-label">Players</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number" id="totalTests">0</div>
+                <div class="stat-label">Tests</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number" id="totalWins">0</div>
+                <div class="stat-label">Wins</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number" id="topTierCount">0</div>
+                <div class="stat-label">HT1–HT3</div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FEATURED PLAYER -->
+
+    <section class="featured">
+
+        <div class="featured-label">
+            🌟 Featured Player
+        </div>
+
+        <div class="featured-content">
+
+            <img
+                id="featuredHead"
+                class="featured-head"
+                src="https://mc-heads.net/avatar/Luminous/64"
+                alt="Luminous">
+
+            <div>
+
+                <div class="featured-name">
+                    Luminous
+                </div>
+
+                <div class="featured-ranks">
+
+                    <span class="featured-rank">
+                        ⚔ HT3 Bedfight
+                    </span>
+
+                    <span class="featured-rank">
+                        🛏 HT3 Bedwars
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- TOP -->
 
     <div class="top">
 
@@ -836,13 +1163,10 @@ footer strong {
             <div>
 
                 <div class="title">
-                    <span class="green">ARCH</span>
-                    TIERS
+                    <span class="green">ARCH</span> TIERS
                 </div>
 
-                <div
-                    class="mode-label"
-                    id="modeTitle">
+                <div class="mode-label" id="modeTitle">
                     Bedfight Rankings
                 </div>
 
@@ -852,24 +1176,50 @@ footer strong {
 
         <div class="search-wrapper">
 
-            <span class="search-icon">
-                🔍
-            </span>
+            <span class="search-icon">🔍</span>
 
             <input
                 id="search"
                 class="search"
                 placeholder="Search player..."
-                oninput="render()">
+                autocomplete="off"
+                oninput="handleSearch()">
 
         </div>
 
     </div>
 
-    <div
-        id="tierList"
-        class="tier-list">
-    </div>
+    <!-- SEARCH RESULTS -->
+
+    <div id="searchResults" class="search-results"></div>
+
+    <!-- TIER LIST -->
+
+    <div id="tierList" class="tier-list"></div>
+
+    <!-- OVERALL -->
+
+    <section id="overallSection" style="display:none;">
+
+        <div class="dashboard-card" style="margin-bottom:15px;">
+
+            <div class="dashboard-title">
+                Overall Ranking
+            </div>
+
+            <div class="dashboard-number">
+                Top <span>Players</span>
+            </div>
+
+            <div class="dashboard-sub">
+                Overall score is calculated from each player's available tiers.
+            </div>
+
+        </div>
+
+        <div id="overallList" class="overall-list"></div>
+
+    </section>
 
 </main>
 
@@ -878,17 +1228,20 @@ footer strong {
 <div
     class="modal"
     id="profileModal"
-    onclick="outside(event,'profileModal')">
+    onclick="outside(event, 'profileModal')">
 
     <div class="card">
 
-        <button
-            class="close"
-            onclick="closeModal('profileModal')">
+        <button class="close" onclick="closeModal('profileModal')">
             ×
         </button>
 
         <div class="profile-head">
+
+            <div
+                id="profileOverall"
+                class="profile-rank-number">
+            </div>
 
             <img
                 id="profileSkin"
@@ -909,9 +1262,7 @@ footer strong {
 
         <div class="profile-section">
 
-            <h3>
-                🏆 Rankings
-            </h3>
+            <h3>🏆 Rankings</h3>
 
             <div id="profileRanks"></div>
 
@@ -919,9 +1270,7 @@ footer strong {
 
         <div class="profile-section">
 
-            <h3>
-                📊 Statistics
-            </h3>
+            <h3>📊 Statistics</h3>
 
             <div id="profileStats"></div>
 
@@ -929,9 +1278,7 @@ footer strong {
 
         <div class="profile-section">
 
-            <h3>
-                📝 Testing Information
-            </h3>
+            <h3>🧪 Testing Information</h3>
 
             <div id="profileTesting"></div>
 
@@ -939,9 +1286,7 @@ footer strong {
 
         <div class="profile-section">
 
-            <h3>
-                📜 Tier History
-            </h3>
+            <h3>📜 Tier History</h3>
 
             <div id="profileHistory"></div>
 
@@ -952,13 +1297,47 @@ footer strong {
 </div>
 
 <footer>
-
     <strong>ARCH TIERS</strong>
     · Minecraft PvP Rankings
-
 </footer>
 
 <script>
+
+/* =========================================================
+   MANUAL PLAYER DATABASE
+
+   ADD YOUR PLAYERS HERE.
+   You do NOT need a database anymore.
+========================================================= */
+
+const players = [
+
+    {
+        name: "Luminous",
+
+        rankings: {
+            Bedfight: "HT3",
+            Bedwars: "HT3",
+            UHC: null,
+            Sumo: null
+        },
+
+        stats: {
+            wins: 10,
+            losses: 0,
+            tests: null
+        },
+
+        tester: "Head Tester",
+
+        testedDate: "8/12/2026",
+
+        history: []
+
+    }
+
+];
+
 
 /* =========================================================
    SETTINGS
@@ -985,66 +1364,125 @@ const modes = [
 ];
 
 let currentMode = "Bedfight";
+let showingOverall = false;
+
 
 /* =========================================================
-   MANUAL PLAYER DATABASE
-   ADD/EDIT PLAYERS HERE
+   TIER SCORE
 ========================================================= */
 
-const players = {
+const tierScores = {
 
-    Luminous: {
+    HT1: 10,
+    LT1: 9,
 
-        ranked: true,
+    HT2: 8,
+    LT2: 7,
 
-        rankings: {
+    HT3: 6,
+    LT3: 5,
 
-            Bedfight: "HT3",
+    HT4: 4,
+    LT4: 3,
 
-            Bedwars: "HT3",
-
-            UHC: null,
-
-            Sumo: null
-
-        },
-
-        stats: {
-
-            wins: 10,
-
-            losses: 0,
-
-            tests: 0
-
-        },
-
-        testedDate: "8/12/2026",
-
-        tester: "Head Tester",
-
-        lastUpdate: "8/12/2026",
-
-        history: []
-
-    }
+    HT5: 2,
+    LT5: 1
 
 };
 
+
 /* =========================================================
-   CHANGE MODE
+   HELPERS
+========================================================= */
+
+function getWinRate(player) {
+
+    const wins = Number(player.stats?.wins || 0);
+    const losses = Number(player.stats?.losses || 0);
+
+    const total = wins + losses;
+
+    if (total === 0) {
+        return null;
+    }
+
+    return Math.round((wins / total) * 100);
+
+}
+
+
+function getOverallScore(player) {
+
+    let total = 0;
+    let count = 0;
+
+    modes.forEach(mode => {
+
+        const tier = player.rankings?.[mode];
+
+        if (tier && tierScores[tier]) {
+
+            total += tierScores[tier];
+            count++;
+
+        }
+
+    });
+
+    if (count === 0) {
+        return 0;
+    }
+
+    return total / count;
+
+}
+
+
+function getOverallRank(player) {
+
+    const ranked = [...players]
+        .filter(p => getOverallScore(p) > 0)
+        .sort((a, b) =>
+            getOverallScore(b) - getOverallScore(a)
+        );
+
+    return ranked.findIndex(
+        p => p.name === player.name
+    ) + 1;
+
+}
+
+
+function getTierClass(tier) {
+
+    return tier || "";
+
+}
+
+
+function skinURL(name, size = 64) {
+
+    return "https://mc-heads.net/avatar/" +
+        encodeURIComponent(name) +
+        "/" +
+        size;
+
+}
+
+
+/* =========================================================
+   NAVIGATION
 ========================================================= */
 
 function changeMode(mode) {
 
     currentMode = mode;
+    showingOverall = false;
 
     document
         .querySelectorAll("nav button")
         .forEach(button => {
-
             button.classList.remove("active");
-
         });
 
     document
@@ -1052,16 +1490,73 @@ function changeMode(mode) {
         .classList.add("active");
 
     document
+        .getElementById("tierList")
+        .style.display = "flex";
+
+    document
+        .getElementById("overallSection")
+        .style.display = "none";
+
+    document
         .getElementById("modeTitle")
+        .textContent = mode + " Rankings";
+
+    document
+        .getElementById("dashboardMode")
+        .textContent = mode;
+
+    document
+        .getElementById("dashboardSubtitle")
         .textContent =
-        mode + " Rankings";
+            "Competitive " +
+            mode +
+            " player rankings";
 
     render();
+    updateDashboard();
 
 }
 
+
+function showOverall() {
+
+    showingOverall = true;
+
+    document
+        .querySelectorAll("nav button")
+        .forEach(button => {
+            button.classList.remove("active");
+        });
+
+    document
+        .getElementById("OverallBtn")
+        .classList.add("active");
+
+    document
+        .getElementById("tierList")
+        .style.display = "none";
+
+    document
+        .getElementById("overallSection")
+        .style.display = "block";
+
+    document
+        .getElementById("dashboardMode")
+        .textContent = "Overall";
+
+    document
+        .getElementById("dashboardSubtitle")
+        .textContent =
+            "Combined competitive ranking";
+
+    renderOverall();
+    updateDashboard();
+
+}
+
+
 /* =========================================================
-   RENDER TIER LIST
+   TIER LIST
 ========================================================= */
 
 function render() {
@@ -1070,13 +1565,6 @@ function render() {
         document.getElementById("tierList");
 
     container.innerHTML = "";
-
-    const search =
-        document
-            .getElementById("search")
-            .value
-            .toLowerCase()
-            .trim();
 
     tiers.forEach((tier, index) => {
 
@@ -1091,117 +1579,58 @@ function render() {
         tierName.className =
             "tier-name " + tier;
 
-        const tierLabel =
+        const strong =
             document.createElement("strong");
 
-        tierLabel.textContent = tier;
+        strong.textContent = tier;
 
-        const tierSmall =
+        const small =
             document.createElement("small");
 
         if (index === 0) {
-
-            tierSmall.textContent = "ELITE";
-
+            small.textContent = "ELITE";
         } else if (index <= 3) {
-
-            tierSmall.textContent = "HIGH";
-
+            small.textContent = "HIGH";
         } else if (index <= 6) {
-
-            tierSmall.textContent = "MID";
-
+            small.textContent = "MID";
         } else {
-
-            tierSmall.textContent = "LOW";
-
+            small.textContent = "LOW";
         }
 
-        tierName.appendChild(tierLabel);
-        tierName.appendChild(tierSmall);
+        tierName.appendChild(strong);
+        tierName.appendChild(small);
 
         const area =
             document.createElement("div");
 
         area.className = "players";
 
-        let found = false;
+        const tierPlayers =
+            players.filter(player =>
+                player.rankings?.[currentMode] === tier
+            );
 
-        Object.keys(players).forEach(name => {
-
-            const player =
-                players[name];
-
-            if (
-                player.rankings[currentMode] !== tier
-            ) {
-                return;
-            }
-
-            if (
-                search &&
-                !name.toLowerCase().includes(search)
-            ) {
-                return;
-            }
-
-            found = true;
-
-            const box =
-                document.createElement("div");
-
-            box.className = "player";
-
-            const head =
-                document.createElement("img");
-
-            head.className = "player-head";
-
-            head.src =
-                "https://mc-heads.net/avatar/" +
-                encodeURIComponent(name) +
-                "/64";
-
-            head.alt =
-                name + " Minecraft head";
-
-            head.onerror =
-                function() {
-
-                    this.style.opacity = ".25";
-
-                };
-
-            const playerName =
-                document.createElement("span");
-
-            playerName.className =
-                "player-name";
-
-            playerName.textContent =
-                name;
-
-            playerName.onclick =
-                () => openProfile(name);
-
-            box.appendChild(head);
-            box.appendChild(playerName);
-
-            area.appendChild(box);
-
-        });
-
-        if (!found) {
+        if (tierPlayers.length === 0) {
 
             const empty =
                 document.createElement("span");
 
-            empty.className = "empty";
-
+            empty.style.color = "#4f5966";
+            empty.style.fontSize = "12px";
             empty.textContent =
                 "No players in this tier";
 
             area.appendChild(empty);
+
+        } else {
+
+            tierPlayers.forEach(player => {
+
+                area.appendChild(
+                    createPlayerCard(player)
+                );
+
+            });
 
         }
 
@@ -1214,44 +1643,527 @@ function render() {
 
 }
 
+
 /* =========================================================
-   PLAYER PROFILE
+   PLAYER CARD
+========================================================= */
+
+function createPlayerCard(player) {
+
+    const box =
+        document.createElement("div");
+
+    box.className = "player";
+
+    box.onclick = () =>
+        openProfile(player.name);
+
+    const head =
+        document.createElement("img");
+
+    head.className = "player-head";
+    head.src = skinURL(player.name, 64);
+    head.alt = player.name;
+
+    const info =
+        document.createElement("div");
+
+    info.className = "player-info";
+
+    const name =
+        document.createElement("div");
+
+    name.className = "player-name";
+    name.textContent = player.name;
+
+    const meta =
+        document.createElement("div");
+
+    meta.className = "player-meta";
+
+    const winRate =
+        getWinRate(player);
+
+    if (winRate !== null) {
+
+        meta.textContent =
+            winRate + "% Win Rate";
+
+    } else {
+
+        meta.textContent =
+            "No match statistics";
+
+    }
+
+    info.appendChild(name);
+    info.appendChild(meta);
+
+    const badge =
+        document.createElement("span");
+
+    badge.className =
+        "player-badge " +
+        getTierClass(
+            player.rankings?.[currentMode]
+        );
+
+    badge.textContent =
+        player.rankings?.[currentMode] ||
+        "N/A";
+
+    box.appendChild(head);
+    box.appendChild(info);
+    box.appendChild(badge);
+
+    return box;
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function handleSearch() {
+
+    const input =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase()
+            .trim();
+
+    const results =
+        document.getElementById("searchResults");
+
+    if (!input) {
+
+        results.innerHTML = "";
+        results.classList.remove("show");
+
+        render();
+
+        return;
+
+    }
+
+    const matches =
+        players.filter(player =>
+            player.name
+                .toLowerCase()
+                .includes(input)
+        );
+
+    results.innerHTML = "";
+
+    if (matches.length === 0) {
+
+        results.innerHTML = `
+            <div class="search-result">
+                <div class="search-result-left">
+                    <div>
+                        <div class="search-result-name">
+                            No players found
+                        </div>
+                        <div class="search-result-mode">
+                            Try another Minecraft username
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+    } else {
+
+        matches.forEach(player => {
+
+            const result =
+                document.createElement("div");
+
+            result.className =
+                "search-result";
+
+            result.onclick = () =>
+                openProfile(player.name);
+
+            const left =
+                document.createElement("div");
+
+            left.className =
+                "search-result-left";
+
+            const head =
+                document.createElement("img");
+
+            head.className =
+                "search-result-head";
+
+            head.src =
+                skinURL(player.name, 64);
+
+            const info =
+                document.createElement("div");
+
+            const name =
+                document.createElement("div");
+
+            name.className =
+                "search-result-name";
+
+            name.textContent =
+                player.name;
+
+            const mode =
+                document.createElement("div");
+
+            mode.className =
+                "search-result-mode";
+
+            mode.textContent =
+                "Highest tier: " +
+                getHighestTier(player);
+
+            info.appendChild(name);
+            info.appendChild(mode);
+
+            left.appendChild(head);
+            left.appendChild(info);
+
+            const tier =
+                document.createElement("div");
+
+            const highest =
+                getHighestTier(player);
+
+            tier.className =
+                "search-result-tier " +
+                getTierClass(highest);
+
+            tier.textContent =
+                highest || "N/A";
+
+            result.appendChild(left);
+            result.appendChild(tier);
+
+            results.appendChild(result);
+
+        });
+
+    }
+
+    results.classList.add("show");
+
+    document
+        .getElementById("tierList")
+        .style.display = "none";
+
+}
+
+
+function getHighestTier(player) {
+
+    let best = null;
+    let bestScore = -1;
+
+    modes.forEach(mode => {
+
+        const tier =
+            player.rankings?.[mode];
+
+        if (
+            tier &&
+            tierScores[tier] > bestScore
+        ) {
+
+            best = tier;
+            bestScore = tierScores[tier];
+
+        }
+
+    });
+
+    return best;
+
+}
+
+
+/* =========================================================
+   OVERALL
+========================================================= */
+
+function renderOverall() {
+
+    const container =
+        document.getElementById("overallList");
+
+    container.innerHTML = "";
+
+    const ranked =
+        [...players]
+            .filter(player =>
+                getOverallScore(player) > 0
+            )
+            .sort((a, b) =>
+                getOverallScore(b) -
+                getOverallScore(a)
+            );
+
+    if (ranked.length === 0) {
+
+        container.innerHTML = `
+            <div class="dashboard-card">
+                No ranked players yet.
+            </div>
+        `;
+
+        return;
+
+    }
+
+    ranked.forEach((player, index) => {
+
+        const row =
+            document.createElement("div");
+
+        row.className =
+            "overall-player";
+
+        row.onclick = () =>
+            openProfile(player.name);
+
+        const position =
+            document.createElement("div");
+
+        position.className =
+            "overall-position";
+
+        if (index === 0) {
+
+            position.classList.add("top-one");
+            position.textContent = "🥇";
+
+        } else if (index === 1) {
+
+            position.textContent = "🥈";
+
+        } else if (index === 2) {
+
+            position.textContent = "🥉";
+
+        } else {
+
+            position.textContent =
+                "#" + (index + 1);
+
+        }
+
+        const info =
+            document.createElement("div");
+
+        info.className =
+            "overall-info";
+
+        const head =
+            document.createElement("img");
+
+        head.className =
+            "overall-head";
+
+        head.src =
+            skinURL(player.name, 64);
+
+        const text =
+            document.createElement("div");
+
+        const name =
+            document.createElement("div");
+
+        name.className =
+            "overall-name";
+
+        name.textContent =
+            player.name;
+
+        const sub =
+            document.createElement("div");
+
+        sub.className =
+            "overall-sub";
+
+        sub.textContent =
+            getOverallTierText(player);
+
+        text.appendChild(name);
+        text.appendChild(sub);
+
+        info.appendChild(head);
+        info.appendChild(text);
+
+        const score =
+            document.createElement("div");
+
+        score.className =
+            "overall-score";
+
+        score.innerHTML = `
+            <div class="overall-score-number">
+                ${getOverallScore(player).toFixed(1)}
+            </div>
+            <div class="overall-score-label">
+                Overall Score
+            </div>
+        `;
+
+        row.appendChild(position);
+        row.appendChild(info);
+        row.appendChild(score);
+
+        container.appendChild(row);
+
+    });
+
+}
+
+
+function getOverallTierText(player) {
+
+    return modes
+        .map(mode => {
+
+            const tier =
+                player.rankings?.[mode];
+
+            if (!tier) {
+                return null;
+            }
+
+            return mode + ": " + tier;
+
+        })
+        .filter(Boolean)
+        .join(" · ");
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function updateDashboard() {
+
+    document
+        .getElementById("totalPlayers")
+        .textContent =
+        players.length;
+
+    let totalTests = 0;
+    let totalWins = 0;
+
+    players.forEach(player => {
+
+        totalTests +=
+            Number(player.stats?.tests || 0);
+
+        totalWins +=
+            Number(player.stats?.wins || 0);
+
+    });
+
+    document
+        .getElementById("totalTests")
+        .textContent =
+        totalTests;
+
+    document
+        .getElementById("totalWins")
+        .textContent =
+        totalWins;
+
+    const highTierPlayers =
+        players.filter(player => {
+
+            return modes.some(mode => {
+
+                const tier =
+                    player.rankings?.[mode];
+
+                return [
+                    "HT1",
+                    "LT1",
+                    "HT2",
+                    "LT2",
+                    "HT3",
+                    "LT3"
+                ].includes(tier);
+
+            });
+
+        });
+
+    document
+        .getElementById("topTierCount")
+        .textContent =
+        highTierPlayers.length;
+
+}
+
+
+/* =========================================================
+   PROFILE
 ========================================================= */
 
 function openProfile(name) {
 
     const player =
-        players[name];
+        players.find(p =>
+            p.name === name
+        );
 
     if (!player)
         return;
 
+    const overallRank =
+        getOverallRank(player);
+
+    document
+        .getElementById("profileOverall")
+        .textContent =
+        overallRank
+            ? "🏆 #" + overallRank + " Overall"
+            : "Unranked";
+
     document
         .getElementById("profileName")
         .textContent =
-        name;
+        player.name;
 
-    document
-        .getElementById("profileSkin")
-        .src =
-        "https://mc-heads.net/avatar/" +
-        encodeURIComponent(name) +
-        "/100";
+    const skin =
+        document.getElementById("profileSkin");
+
+    skin.src =
+        skinURL(player.name, 150);
 
     const status =
         document.getElementById("profileStatus");
 
+    const ranked =
+        modes.some(mode =>
+            player.rankings?.[mode]
+        );
+
     status.textContent =
-        player.ranked
-            ? "● Ranked"
+        ranked
+            ? "● Ranked Player"
             : "● Unranked";
 
     status.style.color =
-        player.ranked
+        ranked
             ? "#39ff78"
             : "#ff626b";
 
-    /* RANKINGS */
+    /* Rankings */
 
     const ranks =
         document.getElementById("profileRanks");
@@ -1274,32 +2186,21 @@ function openProfile(name) {
             document.createElement("span");
 
         const tier =
-            player.rankings[mode];
+            player.rankings?.[mode];
 
         if (tier) {
 
             right.className =
-                "tier-badge " + tier;
+                "tier-badge " +
+                tier;
 
             right.textContent =
                 tier;
 
-            right.style.padding =
-                "6px 13px";
-
-            right.style.borderRadius =
-                "6px";
-
-            right.style.fontWeight =
-                "950";
-
         } else {
 
-            right.textContent =
-                "Unranked";
-
-            right.className =
-                "muted";
+            right.className = "muted";
+            right.textContent = "N/A";
 
         }
 
@@ -1310,97 +2211,108 @@ function openProfile(name) {
 
     });
 
-    /* STATS */
+    /* Stats */
 
     const stats =
         player.stats || {};
+
+    const wins =
+        Number(stats.wins || 0);
+
+    const losses =
+        Number(stats.losses || 0);
+
+    const tests =
+        stats.tests === null ||
+        stats.tests === undefined
+            ? "N/A"
+            : stats.tests;
+
+    const winRate =
+        getWinRate(player);
 
     document
         .getElementById("profileStats")
         .innerHTML = `
 
-            <div class="rank">
-                <span>Wins</span>
-                <b>
-                    ${stats.wins || 0}
-                </b>
+            <div class="profile-stat-grid">
+
+                <div class="profile-stat">
+
+                    <div class="profile-stat-number">
+                        ${wins}
+                    </div>
+
+                    <div class="profile-stat-label">
+                        Wins
+                    </div>
+
+                </div>
+
+                <div class="profile-stat">
+
+                    <div class="profile-stat-number">
+                        ${losses}
+                    </div>
+
+                    <div class="profile-stat-label">
+                        Losses
+                    </div>
+
+                </div>
+
+                <div class="profile-stat">
+
+                    <div class="profile-stat-number">
+                        ${tests}
+                    </div>
+
+                    <div class="profile-stat-label">
+                        Tests
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="rank">
-                <span>Losses</span>
-                <b>
-                    ${stats.losses || 0}
-                </b>
-            </div>
+            <div class="winrate">
 
-            <div class="rank">
-                <span>Tests</span>
-                <b>
-                    ${stats.tests || 0}
-                </b>
+                📊 Win Rate:
+
+                <strong>
+                    ${winRate === null ? "N/A" : winRate + "%"}
+                </strong>
+
             </div>
 
         `;
 
-    /* TESTING INFORMATION */
+    /* Testing */
 
     document
         .getElementById("profileTesting")
         .innerHTML = `
 
-            <div class="rank">
-
-                <span>
-                    Tested
-                </span>
-
-                <b>
-                    ${escapeHTML(
-                        player.testedDate ||
-                        "Unknown"
-                    )}
-                </b>
-
+            <div class="testing-row">
+                <span>Tester</span>
+                <strong>
+                    ${escapeHTML(player.tester || "N/A")}
+                </strong>
             </div>
 
-            <div class="rank">
-
-                <span>
-                    Tester
-                </span>
-
-                <b>
-                    ${escapeHTML(
-                        player.tester ||
-                        "Unknown"
-                    )}
-                </b>
-
-            </div>
-
-            <div class="rank">
-
-                <span>
-                    Last Update
-                </span>
-
-                <b>
-                    ${escapeHTML(
-                        player.lastUpdate ||
-                        "Unknown"
-                    )}
-                </b>
-
+            <div class="testing-row">
+                <span>Test Date</span>
+                <strong>
+                    ${escapeHTML(player.testedDate || "N/A")}
+                </strong>
             </div>
 
         `;
 
-    /* TIER HISTORY */
+    /* History */
 
     const history =
-        document.getElementById(
-            "profileHistory"
-        );
+        document.getElementById("profileHistory");
 
     history.innerHTML = "";
 
@@ -1410,11 +2322,11 @@ function openProfile(name) {
     ) {
 
         history.innerHTML = `
-
-            <div class="history">
-                No tier changes yet.
+            <div class="history-item">
+                <span class="muted">
+                    No tier changes recorded.
+                </span>
             </div>
-
         `;
 
     } else {
@@ -1422,45 +2334,28 @@ function openProfile(name) {
         player.history.forEach(change => {
 
             const item =
-                document.createElement(
-                    "div"
-                );
+                document.createElement("div");
 
-            item.className = "history";
+            item.className =
+                "history-item";
 
             item.innerHTML = `
 
-                <b>
-                    ${escapeHTML(
-                        change.mode
-                    )}
-                </b>
+                <div class="history-mode">
+                    ${escapeHTML(change.mode)}
+                </div>
 
-                <br>
+                <div class="history-change">
+                    ${escapeHTML(change.from)}
+                    →
+                    ${escapeHTML(change.to)}
+                </div>
 
-                ${escapeHTML(
-                    change.from
-                )}
-
-                →
-
-                ${escapeHTML(
-                    change.to
-                )}
-
-                <br>
-
-                <small>
-                    ${escapeHTML(
-                        change.date
-                    )}
-
+                <div class="history-date">
+                    ${escapeHTML(change.date)}
                     ·
-
-                    ${escapeHTML(
-                        change.tester
-                    )}
-                </small>
+                    ${escapeHTML(change.tester)}
+                </div>
 
             `;
 
@@ -1476,6 +2371,7 @@ function openProfile(name) {
 
 }
 
+
 /* =========================================================
    MODALS
 ========================================================= */
@@ -1488,18 +2384,18 @@ function closeModal(id) {
 
 }
 
+
 function outside(event, id) {
 
     if (event.target.id === id) {
-
         closeModal(id);
-
     }
 
 }
 
+
 /* =========================================================
-   SECURITY
+   ESCAPE HTML
 ========================================================= */
 
 function escapeHTML(value) {
@@ -1508,12 +2404,14 @@ function escapeHTML(value) {
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
+
 /* =========================================================
-   ESC KEY
+   ESCAPE KEY
 ========================================================= */
 
 document.addEventListener(
@@ -1529,11 +2427,19 @@ document.addEventListener(
     }
 );
 
+
 /* =========================================================
    START
 ========================================================= */
 
-render();
+function startArchTiers() {
+
+    render();
+    updateDashboard();
+
+}
+
+startArchTiers();
 
 </script>
 
