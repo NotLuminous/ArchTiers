@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,144 +9,127 @@
 <script src="https://cdn.jsdelivr.net/npm/skinview3d@3.2.0/bundles/skinview3d.bundle.min.js"></script>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-:root {
-    --red: #ff3030;
-    --red-bright: #ff4545;
-    --red-dark: #9e1515;
+:root{
+    --red:#ff3030;
+    --red-bright:#ff4545;
+    --red-dark:#9e1515;
 
-    --bg: #050608;
-    --bg2: #080a0e;
-    --card: #0d1117;
-    --card2: #11161d;
-    --card3: #151b22;
+    --bg:#050608;
+    --bg2:#080a0e;
+    --card:#0d1117;
+    --card2:#11161d;
+    --card3:#151b22;
 
-    --border: rgba(255,255,255,.075);
-    --text: #f5f7fa;
-    --muted: #7c8795;
+    --border:rgba(255,255,255,.075);
+    --text:#f5f7fa;
+    --muted:#7c8795;
 }
 
-body {
-    min-height: 100vh;
-    color: var(--text);
-    font-family: Inter, Arial, Helvetica, sans-serif;
+body{
+    min-height:100vh;
+    color:var(--text);
+    font-family:Inter,Arial,Helvetica,sans-serif;
     background:
-        radial-gradient(circle at 15% -10%, rgba(255,48,48,.16), transparent 30%),
-        radial-gradient(circle at 85% 0%, rgba(160,15,15,.12), transparent 32%),
-        radial-gradient(circle at 50% 100%, rgba(255,48,48,.05), transparent 35%),
+        radial-gradient(circle at 15% -10%,rgba(255,48,48,.16),transparent 30%),
+        radial-gradient(circle at 85% 0%,rgba(160,15,15,.12),transparent 32%),
+        radial-gradient(circle at 50% 100%,rgba(255,48,48,.05),transparent 35%),
         var(--bg);
-    overflow-x: hidden;
+    overflow-x:hidden;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
-    opacity: .35;
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+    opacity:.35;
     background-image:
-        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-    background-size: 45px 45px;
-    mask-image: linear-gradient(to bottom, black, transparent 90%);
+        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:45px 45px;
+    mask-image:linear-gradient(to bottom,black,transparent 90%);
 }
 
-body::after {
-    content: "";
-    position: fixed;
-    width: 500px;
-    height: 500px;
-    left: 50%;
-    top: 20%;
-    transform: translate(-50%, -50%);
-    background: rgba(255,48,48,.035);
-    filter: blur(130px);
-    pointer-events: none;
-    z-index: -1;
-    animation: ambientMove 12s ease-in-out infinite alternate;
+body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    left:50%;
+    top:20%;
+    transform:translate(-50%,-50%);
+    background:rgba(255,48,48,.035);
+    filter:blur(130px);
+    pointer-events:none;
+    z-index:-1;
+    animation:ambientMove 12s ease-in-out infinite alternate;
 }
 
-@keyframes ambientMove {
-    from {
-        transform: translate(-55%, -50%) scale(1);
-    }
-
-    to {
-        transform: translate(-45%, -42%) scale(1.15);
-    }
+@keyframes ambientMove{
+    from{transform:translate(-55%,-50%) scale(1)}
+    to{transform:translate(-45%,-42%) scale(1.15)}
 }
 
-::-webkit-scrollbar {
-    width: 8px;
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:#050608}
+::-webkit-scrollbar-thumb{
+    background:#292d34;
+    border-radius:20px;
 }
+::-webkit-scrollbar-thumb:hover{background:var(--red)}
 
-::-webkit-scrollbar-track {
-    background: #050608;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #292d34;
-    border-radius: 20px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--red);
-}
-
-/* HEADER */
-
-header {
-    position: relative;
-    text-align: center;
-    padding: 82px 20px 65px;
-    overflow: hidden;
-    border-bottom: 1px solid var(--border);
+header{
+    position:relative;
+    text-align:center;
+    padding:82px 20px 65px;
+    overflow:hidden;
+    border-bottom:1px solid var(--border);
     background:
-        radial-gradient(circle at 50% 0%, rgba(255,48,48,.13), transparent 42%),
-        linear-gradient(180deg, #0b0e13 0%, #06080b 100%);
+        radial-gradient(circle at 50% 0%,rgba(255,48,48,.13),transparent 42%),
+        linear-gradient(180deg,#0b0e13 0%,#06080b 100%);
 }
 
-header::before {
-    content: "";
-    position: absolute;
-    width: 600px;
-    height: 230px;
-    left: 50%;
-    top: -145px;
-    transform: translateX(-50%);
-    background: var(--red);
-    filter: blur(130px);
-    opacity: .13;
-    animation: headerGlow 5s ease-in-out infinite alternate;
+header::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:230px;
+    left:50%;
+    top:-145px;
+    transform:translateX(-50%);
+    background:var(--red);
+    filter:blur(130px);
+    opacity:.13;
+    animation:headerGlow 5s ease-in-out infinite alternate;
 }
 
-@keyframes headerGlow {
-    from {
-        opacity: .08;
-        transform: translateX(-50%) scale(.9);
+@keyframes headerGlow{
+    from{
+        opacity:.08;
+        transform:translateX(-50%) scale(.9);
     }
-
-    to {
-        opacity: .18;
-        transform: translateX(-50%) scale(1.08);
+    to{
+        opacity:.18;
+        transform:translateX(-50%) scale(1.08);
     }
 }
 
-.header-lines {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: .25;
+.header-lines{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:.25;
     background:
         linear-gradient(
             115deg,
@@ -155,196 +137,181 @@ header::before {
             rgba(255,48,48,.08) 50%,
             transparent 65%
         );
-    background-size: 250% 100%;
-    animation: shine 8s linear infinite;
+    background-size:250% 100%;
+    animation:shine 8s linear infinite;
 }
 
-@keyframes shine {
-    from {
-        background-position: 200% 0;
-    }
-
-    to {
-        background-position: -200% 0;
-    }
+@keyframes shine{
+    from{background-position:200% 0}
+    to{background-position:-200% 0}
 }
 
-.logo {
-    position: relative;
-    z-index: 2;
-    font-size: clamp(48px, 9vw, 92px);
-    line-height: .9;
-    font-weight: 1000;
-    letter-spacing: -5px;
-    text-transform: uppercase;
-    text-shadow: 0 10px 45px rgba(0,0,0,.4);
+.logo{
+    position:relative;
+    z-index:2;
+    font-size:clamp(48px,9vw,92px);
+    line-height:.9;
+    font-weight:1000;
+    letter-spacing:-5px;
+    text-transform:uppercase;
 }
 
-.logo .arch {
-    color: #fff;
-}
+.logo .arch{color:#fff}
 
-.logo .tiers {
-    color: var(--red);
+.logo .tiers{
+    color:var(--red);
     text-shadow:
         0 0 20px rgba(255,48,48,.35),
         0 0 55px rgba(255,48,48,.14);
 }
 
-.subtitle {
-    position: relative;
-    z-index: 2;
-    margin-top: 20px;
-    color: #8993a0;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 5px;
-    text-transform: uppercase;
+.subtitle{
+    position:relative;
+    z-index:2;
+    margin-top:20px;
+    color:#8993a0;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:5px;
+    text-transform:uppercase;
 }
 
-.header-status {
-    position: relative;
-    z-index: 2;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 22px;
-    padding: 7px 13px;
-    border: 1px solid rgba(255,48,48,.18);
-    border-radius: 100px;
-    background: rgba(255,48,48,.055);
-    color: #c6ccd4;
-    font-size: 10px;
-    font-weight: 850;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
+.header-status{
+    position:relative;
+    z-index:2;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:22px;
+    padding:7px 13px;
+    border:1px solid rgba(255,48,48,.18);
+    border-radius:100px;
+    background:rgba(255,48,48,.055);
+    color:#c6ccd4;
+    font-size:10px;
+    font-weight:850;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
 }
 
-.status-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--red);
-    box-shadow: 0 0 12px var(--red);
-    animation: pulseDot 1.7s infinite;
+.status-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--red);
+    box-shadow:0 0 12px var(--red);
+    animation:pulseDot 1.7s infinite;
 }
 
-@keyframes pulseDot {
-    50% {
-        opacity: .45;
-        transform: scale(.75);
+@keyframes pulseDot{
+    50%{
+        opacity:.45;
+        transform:scale(.75);
     }
 }
 
-/* NAVIGATION */
-
-nav {
-    position: sticky;
-    top: 12px;
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    gap: 7px;
-    flex-wrap: wrap;
-    width: max-content;
-    max-width: calc(100% - 24px);
-    margin: 14px auto 0;
-    padding: 7px;
-    border: 1px solid rgba(255,255,255,.09);
-    border-radius: 16px;
-    background: rgba(8,10,14,.78);
-    backdrop-filter: blur(22px);
+nav{
+    position:sticky;
+    top:12px;
+    z-index:100;
+    display:flex;
+    justify-content:center;
+    gap:7px;
+    flex-wrap:wrap;
+    width:max-content;
+    max-width:calc(100% - 24px);
+    margin:14px auto 0;
+    padding:7px;
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:16px;
+    background:rgba(8,10,14,.78);
+    backdrop-filter:blur(22px);
     box-shadow:
         0 15px 50px rgba(0,0,0,.32),
         inset 0 1px rgba(255,255,255,.04);
 }
 
-nav button {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid transparent;
-    background: transparent;
-    color: #818b98;
-    border-radius: 10px;
-    padding: 11px 17px;
-    cursor: pointer;
-    font-weight: 850;
-    font-size: 12px;
-    transition: .25s ease;
+nav button{
+    position:relative;
+    overflow:hidden;
+    border:1px solid transparent;
+    background:transparent;
+    color:#818b98;
+    border-radius:10px;
+    padding:11px 17px;
+    cursor:pointer;
+    font-weight:850;
+    font-size:12px;
+    transition:.25s ease;
 }
 
-nav button:hover {
-    color: #fff;
-    background: rgba(255,255,255,.045);
-    transform: translateY(-1px);
+nav button:hover{
+    color:#fff;
+    background:rgba(255,255,255,.045);
+    transform:translateY(-1px);
 }
 
-nav button.active {
-    color: #fff;
-    background: linear-gradient(
+nav button.active{
+    color:#fff;
+    background:linear-gradient(
         135deg,
         rgba(255,48,48,.22),
         rgba(150,15,15,.14)
     );
-    border-color: rgba(255,48,48,.28);
+    border-color:rgba(255,48,48,.28);
     box-shadow:
         0 0 24px rgba(255,48,48,.10),
         inset 0 1px rgba(255,255,255,.05);
 }
 
-nav button.active::after {
-    content: "";
-    position: absolute;
-    bottom: 3px;
-    left: 30%;
-    right: 30%;
-    height: 2px;
-    border-radius: 10px;
-    background: var(--red);
-    box-shadow: 0 0 10px var(--red);
+nav button.active::after{
+    content:"";
+    position:absolute;
+    bottom:3px;
+    left:30%;
+    right:30%;
+    height:2px;
+    border-radius:10px;
+    background:var(--red);
+    box-shadow:0 0 10px var(--red);
 }
 
-/* MAIN */
-
-main {
-    position: relative;
-    width: min(1250px, 94%);
-    margin: 40px auto 75px;
-    animation: pageIn .45s ease;
+main{
+    position:relative;
+    width:min(1250px,94%);
+    margin:40px auto 75px;
+    animation:pageIn .45s ease;
 }
 
-@keyframes pageIn {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(8px);
     }
-
-    to {
-        opacity: 1;
-        transform: none;
+    to{
+        opacity:1;
+        transform:none;
     }
 }
 
-.section {
-    margin-bottom: 32px;
+.section{margin-bottom:32px}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:16px;
+    font-size:20px;
+    font-weight:950;
+    letter-spacing:-.4px;
 }
 
-.section-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
-    font-size: 20px;
-    font-weight: 950;
-    letter-spacing: -.4px;
-}
-
-.section-title::after {
-    content: "";
-    height: 1px;
-    flex: 1;
-    margin-left: 10px;
-    background: linear-gradient(
+.section-title::after{
+    content:"";
+    height:1px;
+    flex:1;
+    margin-left:10px;
+    background:linear-gradient(
         90deg,
         rgba(255,48,48,.3),
         transparent
@@ -353,830 +320,925 @@ main {
 
 /* DASHBOARD */
 
-.dashboard {
-    display: grid;
-    grid-template-columns: 1.55fr 1fr;
-    gap: 16px;
-    margin-bottom: 34px;
+.dashboard{
+    display:grid;
+    grid-template-columns:1.55fr 1fr;
+    gap:16px;
+    margin-bottom:34px;
 }
 
-.featured {
-    position: relative;
-    min-height: 285px;
-    padding: 30px;
-    overflow: hidden;
-    border: 1px solid rgba(255,48,48,.22);
-    border-radius: 20px;
+.featured{
+    position:relative;
+    min-height:285px;
+    padding:30px;
+    overflow:hidden;
+    border:1px solid rgba(255,48,48,.22);
+    border-radius:20px;
     background:
-        radial-gradient(circle at 88% 15%, rgba(255,48,48,.17), transparent 35%),
-        radial-gradient(circle at 20% 100%, rgba(255,48,48,.06), transparent 35%),
-        linear-gradient(135deg, #11161c, #0a0d12);
+        radial-gradient(circle at 88% 15%,rgba(255,48,48,.17),transparent 35%),
+        radial-gradient(circle at 20% 100%,rgba(255,48,48,.06),transparent 35%),
+        linear-gradient(135deg,#11161c,#0a0d12);
     box-shadow:
         0 20px 60px rgba(0,0,0,.25),
         inset 0 1px rgba(255,255,255,.04);
 }
 
-.featured-label {
-    position: relative;
-    z-index: 3;
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    color: var(--red);
-    font-size: 10px;
-    font-weight: 950;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+.featured-label{
+    position:relative;
+    z-index:3;
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    color:var(--red);
+    font-size:10px;
+    font-weight:950;
+    letter-spacing:2px;
+    text-transform:uppercase;
 }
 
-.featured-content {
-    position: relative;
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    margin-top: 25px;
+.featured-content{
+    position:relative;
+    z-index:3;
+    display:flex;
+    align-items:center;
+    gap:25px;
+    margin-top:25px;
 }
 
-.featured-skin {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    image-rendering: pixelated;
-    border-radius: 17px;
-    border: 2px solid rgba(255,48,48,.7);
-    background: #080b0f;
+.featured-skin{
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    image-rendering:pixelated;
+    border-radius:17px;
+    border:2px solid rgba(255,48,48,.7);
+    background:#080b0f;
     box-shadow:
         0 0 0 6px rgba(255,48,48,.04),
         0 0 40px rgba(255,48,48,.18);
 }
 
-.featured-name {
-    font-size: 34px;
-    line-height: 1;
-    font-weight: 1000;
-    letter-spacing: -1px;
+.featured-name{
+    font-size:34px;
+    line-height:1;
+    font-weight:1000;
+    letter-spacing:-1px;
 }
 
-.featured-rank {
-    display: inline-flex;
-    margin-top: 9px;
-    padding: 6px 10px;
-    border: 1px solid rgba(255,48,48,.2);
-    border-radius: 7px;
-    background: rgba(255,48,48,.08);
-    color: #ff6868;
-    font-size: 11px;
-    font-weight: 900;
+.featured-rank{
+    display:inline-flex;
+    margin-top:9px;
+    padding:6px 10px;
+    border:1px solid rgba(255,48,48,.2);
+    border-radius:7px;
+    background:rgba(255,48,48,.08);
+    color:#ff6868;
+    font-size:11px;
+    font-weight:900;
 }
 
-.featured-score {
-    margin-top: 10px;
-    color: #7d8794;
-    font-size: 11px;
+.featured-score{
+    margin-top:10px;
+    color:#7d8794;
+    font-size:11px;
 }
 
-.featured-score strong {
-    color: #fff;
-    font-size: 17px;
+.featured-score strong{
+    color:#fff;
+    font-size:17px;
 }
 
-.featured-tiers {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    margin-top: 15px;
+.featured-tiers{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:15px;
 }
 
 /* STAT CARDS */
 
-.stat-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+.stat-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
 
-.stat-card {
-    position: relative;
-    overflow: hidden;
-    padding: 21px;
-    border: 1px solid #252c35;
-    border-radius: 15px;
+.stat-card{
+    position:relative;
+    overflow:hidden;
+    padding:21px;
+    border:1px solid #252c35;
+    border-radius:15px;
     background:
-        radial-gradient(circle at 100% 0%, rgba(255,48,48,.055), transparent 45%),
-        linear-gradient(135deg, #11161d, #0b1016);
-    transition: .25s ease;
+        radial-gradient(circle at 100% 0%,rgba(255,48,48,.055),transparent 45%),
+        linear-gradient(135deg,#11161d,#0b1016);
+    transition:.25s ease;
 }
 
-.stat-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(255,48,48,.25);
+.stat-card:hover{
+    transform:translateY(-3px);
+    border-color:rgba(255,48,48,.25);
 }
 
-.stat-card .number {
-    position: relative;
-    z-index: 2;
-    font-size: 28px;
-    font-weight: 1000;
+.stat-card .number{
+    position:relative;
+    z-index:2;
+    font-size:28px;
+    font-weight:1000;
 }
 
-.stat-card .label {
-    position: relative;
-    z-index: 2;
-    margin-top: 5px;
-    color: #687381;
-    font-size: 10px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
+.stat-card .label{
+    position:relative;
+    z-index:2;
+    margin-top:5px;
+    color:#687381;
+    font-size:10px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:1.2px;
 }
 
 /* PODIUM */
 
-.podium {
-    display: grid;
-    grid-template-columns: 1fr 1.12fr 1fr;
-    align-items: end;
-    gap: 12px;
+.podium{
+    display:grid;
+    grid-template-columns:1fr 1.12fr 1fr;
+    align-items:end;
+    gap:12px;
 }
 
-.podium-card {
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-    padding: 22px 15px;
-    border: 1px solid #29313b;
-    border-radius: 16px;
-    background: linear-gradient(145deg, #141a22, #0c1117);
-    cursor: pointer;
-    transition: .25s ease;
+.podium-card{
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+    padding:22px 15px;
+    border:1px solid #29313b;
+    border-radius:16px;
+    background:linear-gradient(145deg,#141a22,#0c1117);
+    cursor:pointer;
+    transition:.25s ease;
 }
 
-.podium-card:hover {
-    transform: translateY(-7px);
-    border-color: rgba(255,48,48,.35);
-    box-shadow: 0 18px 35px rgba(0,0,0,.28);
+.podium-card:hover{
+    transform:translateY(-7px);
+    border-color:rgba(255,48,48,.35);
+    box-shadow:0 18px 35px rgba(0,0,0,.28);
 }
 
-.podium-card.first {
-    padding-top: 31px;
-    padding-bottom: 31px;
-    border-color: rgba(255,48,48,.38);
+.podium-card.first{
+    padding-top:31px;
+    padding-bottom:31px;
 }
 
-.podium-number {
-    font-size: 30px;
+.podium-number{font-size:30px}
+
+.podium-skin{
+    width:67px;
+    height:67px;
+    object-fit:cover;
+    image-rendering:pixelated;
+    margin:11px auto;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.09);
 }
 
-.podium-skin {
-    width: 67px;
-    height: 67px;
-    object-fit: cover;
-    image-rendering: pixelated;
-    margin: 11px auto;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,.09);
-}
+.podium-name{font-weight:950}
 
-.podium-card.first .podium-skin {
-    border-color: rgba(255,48,48,.5);
-    box-shadow: 0 0 25px rgba(255,48,48,.13);
-}
-
-.podium-name {
-    font-weight: 950;
-}
-
-.podium-score {
-    color: #ff5555;
-    margin-top: 5px;
-    font-size: 11px;
-    font-weight: 850;
+.podium-score{
+    color:#ff5555;
+    margin-top:5px;
+    font-size:11px;
+    font-weight:850;
 }
 
 /* TABS */
 
-.tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    margin-bottom: 14px;
+.tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-bottom:14px;
 }
 
-.tab {
-    padding: 9px 14px;
-    border: 1px solid #29313b;
-    background: #0f141a;
-    color: #7f8996;
-    border-radius: 9px;
-    cursor: pointer;
-    font-weight: 850;
-    font-size: 11px;
-    transition: .2s;
+.tab{
+    padding:9px 14px;
+    border:1px solid #29313b;
+    background:#0f141a;
+    color:#7f8996;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:850;
+    font-size:11px;
+    transition:.2s;
 }
 
-.tab:hover {
-    color: #fff;
-    border-color: #3a424c;
-    transform: translateY(-1px);
+.tab:hover{
+    color:#fff;
+    border-color:#3a424c;
+    transform:translateY(-1px);
 }
 
-.tab.active {
-    color: #fff;
-    background: linear-gradient(
+.tab.active{
+    color:#fff;
+    background:linear-gradient(
         135deg,
         rgba(255,48,48,.2),
         rgba(120,10,10,.12)
     );
-    border-color: rgba(255,48,48,.42);
-    box-shadow: 0 0 18px rgba(255,48,48,.08);
+    border-color:rgba(255,48,48,.42);
+    box-shadow:0 0 18px rgba(255,48,48,.08);
 }
 
 /* LEADERBOARD */
 
-.leaderboard {
-    overflow: hidden;
-    border: 1px solid #252d37;
-    border-radius: 16px;
-    box-shadow: 0 20px 45px rgba(0,0,0,.18);
+.leaderboard{
+    overflow:hidden;
+    border:1px solid #252d37;
+    border-radius:16px;
+    box-shadow:0 20px 45px rgba(0,0,0,.18);
 }
 
-.leader-row {
-    position: relative;
-    display: grid;
-    grid-template-columns: 60px 1fr 130px 100px;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 16px;
-    border-bottom: 1px solid #202832;
-    background: linear-gradient(90deg, #0f141a, #0d1218);
-    cursor: pointer;
-    transition: .2s ease;
+.leader-row{
+    position:relative;
+    display:grid;
+    grid-template-columns:60px 1fr 130px 100px;
+    align-items:center;
+    gap:10px;
+    padding:14px 16px;
+    border-bottom:1px solid #202832;
+    background:linear-gradient(90deg,#0f141a,#0d1218);
+    cursor:pointer;
+    transition:.2s ease;
 }
 
-.leader-row:last-child {
-    border-bottom: 0;
+.leader-row:last-child{border-bottom:0}
+
+.leader-row:hover{
+    background:linear-gradient(90deg,#141a21,#10161d);
+    transform:translateX(3px);
 }
 
-.leader-row:hover {
-    background: linear-gradient(90deg, #141a21, #10161d);
-    transform: translateX(3px);
+.leader-position{
+    color:#707b88;
+    font-weight:950;
+    font-size:14px;
 }
 
-.leader-row:nth-child(1) {
-    background:
-        radial-gradient(circle at 5% 50%, rgba(255,48,48,.09), transparent 25%),
-        #11161d;
+.leader-row:nth-child(1) .leader-position{color:#ffd75a}
+.leader-row:nth-child(2) .leader-position{color:#c9d0d8}
+.leader-row:nth-child(3) .leader-position{color:#d68b57}
+
+.leader-player{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    min-width:0;
 }
 
-.leader-position {
-    color: #707b88;
-    font-weight: 950;
-    font-size: 14px;
+.leader-head{
+    width:37px;
+    height:37px;
+    object-fit:cover;
+    image-rendering:pixelated;
+    border-radius:7px;
+    border:2px solid rgba(255,255,255,.08);
 }
 
-.leader-row:nth-child(1) .leader-position {
-    color: #ffd75a;
+.leader-name{
+    font-weight:850;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 
-.leader-row:nth-child(2) .leader-position {
-    color: #c9d0d8;
+.leader-tier{text-align:center}
+
+.leader-score{
+    text-align:right;
+    color:#ff4b4b;
+    font-weight:950;
 }
 
-.leader-row:nth-child(3) .leader-position {
-    color: #d68b57;
+/* =========================================================
+   INDIVIDUAL TIER COLORS
+========================================================= */
+
+.HT1{
+    --tier:#ff3030;
+    --tier2:#8b0015;
+    --tierGlow:rgba(255,48,48,.35);
 }
 
-.leader-player {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    min-width: 0;
+.LT1{
+    --tier:#ff4f69;
+    --tier2:#a91f3d;
+    --tierGlow:rgba(255,79,105,.32);
 }
 
-.leader-head {
-    width: 37px;
-    height: 37px;
-    object-fit: cover;
-    image-rendering: pixelated;
-    border-radius: 7px;
-    border: 1px solid rgba(255,255,255,.08);
+.HT2{
+    --tier:#ff7a18;
+    --tier2:#b83b00;
+    --tierGlow:rgba(255,122,24,.32);
 }
 
-.leader-name {
-    font-weight: 850;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.LT2{
+    --tier:#ffad32;
+    --tier2:#b66a00;
+    --tierGlow:rgba(255,173,50,.32);
 }
 
-.leader-tier {
-    text-align: center;
+.HT3{
+    --tier:#e8d33f;
+    --tier2:#9b8210;
+    --tierGlow:rgba(232,211,63,.30);
 }
 
-.leader-score {
-    text-align: right;
-    color: #ff4b4b;
-    font-weight: 950;
+.LT3{
+    --tier:#a8d83e;
+    --tier2:#5d8610;
+    --tierGlow:rgba(168,216,62,.30);
+}
+
+.HT4{
+    --tier:#32e37c;
+    --tier2:#08763a;
+    --tierGlow:rgba(50,227,124,.30);
+}
+
+.LT4{
+    --tier:#26d8c7;
+    --tier2:#087d72;
+    --tierGlow:rgba(38,216,199,.30);
+}
+
+.HT5{
+    --tier:#4b9cff;
+    --tier2:#164e9b;
+    --tierGlow:rgba(75,156,255,.30);
+}
+
+.LT5{
+    --tier:#9a6cff;
+    --tier2:#4d269b;
+    --tierGlow:rgba(154,108,255,.30);
 }
 
 /* TIER BADGES */
 
 .badge,
-.tier-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 50px;
-    padding: 5px 9px;
-    border-radius: 6px;
-    color: #fff;
-    font-size: 10px;
-    font-weight: 1000;
-    text-shadow: 0 1px 3px rgba(0,0,0,.45);
-    box-shadow: 0 3px 10px rgba(0,0,0,.15);
+.tier-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:50px;
+    padding:5px 9px;
+    border-radius:6px;
+    color:#fff;
+    font-size:10px;
+    font-weight:1000;
+    text-shadow:0 1px 3px rgba(0,0,0,.45);
+    background:
+        linear-gradient(
+            135deg,
+            var(--tier),
+            var(--tier2)
+        );
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.15),
+        0 0 12px var(--tierGlow);
 }
 
-.HT1 { background: linear-gradient(135deg,#ff3434,#a90e22); }
-.LT1 { background: linear-gradient(135deg,#ff5d5d,#bd2535); }
-.HT2 { background: linear-gradient(135deg,#ff9a38,#c95c12); }
-.LT2 { background: linear-gradient(135deg,#ffb85a,#d47c1f); }
-.HT3 { background: linear-gradient(135deg,#f4d33f,#b99a19); color:#171006; }
-.LT3 { background: linear-gradient(135deg,#f5e276,#c7b543); color:#171006; }
-.HT4 { background: linear-gradient(135deg,#3bd87c,#19884d); }
-.LT4 { background: linear-gradient(135deg,#63e99a,#26965d); }
-.HT5 { background: linear-gradient(135deg,#419fee,#2166a9); }
-.LT5 { background: linear-gradient(135deg,#69b7f4,#347db8); }
+.HT3 .badge,
+.HT3.badge,
+.LT2 .badge,
+.LT2.badge{
+    color:#171006;
+    text-shadow:none;
+}
+
+/* =========================================================
+   TIER-REACTIVE PLAYER CARDS
+========================================================= */
+
+.player,
+.search-result-card,
+.leader-row,
+.podium-card{
+    --active-tier:#ff3030;
+    --active-tier2:#8b0015;
+    --active-glow:rgba(255,48,48,.2);
+}
+
+/* The card receives the strongest-ranked tier */
+
+.tier-reactive{
+    border-color:color-mix(
+        in srgb,
+        var(--active-tier) 38%,
+        #29313b
+    ) !important;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            color-mix(
+                in srgb,
+                var(--active-tier) 14%,
+                transparent
+            ),
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            color-mix(
+                in srgb,
+                var(--active-tier) 8%,
+                #151b22
+            ),
+            #0d1218
+        );
+
+    box-shadow:
+        inset 3px 0 0 var(--active-tier),
+        0 0 22px var(--active-glow);
+}
+
+.tier-reactive:hover{
+    border-color:var(--active-tier) !important;
+    box-shadow:
+        inset 3px 0 0 var(--active-tier),
+        0 10px 30px var(--active-glow);
+}
+
+.tier-reactive .player-head,
+.tier-reactive .search-result-head,
+.tier-reactive .leader-head{
+    border-color:var(--active-tier);
+    box-shadow:0 0 12px var(--active-glow);
+}
 
 /* ADVANCED SEARCH */
 
-.search-panel {
-    position: relative;
-    padding: 20px;
-    margin-bottom: 18px;
-    border: 1px solid #252d37;
-    border-radius: 16px;
+.search-panel{
+    position:relative;
+    padding:20px;
+    margin-bottom:18px;
+    border:1px solid #252d37;
+    border-radius:16px;
     background:
-        radial-gradient(circle at 100% 0%, rgba(255,48,48,.06), transparent 35%),
+        radial-gradient(circle at 100% 0%,rgba(255,48,48,.06),transparent 35%),
         linear-gradient(135deg,#10151c,#0b1016);
-    box-shadow: 0 15px 35px rgba(0,0,0,.18);
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
 }
 
-.search-panel-title {
-    margin-bottom: 13px;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1.4px;
+.search-panel-title{
+    margin-bottom:13px;
+    color:#fff;
+    font-size:12px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:1.4px;
 }
 
-.search-controls {
-    display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr;
-    gap: 10px;
+.search-controls{
+    display:grid;
+    grid-template-columns:1.6fr 1fr 1fr;
+    gap:10px;
 }
 
 .search-input,
-.filter-select {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid #29313b;
-    border-radius: 10px;
-    outline: none;
-    background: #0c1117;
-    color: #fff;
-    font-size: 12px;
+.filter-select{
+    width:100%;
+    padding:12px 14px;
+    border:1px solid #29313b;
+    border-radius:10px;
+    outline:none;
+    background:#0c1117;
+    color:#fff;
+    font-size:12px;
 }
 
-.search-input::placeholder {
-    color: #58626f;
-}
+.search-input::placeholder{color:#58626f}
 
 .search-input:focus,
-.filter-select:focus {
-    border-color: rgba(255,48,48,.55);
-    box-shadow: 0 0 0 3px rgba(255,48,48,.06);
+.filter-select:focus{
+    border-color:rgba(255,48,48,.55);
+    box-shadow:0 0 0 3px rgba(255,48,48,.06);
 }
 
-.filter-select {
-    cursor: pointer;
+.filter-select{cursor:pointer}
+
+.filter-select option{
+    background:#0d1117;
+    color:#fff;
 }
 
-.filter-select option {
-    background: #0d1117;
-    color: #fff;
+.search-results{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-bottom:22px;
 }
 
-.search-results {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 10px;
-    margin-bottom: 22px;
+.search-result-card{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px;
+    border:1px solid #29313b;
+    border-radius:12px;
+    background:linear-gradient(135deg,#151b22,#0d1218);
+    cursor:pointer;
+    transition:.2s ease;
 }
 
-.search-result-card {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
-    border: 1px solid #29313b;
-    border-radius: 12px;
-    background: linear-gradient(135deg,#151b22,#0d1218);
-    cursor: pointer;
-    transition: .2s ease;
+.search-result-card:hover{
+    transform:translateY(-3px);
 }
 
-.search-result-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(255,48,48,.4);
-    box-shadow: 0 10px 25px rgba(0,0,0,.25);
+.search-result-head{
+    width:44px;
+    height:44px;
+    object-fit:cover;
+    image-rendering:pixelated;
+    border-radius:8px;
+    border:2px solid rgba(255,255,255,.08);
 }
 
-.search-result-head {
-    width: 44px;
-    height: 44px;
-    object-fit: cover;
-    image-rendering: pixelated;
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,.08);
+.search-result-info{
+    min-width:0;
+    flex:1;
 }
 
-.search-result-info {
-    min-width: 0;
-    flex: 1;
+.search-result-name{
+    font-size:13px;
+    font-weight:900;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
 }
 
-.search-result-name {
-    font-size: 13px;
-    font-weight: 900;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+.search-result-mode{
+    margin-top:4px;
+    color:#687381;
+    font-size:9px;
 }
 
-.search-result-mode {
-    margin-top: 4px;
-    color: #687381;
-    font-size: 9px;
+.search-result-tiers{
+    display:flex;
+    gap:4px;
+    flex-wrap:wrap;
+    margin-top:6px;
 }
 
-.search-result-tiers {
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-    margin-top: 6px;
-}
-
-.search-result-tiers .badge {
-    min-width: 38px;
-    padding: 3px 6px;
-    font-size: 8px;
+.search-result-tiers .badge{
+    min-width:38px;
+    padding:3px 6px;
+    font-size:8px;
 }
 
 /* TIER LIST */
 
-.tier-list {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
+.tier-list{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
 }
 
-.tier {
-    display: grid;
-    grid-template-columns: 108px 1fr;
-    min-height: 82px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,.065);
-    border-radius: 13px;
-    background: #0d1218;
-    transition: .22s ease;
+.tier{
+    display:grid;
+    grid-template-columns:108px 1fr;
+    min-height:82px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.065);
+    border-radius:13px;
+    background:#0d1218;
+    transition:.22s ease;
 }
 
-.tier:hover {
-    transform: translateX(4px);
-    border-color: rgba(255,255,255,.13);
-    box-shadow: 0 10px 25px rgba(0,0,0,.18);
+.tier:hover{
+    transform:translateX(4px);
+    border-color:rgba(255,255,255,.13);
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
 }
 
-.tier-name {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 4px;
-    color: #fff;
-    font-size: 17px;
-    font-weight: 1000;
+.tier-name{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    gap:4px;
+    color:#fff;
+    font-size:17px;
+    font-weight:1000;
+    background:
+        linear-gradient(
+            135deg,
+            var(--tier),
+            var(--tier2)
+        );
 }
 
-.tier-name::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    opacity: .09;
-    pointer-events: none;
+.tier-name::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:#fff;
+    opacity:.06;
+    pointer-events:none;
 }
 
-.tier-name.HT1::after { background:#ff3030; }
-.tier-name.HT2::after { background:#ff9a38; }
-.tier-name.HT3::after { background:#f4d33f; }
-.tier-name.HT4::after { background:#3bd87c; }
-.tier-name.HT5::after { background:#419fee; }
-
-.tier-name small {
-    position: relative;
-    z-index: 2;
-    font-size: 8px;
-    opacity: .6;
-    letter-spacing: 1.5px;
+.tier-name small{
+    position:relative;
+    z-index:2;
+    font-size:8px;
+    opacity:.7;
+    letter-spacing:1.5px;
 }
 
-.tier-name strong {
-    position: relative;
-    z-index: 2;
+.tier-name strong{
+    position:relative;
+    z-index:2;
 }
 
-.players {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 11px 13px;
-    background: linear-gradient(90deg,rgba(255,255,255,.012),transparent);
+.players{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    padding:11px 13px;
+    background:linear-gradient(90deg,rgba(255,255,255,.012),transparent);
 }
 
-.player {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 5px 11px 5px 5px;
-    min-height: 44px;
-    border: 1px solid #29313c;
-    border-radius: 9px;
-    background: linear-gradient(135deg,#1a212a,#11161d);
-    cursor: pointer;
-    transition: .2s ease;
+.player{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:5px 11px 5px 5px;
+    min-height:44px;
+    border:1px solid #29313c;
+    border-radius:9px;
+    background:linear-gradient(135deg,#1a212a,#11161d);
+    cursor:pointer;
+    transition:.2s ease;
 }
 
-.player:hover {
-    transform: translateY(-3px);
-    border-color: rgba(255,48,48,.45);
-    box-shadow: 0 8px 20px rgba(0,0,0,.3);
+.player:hover{
+    transform:translateY(-3px);
 }
 
-.player-head {
-    width: 33px;
-    height: 33px;
-    object-fit: cover;
-    image-rendering: pixelated;
-    border-radius: 6px;
-    border: 1px solid rgba(255,255,255,.07);
+.player-head{
+    width:33px;
+    height:33px;
+    object-fit:cover;
+    image-rendering:pixelated;
+    border-radius:6px;
+    border:2px solid rgba(255,255,255,.07);
 }
 
-.player-name {
-    font-size: 12px;
-    font-weight: 850;
+.player-name{
+    font-size:12px;
+    font-weight:850;
 }
 
-.empty {
-    color: #4f5966;
-    font-size: 12px;
-    padding: 5px;
+.empty{
+    color:#4f5966;
+    font-size:12px;
+    padding:5px;
 }
 
 /* DISTRIBUTION */
 
-.distribution {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 9px;
+.distribution{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
 }
 
-.dist-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 13px;
-    border: 1px solid #252d37;
-    border-radius: 10px;
-    background: #11171e;
+.dist-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px;
+    border:1px solid #252d37;
+    border-radius:10px;
+    background:#11171e;
 }
 
-.dist-bar {
-    flex: 1;
-    height: 7px;
-    overflow: hidden;
-    border-radius: 10px;
-    background: #202832;
+.dist-bar{
+    flex:1;
+    height:7px;
+    overflow:hidden;
+    border-radius:10px;
+    background:#202832;
 }
 
-.dist-fill {
-    height: 100%;
-    border-radius: 10px;
-    background: linear-gradient(90deg,var(--red-dark),var(--red-bright));
-    box-shadow: 0 0 12px rgba(255,48,48,.22);
-    transition: width .6s ease;
+.dist-fill{
+    height:100%;
+    border-radius:10px;
+    background:linear-gradient(
+        90deg,
+        var(--red-dark),
+        var(--red-bright)
+    );
+    box-shadow:0 0 12px rgba(255,48,48,.22);
+    transition:width .6s ease;
 }
 
-.dist-count {
-    min-width: 25px;
-    text-align: right;
-    color: #aeb7c2;
-    font-size: 12px;
-    font-weight: 900;
+.dist-count{
+    min-width:25px;
+    text-align:right;
+    color:#aeb7c2;
+    font-size:12px;
+    font-weight:900;
 }
 
 /* ACHIEVEMENTS */
 
-.achievements {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
+.achievements{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
 }
 
-.achievement {
-    padding: 7px 10px;
-    border: 1px solid #303945;
-    border-radius: 7px;
-    background: linear-gradient(135deg,rgba(255,48,48,.09),#151b22);
-    color: #cbd2da;
-    font-size: 10px;
-    font-weight: 850;
+.achievement{
+    padding:7px 10px;
+    border:1px solid #303945;
+    border-radius:7px;
+    background:linear-gradient(
+        135deg,
+        rgba(255,48,48,.09),
+        #151b22
+    );
+    color:#cbd2da;
+    font-size:10px;
+    font-weight:850;
 }
 
 /* CHANGES */
 
-.changes {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.changes{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
 }
 
-.change {
-    position: relative;
-    overflow: hidden;
-    padding: 14px 16px;
-    border: 1px solid #252d37;
-    border-radius: 11px;
-    background: #11171e;
+.change{
+    position:relative;
+    overflow:hidden;
+    padding:14px 16px;
+    border:1px solid #252d37;
+    border-radius:11px;
+    background:#11171e;
 }
 
-.change::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: var(--red);
-    opacity: .55;
+.change::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:2px;
+    background:var(--red);
+    opacity:.55;
 }
 
-.change strong {
-    color: #fff;
-}
-
-.change .green {
-    color: #ff5555;
-}
-
-.change small {
-    display: block;
-    margin-top: 5px;
-    color: #687381;
+.change strong{color:#fff}
+.change small{
+    display:block;
+    margin-top:5px;
+    color:#687381;
 }
 
 /* NO RESULTS */
 
-.no-results {
-    padding: 48px 20px;
-    text-align: center;
-    border: 1px dashed #303945;
-    border-radius: 13px;
-    color: #687381;
-    background: rgba(255,255,255,.012);
+.no-results{
+    padding:48px 20px;
+    text-align:center;
+    border:1px dashed #303945;
+    border-radius:13px;
+    color:#687381;
+    background:rgba(255,255,255,.012);
 }
 
-.no-results strong {
-    display: block;
-    margin-bottom: 7px;
-    color: #fff;
-    font-size: 18px;
+.no-results strong{
+    display:block;
+    margin-bottom:7px;
+    color:#fff;
+    font-size:18px;
 }
 
-/* PROFILE MODAL */
+/* PROFILE */
 
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    background: rgba(0,0,0,.84);
-    backdrop-filter: blur(13px);
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+    background:rgba(0,0,0,.84);
+    backdrop-filter:blur(13px);
 }
 
-.modal.show {
-    display: flex;
-    animation: modalBg .2s ease;
+.modal.show{
+    display:flex;
+    animation:modalBg .2s ease;
 }
 
-@keyframes modalBg {
-    from { opacity:0; }
-    to { opacity:1; }
+@keyframes modalBg{
+    from{opacity:0}
+    to{opacity:1}
 }
 
-.profile {
-    position: relative;
-    width: min(850px,100%);
-    max-height: 92vh;
-    overflow-y: auto;
-    border: 1px solid rgba(255,255,255,.10);
-    border-radius: 21px;
-    background: #0b1016;
+.profile{
+    position:relative;
+    width:min(850px,100%);
+    max-height:92vh;
+    overflow-y:auto;
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:21px;
+    background:#0b1016;
     box-shadow:
         0 35px 100px rgba(0,0,0,.72),
         0 0 60px rgba(255,48,48,.055);
-    animation: profileIn .25s ease;
+    animation:profileIn .25s ease;
 }
 
-@keyframes profileIn {
-    from {
-        opacity: 0;
-        transform: translateY(22px) scale(.96);
+@keyframes profileIn{
+    from{
+        opacity:0;
+        transform:translateY(22px) scale(.96);
     }
-
-    to {
-        opacity: 1;
-        transform: none;
+    to{
+        opacity:1;
+        transform:none;
     }
 }
 
-.profile-banner {
-    height: 160px;
-    position: relative;
-    overflow: hidden;
+.profile-banner{
+    height:160px;
+    position:relative;
+    overflow:hidden;
     background:
         radial-gradient(circle at 20% 20%,rgba(255,48,48,.22),transparent 35%),
         radial-gradient(circle at 85% 0%,rgba(255,48,48,.12),transparent 35%),
         linear-gradient(135deg,#10161c,#0c1117);
-    border-bottom: 1px solid #29313b;
+    border-bottom:1px solid #29313b;
 }
 
-.profile-body {
-    padding: 0 28px 28px;
+.profile-body{
+    padding:0 28px 28px;
 }
 
-.profile-top {
-    display: grid;
-    grid-template-columns: 1fr 330px;
-    gap: 25px;
-    align-items: start;
+.profile-top{
+    display:grid;
+    grid-template-columns:1fr 330px;
+    gap:25px;
+    align-items:start;
 }
 
-.profile-skin {
-    width: 125px;
-    height: 125px;
-    object-fit: cover;
-    image-rendering: pixelated;
-    border-radius: 16px;
-    border: 3px solid var(--red);
-    margin-top: -62px;
-    position: relative;
-    z-index: 5;
-    background: #080b0f;
+.profile-skin{
+    width:125px;
+    height:125px;
+    object-fit:cover;
+    image-rendering:pixelated;
+    border-radius:16px;
+    border:3px solid var(--red);
+    margin-top:-62px;
+    position:relative;
+    z-index:5;
+    background:#080b0f;
     box-shadow:
         0 0 0 7px rgba(11,16,22,1),
         0 0 35px rgba(255,48,48,.22);
 }
 
-.profile-name {
-    margin-top: 14px;
-    font-size: 31px;
-    font-weight: 1000;
-    letter-spacing: -.7px;
+.profile-name{
+    margin-top:14px;
+    font-size:31px;
+    font-weight:1000;
+    letter-spacing:-.7px;
 }
 
-.overall {
-    margin-top: 6px;
-    color: #ff5555;
-    font-weight: 900;
-    font-size: 12px;
+.overall{
+    margin-top:6px;
+    color:#ff5555;
+    font-weight:900;
+    font-size:12px;
 }
 
-.model-box {
-    position: relative;
-    width: 100%;
-    height: 320px;
-    margin-top: -100px;
-    border: 1px solid rgba(255,48,48,.22);
-    border-radius: 16px;
-    overflow: hidden;
+.model-box{
+    position:relative;
+    width:100%;
+    height:320px;
+    margin-top:-100px;
+    border:1px solid rgba(255,48,48,.22);
+    border-radius:16px;
+    overflow:hidden;
     background:
         radial-gradient(circle at 50% 35%,rgba(255,48,48,.12),transparent 45%),
         linear-gradient(180deg,#10161d,#080c11);
@@ -1185,346 +1247,300 @@ main {
         0 15px 40px rgba(0,0,0,.25);
 }
 
-.model-box::before {
-    content: "3D PLAYER MODEL";
-    position: absolute;
-    top: 12px;
-    left: 14px;
-    z-index: 5;
-    color: rgba(255,255,255,.45);
-    font-size: 8px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
+.model-box::before{
+    content:"3D PLAYER MODEL";
+    position:absolute;
+    top:12px;
+    left:14px;
+    z-index:5;
+    color:rgba(255,255,255,.45);
+    font-size:8px;
+    font-weight:900;
+    letter-spacing:1.5px;
 }
 
-#skinViewer {
-    width: 100%;
-    height: 100%;
-    display: block;
+#skinViewer{
+    width:100%;
+    height:100%;
+    display:block;
 }
 
-.model-hint {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 5;
-    padding: 5px 9px;
-    border-radius: 20px;
-    background: rgba(0,0,0,.45);
-    color: #687381;
-    font-size: 8px;
-    white-space: nowrap;
+.model-hint{
+    position:absolute;
+    bottom:10px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:5;
+    padding:5px 9px;
+    border-radius:20px;
+    background:rgba(0,0,0,.45);
+    color:#687381;
+    font-size:8px;
+    white-space:nowrap;
 }
 
-.close {
-    position: absolute;
-    z-index: 10;
-    right: 15px;
-    top: 15px;
-    width: 37px;
-    height: 37px;
-    border: 1px solid #38414c;
-    border-radius: 9px;
-    background: rgba(21,27,34,.9);
-    color: #fff;
-    cursor: pointer;
-    font-size: 20px;
-    transition: .2s;
+.close{
+    position:absolute;
+    z-index:10;
+    right:15px;
+    top:15px;
+    width:37px;
+    height:37px;
+    border:1px solid #38414c;
+    border-radius:9px;
+    background:rgba(21,27,34,.9);
+    color:#fff;
+    cursor:pointer;
+    font-size:20px;
+    transition:.2s;
 }
 
-.close:hover {
-    border-color: rgba(255,48,48,.45);
-    background: rgba(255,48,48,.12);
-    transform: rotate(90deg);
+.close:hover{
+    border-color:rgba(255,48,48,.45);
+    background:rgba(255,48,48,.12);
+    transform:rotate(90deg);
 }
 
-.profile-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 9px;
-    margin-top: 22px;
+.profile-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+    margin-top:22px;
 }
 
-.profile-stat {
-    position: relative;
-    overflow: hidden;
-    padding: 15px;
-    border: 1px solid #252d37;
-    border-radius: 10px;
-    background: linear-gradient(135deg,#121820,#0e141b);
+.profile-stat{
+    position:relative;
+    overflow:hidden;
+    padding:15px;
+    border:1px solid #252d37;
+    border-radius:10px;
+    background:linear-gradient(135deg,#121820,#0e141b);
 }
 
-.profile-stat span {
-    display: block;
-    color: #6d7784;
-    font-size: 9px;
-    font-weight: 850;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.profile-stat span{
+    display:block;
+    color:#6d7784;
+    font-size:9px;
+    font-weight:850;
+    text-transform:uppercase;
+    letter-spacing:1px;
 }
 
-.profile-stat b {
-    display: block;
-    margin-top: 4px;
-    font-size: 19px;
+.profile-stat b{
+    display:block;
+    margin-top:4px;
+    font-size:19px;
 }
 
-.profile-section {
-    margin-top: 25px;
+.profile-section{
+    margin-top:25px;
 }
 
-.profile-section h3 {
-    margin-bottom: 10px;
-    color: #ff5555;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.profile-section h3{
+    margin-bottom:10px;
+    color:#ff5555;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:1px;
 }
 
-.rank-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 11px 13px;
-    margin-bottom: 6px;
-    border: 1px solid #252d37;
-    border-radius: 8px;
-    background: #121820;
+.rank-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:11px 13px;
+    margin-bottom:6px;
+    border:1px solid #252d37;
+    border-radius:8px;
+    background:#121820;
 }
 
-.history-item {
-    position: relative;
-    padding: 12px 14px;
-    margin-bottom: 7px;
-    border-left: 3px solid var(--red);
-    background: linear-gradient(90deg,rgba(255,48,48,.07),#121820 35%);
-    border-radius: 5px;
+.history-item{
+    position:relative;
+    padding:12px 14px;
+    margin-bottom:7px;
+    border-left:3px solid var(--red);
+    background:linear-gradient(
+        90deg,
+        rgba(255,48,48,.07),
+        #121820 35%
+    );
+    border-radius:5px;
 }
 
-.history-item small {
-    display: block;
-    margin-top: 5px;
-    color: #687381;
+.history-item small{
+    display:block;
+    margin-top:5px;
+    color:#687381;
 }
 
 /* FOOTER */
 
-footer {
-    position: relative;
-    padding: 35px 20px;
-    text-align: center;
-    color: #4e5865;
-    border-top: 1px solid rgba(255,255,255,.05);
-    font-size: 11px;
-    background: #06080b;
+footer{
+    position:relative;
+    padding:35px 20px;
+    text-align:center;
+    color:#4e5865;
+    border-top:1px solid rgba(255,255,255,.05);
+    font-size:11px;
+    background:#06080b;
 }
 
-footer strong {
-    color: var(--red);
-}
+footer strong{color:var(--red)}
 
 /* MOBILE */
 
-@media(max-width:900px) {
-    .dashboard {
-        grid-template-columns: 1fr;
-    }
+@media(max-width:900px){
+    .dashboard{grid-template-columns:1fr}
+    .search-results{grid-template-columns:1fr 1fr}
+    .profile-top{grid-template-columns:1fr}
 
-    .search-results {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .profile-top {
-        grid-template-columns: 1fr;
-    }
-
-    .model-box {
-        margin-top: 15px;
-        height: 300px;
+    .model-box{
+        margin-top:15px;
+        height:300px;
     }
 }
 
-@media(max-width:800px) {
-    .podium {
-        grid-template-columns: 1fr;
-        align-items: stretch;
+@media(max-width:800px){
+    .podium{
+        grid-template-columns:1fr;
+        align-items:stretch;
     }
 
-    .podium-card.first {
-        order: -1;
+    .podium-card.first{order:-1}
+
+    .leader-row{
+        grid-template-columns:40px 1fr 75px;
     }
 
-    .leader-row {
-        grid-template-columns: 40px 1fr 75px;
-    }
-
-    .leader-score {
-        display: none;
-    }
-
-    nav {
-        top: 7px;
-    }
+    .leader-score{display:none}
+    nav{top:7px}
 }
 
-@media(max-width:600px) {
-    header {
-        padding: 55px 15px 42px;
+@media(max-width:600px){
+    header{
+        padding:55px 15px 42px;
     }
 
-    .logo {
-        letter-spacing: -3px;
+    .logo{letter-spacing:-3px}
+
+    .subtitle{
+        font-size:9px;
+        letter-spacing:3px;
     }
 
-    .subtitle {
-        font-size: 9px;
-        letter-spacing: 3px;
+    nav{
+        position:relative;
+        top:auto;
+        width:calc(100% - 20px);
+        max-width:none;
+        margin:10px auto 0;
     }
 
-    nav {
-        position: relative;
-        top: auto;
-        width: calc(100% - 20px);
-        max-width: none;
-        margin: 10px auto 0;
+    nav button{
+        flex:1;
+        min-width:0;
+        padding:10px 7px;
+        font-size:10px;
     }
 
-    nav button {
-        flex: 1;
-        min-width: 0;
-        padding: 10px 7px;
-        font-size: 10px;
+    main{
+        width:95%;
+        margin-top:27px;
     }
 
-    main {
-        width: 95%;
-        margin-top: 27px;
+    .featured{
+        min-height:auto;
+        padding:23px;
     }
 
-    .featured {
-        min-height: auto;
-        padding: 23px;
+    .featured-content{
+        align-items:flex-start;
+        gap:17px;
     }
 
-    .featured-content {
-        align-items: flex-start;
-        gap: 17px;
+    .featured-skin{
+        width:82px;
+        height:82px;
+        border-radius:12px;
     }
 
-    .featured-skin {
-        width: 82px;
-        height: 82px;
-        border-radius: 12px;
-    }
-
-    .featured-name {
-        font-size: 23px;
-    }
-
-    .featured-score {
-        display: none;
-    }
+    .featured-name{font-size:23px}
+    .featured-score{display:none}
 
     .stat-grid,
     .distribution,
-    .profile-grid {
-        grid-template-columns: 1fr;
+    .profile-grid{
+        grid-template-columns:1fr;
     }
 
-    .search-controls {
-        grid-template-columns: 1fr;
+    .search-controls{grid-template-columns:1fr}
+    .search-results{grid-template-columns:1fr}
+
+    .tier{
+        grid-template-columns:68px 1fr;
     }
 
-    .search-results {
-        grid-template-columns: 1fr;
+    .tier-name{font-size:13px}
+    .players{padding:8px}
+
+    .player{width:100%}
+
+    .profile{
+        max-height:95vh;
+        border-radius:17px;
     }
 
-    .tier {
-        grid-template-columns: 68px 1fr;
+    .profile-banner{height:125px}
+
+    .profile-body{
+        padding:0 18px 20px;
     }
 
-    .tier-name {
-        font-size: 13px;
+    .profile-skin{
+        width:95px;
+        height:95px;
+        margin-top:-48px;
     }
 
-    .players {
-        padding: 8px;
+    .profile-name{font-size:25px}
+
+    .model-box{height:260px}
+
+    .section-title{font-size:17px}
+}
+
+@media(max-width:400px){
+    .logo{font-size:43px}
+
+    nav button{
+        font-size:9px;
+        padding:9px 5px;
     }
 
-    .player {
-        width: 100%;
+    .featured-content{gap:12px}
+
+    .featured-skin{
+        width:70px;
+        height:70px;
     }
 
-    .profile {
-        max-height: 95vh;
-        border-radius: 17px;
+    .featured-name{font-size:20px}
+
+    .leader-row{
+        grid-template-columns:34px 1fr 64px;
+        padding:12px 10px;
     }
 
-    .profile-banner {
-        height: 125px;
-    }
-
-    .profile-body {
-        padding: 0 18px 20px;
-    }
-
-    .profile-skin {
-        width: 95px;
-        height: 95px;
-        margin-top: -48px;
-    }
-
-    .profile-name {
-        font-size: 25px;
-    }
-
-    .model-box {
-        height: 260px;
-    }
-
-    .section-title {
-        font-size: 17px;
+    .leader-head{
+        width:32px;
+        height:32px;
     }
 }
 
-@media(max-width:400px) {
-    .logo {
-        font-size: 43px;
-    }
-
-    nav button {
-        font-size: 9px;
-        padding: 9px 5px;
-    }
-
-    .featured-content {
-        gap: 12px;
-    }
-
-    .featured-skin {
-        width: 70px;
-        height: 70px;
-    }
-
-    .featured-name {
-        font-size: 20px;
-    }
-
-    .leader-row {
-        grid-template-columns: 34px 1fr 64px;
-        padding: 12px 10px;
-    }
-
-    .leader-head {
-        width: 32px;
-        height: 32px;
-    }
-}
-
-::selection {
-    background: rgba(255,48,48,.35);
-    color: #fff;
+::selection{
+    background:rgba(255,48,48,.35);
+    color:#fff;
 }
 </style>
 </head>
@@ -1583,32 +1599,27 @@ footer strong {
 
     <div class="tabs">
 
-        <button
-            class="tab active"
+        <button class="tab active"
             onclick="leaderboardMode='Overall';updateLeaderboardTabs(this);renderLeaderboards()">
             Overall
         </button>
 
-        <button
-            class="tab"
+        <button class="tab"
             onclick="leaderboardMode='Bedfight';updateLeaderboardTabs(this);renderLeaderboards()">
             ⚔ Bedfight
         </button>
 
-        <button
-            class="tab"
+        <button class="tab"
             onclick="leaderboardMode='Bedwars';updateLeaderboardTabs(this);renderLeaderboards()">
             🛏 Bedwars
         </button>
 
-        <button
-            class="tab"
+        <button class="tab"
             onclick="leaderboardMode='UHC';updateLeaderboardTabs(this);renderLeaderboards()">
             💎 UHC
         </button>
 
-        <button
-            class="tab"
+        <button class="tab"
             onclick="leaderboardMode='Sumo';updateLeaderboardTabs(this);renderLeaderboards()">
             🥊 Sumo
         </button>
@@ -1690,26 +1701,22 @@ footer strong {
 
             <div class="tabs">
 
-                <button
-                    class="tab active"
+                <button class="tab active"
                     onclick="setMode('Bedfight',this)">
                     ⚔ Bedfight
                 </button>
 
-                <button
-                    class="tab"
+                <button class="tab"
                     onclick="setMode('Bedwars',this)">
                     🛏 Bedwars
                 </button>
 
-                <button
-                    class="tab"
+                <button class="tab"
                     onclick="setMode('UHC',this)">
                     💎 UHC
                 </button>
 
-                <button
-                    class="tab"
+                <button class="tab"
                     onclick="setMode('Sumo',this)">
                     🥊 Sumo
                 </button>
@@ -1894,135 +1901,129 @@ footer strong {
 const players = [
 
     {
-        name: "Luminous",
+        name:"Luminous",
 
-        rankings: {
-            Bedfight: null,
-            Bedwars: "HT3",
-            UHC: null,
-            Sumo: null
+        rankings:{
+            Bedfight:null,
+            Bedwars:"HT3",
+            UHC:null,
+            Sumo:null
         },
 
-        stats: {
-            wins: 5,
-            losses: 0,
-            tests: 1
+        stats:{
+            wins:5,
+            losses:0,
+            tests:1
         },
 
-        tester: "Head Tester",
-        testDate: "8/12/2026",
-
-        history: []
+        tester:"Head Tester",
+        testDate:"8/12/2026",
+        history:[]
     },
 
     {
-        name: "Ehlendas",
+        name:"Ehlendas",
 
-        rankings: {
-            Bedfight: null,
-            Bedwars: null,
-            UHC: null,
-            Sumo: "LT3"
+        rankings:{
+            Bedfight:null,
+            Bedwars:null,
+            UHC:null,
+            Sumo:"LT3"
         },
 
-        stats: {
-            wins: 2,
-            losses: 5,
-            tests: 1
+        stats:{
+            wins:2,
+            losses:5,
+            tests:1
         },
 
-        tester: "Head Tester",
-        testDate: "8/12/2026",
-
-        history: []
+        tester:"Head Tester",
+        testDate:"8/12/2026",
+        history:[]
     },
 
     {
-        name: "_kaaam",
+        name:"_kaaam",
 
-        rankings: {
-            Bedfight: "LT3",
-            Bedwars: null,
-            UHC: null,
-            Sumo: null
+        rankings:{
+            Bedfight:"LT3",
+            Bedwars:null,
+            UHC:null,
+            Sumo:null
         },
 
-        stats: {
-            wins: 2,
-            losses: 5,
-            tests: 1
+        stats:{
+            wins:2,
+            losses:5,
+            tests:1
         },
 
-        tester: "Head Tester",
-        testDate: "8/12/2026",
-
-        history: []
+        tester:"Head Tester",
+        testDate:"8/12/2026",
+        history:[]
     },
 
     {
-        name: "Anles_Gamer",
+        name:"Anles_Gamer",
 
-        rankings: {
-            Bedfight: null,
-            Bedwars: null,
-            UHC: null,
-            Sumo: "HT5"
+        rankings:{
+            Bedfight:null,
+            Bedwars:null,
+            UHC:null,
+            Sumo:"HT5"
         },
 
-        stats: {
-            wins: 2,
-            losses: 5,
-            tests: 1
+        stats:{
+            wins:2,
+            losses:5,
+            tests:1
         },
 
-        tester: "Tester",
-        testDate: "8/12/2026",
-
-        history: []
+        tester:"Tester",
+        testDate:"8/12/2026",
+        history:[]
     },
 
     {
-        name: "Zerphat",
+        name:"Zerphat",
 
-        rankings: {
-            Bedfight: null,
-            Bedwars: "HT5",
-            UHC: null,
-            Sumo: null
+        rankings:{
+            Bedfight:null,
+            Bedwars:"HT5",
+            UHC:null,
+            Sumo:null
         },
 
-        stats: {
-            wins: 1,
-            losses: 4,
-            tests: 1
+        stats:{
+            wins:1,
+            losses:4,
+            tests:1
         },
 
-        tester: "Head Tester",
-        testDate: "8/12/2026",
-
-        history: []
+        tester:"Head Tester",
+        testDate:"8/12/2026",
+        history:[]
     },
 
     {
-        name: "Mr_Elite_noob",
+        name:"Mr_Elite_noob",
 
-        rankings: {
-            Bedfight: "LT3",
-            Bedwars: null,
-            UHC: "LT3",
-            Sumo: null
+        rankings:{
+            Bedfight:"LT3",
+            Bedwars:null,
+            UHC:"LT3",
+            Sumo:null
         },
 
-        stats: {
-            wins: 8,
-            losses: 2,
-            tests: 1
+        stats:{
+            wins:8,
+            losses:2,
+            tests:1
         },
 
-        tester: "Tester",
-        testDate: "8/12/2026",
-
-        history: []
+        tester:"Tester",
+        testDate:"8/12/2026",
+        history:[]
     }
 
 ];
@@ -2032,7 +2033,7 @@ const players = [
    SETTINGS
 ========================================================= */
 
-const tiers = [
+const tiers=[
     "HT1",
     "LT1",
     "HT2",
@@ -2045,36 +2046,36 @@ const tiers = [
     "LT5"
 ];
 
-const modes = [
+const modes=[
     "Bedfight",
     "Bedwars",
     "UHC",
     "Sumo"
 ];
 
-let currentMode = "Bedfight";
-let leaderboardMode = "Overall";
+let currentMode="Bedfight";
+let leaderboardMode="Overall";
 
-let skinViewer = null;
+let skinViewer=null;
 
 
 /* =========================================================
    TIER SCORE
 ========================================================= */
 
-function tierScore(tier) {
+function tierScore(tier){
 
-    const scores = {
-        HT1: 100,
-        LT1: 95,
-        HT2: 90,
-        LT2: 85,
-        HT3: 80,
-        LT3: 75,
-        HT4: 70,
-        LT4: 65,
-        HT5: 60,
-        LT5: 55
+    const scores={
+        HT1:100,
+        LT1:95,
+        HT2:90,
+        LT2:85,
+        HT3:80,
+        LT3:75,
+        HT4:70,
+        LT4:65,
+        HT5:60,
+        LT5:55
     };
 
     return scores[tier] || 0;
@@ -2082,24 +2083,35 @@ function tierScore(tier) {
 
 
 /* =========================================================
-   OVERALL SCORE
+   NEW STACKING OVERALL SCORE
 ========================================================= */
 
-function overallScore(player) {
+function overallScore(player){
 
-    const rankedModes =
-        modes.filter(mode => player.rankings[mode]);
+    const rankedModes=
+        modes.filter(mode=>player.rankings[mode]);
 
-    if (!rankedModes.length)
+    if(!rankedModes.length)
         return 0;
 
-    let total = 0;
+    /*
+       Every ranked mode adds its full tier value.
 
-    rankedModes.forEach(mode => {
-        total += tierScore(player.rankings[mode]);
-    });
+       Example:
 
-    return total / rankedModes.length;
+       HT3 = 80
+       HT3 + LT3 = 155
+       HT3 + LT3 + HT5 = 215
+
+       This means multi-mode players receive
+       more overall points.
+    */
+
+    return rankedModes.reduce(
+        (total,mode)=>
+            total + tierScore(player.rankings[mode]),
+        0
+    );
 }
 
 
@@ -2107,12 +2119,32 @@ function overallScore(player) {
    OVERALL RANKING
 ========================================================= */
 
-function sortedOverall() {
+function sortedOverall(){
 
     return [...players].sort(
-        (a, b) => overallScore(b) - overallScore(a)
-    );
+        (a,b)=>{
 
+            const scoreDifference=
+                overallScore(b)-overallScore(a);
+
+            if(scoreDifference!==0)
+                return scoreDifference;
+
+            /*
+               If two players have the same score,
+               give the player with more ranked modes
+               the advantage.
+            */
+
+            const modesA=
+                modes.filter(m=>a.rankings[m]).length;
+
+            const modesB=
+                modes.filter(m=>b.rankings[m]).length;
+
+            return modesB-modesA;
+        }
+    );
 }
 
 
@@ -2120,18 +2152,74 @@ function sortedOverall() {
    WIN RATE
 ========================================================= */
 
-function winRate(player) {
+function winRate(player){
 
-    const wins = Number(player.stats?.wins || 0);
-    const losses = Number(player.stats?.losses || 0);
+    const wins=Number(player.stats?.wins||0);
+    const losses=Number(player.stats?.losses||0);
 
-    if (wins + losses === 0)
+    if(wins+losses===0)
         return 0;
 
     return Math.round(
-        (wins / (wins + losses)) * 100
+        (wins/(wins+losses))*100
+    );
+}
+
+
+/* =========================================================
+   TIER RANK
+========================================================= */
+
+function bestTier(player){
+
+    const ranked=
+        modes
+            .map(mode=>player.rankings[mode])
+            .filter(Boolean);
+
+    if(!ranked.length)
+        return null;
+
+    return ranked.sort(
+        (a,b)=>tierScore(b)-tierScore(a)
+    )[0];
+}
+
+
+/* =========================================================
+   TIER REACTIVE CLASS
+========================================================= */
+
+function applyTierStyle(element,player){
+
+    const tier=bestTier(player);
+
+    if(!tier)
+        return;
+
+    element.classList.add("tier-reactive");
+
+    element.style.setProperty(
+        "--active-tier",
+        `var(--tier)`
     );
 
+    element.style.setProperty(
+        "--active-tier2",
+        `var(--tier2)`
+    );
+
+    element.style.setProperty(
+        "--active-glow",
+        `var(--tierGlow)`
+    );
+
+    /*
+       The CSS variables above need the actual tier
+       variables. Add them directly from the tier class.
+    */
+
+    element.classList.add(tier);
 }
 
 
@@ -2139,61 +2227,60 @@ function winRate(player) {
    ACHIEVEMENTS
 ========================================================= */
 
-function getAchievements(player) {
+function getAchievements(player){
 
-    const list = [];
+    const list=[];
 
-    const ranking = sortedOverall();
+    const ranking=sortedOverall();
 
-    const position =
+    const position=
         ranking.findIndex(
-            p => p.name === player.name
-        ) + 1;
+            p=>p.name===player.name
+        )+1;
 
-    const rankedTiers =
+    const rankedTiers=
         modes
-            .map(m => player.rankings[m])
+            .map(m=>player.rankings[m])
             .filter(Boolean);
 
-    if (position === 1)
+    if(position===1)
         list.push("🥇 #1 Overall");
 
-    if (position <= 10 && position > 1)
+    if(position<=10 && position>1)
         list.push("⭐ Top 10");
 
-    if (rankedTiers.includes("HT1"))
+    if(rankedTiers.includes("HT1"))
         list.push("👑 HT1 Player");
 
-    if (rankedTiers.includes("HT2"))
+    if(rankedTiers.includes("HT2"))
         list.push("🔥 HT2 Player");
 
-    if (
+    if(
         rankedTiers.some(
-            t =>
-                [
-                    "HT1",
-                    "LT1",
-                    "HT2",
-                    "LT2",
-                    "HT3",
-                    "LT3"
-                ].includes(t)
+            t=>[
+                "HT1",
+                "LT1",
+                "HT2",
+                "LT2",
+                "HT3",
+                "LT3"
+            ].includes(t)
         )
-    ) {
+    ){
         list.push("⚡ Elite Player");
     }
 
-    if (
-        Number(player.stats?.wins || 0) > 0 &&
-        Number(player.stats?.losses || 0) === 0
-    ) {
+    if(
+        Number(player.stats?.wins||0)>0 &&
+        Number(player.stats?.losses||0)===0
+    ){
         list.push("💯 Undefeated");
     }
 
-    if (Number(player.stats?.tests || 0) > 0)
+    if(Number(player.stats?.tests||0)>0)
         list.push("🧪 Tested Player");
 
-    if (rankedTiers.length >= 2)
+    if(rankedTiers.length>=2)
         list.push("🏆 Multi-Mode");
 
     return list;
@@ -2204,20 +2291,18 @@ function getAchievements(player) {
    SKIN URLS
 ========================================================= */
 
-function skinURL(name, size = 100) {
+function skinURL(name,size=100){
 
-    return "https://mc-heads.net/avatar/" +
-        encodeURIComponent(name) +
-        "/" +
+    return "https://mc-heads.net/avatar/"+
+        encodeURIComponent(name)+
+        "/"+
         size;
-
 }
 
-function fullSkinURL(name) {
+function fullSkinURL(name){
 
-    return "https://mc-heads.net/skin/" +
+    return "https://mc-heads.net/skin/"+
         encodeURIComponent(name);
-
 }
 
 
@@ -2225,17 +2310,17 @@ function fullSkinURL(name) {
    HOME
 ========================================================= */
 
-function renderHome() {
+function renderHome(){
 
-    const ranking = sortedOverall();
-    const featured = ranking[0];
+    const ranking=sortedOverall();
+    const featured=ranking[0];
 
-    const featuredBox =
+    const featuredBox=
         document.getElementById("featured");
 
-    if (featured) {
+    if(featured){
 
-        featuredBox.innerHTML = `
+        featuredBox.innerHTML=`
 
             <div class="featured-label">
                 🌟 Featured Player
@@ -2262,23 +2347,21 @@ function renderHome() {
                     <div class="featured-score">
                         Overall Score:
                         <strong>
-                            ${overallScore(featured).toFixed(0)}
+                            ${overallScore(featured)}
                         </strong>
                     </div>
 
                     <div class="featured-tiers">
 
-                        ${modes.map(mode => {
+                        ${modes.map(mode=>{
 
-                            const tier =
+                            const tier=
                                 featured.rankings[mode];
 
                             return tier
-
                                 ? `<span class="badge ${tier}">
                                     ${tier}
                                   </span>`
-
                                 : `<span
                                     class="badge"
                                     style="background:#252d37">
@@ -2295,80 +2378,55 @@ function renderHome() {
 
         `;
 
-    } else {
+    }else{
 
-        featuredBox.innerHTML = `
+        featuredBox.innerHTML=`
             <div class="no-results">
                 <strong>No Players</strong>
                 Add players to the database.
             </div>
         `;
-
     }
 
-    const totalWins =
+    const totalWins=
         players.reduce(
-            (sum, p) =>
-                sum + Number(p.stats?.wins || 0),
+            (sum,p)=>
+                sum+Number(p.stats?.wins||0),
             0
         );
 
-    const totalTests =
+    const totalTests=
         players.reduce(
-            (sum, p) =>
-                sum + Number(p.stats?.tests || 0),
+            (sum,p)=>
+                sum+Number(p.stats?.tests||0),
             0
         );
 
-    const quick =
-        document.getElementById("quickStats");
-
-    quick.innerHTML = `
+    document.getElementById("quickStats").innerHTML=`
 
         <div class="stat-card">
-            <div class="number">
-                ${players.length}
-            </div>
-
-            <div class="label">
-                Players Ranked
-            </div>
+            <div class="number">${players.length}</div>
+            <div class="label">Players Ranked</div>
         </div>
 
         <div class="stat-card">
-            <div class="number">
-                ${totalTests}
-            </div>
-
-            <div class="label">
-                Total Tests
-            </div>
+            <div class="number">${totalTests}</div>
+            <div class="label">Total Tests</div>
         </div>
 
         <div class="stat-card">
-            <div class="number">
-                ${totalWins}
-            </div>
-
-            <div class="label">
-                Total Wins
-            </div>
+            <div class="number">${totalWins}</div>
+            <div class="label">Total Wins</div>
         </div>
 
         <div class="stat-card">
-            <div class="number">
-                ${mostCommonTier()}
-            </div>
-
-            <div class="label">
-                Most Common Tier
-            </div>
+            <div class="number">${mostCommonTier()}</div>
+            <div class="label">Most Common Tier</div>
         </div>
 
     `;
 
     renderPodium();
-
 }
 
 
@@ -2376,47 +2434,51 @@ function renderHome() {
    PODIUM
 ========================================================= */
 
-function renderPodium() {
+function renderPodium(){
 
-    const ranking =
-        sortedOverall().filter(p => overallScore(p) > 0).slice(0,3);
+    const ranking=
+        sortedOverall()
+            .filter(p=>overallScore(p)>0)
+            .slice(0,3);
 
-    const box =
+    const box=
         document.getElementById("podium");
 
-    if (!ranking.length) {
+    if(!ranking.length){
 
-        box.innerHTML =
+        box.innerHTML=
             "<div class='no-results'>No players yet.</div>";
 
         return;
     }
 
-    box.innerHTML = "";
+    box.innerHTML="";
 
-    ranking.forEach((player, index) => {
+    ranking.forEach((player,index)=>{
 
-        const position = index + 1;
+        const position=index+1;
 
-        const card =
+        const card=
             document.createElement("div");
 
-        card.className =
-            "podium-card " +
-            (position === 1 ? "first" : "");
+        card.className=
+            "podium-card "+
+            (position===1?"first ":"");
 
-        card.onclick =
-            () => openProfile(player.name);
+        applyTierStyle(card,player);
 
-        card.innerHTML = `
+        card.onclick=
+            ()=>openProfile(player.name);
+
+        card.innerHTML=`
 
             <div class="podium-number">
                 ${
-                    position === 1
-                    ? "🥇"
-                    : position === 2
-                    ? "🥈"
-                    : "🥉"
+                    position===1
+                    ?"🥇"
+                    :position===2
+                    ?"🥈"
+                    :"🥉"
                 }
             </div>
 
@@ -2431,16 +2493,14 @@ function renderPodium() {
             </div>
 
             <div class="podium-score">
-                ${overallScore(player).toFixed(0)}
+                ${overallScore(player)}
                 Overall Score
             </div>
 
         `;
 
         box.appendChild(card);
-
     });
-
 }
 
 
@@ -2448,131 +2508,139 @@ function renderPodium() {
    ADVANCED SEARCH
 ========================================================= */
 
-function renderSearchResults() {
+function renderSearchResults(){
 
-    const box =
+    const box=
         document.getElementById("searchResults");
 
-    const search =
+    const search=
         document
             .getElementById("advancedSearch")
             .value
             .toLowerCase()
             .trim();
 
-    const mode =
+    const mode=
         document
             .getElementById("searchMode")
             .value;
 
-    const selectedTier =
+    const selectedTier=
         document
             .getElementById("searchTier")
             .value;
 
-    const results =
-        players.filter(player => {
+    const results=
+        players.filter(player=>{
 
-            const nameMatch =
+            const nameMatch=
                 !search ||
                 player.name
                     .toLowerCase()
                     .includes(search);
 
-            let modeMatch = true;
-            let tierMatch = true;
+            let modeMatch=true;
+            let tierMatch=true;
 
-            if (mode !== "All") {
-                modeMatch =
+            if(mode!=="All"){
+                modeMatch=
                     Boolean(player.rankings[mode]);
             }
 
-            if (selectedTier !== "All") {
+            if(selectedTier!=="All"){
 
-                if (selectedTier === "N/A") {
+                if(selectedTier==="N/A"){
 
-                    if (mode === "All") {
+                    if(mode==="All"){
 
-                        tierMatch =
+                        tierMatch=
                             modes.some(
-                                m => !player.rankings[m]
+                                m=>!player.rankings[m]
                             );
 
-                    } else {
+                    }else{
 
-                        tierMatch =
+                        tierMatch=
                             !player.rankings[mode];
-
                     }
 
-                } else {
+                }else{
 
-                    if (mode === "All") {
+                    if(mode==="All"){
 
-                        tierMatch =
+                        tierMatch=
                             modes.some(
-                                m =>
-                                    player.rankings[m] === selectedTier
+                                m=>
+                                    player.rankings[m]===selectedTier
                             );
 
-                    } else {
+                    }else{
 
-                        tierMatch =
-                            player.rankings[mode] === selectedTier;
-
+                        tierMatch=
+                            player.rankings[mode]===selectedTier;
                     }
-
                 }
-
             }
 
-            return nameMatch && modeMatch && tierMatch;
-
+            return nameMatch &&
+                modeMatch &&
+                tierMatch;
         });
 
-    if (!search && mode === "All" && selectedTier === "All") {
+    if(
+        !search &&
+        mode==="All" &&
+        selectedTier==="All"
+    ){
 
-        box.innerHTML = `
-            <div class="no-results" style="grid-column:1/-1;padding:25px">
+        box.innerHTML=`
+            <div
+                class="no-results"
+                style="grid-column:1/-1;padding:25px"
+            >
                 <strong>Search Players</strong>
-                Enter an IGN or use the filters above to find players instantly.
+                Enter an IGN or use the filters above
+                to find players instantly.
             </div>
         `;
 
         return;
-
     }
 
-    if (!results.length) {
+    if(!results.length){
 
-        box.innerHTML = `
-            <div class="no-results" style="grid-column:1/-1;padding:25px">
+        box.innerHTML=`
+            <div
+                class="no-results"
+                style="grid-column:1/-1;padding:25px"
+            >
                 <strong>No Players Found</strong>
                 Try changing your search or filters.
             </div>
         `;
 
         return;
-
     }
 
-    box.innerHTML =
-        results.map(player => {
+    box.innerHTML=
+        results.map(player=>{
 
-            const rankedModes =
+            const rankedModes=
                 modes.filter(
-                    m => player.rankings[m]
+                    m=>player.rankings[m]
                 );
 
-            const displayedModes =
-                mode === "All"
-                    ? rankedModes
-                    : [mode];
+            const displayedModes=
+                mode==="All"
+                    ?rankedModes
+                    :[mode];
+
+            const tier=bestTier(player);
 
             return `
 
                 <div
-                    class="search-result-card"
+                    class="search-result-card tier-reactive ${tier||""}"
                     onclick="openProfile('${escapeJS(player.name)}')"
                 >
 
@@ -2590,29 +2658,31 @@ function renderSearchResults() {
 
                         <div class="search-result-mode">
                             ${
-                                mode === "All"
-                                ? "Ranked in " + rankedModes.length + " mode(s)"
-                                : mode + " ranking"
+                                mode==="All"
+                                ?"Ranked in "+
+                                 rankedModes.length+
+                                 " mode(s) · "+
+                                 overallScore(player)+
+                                 " points"
+                                :mode+" ranking"
                             }
                         </div>
 
                         <div class="search-result-tiers">
 
                             ${
-                                displayedModes.map(m => {
+                                displayedModes.map(m=>{
 
-                                    const tier =
+                                    const t=
                                         player.rankings[m];
 
-                                    return tier
-
-                                        ? `<span
-                                            class="badge ${tier}"
+                                    return t
+                                        ?`<span
+                                            class="badge ${t}"
                                             title="${m}">
-                                            ${tier}
+                                            ${t}
                                           </span>`
-
-                                        : `<span
+                                        :`<span
                                             class="badge"
                                             style="background:#252d37"
                                             title="${m}">
@@ -2631,7 +2701,6 @@ function renderSearchResults() {
             `;
 
         }).join("");
-
 }
 
 
@@ -2639,16 +2708,15 @@ function renderSearchResults() {
    LEADERBOARD TABS
 ========================================================= */
 
-function updateLeaderboardTabs(button) {
+function updateLeaderboardTabs(button){
 
     document
         .querySelectorAll("#leaderboards .tab")
-        .forEach(tab =>
+        .forEach(tab=>
             tab.classList.remove("active")
         );
 
     button.classList.add("active");
-
 }
 
 
@@ -2656,50 +2724,48 @@ function updateLeaderboardTabs(button) {
    LEADERBOARDS
 ========================================================= */
 
-function renderLeaderboards() {
+function renderLeaderboards(){
 
-    const box =
+    const box=
         document.getElementById("leaderboard");
 
-    let ranking = [...players];
+    let ranking=[...players];
 
-    if (leaderboardMode === "Overall") {
+    if(leaderboardMode==="Overall"){
 
         ranking.sort(
-            (a,b) =>
-                overallScore(b) -
+            (a,b)=>
+                overallScore(b)-
                 overallScore(a)
         );
 
-    } else {
+    }else{
 
         ranking.sort(
-            (a,b) =>
+            (a,b)=>
                 tierScore(
                     b.rankings[leaderboardMode]
-                ) -
+                )-
                 tierScore(
                     a.rankings[leaderboardMode]
                 )
         );
-
     }
 
-    ranking =
-        ranking.filter(player => {
+    ranking=
+        ranking.filter(player=>{
 
-            if (leaderboardMode === "Overall")
-                return overallScore(player) > 0;
+            if(leaderboardMode==="Overall")
+                return overallScore(player)>0;
 
             return Boolean(
                 player.rankings[leaderboardMode]
             );
-
         });
 
-    if (!ranking.length) {
+    if(!ranking.length){
 
-        box.innerHTML = `
+        box.innerHTML=`
 
             <div class="no-results">
 
@@ -2717,28 +2783,28 @@ function renderLeaderboards() {
         return;
     }
 
-    box.innerHTML =
-        ranking.map((player,index) => {
+    box.innerHTML=
+        ranking.map((player,index)=>{
 
-            const tier =
-                leaderboardMode === "Overall"
-                ? bestTier(player)
-                : player.rankings[leaderboardMode];
+            const tier=
+                leaderboardMode==="Overall"
+                ?bestTier(player)
+                :player.rankings[leaderboardMode];
 
-            const score =
-                leaderboardMode === "Overall"
-                ? overallScore(player).toFixed(0)
-                : tierScore(tier);
+            const score=
+                leaderboardMode==="Overall"
+                ?overallScore(player)
+                :tierScore(tier);
 
             return `
 
                 <div
-                    class="leader-row"
+                    class="leader-row tier-reactive ${tier||""}"
                     onclick="openProfile('${escapeJS(player.name)}')"
                 >
 
                     <div class="leader-position">
-                        #${index + 1}
+                        #${index+1}
                     </div>
 
                     <div class="leader-player">
@@ -2759,18 +2825,21 @@ function renderLeaderboards() {
 
                         ${
                             tier
-
-                            ? `<span class="badge ${tier}">
+                            ?`<span class="badge ${tier}">
                                 ${tier}
                               </span>`
-
-                            : "N/A"
+                            :"N/A"
                         }
 
                     </div>
 
                     <div class="leader-score">
                         ${score}
+                        ${
+                            leaderboardMode==="Overall"
+                            ?" pts"
+                            :""
+                        }
                     </div>
 
                 </div>
@@ -2778,30 +2847,6 @@ function renderLeaderboards() {
             `;
 
         }).join("");
-
-}
-
-
-/* =========================================================
-   BEST TIER
-========================================================= */
-
-function bestTier(player) {
-
-    const ranked =
-        modes
-            .map(mode => player.rankings[mode])
-            .filter(Boolean);
-
-    if (!ranked.length)
-        return null;
-
-    return ranked.sort(
-        (a,b) =>
-            tierScore(b) -
-            tierScore(a)
-    )[0];
-
 }
 
 
@@ -2809,13 +2854,13 @@ function bestTier(player) {
    TIER LIST
 ========================================================= */
 
-function setMode(mode, button) {
+function setMode(mode,button){
 
-    currentMode = mode;
+    currentMode=mode;
 
     document
         .querySelectorAll("#tiers .tab")
-        .forEach(b =>
+        .forEach(b=>
             b.classList.remove("active")
         );
 
@@ -2823,91 +2868,89 @@ function setMode(mode, button) {
 
     document
         .getElementById("tierTitle")
-        .textContent =
-            mode + " Rankings";
+        .textContent=
+            mode+" Rankings";
 
     renderTierList();
-
 }
 
 
-function renderTierList() {
+function renderTierList(){
 
-    const box =
+    const box=
         document.getElementById("tierList");
 
-    box.innerHTML = "";
+    box.innerHTML="";
 
-    let any = false;
+    let any=false;
 
-    tiers.forEach((tier,index) => {
+    tiers.forEach((tier,index)=>{
 
-        const matching =
-            players.filter(player => {
+        const matching=
+            players.filter(
+                player=>
+                    player.rankings[currentMode]===tier
+            );
 
-                return player.rankings[currentMode] === tier;
+        if(matching.length)
+            any=true;
 
-            });
-
-        if (matching.length)
-            any = true;
-
-        const row =
+        const row=
             document.createElement("div");
 
-        row.className = "tier";
+        row.className=
+            "tier "+tier;
 
-        const name =
+        const name=
             document.createElement("div");
 
-        name.className =
-            "tier-name " + tier;
+        name.className=
+            "tier-name "+tier;
 
-        name.innerHTML = `
+        name.innerHTML=`
 
-            <strong>
-                ${tier}
-            </strong>
+            <strong>${tier}</strong>
 
             <small>
                 ${
-                    index === 0
-                    ? "ELITE"
-                    : index <= 3
-                    ? "HIGH"
-                    : index <= 6
-                    ? "MID"
-                    : "LOW"
+                    index===0
+                    ?"ELITE"
+                    :index<=3
+                    ?"HIGH"
+                    :index<=6
+                    ?"MID"
+                    :"LOW"
                 }
             </small>
 
         `;
 
-        const playersArea =
+        const playersArea=
             document.createElement("div");
 
-        playersArea.className = "players";
+        playersArea.className="players";
 
-        if (!matching.length) {
+        if(!matching.length){
 
-            playersArea.innerHTML =
+            playersArea.innerHTML=
                 `<span class="empty">
                     No players in this tier
                 </span>`;
 
-        } else {
+        }else{
 
-            matching.forEach(player => {
+            matching.forEach(player=>{
 
-                const card =
+                const card=
                     document.createElement("div");
 
-                card.className = "player";
+                card.className=
+                    "player "+tier;
 
-                card.onclick =
-                    () => openProfile(player.name);
+                card.onclick=
+                    ()=>openProfile(player.name);
 
-                card.innerHTML = `
+                card.innerHTML=`
 
                     <img
                         class="player-head"
@@ -2922,18 +2965,14 @@ function renderTierList() {
                 `;
 
                 playersArea.appendChild(card);
-
             });
-
         }
 
         row.appendChild(name);
         row.appendChild(playersArea);
 
         box.appendChild(row);
-
     });
-
 }
 
 
@@ -2941,41 +2980,41 @@ function renderTierList() {
    STATISTICS
 ========================================================= */
 
-function renderStatistics() {
+function renderStatistics(){
 
-    const totalWins =
+    const totalWins=
         players.reduce(
-            (sum,p) =>
-                sum + Number(p.stats?.wins || 0),
+            (sum,p)=>
+                sum+Number(p.stats?.wins||0),
             0
         );
 
-    const totalLosses =
+    const totalLosses=
         players.reduce(
-            (sum,p) =>
-                sum + Number(p.stats?.losses || 0),
+            (sum,p)=>
+                sum+Number(p.stats?.losses||0),
             0
         );
 
-    const totalTests =
+    const totalTests=
         players.reduce(
-            (sum,p) =>
-                sum + Number(p.stats?.tests || 0),
+            (sum,p)=>
+                sum+Number(p.stats?.tests||0),
             0
         );
 
-    const overall =
-        sortedOverall().find(p => overallScore(p) > 0);
+    const overall=
+        sortedOverall()
+            .find(p=>overallScore(p)>0);
 
     document
         .getElementById("bigStats")
-        .innerHTML = `
+        .innerHTML=`
 
         <div class="stat-card">
             <div class="number">
                 ${players.length}
             </div>
-
             <div class="label">
                 Total Players
             </div>
@@ -2985,7 +3024,6 @@ function renderStatistics() {
             <div class="number">
                 ${totalTests}
             </div>
-
             <div class="label">
                 Total Tests
             </div>
@@ -2995,7 +3033,6 @@ function renderStatistics() {
             <div class="number">
                 ${totalWins}
             </div>
-
             <div class="label">
                 Total Wins
             </div>
@@ -3005,7 +3042,6 @@ function renderStatistics() {
             <div class="number">
                 ${totalLosses}
             </div>
-
             <div class="label">
                 Total Losses
             </div>
@@ -3015,7 +3051,6 @@ function renderStatistics() {
             <div class="number">
                 ${mostCommonTier()}
             </div>
-
             <div class="label">
                 Most Common Tier
             </div>
@@ -3025,11 +3060,10 @@ function renderStatistics() {
             <div class="number">
                 ${
                     overall
-                    ? escapeHTML(overall.name)
-                    : "N/A"
+                    ?escapeHTML(overall.name)
+                    :"N/A"
                 }
             </div>
-
             <div class="label">
                 Highest Ranked Player
             </div>
@@ -3038,7 +3072,6 @@ function renderStatistics() {
     `;
 
     renderDistribution();
-
 }
 
 
@@ -3046,39 +3079,37 @@ function renderStatistics() {
    TIER DISTRIBUTION
 ========================================================= */
 
-function renderDistribution() {
+function renderDistribution(){
 
-    const box =
+    const box=
         document.getElementById("distribution");
 
-    const counts = {};
+    const counts={};
 
-    tiers.forEach(tier => {
-        counts[tier] = 0;
+    tiers.forEach(tier=>{
+        counts[tier]=0;
     });
 
-    players.forEach(player => {
+    players.forEach(player=>{
 
-        modes.forEach(mode => {
+        modes.forEach(mode=>{
 
-            const tier =
+            const tier=
                 player.rankings[mode];
 
-            if (tier)
+            if(tier)
                 counts[tier]++;
-
         });
-
     });
 
-    const max =
+    const max=
         Math.max(
             ...Object.values(counts),
             1
         );
 
-    box.innerHTML =
-        tiers.map(tier => `
+    box.innerHTML=
+        tiers.map(tier=>`
 
             <div class="dist-row">
 
@@ -3091,7 +3122,7 @@ function renderDistribution() {
                     <div
                         class="dist-fill"
                         style="width:${
-                            (counts[tier] / max) * 100
+                            (counts[tier]/max)*100
                         }%"
                     ></div>
 
@@ -3104,7 +3135,6 @@ function renderDistribution() {
             </div>
 
         `).join("");
-
 }
 
 
@@ -3112,81 +3142,75 @@ function renderDistribution() {
    MOST COMMON TIER
 ========================================================= */
 
-function mostCommonTier() {
+function mostCommonTier(){
 
-    const counts = {};
+    const counts={};
 
-    tiers.forEach(t =>
-        counts[t] = 0
+    tiers.forEach(
+        t=>counts[t]=0
     );
 
-    players.forEach(player => {
+    players.forEach(player=>{
 
-        modes.forEach(mode => {
+        modes.forEach(mode=>{
 
-            const tier =
+            const tier=
                 player.rankings[mode];
 
-            if (tier)
+            if(tier)
                 counts[tier]++;
-
         });
-
     });
 
-    let best = "N/A";
-    let amount = 0;
+    let best="N/A";
+    let amount=0;
 
-    Object.keys(counts).forEach(tier => {
+    Object.keys(counts).forEach(tier=>{
 
-        if (counts[tier] > amount) {
+        if(counts[tier]>amount){
 
-            amount = counts[tier];
-            best = tier;
-
+            amount=counts[tier];
+            best=tier;
         }
-
     });
 
     return best;
-
 }
 
 
 /* =========================================================
-   3D MINECRAFT PLAYER MODEL
+   3D MODEL
 ========================================================= */
 
-async function load3DModel(name) {
+async function load3DModel(name){
 
-    const canvas =
+    const canvas=
         document.getElementById("skinViewer");
 
-    if (!canvas)
+    if(!canvas)
         return;
 
-    if (skinViewer) {
+    if(skinViewer){
 
-        try {
+        try{
             skinViewer.dispose();
-        } catch(error) {}
+        }catch(error){}
 
-        skinViewer = null;
-
+        skinViewer=null;
     }
 
-    try {
+    try{
 
-        skinViewer =
+        skinViewer=
             new skinview3d.SkinViewer({
-                canvas: canvas,
-                width: 330,
-                height: 320
+                canvas:canvas,
+                width:330,
+                height:320
             });
 
-        skinViewer.controls.enableRotate = true;
-        skinViewer.controls.enableZoom = true;
-        skinViewer.controls.enablePan = false;
+        skinViewer.controls.enableRotate=true;
+        skinViewer.controls.enableZoom=true;
+        skinViewer.controls.enablePan=false;
 
         skinViewer.camera.position.set(
             0,
@@ -3194,26 +3218,27 @@ async function load3DModel(name) {
             70
         );
 
-        skinViewer.animation =
+        skinViewer.animation=
             new skinview3d.IdleAnimation();
 
         await skinViewer.loadSkin(
             fullSkinURL(name)
         );
 
-        skinViewer.playerObject.skin.rightArm.rotation.z = 0;
-        skinViewer.playerObject.skin.leftArm.rotation.z = 0;
+        skinViewer.playerObject.skin.rightArm.rotation.z=0;
+        skinViewer.playerObject.skin.leftArm.rotation.z=0;
 
-    } catch(error) {
+    }catch(error){
 
         console.error(
             "Could not load 3D Minecraft model:",
             error
         );
 
-        const modelBox = canvas.parentElement;
+        const modelBox=
+            canvas.parentElement;
 
-        modelBox.innerHTML = `
+        modelBox.innerHTML=`
             <div style="
                 height:100%;
                 display:flex;
@@ -3225,6 +3250,7 @@ async function load3DModel(name) {
                 text-align:center;
                 padding:20px;
             ">
+
                 <strong style="color:#fff">
                     3D Model Unavailable
                 </strong>
@@ -3232,11 +3258,10 @@ async function load3DModel(name) {
                 <span style="font-size:10px">
                     The player's Minecraft skin could not be loaded.
                 </span>
+
             </div>
         `;
-
     }
-
 }
 
 
@@ -3244,49 +3269,65 @@ async function load3DModel(name) {
    PROFILE
 ========================================================= */
 
-function openProfile(name) {
+function openProfile(name){
 
-    const player =
+    const player=
         players.find(
-            p => p.name === name
+            p=>p.name===name
         );
 
-    if (!player)
+    if(!player)
         return;
 
-    const ranking =
+    const ranking=
         sortedOverall();
 
-    const rankedPosition =
+    const rankedPosition=
         ranking
-            .filter(p => overallScore(p) > 0)
+            .filter(p=>overallScore(p)>0)
             .findIndex(
-                p => p.name === name
-            ) + 1;
+                p=>p.name===name
+            )+1;
 
-    document
-        .getElementById("profileSkin")
-        .src =
-            skinURL(name,120);
+    const best=bestTier(player);
+
+    const profileSkin=
+        document.getElementById("profileSkin");
+
+    profileSkin.src=
+        skinURL(name,120);
+
+    if(best){
+
+        profileSkin.style.borderColor=
+            `var(--tier)`;
+
+        profileSkin.style.boxShadow=
+            `0 0 0 7px rgba(11,16,22,1),
+             0 0 35px var(--tierGlow)`;
+
+        profileSkin.className=
+            "profile-skin "+best;
+    }
 
     document
         .getElementById("profileName")
-        .textContent =
+        .textContent=
             name;
 
     document
         .getElementById("profileOverall")
-        .textContent =
+        .textContent=
             rankedPosition
-            ? `🏆 #${rankedPosition} Overall · ${overallScore(player).toFixed(0)} Score`
-            : "Unranked";
+            ?`🏆 #${rankedPosition} Overall · ${overallScore(player)} Points`
+            :"Unranked";
 
     document
         .getElementById("profileAchievements")
-        .innerHTML =
+        .innerHTML=
             getAchievements(player)
                 .map(
-                    a =>
+                    a=>
                         `<span class="achievement">
                             ${a}
                          </span>`
@@ -3295,10 +3336,10 @@ function openProfile(name) {
 
     document
         .getElementById("profileRanks")
-        .innerHTML =
-            modes.map(mode => {
+        .innerHTML=
+            modes.map(mode=>{
 
-                const tier =
+                const tier=
                     player.rankings[mode];
 
                 return `
@@ -3311,12 +3352,10 @@ function openProfile(name) {
 
                         ${
                             tier
-
-                            ? `<span class="badge ${tier}">
+                            ?`<span class="badge ${tier}">
                                 ${tier}
                               </span>`
-
-                            : `<span
+                            :`<span
                                 style="color:#687381">
                                 N/A
                               </span>`
@@ -3328,18 +3367,34 @@ function openProfile(name) {
 
             }).join("");
 
-    const wins =
-        Number(player.stats?.wins || 0);
+    const wins=
+        Number(player.stats?.wins||0);
 
-    const losses =
-        Number(player.stats?.losses || 0);
+    const losses=
+        Number(player.stats?.losses||0);
 
-    const tests =
-        Number(player.stats?.tests || 0);
+    const tests=
+        Number(player.stats?.tests||0);
 
     document
         .getElementById("profileStats")
-        .innerHTML = `
+        .innerHTML=`
+
+            <div class="profile-stat">
+                <span>Overall Points</span>
+                <b>${overallScore(player)}</b>
+            </div>
+
+            <div class="profile-stat">
+                <span>Ranked Modes</span>
+                <b>
+                    ${
+                        modes.filter(
+                            m=>player.rankings[m]
+                        ).length
+                    }
+                </b>
+            </div>
 
             <div class="profile-stat">
                 <span>Wins</span>
@@ -3365,7 +3420,7 @@ function openProfile(name) {
 
     document
         .getElementById("profileTesting")
-        .innerHTML = `
+        .innerHTML=`
 
             <div class="rank-row">
 
@@ -3375,7 +3430,7 @@ function openProfile(name) {
 
                 <b>
                     ${escapeHTML(
-                        player.tester || "N/A"
+                        player.tester||"N/A"
                     )}
                 </b>
 
@@ -3389,7 +3444,7 @@ function openProfile(name) {
 
                 <b>
                     ${escapeHTML(
-                        player.testDate || "N/A"
+                        player.testDate||"N/A"
                     )}
                 </b>
 
@@ -3397,14 +3452,14 @@ function openProfile(name) {
 
         `;
 
-    const history =
-        player.history || [];
+    const history=
+        player.history||[];
 
-    if (!history.length) {
+    if(!history.length){
 
         document
             .getElementById("profileHistory")
-            .innerHTML = `
+            .innerHTML=`
 
                 <div class="no-results">
                     No tier changes recorded yet.
@@ -3412,13 +3467,13 @@ function openProfile(name) {
 
             `;
 
-    } else {
+    }else{
 
         document
             .getElementById("profileHistory")
-            .innerHTML =
+            .innerHTML=
 
-            history.map(change => `
+            history.map(change=>`
 
                 <div class="history-item">
 
@@ -3457,17 +3512,16 @@ function openProfile(name) {
                 </div>
 
             `).join("");
-
     }
 
     document
         .getElementById("profileModal")
         .classList.add("show");
 
-    setTimeout(() => {
-        load3DModel(name);
-    }, 100);
-
+    setTimeout(
+        ()=>load3DModel(name),
+        100
+    );
 }
 
 
@@ -3475,23 +3529,21 @@ function openProfile(name) {
    CLOSE PROFILE
 ========================================================= */
 
-function closeProfile() {
+function closeProfile(){
 
     document
         .getElementById("profileModal")
         .classList.remove("show");
-
 }
 
-function outside(event) {
+function outside(event){
 
-    if (
-        event.target.id ===
+    if(
+        event.target.id===
         "profileModal"
-    ) {
+    ){
         closeProfile();
     }
-
 }
 
 
@@ -3499,53 +3551,52 @@ function outside(event) {
    NAVIGATION
 ========================================================= */
 
-function showSection(section, button) {
+function showSection(section,button){
 
     [
         "home",
         "leaderboards",
         "tiers",
         "stats"
-    ].forEach(id => {
+    ].forEach(id=>{
 
         document
             .getElementById(id)
-            .style.display =
-                id === section
-                ? "block"
-                : "none";
+            .style.display=
+                id===section
+                ?"block"
+                :"none";
 
     });
 
     document
         .querySelectorAll("nav button")
-        .forEach(b =>
+        .forEach(b=>
             b.classList.remove("active")
         );
 
     button.classList.add("active");
 
-    if (section === "home")
+    if(section==="home")
         renderHome();
 
-    if (section === "leaderboards")
+    if(section==="leaderboards")
         renderLeaderboards();
 
-    if (section === "tiers") {
+    if(section==="tiers"){
 
         renderSearchResults();
         renderTierList();
 
     }
 
-    if (section === "stats")
+    if(section==="stats")
         renderStatistics();
 
     window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+        top:0,
+        behavior:"smooth"
     });
-
 }
 
 
@@ -3553,23 +3604,21 @@ function showSection(section, button) {
    SECURITY HELPERS
 ========================================================= */
 
-function escapeHTML(value) {
+function escapeHTML(value){
 
-    return String(value ?? "")
+    return String(value??"")
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;");
-
 }
 
-function escapeJS(value) {
+function escapeJS(value){
 
     return String(value)
         .replace(/\\/g,"\\\\")
         .replace(/'/g,"\\'");
-
 }
 
 
@@ -3579,9 +3628,9 @@ function escapeJS(value) {
 
 document.addEventListener(
     "keydown",
-    event => {
+    event=>{
 
-        if (event.key === "Escape")
+        if(event.key==="Escape")
             closeProfile();
 
     }
@@ -3601,4 +3650,3 @@ renderStatistics();
 
 </body>
 </html>
-```
