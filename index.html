@@ -7,6 +7,10 @@
 <title>Arch Tiers</title>
 
 <style>
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -19,25 +23,23 @@ html {
 
 body {
     min-height: 100vh;
-    color: #f5f7fa;
-    font-family: Inter, Arial, Helvetica, sans-serif;
     background:
-        radial-gradient(circle at 15% 0%, rgba(57,255,120,.12), transparent 28%),
-        radial-gradient(circle at 85% 10%, rgba(80,120,255,.10), transparent 30%),
+        radial-gradient(circle at 15% 0%, rgba(57,255,120,.10), transparent 28%),
+        radial-gradient(circle at 85% 5%, rgba(80,130,255,.09), transparent 28%),
         #05070a;
+    color: #f4f7fb;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    opacity: .35;
-    background-image:
-        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-    background-size: 42px 42px;
-    mask-image: linear-gradient(to bottom, black, transparent 85%);
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
 }
 
 ::-webkit-scrollbar {
@@ -45,11 +47,11 @@ body::before {
 }
 
 ::-webkit-scrollbar-track {
-    background: #06080b;
+    background: #07090d;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #28332d;
+    background: #26302b;
     border-radius: 20px;
 }
 
@@ -57,20 +59,37 @@ body::before {
     background: #39ff78;
 }
 
-/* =========================
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .45;
+    background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 header {
     position: relative;
-    overflow: hidden;
-    padding: 65px 20px 55px;
+    padding: 70px 20px 55px;
     text-align: center;
+    overflow: hidden;
     border-bottom: 1px solid rgba(255,255,255,.07);
     background:
         linear-gradient(
             180deg,
-            rgba(12,18,15,.96),
+            rgba(14,20,25,.97),
             rgba(5,7,10,.82)
         );
 }
@@ -78,46 +97,80 @@ header {
 header::before {
     content: "";
     position: absolute;
-    width: 520px;
+    width: 600px;
     height: 220px;
     left: 50%;
     top: -130px;
     transform: translateX(-50%);
     background: #39ff78;
-    filter: blur(120px);
+    filter: blur(130px);
     opacity: .13;
 }
 
 .logo {
     position: relative;
-    font-size: clamp(45px, 9vw, 88px);
+    font-size: clamp(42px, 8vw, 82px);
     line-height: 1;
     font-weight: 1000;
     letter-spacing: -5px;
     text-transform: uppercase;
+    animation: logoIn .7s ease both;
 }
 
 .logo .arch {
-    color: white;
+    color: #fff;
 }
 
 .logo .tiers {
     color: #39ff78;
-    text-shadow: 0 0 35px rgba(57,255,120,.4);
+    text-shadow: 0 0 30px rgba(57,255,120,.35);
 }
 
 .subtitle {
     position: relative;
-    margin-top: 17px;
-    color: #7d8996;
+    margin-top: 18px;
+    color: #7e8997;
     font-size: 13px;
     letter-spacing: 4px;
     text-transform: uppercase;
+    animation: fadeUp .7s .1s ease both;
 }
 
-/* =========================
+.header-line {
+    position: relative;
+    width: 90px;
+    height: 3px;
+    margin: 25px auto 0;
+    border-radius: 10px;
+    background: #39ff78;
+    box-shadow: 0 0 20px rgba(57,255,120,.5);
+}
+
+@keyframes logoIn {
+    from {
+        opacity: 0;
+        transform: translateY(-15px) scale(.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
    NAV
-========================= */
+========================================================= */
 
 nav {
     position: sticky;
@@ -125,43 +178,43 @@ nav {
     z-index: 100;
     display: flex;
     justify-content: center;
-    gap: 8px;
+    align-items: center;
+    gap: 7px;
     flex-wrap: wrap;
-    padding: 13px 15px;
-    background: rgba(5,8,11,.84);
+    padding: 12px 15px;
+    background: rgba(7,10,14,.88);
     border-bottom: 1px solid rgba(255,255,255,.06);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(18px);
 }
 
 nav button {
-    border: 1px solid #252e37;
-    border-radius: 10px;
-    padding: 10px 17px;
+    border: 1px solid #252d37;
     background: #10151b;
-    color: #8d98a5;
-    font-size: 13px;
+    color: #87919f;
+    border-radius: 9px;
+    padding: 10px 15px;
+    font-size: 12px;
     font-weight: 850;
-    cursor: pointer;
     transition: .2s ease;
 }
 
 nav button:hover {
     color: white;
-    border-color: #3b4652;
-    background: #171e26;
+    border-color: #39434f;
+    background: #151b23;
     transform: translateY(-1px);
 }
 
 nav button.active {
-    color: #031008;
+    color: #041009;
     background: #39ff78;
     border-color: #39ff78;
-    box-shadow: 0 0 25px rgba(57,255,120,.18);
+    box-shadow: 0 0 20px rgba(57,255,120,.15);
 }
 
-/* =========================
+/* =========================================================
    MAIN
-========================= */
+========================================================= */
 
 main {
     position: relative;
@@ -169,307 +222,299 @@ main {
     margin: 35px auto 70px;
 }
 
-/* =========================
-   DASHBOARD
-========================= */
+/* =========================================================
+   SECTION
+========================================================= */
 
-.dashboard {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 14px;
+.section {
+    display: none;
+    animation: sectionIn .3s ease both;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes sectionIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-title {
     margin-bottom: 18px;
 }
 
-.dashboard-card {
-    position: relative;
-    overflow: hidden;
-    padding: 22px;
-    border: 1px solid #242d36;
-    border-radius: 16px;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(17,23,29,.98),
-            rgba(10,14,19,.98)
-        );
-    box-shadow: 0 15px 45px rgba(0,0,0,.18);
+.section-title h1 {
+    font-size: 28px;
+    font-weight: 950;
 }
 
-.dashboard-card::after {
+.section-title h1 span {
+    color: #39ff78;
+}
+
+.section-title p {
+    margin-top: 6px;
+    color: #687381;
+    font-size: 13px;
+}
+
+/* =========================================================
+   DASHBOARD HERO
+========================================================= */
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.4fr .8fr;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.hero-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 220px;
+    padding: 27px;
+    border: 1px solid rgba(57,255,120,.16);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 85% 15%, rgba(57,255,120,.12), transparent 30%),
+        linear-gradient(135deg, #121a18, #0c1116);
+}
+
+.hero-card::after {
     content: "";
     position: absolute;
-    width: 150px;
-    height: 150px;
-    right: -70px;
-    top: -70px;
+    width: 180px;
+    height: 180px;
+    right: -80px;
+    bottom: -90px;
+    border-radius: 50%;
     background: #39ff78;
-    filter: blur(60px);
-    opacity: .07;
+    filter: blur(70px);
+    opacity: .08;
 }
 
-.dashboard-title {
-    color: #7f8a97;
+.hero-label {
+    color: #39ff78;
     font-size: 11px;
     font-weight: 900;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
-
-.dashboard-number {
-    margin-top: 6px;
-    font-size: 32px;
-    font-weight: 1000;
-}
-
-.dashboard-number span {
-    color: #39ff78;
-}
-
-.dashboard-sub {
-    margin-top: 5px;
-    color: #64707d;
-    font-size: 12px;
-}
-
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-}
-
-.stat-card {
-    padding: 16px;
-    border: 1px solid #242d36;
-    border-radius: 14px;
-    background: #0d1319;
-}
-
-.stat-number {
-    font-size: 23px;
-    font-weight: 1000;
-}
-
-.stat-label {
-    margin-top: 4px;
-    color: #687481;
-    font-size: 10px;
-    font-weight: 800;
-    text-transform: uppercase;
-}
-
-/* =========================
-   FEATURED
-========================= */
-
-.featured {
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 25px;
-    padding: 24px;
-    border: 1px solid rgba(57,255,120,.2);
-    border-radius: 17px;
-    background:
-        radial-gradient(
-            circle at 100% 0%,
-            rgba(57,255,120,.11),
-            transparent 35%
-        ),
-        linear-gradient(135deg, #101a15, #0a1014);
-}
-
-.featured-label {
-    color: #39ff78;
-    font-size: 11px;
-    font-weight: 950;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
 
-.featured-content {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    margin-top: 13px;
-}
-
-.featured-head {
-    width: 58px;
-    height: 58px;
-    border: 2px solid #39ff78;
-    border-radius: 10px;
-    image-rendering: pixelated;
-    background: #070a0d;
-}
-
-.featured-name {
-    font-size: 23px;
-    font-weight: 1000;
-}
-
-.featured-ranks {
-    display: flex;
-    gap: 7px;
-    flex-wrap: wrap;
-    margin-top: 7px;
-}
-
-.featured-rank {
-    padding: 5px 9px;
-    border-radius: 6px;
-    background: #19231d;
-    color: #b8c4be;
-    font-size: 11px;
-    font-weight: 900;
-}
-
-/* =========================
-   TOP BAR
-========================= */
-
-.top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    flex-wrap: wrap;
-    margin-bottom: 18px;
-}
-
-.title-area {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-}
-
-.title-icon {
-    display: grid;
-    place-items: center;
-    width: 46px;
-    height: 46px;
-    border: 1px solid rgba(57,255,120,.25);
-    border-radius: 12px;
-    background: rgba(57,255,120,.07);
-    font-size: 22px;
-}
-
-.title {
-    font-size: 22px;
-    font-weight: 1000;
-}
-
-.green {
-    color: #39ff78;
-}
-
-.mode-label {
-    margin-top: 4px;
-    color: #6d7885;
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
-
-/* =========================
-   SEARCH
-========================= */
-
-.search-wrapper {
+.hero-card h2 {
     position: relative;
+    z-index: 2;
+    margin-top: 10px;
+    font-size: 34px;
+    font-weight: 1000;
 }
 
-.search-icon {
-    position: absolute;
-    left: 13px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: #687481;
+.hero-card p {
+    position: relative;
+    z-index: 2;
+    margin-top: 8px;
+    color: #8a95a3;
 }
 
-.search {
-    width: 280px;
-    padding: 12px 14px 12px 40px;
-    border: 1px solid #29323c;
-    border-radius: 10px;
-    outline: none;
-    background: #0c1117;
-    color: white;
-    transition: .2s ease;
-}
-
-.search::placeholder {
-    color: #58636f;
-}
-
-.search:focus {
-    border-color: rgba(57,255,120,.5);
-    box-shadow: 0 0 0 3px rgba(57,255,120,.06);
-}
-
-/* =========================
-   SEARCH RESULTS
-========================= */
-
-.search-results {
-    display: none;
-    margin-bottom: 18px;
-}
-
-.search-results.show {
-    display: block;
-}
-
-.search-result {
+.hero-player {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    padding: 14px;
-    border: 1px solid #27313a;
-    border-radius: 12px;
-    background: #0e141a;
-    cursor: pointer;
-    transition: .2s ease;
+    gap: 20px;
+    margin-top: 20px;
 }
 
-.search-result:hover {
-    border-color: rgba(57,255,120,.35);
-    transform: translateY(-2px);
-}
-
-.search-result-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.search-result-head {
-    width: 40px;
-    height: 40px;
-    border-radius: 7px;
+.hero-skin {
+    width: 76px;
+    height: 76px;
     image-rendering: pixelated;
+    border: 2px solid #39ff78;
+    border-radius: 12px;
+    background: #080b0f;
 }
 
-.search-result-name {
-    font-weight: 900;
-}
-
-.search-result-mode {
-    margin-top: 3px;
-    color: #697582;
-    font-size: 11px;
-}
-
-.search-result-tier {
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-size: 11px;
+.hero-rank {
+    font-size: 20px;
     font-weight: 950;
 }
 
-/* =========================
+.hero-rank span {
+    color: #39ff78;
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.stat-card {
+    padding: 18px;
+    border: 1px solid #242c36;
+    border-radius: 13px;
+    background: linear-gradient(135deg,#11171e,#0b1015);
+    transition: .2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(57,255,120,.25);
+}
+
+.stat-card .number {
+    font-size: 25px;
+    font-weight: 1000;
+}
+
+.stat-card .label {
+    margin-top: 4px;
+    color: #687381;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+}
+
+/* =========================================================
+   DASHBOARD GRID
+========================================================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.panel {
+    padding: 20px;
+    border: 1px solid #232b35;
+    border-radius: 15px;
+    background: linear-gradient(135deg,#11171e,#0b1015);
+}
+
+.panel h3 {
+    margin-bottom: 14px;
+    font-size: 15px;
+}
+
+.panel h3 span {
+    color: #39ff78;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 11px 12px;
+    margin-bottom: 7px;
+    border: 1px solid #222a34;
+    border-radius: 9px;
+    background: #0d1319;
+}
+
+.list-item:last-child {
+    margin-bottom: 0;
+}
+
+.list-player {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.mini-head {
+    width: 29px;
+    height: 29px;
+    border-radius: 5px;
+    image-rendering: pixelated;
+}
+
+.list-rank {
+    color: #39ff78;
+    font-weight: 950;
+}
+
+.tiny-tier {
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: 950;
+}
+
+/* =========================================================
+   RECENT CHANGES
+========================================================= */
+
+.change-item {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 14px;
+}
+
+.change-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #39ff78;
+    box-shadow: 0 0 12px rgba(57,255,120,.5);
+}
+
+.change-item strong {
+    font-size: 13px;
+}
+
+.change-item p {
+    margin-top: 3px;
+    color: #687381;
+    font-size: 11px;
+}
+
+/* =========================================================
    TIER LIST
-========================= */
+========================================================= */
+
+.tier-toolbar {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.search,
+.filter {
+    border: 1px solid #29313b;
+    border-radius: 9px;
+    outline: none;
+    background: #0c1117;
+    color: white;
+    padding: 11px 12px;
+}
+
+.search {
+    flex: 1;
+    min-width: 220px;
+}
+
+.filter {
+    min-width: 150px;
+}
+
+.search:focus,
+.filter:focus {
+    border-color: rgba(57,255,120,.5);
+    box-shadow: 0 0 0 3px rgba(57,255,120,.05);
+}
 
 .tier-list {
     display: flex;
@@ -478,165 +523,349 @@ main {
 }
 
 .tier {
-    position: relative;
     display: grid;
-    grid-template-columns: 110px 1fr;
+    grid-template-columns: 105px 1fr;
     min-height: 82px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,.07);
-    border-radius: 14px;
-    background: linear-gradient(110deg, #151b22, #0d1217);
-    box-shadow: 0 8px 25px rgba(0,0,0,.16);
+    border: 1px solid rgba(255,255,255,.065);
+    border-radius: 13px;
+    background: linear-gradient(110deg,#121820,#0b1015);
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
     transition: .2s ease;
 }
 
 .tier:hover {
-    transform: translateX(4px);
+    transform: translateX(3px);
     border-color: rgba(255,255,255,.13);
-    box-shadow: 0 14px 35px rgba(0,0,0,.24);
 }
 
 .tier-name {
-    position: relative;
-    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     gap: 3px;
     color: white;
-    font-size: 18px;
     font-weight: 1000;
-    text-shadow: 0 2px 9px rgba(0,0,0,.45);
+    text-shadow: 0 2px 8px rgba(0,0,0,.4);
 }
 
 .tier-name small {
     font-size: 8px;
-    opacity: .7;
+    opacity: .65;
     letter-spacing: 1.5px;
 }
 
 .players {
-    position: relative;
-    z-index: 2;
     display: flex;
     align-items: center;
     align-content: center;
     flex-wrap: wrap;
-    gap: 9px;
-    min-height: 82px;
-    padding: 11px 14px;
+    gap: 8px;
+    padding: 11px;
 }
-
-/* =========================
-   TIER COLORS
-========================= */
-
-.HT1 {
-    background: linear-gradient(135deg, #ff3434, #a90e22);
-}
-
-.LT1 {
-    background: linear-gradient(135deg, #ff5d5d, #bd2535);
-}
-
-.HT2 {
-    background: linear-gradient(135deg, #ff9a38, #c95c12);
-}
-
-.LT2 {
-    background: linear-gradient(135deg, #ffb85a, #d47c1f);
-}
-
-.HT3 {
-    background: linear-gradient(135deg, #f4d33f, #b99a19);
-    color: #151006;
-}
-
-.LT3 {
-    background: linear-gradient(135deg, #f5e276, #c7b543);
-    color: #151006;
-}
-
-.HT4 {
-    background: linear-gradient(135deg, #3bd87c, #19884d);
-}
-
-.LT4 {
-    background: linear-gradient(135deg, #63e99a, #26965d);
-}
-
-.HT5 {
-    background: linear-gradient(135deg, #419fee, #2166a9);
-}
-
-.LT5 {
-    background: linear-gradient(135deg, #69b7f4, #347db8);
-}
-
-/* =========================
-   PLAYER CARD
-========================= */
 
 .player {
     display: flex;
     align-items: center;
-    gap: 9px;
+    gap: 8px;
     min-height: 46px;
-    padding: 6px 10px 6px 6px;
-    border: 1px solid #29323c;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #1a222b, #11171e);
-    box-shadow: 0 5px 15px rgba(0,0,0,.2);
-    cursor: pointer;
+    padding: 5px 10px 5px 5px;
+    border: 1px solid #29313c;
+    border-radius: 9px;
+    background: linear-gradient(135deg,#1a212a,#11161d);
     transition: .18s ease;
+    animation: playerIn .25s ease both;
 }
 
 .player:hover {
     transform: translateY(-3px);
     border-color: rgba(57,255,120,.4);
-    box-shadow:
-        0 10px 24px rgba(0,0,0,.3),
-        0 0 15px rgba(57,255,120,.04);
+    box-shadow: 0 8px 20px rgba(0,0,0,.25);
 }
 
 .player-head {
     width: 34px;
     height: 34px;
-    border: 1px solid #3b4651;
     border-radius: 6px;
     image-rendering: pixelated;
     background: #080b0f;
 }
 
-.player-info {
+.player-name {
+    font-size: 13px;
+    font-weight: 850;
+    white-space: nowrap;
+}
+
+.player:hover .player-name {
+    color: #39ff78;
+}
+
+.empty {
+    color: #4f5966;
+    font-size: 12px;
+}
+
+/* =========================================================
+   TIER COLORS
+========================================================= */
+
+.HT1 { background: linear-gradient(135deg,#ff3434,#a90e22); }
+.LT1 { background: linear-gradient(135deg,#ff5d5d,#bd2535); }
+.HT2 { background: linear-gradient(135deg,#ff9a38,#c95c12); }
+.LT2 { background: linear-gradient(135deg,#ffb85a,#d47c1f); }
+.HT3 { background: linear-gradient(135deg,#f4d33f,#b99a19); color:#151006; }
+.LT3 { background: linear-gradient(135deg,#f5e276,#c7b543); color:#151006; }
+.HT4 { background: linear-gradient(135deg,#3bd87c,#19884d); }
+.LT4 { background: linear-gradient(135deg,#63e99a,#26965d); }
+.HT5 { background: linear-gradient(135deg,#419fee,#2166a9); }
+.LT5 { background: linear-gradient(135deg,#69b7f4,#347db8); }
+
+/* =========================================================
+   LEADERBOARD
+========================================================= */
+
+.leader-tabs {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.leader-tabs button {
+    border: 1px solid #29313b;
+    background: #0d1319;
+    color: #7e8997;
+    border-radius: 8px;
+    padding: 9px 13px;
+    font-size: 12px;
+    font-weight: 850;
+}
+
+.leader-tabs button.active {
+    color: #031008;
+    background: #39ff78;
+    border-color: #39ff78;
+}
+
+.leaderboard {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 8px;
 }
 
-.player-name {
-    color: #edf1f5;
-    font-size: 13px;
-    font-weight: 900;
+.leader-row {
+    display: grid;
+    grid-template-columns: 65px 1fr 120px 130px;
+    align-items: center;
+    gap: 15px;
+    padding: 14px;
+    border: 1px solid #252d37;
+    border-radius: 11px;
+    background: linear-gradient(135deg,#121820,#0d1218);
+    transition: .2s ease;
 }
 
-.player-meta {
-    color: #65717e;
-    font-size: 9px;
+.leader-row:hover {
+    transform: translateX(3px);
+    border-color: rgba(57,255,120,.25);
 }
 
-.player-badge {
-    margin-left: 3px;
-    padding: 3px 5px;
-    border-radius: 4px;
-    font-size: 8px;
+.leader-position {
+    font-size: 18px;
+    font-weight: 1000;
+    color: #687381;
+}
+
+.leader-row:nth-child(1) .leader-position {
+    color: #ffd84a;
+}
+
+.leader-row:nth-child(2) .leader-position {
+    color: #c9d1d9;
+}
+
+.leader-row:nth-child(3) .leader-position {
+    color: #cd8b5a;
+}
+
+.leader-player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.leader-player img {
+    width: 38px;
+    height: 38px;
+    border-radius: 6px;
+    image-rendering: pixelated;
+}
+
+.leader-player strong {
+    font-size: 14px;
+}
+
+.leader-player small {
+    display: block;
+    margin-top: 2px;
+    color: #65707e;
+}
+
+.leader-score {
+    font-weight: 950;
+    color: #39ff78;
+}
+
+.leader-wr {
+    color: #a9b2be;
+    font-size: 12px;
+}
+
+/* =========================================================
+   COMPARISON
+========================================================= */
+
+.compare-selects {
+    display: grid;
+    grid-template-columns: 1fr 70px 1fr;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.compare-select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #29313b;
+    border-radius: 10px;
+    outline: none;
+    background: #0c1117;
+    color: white;
+}
+
+.vs {
+    text-align: center;
+    color: #39ff78;
     font-weight: 1000;
 }
 
-/* =========================
-   MODAL
-========================= */
+.compare-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    border: 1px solid #29313b;
+    border-radius: 16px;
+    background: #0d1218;
+}
+
+.compare-side {
+    padding: 25px;
+    text-align: center;
+}
+
+.compare-side:first-child {
+    border-right: 1px solid #29313b;
+}
+
+.compare-skin {
+    width: 90px;
+    height: 90px;
+    image-rendering: pixelated;
+    border: 2px solid #39ff78;
+    border-radius: 12px;
+}
+
+.compare-name {
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: 1000;
+}
+
+.compare-stat {
+    display: flex;
+    justify-content: space-between;
+    padding: 11px;
+    margin-top: 7px;
+    border: 1px solid #242c36;
+    border-radius: 8px;
+    background: #11171e;
+}
+
+.compare-stat span:first-child {
+    color: #687381;
+}
+
+/* =========================================================
+   DISTRIBUTION
+========================================================= */
+
+.distribution {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.distribution-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 50px;
+    gap: 10px;
+    align-items: center;
+}
+
+.distribution-label {
+    padding: 7px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 950;
+}
+
+.bar {
+    height: 12px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #171e26;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: #39ff78;
+    box-shadow: 0 0 12px rgba(57,255,120,.25);
+    transition: width .6s ease;
+}
+
+.distribution-count {
+    color: #8a95a3;
+    text-align: right;
+    font-size: 12px;
+}
+
+/* =========================================================
+   ACHIEVEMENTS
+========================================================= */
+
+.achievements {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.achievement {
+    padding: 7px 9px;
+    border: 1px solid rgba(57,255,120,.18);
+    border-radius: 7px;
+    background: rgba(57,255,120,.05);
+    color: #b9ffc9;
+    font-size: 10px;
+    font-weight: 850;
+}
+
+/* =========================================================
+   PROFILE MODAL
+========================================================= */
 
 .modal {
     display: none;
@@ -646,7 +875,7 @@ main {
     align-items: center;
     justify-content: center;
     padding: 18px;
-    background: rgba(0,0,0,.8);
+    background: rgba(0,0,0,.82);
     backdrop-filter: blur(12px);
 }
 
@@ -654,27 +883,26 @@ main {
     display: flex;
 }
 
-.card {
+.profile-card {
     position: relative;
-    width: min(760px, 100%);
+    width: min(800px,100%);
     max-height: 92vh;
     overflow-y: auto;
     padding: 28px;
-    border: 1px solid #2a343f;
-    border-radius: 18px;
+    border: 1px solid #303944;
+    border-radius: 19px;
     background:
-        radial-gradient(circle at top right, rgba(57,255,120,.06), transparent 35%),
+        radial-gradient(circle at top right,rgba(57,255,120,.07),transparent 30%),
         #0c1218;
-    box-shadow: 0 35px 100px rgba(0,0,0,.7);
-    animation: modalIn .2s ease;
+    box-shadow: 0 30px 100px rgba(0,0,0,.65);
+    animation: modalIn .25s ease;
 }
 
 @keyframes modalIn {
     from {
         opacity: 0;
-        transform: translateY(12px) scale(.98);
+        transform: translateY(15px) scale(.97);
     }
-
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -683,65 +911,52 @@ main {
 
 .close {
     position: absolute;
-    top: 16px;
     right: 16px;
-    width: 35px;
-    height: 35px;
-    border: 1px solid #303a45;
+    top: 16px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #303945;
     border-radius: 8px;
-    background: #171e26;
-    color: #aab4bf;
+    background: #171d25;
+    color: #aeb6c1;
     font-size: 20px;
-    cursor: pointer;
 }
 
-.close:hover {
-    color: white;
-    background: #242c35;
-}
-
-/* =========================
-   PROFILE
-========================= */
-
-.profile-head {
-    padding: 10px 0 24px;
+.profile-top {
     text-align: center;
-    border-bottom: 1px solid #252e38;
+    padding: 12px 0 24px;
+    border-bottom: 1px solid #252d37;
 }
 
-.profile-rank-number {
-    margin-bottom: 12px;
-    color: #39ff78;
-    font-size: 11px;
-    font-weight: 1000;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.skin {
-    width: 110px;
-    height: 110px;
-    border: 2px solid #39ff78;
-    border-radius: 14px;
+.profile-skin {
+    width: 125px;
+    height: 125px;
     image-rendering: pixelated;
+    border: 2px solid #39ff78;
+    border-radius: 15px;
     box-shadow: 0 0 30px rgba(57,255,120,.15);
 }
 
 .profile-name {
-    margin-top: 14px;
+    margin-top: 13px;
     font-size: 30px;
     font-weight: 1000;
 }
 
-.status {
-    margin-top: 7px;
-    font-size: 13px;
-    font-weight: 850;
+.overall-badge {
+    display: inline-block;
+    margin-top: 9px;
+    padding: 7px 12px;
+    border: 1px solid rgba(57,255,120,.25);
+    border-radius: 8px;
+    background: rgba(57,255,120,.07);
+    color: #39ff78;
+    font-size: 12px;
+    font-weight: 950;
 }
 
 .profile-section {
-    margin-top: 24px;
+    margin-top: 22px;
 }
 
 .profile-section h3 {
@@ -752,199 +967,95 @@ main {
     text-transform: uppercase;
 }
 
-.rank {
+.rank-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 8px;
+}
+
+.rank-box {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 7px;
-    padding: 12px 14px;
-    border: 1px solid #252e38;
+    align-items: center;
+    padding: 13px;
+    border: 1px solid #252d37;
     border-radius: 9px;
-    background: #141a21;
-}
-
-.tier-badge {
-    min-width: 55px;
-    padding: 6px 10px;
-    border-radius: 6px;
-    color: white;
-    text-align: center;
-    font-size: 11px;
-    font-weight: 1000;
-}
-
-.tier-badge.HT3,
-.tier-badge.LT3 {
-    color: #151006;
+    background: #121820;
 }
 
 .profile-stat-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4,1fr);
     gap: 8px;
 }
 
 .profile-stat {
-    padding: 15px;
-    border: 1px solid #252e38;
-    border-radius: 10px;
-    background: #141a21;
-    text-align: center;
-}
-
-.profile-stat-number {
-    font-size: 23px;
-    font-weight: 1000;
-}
-
-.profile-stat-label {
-    margin-top: 4px;
-    color: #687481;
-    font-size: 9px;
-    font-weight: 800;
-    text-transform: uppercase;
-}
-
-.winrate {
-    margin-top: 10px;
     padding: 14px;
-    border: 1px solid rgba(57,255,120,.15);
-    border-radius: 10px;
-    background: rgba(57,255,120,.04);
-}
-
-.winrate strong {
-    color: #39ff78;
-}
-
-.testing-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 14px;
-    margin-bottom: 7px;
-    border: 1px solid #252e38;
+    text-align: center;
+    border: 1px solid #252d37;
     border-radius: 9px;
-    background: #141a21;
+    background: #121820;
 }
 
-.muted {
-    color: #687481;
+.profile-stat strong {
+    display: block;
+    font-size: 18px;
+}
+
+.profile-stat span {
+    display: block;
+    margin-top: 4px;
+    color: #687381;
+    font-size: 10px;
+    text-transform: uppercase;
 }
 
 .history-item {
-    margin-bottom: 8px;
-    padding: 13px 14px;
-    border: 1px solid #252e38;
+    padding: 12px 13px;
+    margin-bottom: 7px;
+    border: 1px solid #252d37;
     border-radius: 9px;
-    background: #141a21;
+    background: #121820;
 }
 
-.history-mode {
-    color: #39ff78;
-    font-size: 11px;
-    font-weight: 950;
+.history-item small {
+    color: #687381;
 }
 
-.history-change {
-    margin-top: 5px;
-    font-weight: 850;
-}
-
-.history-date {
-    margin-top: 4px;
-    color: #687481;
-    font-size: 10px;
-}
-
-/* =========================
-   OVERALL
-========================= */
-
-.overall-list {
-    display: flex;
-    flex-direction: column;
+.test-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 8px;
 }
 
-.overall-player {
-    display: grid;
-    grid-template-columns: 45px 1fr auto;
-    align-items: center;
-    gap: 13px;
+.info-box {
     padding: 12px;
-    border: 1px solid #252e38;
-    border-radius: 12px;
-    background: #10161c;
-    cursor: pointer;
-    transition: .2s ease;
+    border: 1px solid #252d37;
+    border-radius: 9px;
+    background: #121820;
 }
 
-.overall-player:hover {
-    border-color: rgba(57,255,120,.3);
-    transform: translateX(3px);
-}
-
-.overall-position {
-    text-align: center;
-    color: #596571;
-    font-size: 18px;
-    font-weight: 1000;
-}
-
-.overall-position.top-one {
-    color: #39ff78;
-}
-
-.overall-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.overall-head {
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    image-rendering: pixelated;
-}
-
-.overall-name {
-    font-size: 13px;
-    font-weight: 900;
-}
-
-.overall-sub {
-    margin-top: 3px;
-    color: #65717e;
-    font-size: 9px;
-}
-
-.overall-score {
-    text-align: right;
-}
-
-.overall-score-number {
-    color: #39ff78;
-    font-size: 17px;
-    font-weight: 1000;
-}
-
-.overall-score-label {
-    color: #596571;
-    font-size: 8px;
+.info-box span {
+    display: block;
+    color: #687381;
+    font-size: 10px;
     text-transform: uppercase;
 }
 
-/* =========================
+.info-box strong {
+    display: block;
+    margin-top: 4px;
+}
+
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 footer {
     padding: 28px;
-    border-top: 1px solid rgba(255,255,255,.05);
-    color: #46515d;
     text-align: center;
+    color: #46505d;
+    border-top: 1px solid rgba(255,255,255,.05);
     font-size: 12px;
 }
 
@@ -952,23 +1063,14 @@ footer strong {
     color: #39ff78;
 }
 
-/* =========================
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
 @media(max-width: 800px) {
-    .dashboard {
-        grid-template-columns: 1fr;
-    }
 
-    .dashboard-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media(max-width: 650px) {
     header {
-        padding: 45px 15px 38px;
+        padding: 48px 15px 38px;
     }
 
     .logo {
@@ -980,64 +1082,101 @@ footer strong {
     }
 
     nav button {
-        padding: 9px 11px;
+        padding: 9px 10px;
         font-size: 11px;
     }
 
     main {
-        width: 95%;
+        width: 94%;
         margin-top: 25px;
     }
 
-    .search-wrapper,
-    .search {
-        width: 100%;
+    .hero-grid,
+    .dashboard-grid {
+        grid-template-columns: 1fr;
     }
 
-    .top {
-        align-items: stretch;
+    .hero-card h2 {
+        font-size: 27px;
     }
 
     .tier {
-        grid-template-columns: 68px 1fr;
+        grid-template-columns: 70px 1fr;
     }
 
     .tier-name {
         font-size: 13px;
     }
 
-    .players {
-        min-height: 68px;
-        padding: 8px;
-    }
-
     .player {
-        min-height: 40px;
+        min-height: 41px;
     }
 
     .player-head {
-        width: 29px;
-        height: 29px;
+        width: 30px;
+        height: 30px;
     }
 
-    .player-name {
-        font-size: 11px;
+    .leader-row {
+        grid-template-columns: 45px 1fr 70px;
     }
 
-    .featured-content {
-        align-items: flex-start;
+    .leader-wr {
+        display: none;
     }
 
-    .profile-stat-grid {
+    .compare-selects {
         grid-template-columns: 1fr;
     }
 
-    .card {
-        padding: 21px;
+    .vs {
+        display: none;
     }
 
-    .overall-player {
-        grid-template-columns: 32px 1fr auto;
+    .compare-card {
+        grid-template-columns: 1fr;
+    }
+
+    .compare-side:first-child {
+        border-right: none;
+        border-bottom: 1px solid #29313b;
+    }
+
+    .profile-stat-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width: 500px) {
+
+    .stat-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .rank-grid,
+    .test-info {
+        grid-template-columns: 1fr;
+    }
+
+    .tier-toolbar {
+        flex-direction: column;
+    }
+
+    .search,
+    .filter {
+        width: 100%;
+    }
+
+    .player {
+        width: 100%;
+    }
+
+    .players {
+        padding: 8px;
+    }
+
+    .profile-card {
+        padding: 20px;
     }
 }
 </style>
@@ -1054,93 +1193,59 @@ footer strong {
     <div class="subtitle">
         Minecraft PvP Competitive Rankings
     </div>
+
+    <div class="header-line"></div>
 </header>
 
 <nav>
-    <button id="OverallBtn" onclick="showOverall()">🏆 Overall</button>
-    <button id="BedfightBtn" class="active" onclick="changeMode('Bedfight')">⚔ Bedfight</button>
-    <button id="BedwarsBtn" onclick="changeMode('Bedwars')">🛏 Bedwars</button>
-    <button id="UHCBtn" onclick="changeMode('UHC')">💎 UHC</button>
-    <button id="SumoBtn" onclick="changeMode('Sumo')">🥊 Sumo</button>
+    <button class="active" onclick="showSection('home', this)">🏠 Home</button>
+    <button onclick="showSection('tiers', this)">🏆 Tier List</button>
+    <button onclick="showSection('leaderboards', this)">📊 Leaderboards</button>
+    <button onclick="showSection('compare', this)">⚡ Compare</button>
+    <button onclick="showSection('distribution', this)">📈 Statistics</button>
 </nav>
 
 <main>
 
-    <!-- DASHBOARD -->
+<!-- =======================================================
+     HOME
+======================================================= -->
 
-    <section class="dashboard">
+<section id="home" class="section active">
 
-        <div class="dashboard-card">
-            <div class="dashboard-title">
-                Current Ranking
-            </div>
+    <div class="section-title">
+        <h1>Welcome to <span>Arch Tiers</span></h1>
+        <p>Competitive Minecraft PvP rankings, statistics and player profiles.</p>
+    </div>
 
-            <div class="dashboard-number">
-                <span id="dashboardMode">Bedfight</span>
-            </div>
+    <div class="hero-grid">
 
-            <div class="dashboard-sub" id="dashboardSubtitle">
-                Competitive player rankings
-            </div>
-        </div>
+        <div class="hero-card">
 
-        <div class="dashboard-grid">
+            <div class="hero-label">🌟 Featured Player</div>
 
-            <div class="stat-card">
-                <div class="stat-number" id="totalPlayers">0</div>
-                <div class="stat-label">Players</div>
-            </div>
+            <h2>Luminous</h2>
 
-            <div class="stat-card">
-                <div class="stat-number" id="totalTests">0</div>
-                <div class="stat-label">Tests</div>
-            </div>
+            <p>
+                One of the featured competitors on Arch Tiers.
+            </p>
 
-            <div class="stat-card">
-                <div class="stat-number" id="totalWins">0</div>
-                <div class="stat-label">Wins</div>
-            </div>
+            <div class="hero-player">
 
-            <div class="stat-card">
-                <div class="stat-number" id="topTierCount">0</div>
-                <div class="stat-label">HT1–HT3</div>
-            </div>
+                <img
+                    class="hero-skin"
+                    src="https://mc-heads.net/avatar/Luminous/100"
+                    alt="Luminous">
 
-        </div>
+                <div>
 
-    </section>
+                    <div class="hero-rank">
+                        <span id="featuredRank">#1</span> Overall
+                    </div>
 
-    <!-- FEATURED PLAYER -->
-
-    <section class="featured">
-
-        <div class="featured-label">
-            🌟 Featured Player
-        </div>
-
-        <div class="featured-content">
-
-            <img
-                id="featuredHead"
-                class="featured-head"
-                src="https://mc-heads.net/avatar/Luminous/64"
-                alt="Luminous">
-
-            <div>
-
-                <div class="featured-name">
-                    Luminous
-                </div>
-
-                <div class="featured-ranks">
-
-                    <span class="featured-rank">
-                        ⚔ HT3 Bedfight
-                    </span>
-
-                    <span class="featured-rank">
-                        🛏 HT3 Bedwars
-                    </span>
+                    <div style="margin-top:7px;color:#778290;font-size:12px;">
+                        HT3 Bedfight · HT3 Bedwars
+                    </div>
 
                 </div>
 
@@ -1148,104 +1253,262 @@ footer strong {
 
         </div>
 
-    </section>
+        <div class="stat-grid">
 
-    <!-- TOP -->
-
-    <div class="top">
-
-        <div class="title-area">
-
-            <div class="title-icon">
-                🏆
+            <div class="stat-card">
+                <div class="number" id="totalPlayers">0</div>
+                <div class="label">Players</div>
             </div>
 
-            <div>
-
-                <div class="title">
-                    <span class="green">ARCH</span> TIERS
-                </div>
-
-                <div class="mode-label" id="modeTitle">
-                    Bedfight Rankings
-                </div>
-
+            <div class="stat-card">
+                <div class="number" id="totalTests">0</div>
+                <div class="label">Tests</div>
             </div>
 
-        </div>
+            <div class="stat-card">
+                <div class="number" id="totalWins">0</div>
+                <div class="label">Wins</div>
+            </div>
 
-        <div class="search-wrapper">
-
-            <span class="search-icon">🔍</span>
-
-            <input
-                id="search"
-                class="search"
-                placeholder="Search player..."
-                autocomplete="off"
-                oninput="handleSearch()">
+            <div class="stat-card">
+                <div class="number" id="totalLosses">0</div>
+                <div class="label">Losses</div>
+            </div>
 
         </div>
 
     </div>
 
-    <!-- SEARCH RESULTS -->
+    <div class="dashboard-grid">
 
-    <div id="searchResults" class="search-results"></div>
+        <div class="panel">
 
-    <!-- TIER LIST -->
+            <h3>🏆 <span>Top Players</span></h3>
 
-    <div id="tierList" class="tier-list"></div>
-
-    <!-- OVERALL -->
-
-    <section id="overallSection" style="display:none;">
-
-        <div class="dashboard-card" style="margin-bottom:15px;">
-
-            <div class="dashboard-title">
-                Overall Ranking
-            </div>
-
-            <div class="dashboard-number">
-                Top <span>Players</span>
-            </div>
-
-            <div class="dashboard-sub">
-                Overall score is calculated from each player's available tiers.
-            </div>
+            <div id="homeTopPlayers"></div>
 
         </div>
 
-        <div id="overallList" class="overall-list"></div>
+        <div class="panel">
 
-    </section>
+            <h3>📰 <span>Recent Changes</span></h3>
+
+            <div id="homeChanges"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =======================================================
+     TIER LIST
+======================================================= -->
+
+<section id="tiers" class="section">
+
+    <div class="section-title">
+        <h1>🏆 <span>Tier List</span></h1>
+        <p>Browse every player ranked across each competitive gamemode.</p>
+    </div>
+
+    <div class="tier-toolbar">
+
+        <input
+            id="tierSearch"
+            class="search"
+            placeholder="🔎 Search player..."
+            oninput="renderTierList()">
+
+        <select
+            id="modeFilter"
+            class="filter"
+            onchange="renderTierList()">
+
+            <option value="Bedfight">⚔ Bedfight</option>
+            <option value="Bedwars">🛏 Bedwars</option>
+            <option value="UHC">💎 UHC</option>
+            <option value="Sumo">🥊 Sumo</option>
+
+        </select>
+
+        <select
+            id="rankFilter"
+            class="filter"
+            onchange="renderTierList()">
+
+            <option value="all">All Players</option>
+            <option value="ranked">Ranked Only</option>
+            <option value="unranked">Unranked Only</option>
+
+        </select>
+
+        <select
+            id="sortFilter"
+            class="filter"
+            onchange="renderTierList()">
+
+            <option value="tier">Highest Tier First</option>
+            <option value="name">Name A-Z</option>
+
+        </select>
+
+    </div>
+
+    <div id="tierList" class="tier-list"></div>
+
+</section>
+
+<!-- =======================================================
+     LEADERBOARDS
+======================================================= -->
+
+<section id="leaderboards" class="section">
+
+    <div class="section-title">
+        <h1>📊 <span>Leaderboards</span></h1>
+        <p>See the highest-ranked players across Arch Tiers.</p>
+    </div>
+
+    <div class="leader-tabs">
+
+        <button class="active" onclick="setLeaderboard('Overall',this)">
+            🏆 Overall
+        </button>
+
+        <button onclick="setLeaderboard('Bedfight',this)">
+            ⚔ Bedfight
+        </button>
+
+        <button onclick="setLeaderboard('Bedwars',this)">
+            🛏 Bedwars
+        </button>
+
+        <button onclick="setLeaderboard('UHC',this)">
+            💎 UHC
+        </button>
+
+        <button onclick="setLeaderboard('Sumo',this)">
+            🥊 Sumo
+        </button>
+
+    </div>
+
+    <div id="leaderboard" class="leaderboard"></div>
+
+</section>
+
+<!-- =======================================================
+     COMPARE
+======================================================= -->
+
+<section id="compare" class="section">
+
+    <div class="section-title">
+        <h1>⚡ <span>Player Comparison</span></h1>
+        <p>Compare two Arch Tiers players side by side.</p>
+    </div>
+
+    <div class="compare-selects">
+
+        <select id="compareA" class="compare-select" onchange="renderComparison()">
+            <option value="">Select Player</option>
+        </select>
+
+        <div class="vs">VS</div>
+
+        <select id="compareB" class="compare-select" onchange="renderComparison()">
+            <option value="">Select Player</option>
+        </select>
+
+    </div>
+
+    <div id="comparison"></div>
+
+</section>
+
+<!-- =======================================================
+     STATISTICS
+======================================================= -->
+
+<section id="distribution" class="section">
+
+    <div class="section-title">
+        <h1>📈 <span>Statistics</span></h1>
+        <p>Arch Tiers statistics and tier distribution.</p>
+    </div>
+
+    <div class="dashboard-grid">
+
+        <div class="panel">
+
+            <h3>📊 <span>Tier Distribution</span></h3>
+
+            <div class="leader-tabs">
+
+                <button
+                    class="active"
+                    onclick="setDistribution('Bedfight',this)">
+                    Bedfight
+                </button>
+
+                <button
+                    onclick="setDistribution('Bedwars',this)">
+                    Bedwars
+                </button>
+
+                <button
+                    onclick="setDistribution('UHC',this)">
+                    UHC
+                </button>
+
+                <button
+                    onclick="setDistribution('Sumo',this)">
+                    Sumo
+                </button>
+
+            </div>
+
+            <div id="distributionList" class="distribution"></div>
+
+        </div>
+
+        <div class="panel">
+
+            <h3>📋 <span>Server Statistics</span></h3>
+
+            <div id="serverStats"></div>
+
+        </div>
+
+    </div>
+
+</section>
 
 </main>
 
-<!-- PLAYER PROFILE -->
+<!-- =======================================================
+     PROFILE MODAL
+======================================================= -->
 
 <div
-    class="modal"
     id="profileModal"
-    onclick="outside(event, 'profileModal')">
+    class="modal"
+    onclick="outsideModal(event)">
 
-    <div class="card">
+    <div class="profile-card">
 
-        <button class="close" onclick="closeModal('profileModal')">
+        <button
+            class="close"
+            onclick="closeProfile()">
             ×
         </button>
 
-        <div class="profile-head">
-
-            <div
-                id="profileOverall"
-                class="profile-rank-number">
-            </div>
+        <div class="profile-top">
 
             <img
                 id="profileSkin"
-                class="skin"
+                class="profile-skin"
                 alt="Minecraft Skin">
 
             <div
@@ -1254,8 +1517,8 @@ footer strong {
             </div>
 
             <div
-                id="profileStatus"
-                class="status">
+                id="profileOverall"
+                class="overall-badge">
             </div>
 
         </div>
@@ -1264,7 +1527,10 @@ footer strong {
 
             <h3>🏆 Rankings</h3>
 
-            <div id="profileRanks"></div>
+            <div
+                id="profileRanks"
+                class="rank-grid">
+            </div>
 
         </div>
 
@@ -1272,7 +1538,21 @@ footer strong {
 
             <h3>📊 Statistics</h3>
 
-            <div id="profileStats"></div>
+            <div
+                id="profileStats"
+                class="profile-stat-grid">
+            </div>
+
+        </div>
+
+        <div class="profile-section">
+
+            <h3>🏅 Achievements</h3>
+
+            <div
+                id="profileAchievements"
+                class="achievements">
+            </div>
 
         </div>
 
@@ -1280,7 +1560,10 @@ footer strong {
 
             <h3>🧪 Testing Information</h3>
 
-            <div id="profileTesting"></div>
+            <div
+                id="profileTesting"
+                class="test-info">
+            </div>
 
         </div>
 
@@ -1298,22 +1581,21 @@ footer strong {
 
 <footer>
     <strong>ARCH TIERS</strong>
-    · Minecraft PvP Rankings
+    · Minecraft PvP Competitive Rankings
 </footer>
 
 <script>
 
 /* =========================================================
    MANUAL PLAYER DATABASE
-
-   ADD YOUR PLAYERS HERE.
-   You do NOT need a database anymore.
 ========================================================= */
 
 const players = [
 
     {
         name: "Luminous",
+
+        ranked: true,
 
         rankings: {
             Bedfight: "HT3",
@@ -1332,12 +1614,29 @@ const players = [
 
         testedDate: "8/12/2026",
 
-        history: []
+        history: [
+
+            {
+                mode: "Bedfight",
+                from: "Unranked",
+                to: "HT3",
+                date: "8/12/2026",
+                tester: "Head Tester"
+            },
+
+            {
+                mode: "Bedwars",
+                from: "Unranked",
+                to: "HT3",
+                date: "8/12/2026",
+                tester: "Head Tester"
+            }
+
+        ]
 
     }
 
 ];
-
 
 /* =========================================================
    SETTINGS
@@ -1363,37 +1662,34 @@ const modes = [
     "Sumo"
 ];
 
-let currentMode = "Bedfight";
-let showingOverall = false;
-
-
-/* =========================================================
-   TIER SCORE
-========================================================= */
-
-const tierScores = {
-
-    HT1: 10,
-    LT1: 9,
-
-    HT2: 8,
-    LT2: 7,
-
-    HT3: 6,
-    LT3: 5,
-
-    HT4: 4,
-    LT4: 3,
-
-    HT5: 2,
-    LT5: 1
-
-};
-
+let currentLeaderboard = "Overall";
+let currentDistribution = "Bedfight";
 
 /* =========================================================
-   HELPERS
+   UTILITY
 ========================================================= */
+
+function getPlayer(name) {
+    return players.find(
+        player => player.name === name
+    );
+}
+
+function skinURL(name, size = 100) {
+    return "https://mc-heads.net/avatar/" +
+        encodeURIComponent(name) +
+        "/" +
+        size;
+}
+
+function tierValue(tier) {
+
+    if (!tier)
+        return 999;
+
+    return tiers.indexOf(tier);
+
+}
 
 function getWinRate(player) {
 
@@ -1402,171 +1698,230 @@ function getWinRate(player) {
 
     const total = wins + losses;
 
-    if (total === 0) {
-        return null;
-    }
+    if (total === 0)
+        return 0;
 
-    return Math.round((wins / total) * 100);
+    return Math.round(
+        wins / total * 100
+    );
 
 }
 
+/* =========================================================
+   OVERALL SCORE
+========================================================= */
 
 function getOverallScore(player) {
 
-    let total = 0;
-    let count = 0;
+    let score = 0;
+    let rankedModes = 0;
 
     modes.forEach(mode => {
 
-        const tier = player.rankings?.[mode];
+        const tier = player.rankings[mode];
 
-        if (tier && tierScores[tier]) {
+        if (!tier)
+            return;
 
-            total += tierScores[tier];
-            count++;
+        rankedModes++;
 
-        }
+        score += 10 - tierValue(tier);
 
     });
 
-    if (count === 0) {
+    if (rankedModes === 0)
         return 0;
-    }
 
-    return total / count;
+    return score / rankedModes;
 
 }
 
+function getOverallPlayers() {
+
+    return [...players]
+        .sort(
+            (a,b) =>
+                getOverallScore(b) -
+                getOverallScore(a)
+        );
+
+}
 
 function getOverallRank(player) {
 
-    const ranked = [...players]
-        .filter(p => getOverallScore(p) > 0)
-        .sort((a, b) =>
-            getOverallScore(b) - getOverallScore(a)
+    const list = getOverallPlayers();
+
+    const index =
+        list.findIndex(
+            p => p.name === player.name
         );
 
-    return ranked.findIndex(
-        p => p.name === player.name
-    ) + 1;
+    return index === -1
+        ? "-"
+        : index + 1;
 
 }
 
+/* =========================================================
+   ACHIEVEMENTS
+========================================================= */
 
-function getTierClass(tier) {
+function getAchievements(player) {
 
-    return tier || "";
+    const achievements = [];
+
+    const overallRank =
+        getOverallRank(player);
+
+    if (overallRank === 1)
+        achievements.push("🥇 #1 Overall");
+
+    if (overallRank <= 10)
+        achievements.push("⭐ Top 10");
+
+    const hasHT1 =
+        modes.some(
+            mode =>
+                player.rankings[mode] === "HT1"
+        );
+
+    const hasHT2 =
+        modes.some(
+            mode =>
+                player.rankings[mode] === "HT2"
+        );
+
+    if (hasHT1)
+        achievements.push("👑 HT1 Player");
+
+    if (hasHT2)
+        achievements.push("🔥 HT2 Player");
+
+    if (getWinRate(player) === 100 &&
+        Number(player.stats?.wins || 0) > 0) {
+
+        achievements.push("💯 Undefeated");
+
+    }
+
+    if (player.testedDate)
+        achievements.push("🧪 Tested Player");
+
+    if (achievements.length === 0)
+        achievements.push("🎮 Arch Tiers Player");
+
+    return achievements;
 
 }
-
-
-function skinURL(name, size = 64) {
-
-    return "https://mc-heads.net/avatar/" +
-        encodeURIComponent(name) +
-        "/" +
-        size;
-
-}
-
 
 /* =========================================================
    NAVIGATION
 ========================================================= */
 
-function changeMode(mode) {
-
-    currentMode = mode;
-    showingOverall = false;
+function showSection(id, button) {
 
     document
-        .querySelectorAll("nav button")
-        .forEach(button => {
-            button.classList.remove("active");
+        .querySelectorAll(".section")
+        .forEach(section => {
+            section.classList.remove("active");
         });
 
     document
-        .getElementById(mode + "Btn")
+        .getElementById(id)
         .classList.add("active");
-
-    document
-        .getElementById("tierList")
-        .style.display = "flex";
-
-    document
-        .getElementById("overallSection")
-        .style.display = "none";
-
-    document
-        .getElementById("modeTitle")
-        .textContent = mode + " Rankings";
-
-    document
-        .getElementById("dashboardMode")
-        .textContent = mode;
-
-    document
-        .getElementById("dashboardSubtitle")
-        .textContent =
-            "Competitive " +
-            mode +
-            " player rankings";
-
-    render();
-    updateDashboard();
-
-}
-
-
-function showOverall() {
-
-    showingOverall = true;
 
     document
         .querySelectorAll("nav button")
-        .forEach(button => {
-            button.classList.remove("active");
+        .forEach(btn => {
+            btn.classList.remove("active");
         });
 
-    document
-        .getElementById("OverallBtn")
-        .classList.add("active");
+    if (button)
+        button.classList.add("active");
 
-    document
-        .getElementById("tierList")
-        .style.display = "none";
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
-    document
-        .getElementById("overallSection")
-        .style.display = "block";
+    if (id === "tiers")
+        renderTierList();
 
-    document
-        .getElementById("dashboardMode")
-        .textContent = "Overall";
+    if (id === "leaderboards")
+        renderLeaderboard();
 
-    document
-        .getElementById("dashboardSubtitle")
-        .textContent =
-            "Combined competitive ranking";
-
-    renderOverall();
-    updateDashboard();
+    if (id === "distribution")
+        renderDistribution();
 
 }
-
 
 /* =========================================================
    TIER LIST
 ========================================================= */
 
-function render() {
+function renderTierList() {
 
     const container =
         document.getElementById("tierList");
 
     container.innerHTML = "";
 
-    tiers.forEach((tier, index) => {
+    const search =
+        document
+            .getElementById("tierSearch")
+            .value
+            .toLowerCase()
+            .trim();
+
+    const mode =
+        document.getElementById("modeFilter").value;
+
+    const rankFilter =
+        document.getElementById("rankFilter").value;
+
+    const sort =
+        document.getElementById("sortFilter").value;
+
+    let filtered =
+        players.filter(player => {
+
+            if (
+                search &&
+                !player.name
+                    .toLowerCase()
+                    .includes(search)
+            ) {
+                return false;
+            }
+
+            if (
+                rankFilter === "ranked" &&
+                !player.ranked
+            ) {
+                return false;
+            }
+
+            if (
+                rankFilter === "unranked" &&
+                player.ranked
+            ) {
+                return false;
+            }
+
+            return true;
+
+        });
+
+    if (sort === "name") {
+
+        filtered.sort(
+            (a,b) =>
+                a.name.localeCompare(b.name)
+        );
+
+    }
+
+    tiers.forEach((tier,index) => {
 
         const row =
             document.createElement("div");
@@ -1579,58 +1934,72 @@ function render() {
         tierName.className =
             "tier-name " + tier;
 
-        const strong =
-            document.createElement("strong");
-
-        strong.textContent = tier;
-
-        const small =
-            document.createElement("small");
-
-        if (index === 0) {
-            small.textContent = "ELITE";
-        } else if (index <= 3) {
-            small.textContent = "HIGH";
-        } else if (index <= 6) {
-            small.textContent = "MID";
-        } else {
-            small.textContent = "LOW";
-        }
-
-        tierName.appendChild(strong);
-        tierName.appendChild(small);
+        tierName.innerHTML =
+            "<strong>" + tier + "</strong>" +
+            "<small>" +
+            (
+                index === 0
+                    ? "ELITE"
+                    : index <= 3
+                        ? "HIGH"
+                        : index <= 6
+                            ? "MID"
+                            : "LOW"
+            ) +
+            "</small>";
 
         const area =
             document.createElement("div");
 
         area.className = "players";
 
-        const tierPlayers =
-            players.filter(player =>
-                player.rankings?.[currentMode] === tier
-            );
+        let found = false;
 
-        if (tierPlayers.length === 0) {
+        filtered
+            .filter(
+                player =>
+                    player.rankings[mode] === tier
+            )
+            .forEach(player => {
+
+                found = true;
+
+                const box =
+                    document.createElement("div");
+
+                box.className = "player";
+
+                box.onclick = () =>
+                    openProfile(player.name);
+
+                box.innerHTML = `
+
+                    <img
+                        class="player-head"
+                        src="${skinURL(player.name,64)}"
+                        alt="${escapeHTML(player.name)}">
+
+                    <span class="player-name">
+                        ${escapeHTML(player.name)}
+                    </span>
+
+                `;
+
+                area.appendChild(box);
+
+            });
+
+        if (!found) {
 
             const empty =
                 document.createElement("span");
 
-            empty.style.color = "#4f5966";
-            empty.style.fontSize = "12px";
+            empty.className = "empty";
+
             empty.textContent =
                 "No players in this tier";
 
             area.appendChild(empty);
-
-        } else {
-
-            tierPlayers.forEach(player => {
-
-                area.appendChild(
-                    createPlayerCard(player)
-                );
-
-            });
 
         }
 
@@ -1643,381 +2012,142 @@ function render() {
 
 }
 
-
 /* =========================================================
-   PLAYER CARD
+   LEADERBOARD
 ========================================================= */
 
-function createPlayerCard(player) {
+function setLeaderboard(type, button) {
 
-    const box =
-        document.createElement("div");
+    currentLeaderboard = type;
 
-    box.className = "player";
+    document
+        .querySelectorAll(".leader-tabs button")
+        .forEach(btn => {
 
-    box.onclick = () =>
-        openProfile(player.name);
-
-    const head =
-        document.createElement("img");
-
-    head.className = "player-head";
-    head.src = skinURL(player.name, 64);
-    head.alt = player.name;
-
-    const info =
-        document.createElement("div");
-
-    info.className = "player-info";
-
-    const name =
-        document.createElement("div");
-
-    name.className = "player-name";
-    name.textContent = player.name;
-
-    const meta =
-        document.createElement("div");
-
-    meta.className = "player-meta";
-
-    const winRate =
-        getWinRate(player);
-
-    if (winRate !== null) {
-
-        meta.textContent =
-            winRate + "% Win Rate";
-
-    } else {
-
-        meta.textContent =
-            "No match statistics";
-
-    }
-
-    info.appendChild(name);
-    info.appendChild(meta);
-
-    const badge =
-        document.createElement("span");
-
-    badge.className =
-        "player-badge " +
-        getTierClass(
-            player.rankings?.[currentMode]
-        );
-
-    badge.textContent =
-        player.rankings?.[currentMode] ||
-        "N/A";
-
-    box.appendChild(head);
-    box.appendChild(info);
-    box.appendChild(badge);
-
-    return box;
-
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-function handleSearch() {
-
-    const input =
-        document
-            .getElementById("search")
-            .value
-            .toLowerCase()
-            .trim();
-
-    const results =
-        document.getElementById("searchResults");
-
-    if (!input) {
-
-        results.innerHTML = "";
-        results.classList.remove("show");
-
-        render();
-
-        return;
-
-    }
-
-    const matches =
-        players.filter(player =>
-            player.name
-                .toLowerCase()
-                .includes(input)
-        );
-
-    results.innerHTML = "";
-
-    if (matches.length === 0) {
-
-        results.innerHTML = `
-            <div class="search-result">
-                <div class="search-result-left">
-                    <div>
-                        <div class="search-result-name">
-                            No players found
-                        </div>
-                        <div class="search-result-mode">
-                            Try another Minecraft username
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-
-    } else {
-
-        matches.forEach(player => {
-
-            const result =
-                document.createElement("div");
-
-            result.className =
-                "search-result";
-
-            result.onclick = () =>
-                openProfile(player.name);
-
-            const left =
-                document.createElement("div");
-
-            left.className =
-                "search-result-left";
-
-            const head =
-                document.createElement("img");
-
-            head.className =
-                "search-result-head";
-
-            head.src =
-                skinURL(player.name, 64);
-
-            const info =
-                document.createElement("div");
-
-            const name =
-                document.createElement("div");
-
-            name.className =
-                "search-result-name";
-
-            name.textContent =
-                player.name;
-
-            const mode =
-                document.createElement("div");
-
-            mode.className =
-                "search-result-mode";
-
-            mode.textContent =
-                "Highest tier: " +
-                getHighestTier(player);
-
-            info.appendChild(name);
-            info.appendChild(mode);
-
-            left.appendChild(head);
-            left.appendChild(info);
-
-            const tier =
-                document.createElement("div");
-
-            const highest =
-                getHighestTier(player);
-
-            tier.className =
-                "search-result-tier " +
-                getTierClass(highest);
-
-            tier.textContent =
-                highest || "N/A";
-
-            result.appendChild(left);
-            result.appendChild(tier);
-
-            results.appendChild(result);
+            btn.classList.remove("active");
 
         });
 
+    button.classList.add("active");
+
+    renderLeaderboard();
+
+}
+
+function getLeaderboardPlayers() {
+
+    if (currentLeaderboard === "Overall") {
+
+        return getOverallPlayers();
+
     }
 
-    results.classList.add("show");
-
-    document
-        .getElementById("tierList")
-        .style.display = "none";
-
-}
-
-
-function getHighestTier(player) {
-
-    let best = null;
-    let bestScore = -1;
-
-    modes.forEach(mode => {
-
-        const tier =
-            player.rankings?.[mode];
-
-        if (
-            tier &&
-            tierScores[tier] > bestScore
-        ) {
-
-            best = tier;
-            bestScore = tierScores[tier];
-
-        }
-
-    });
-
-    return best;
+    return [...players]
+        .filter(
+            player =>
+                player.rankings[currentLeaderboard]
+        )
+        .sort(
+            (a,b) =>
+                tierValue(
+                    a.rankings[currentLeaderboard]
+                ) -
+                tierValue(
+                    b.rankings[currentLeaderboard]
+                )
+        );
 
 }
 
-
-/* =========================================================
-   OVERALL
-========================================================= */
-
-function renderOverall() {
+function renderLeaderboard() {
 
     const container =
-        document.getElementById("overallList");
+        document.getElementById(
+            "leaderboard"
+        );
 
     container.innerHTML = "";
 
-    const ranked =
-        [...players]
-            .filter(player =>
-                getOverallScore(player) > 0
-            )
-            .sort((a, b) =>
-                getOverallScore(b) -
-                getOverallScore(a)
-            );
+    const list =
+        getLeaderboardPlayers();
 
-    if (ranked.length === 0) {
+    if (list.length === 0) {
 
-        container.innerHTML = `
-            <div class="dashboard-card">
-                No ranked players yet.
-            </div>
-        `;
+        container.innerHTML =
+            '<div class="panel">No ranked players yet.</div>';
 
         return;
 
     }
 
-    ranked.forEach((player, index) => {
+    list.forEach((player,index) => {
 
         const row =
             document.createElement("div");
 
-        row.className =
-            "overall-player";
+        row.className = "leader-row";
+
+        const rank =
+            index + 1;
+
+        let tierText = "N/A";
+
+        if (currentLeaderboard !== "Overall") {
+
+            tierText =
+                player.rankings[
+                    currentLeaderboard
+                ] || "N/A";
+
+        } else {
+
+            tierText =
+                "Score " +
+                getOverallScore(player)
+                    .toFixed(1);
+
+        }
+
+        row.innerHTML = `
+
+            <div class="leader-position">
+                #${rank}
+            </div>
+
+            <div class="leader-player">
+
+                <img
+                    src="${skinURL(player.name,64)}"
+                    alt="${escapeHTML(player.name)}">
+
+                <div>
+
+                    <strong>
+                        ${escapeHTML(player.name)}
+                    </strong>
+
+                    <small>
+                        ${getAchievements(player)[0]}
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="leader-score">
+                ${tierText}
+            </div>
+
+            <div class="leader-wr">
+                ${getWinRate(player)}% Win Rate
+            </div>
+
+        `;
 
         row.onclick = () =>
             openProfile(player.name);
 
-        const position =
-            document.createElement("div");
-
-        position.className =
-            "overall-position";
-
-        if (index === 0) {
-
-            position.classList.add("top-one");
-            position.textContent = "🥇";
-
-        } else if (index === 1) {
-
-            position.textContent = "🥈";
-
-        } else if (index === 2) {
-
-            position.textContent = "🥉";
-
-        } else {
-
-            position.textContent =
-                "#" + (index + 1);
-
-        }
-
-        const info =
-            document.createElement("div");
-
-        info.className =
-            "overall-info";
-
-        const head =
-            document.createElement("img");
-
-        head.className =
-            "overall-head";
-
-        head.src =
-            skinURL(player.name, 64);
-
-        const text =
-            document.createElement("div");
-
-        const name =
-            document.createElement("div");
-
-        name.className =
-            "overall-name";
-
-        name.textContent =
-            player.name;
-
-        const sub =
-            document.createElement("div");
-
-        sub.className =
-            "overall-sub";
-
-        sub.textContent =
-            getOverallTierText(player);
-
-        text.appendChild(name);
-        text.appendChild(sub);
-
-        info.appendChild(head);
-        info.appendChild(text);
-
-        const score =
-            document.createElement("div");
-
-        score.className =
-            "overall-score";
-
-        score.innerHTML = `
-            <div class="overall-score-number">
-                ${getOverallScore(player).toFixed(1)}
-            </div>
-            <div class="overall-score-label">
-                Overall Score
-            </div>
-        `;
-
-        row.appendChild(position);
-        row.appendChild(info);
-        row.appendChild(score);
+        row.style.cursor = "pointer";
 
         container.appendChild(row);
 
@@ -2025,90 +2155,556 @@ function renderOverall() {
 
 }
 
-
-function getOverallTierText(player) {
-
-    return modes
-        .map(mode => {
-
-            const tier =
-                player.rankings?.[mode];
-
-            if (!tier) {
-                return null;
-            }
-
-            return mode + ": " + tier;
-
-        })
-        .filter(Boolean)
-        .join(" · ");
-
-}
-
-
 /* =========================================================
-   DASHBOARD
+   COMPARISON
 ========================================================= */
 
-function updateDashboard() {
+function setupComparison() {
 
-    document
-        .getElementById("totalPlayers")
-        .textContent =
-        players.length;
+    const a =
+        document.getElementById("compareA");
 
-    let totalTests = 0;
-    let totalWins = 0;
+    const b =
+        document.getElementById("compareB");
 
     players.forEach(player => {
 
-        totalTests +=
-            Number(player.stats?.tests || 0);
+        const optionA =
+            document.createElement("option");
 
-        totalWins +=
-            Number(player.stats?.wins || 0);
+        optionA.value = player.name;
+        optionA.textContent = player.name;
+
+        const optionB =
+            optionA.cloneNode(true);
+
+        a.appendChild(optionA);
+        b.appendChild(optionB);
 
     });
 
-    document
-        .getElementById("totalTests")
-        .textContent =
-        totalTests;
+    if (players.length >= 2) {
 
-    document
-        .getElementById("totalWins")
-        .textContent =
+        a.value = players[0].name;
+        b.value = players[1].name;
+
+    } else if (players.length === 1) {
+
+        a.value = players[0].name;
+
+    }
+
+    renderComparison();
+
+}
+
+function renderComparison() {
+
+    const aName =
+        document.getElementById(
+            "compareA"
+        ).value;
+
+    const bName =
+        document.getElementById(
+            "compareB"
+        ).value;
+
+    const container =
+        document.getElementById(
+            "comparison"
+        );
+
+    if (!aName || !bName) {
+
+        container.innerHTML =
+            '<div class="panel">Select two players to compare.</div>';
+
+        return;
+
+    }
+
+    const a = getPlayer(aName);
+    const b = getPlayer(bName);
+
+    if (!a || !b)
+        return;
+
+    container.innerHTML = `
+
+        <div class="compare-card">
+
+            ${comparisonSide(a)}
+
+            ${comparisonSide(b)}
+
+        </div>
+
+    `;
+
+}
+
+function comparisonSide(player) {
+
+    let rankRows = "";
+
+    modes.forEach(mode => {
+
+        rankRows += `
+
+            <div class="compare-stat">
+
+                <span>
+                    ${mode}
+                </span>
+
+                <strong>
+                    ${player.rankings[mode] || "N/A"}
+                </strong>
+
+            </div>
+
+        `;
+
+    });
+
+    return `
+
+        <div class="compare-side">
+
+            <img
+                class="compare-skin"
+                src="${skinURL(player.name,100)}">
+
+            <div class="compare-name">
+                ${escapeHTML(player.name)}
+            </div>
+
+            <div
+                class="overall-badge">
+                #${getOverallRank(player)} Overall
+            </div>
+
+            ${rankRows}
+
+            <div class="compare-stat">
+                <span>Wins</span>
+                <strong>
+                    ${player.stats?.wins ?? "N/A"}
+                </strong>
+            </div>
+
+            <div class="compare-stat">
+                <span>Losses</span>
+                <strong>
+                    ${player.stats?.losses ?? "N/A"}
+                </strong>
+            </div>
+
+            <div class="compare-stat">
+                <span>Win Rate</span>
+                <strong>
+                    ${getWinRate(player)}%
+                </strong>
+            </div>
+
+            <div class="compare-stat">
+                <span>Tests</span>
+                <strong>
+                    ${player.stats?.tests ?? "N/A"}
+                </strong>
+            </div>
+
+            <div class="compare-stat">
+                <span>Test Date</span>
+                <strong>
+                    ${escapeHTML(player.testedDate || "N/A")}
+                </strong>
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+/* =========================================================
+   DISTRIBUTION
+========================================================= */
+
+function setDistribution(mode, button) {
+
+    currentDistribution = mode;
+
+    const parent =
+        button.parentElement;
+
+    parent
+        .querySelectorAll("button")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+    renderDistribution();
+
+}
+
+function renderDistribution() {
+
+    const container =
+        document.getElementById(
+            "distributionList"
+        );
+
+    container.innerHTML = "";
+
+    const counts = {};
+
+    tiers.forEach(
+        tier => counts[tier] = 0
+    );
+
+    players.forEach(player => {
+
+        const tier =
+            player.rankings[
+                currentDistribution
+            ];
+
+        if (tier)
+            counts[tier]++;
+
+    });
+
+    const max =
+        Math.max(
+            1,
+            ...Object.values(counts)
+        );
+
+    tiers.forEach(tier => {
+
+        const count = counts[tier];
+
+        const row =
+            document.createElement("div");
+
+        row.className =
+            "distribution-row";
+
+        row.innerHTML = `
+
+            <div
+                class="distribution-label ${tier}">
+                ${tier}
+            </div>
+
+            <div class="bar">
+
+                <div
+                    class="bar-fill"
+                    style="width:${count / max * 100}%">
+                </div>
+
+            </div>
+
+            <div class="distribution-count">
+                ${count}
+            </div>
+
+        `;
+
+        container.appendChild(row);
+
+    });
+
+}
+
+/* =========================================================
+   HOME DASHBOARD
+========================================================= */
+
+function renderHome() {
+
+    document.getElementById(
+        "totalPlayers"
+    ).textContent =
+        players.length;
+
+    const totalWins =
+        players.reduce(
+            (sum,p) =>
+                sum + Number(p.stats?.wins || 0),
+            0
+        );
+
+    const totalLosses =
+        players.reduce(
+            (sum,p) =>
+                sum + Number(p.stats?.losses || 0),
+            0
+        );
+
+    const totalTests =
+        players.reduce(
+            (sum,p) =>
+                sum + Number(p.stats?.tests || 0),
+            0
+        );
+
+    document.getElementById(
+        "totalWins"
+    ).textContent =
         totalWins;
 
-    const highTierPlayers =
-        players.filter(player => {
+    document.getElementById(
+        "totalLosses"
+    ).textContent =
+        totalLosses;
 
-            return modes.some(mode => {
+    document.getElementById(
+        "totalTests"
+    ).textContent =
+        totalTests;
 
-                const tier =
-                    player.rankings?.[mode];
+    const top =
+        getOverallPlayers()
+            .slice(0,3);
 
-                return [
-                    "HT1",
-                    "LT1",
-                    "HT2",
-                    "LT2",
-                    "HT3",
-                    "LT3"
-                ].includes(tier);
+    const topContainer =
+        document.getElementById(
+            "homeTopPlayers"
+        );
 
+    topContainer.innerHTML = "";
+
+    top.forEach((player,index) => {
+
+        const item =
+            document.createElement("div");
+
+        item.className = "list-item";
+
+        item.innerHTML = `
+
+            <div class="list-player">
+
+                <span class="list-rank">
+                    #${index + 1}
+                </span>
+
+                <img
+                    class="mini-head"
+                    src="${skinURL(player.name,64)}">
+
+                <strong>
+                    ${escapeHTML(player.name)}
+                </strong>
+
+            </div>
+
+            <span class="tiny-tier HT3">
+                ${getBestTier(player) || "N/A"}
+            </span>
+
+        `;
+
+        item.onclick =
+            () => openProfile(player.name);
+
+        item.style.cursor = "pointer";
+
+        topContainer.appendChild(item);
+
+    });
+
+    renderChanges();
+
+}
+
+function getBestTier(player) {
+
+    const ranked =
+        modes
+            .map(mode => player.rankings[mode])
+            .filter(Boolean)
+            .sort(
+                (a,b) =>
+                    tierValue(a) -
+                    tierValue(b)
+            );
+
+    return ranked[0] || null;
+
+}
+
+function renderChanges() {
+
+    const container =
+        document.getElementById(
+            "homeChanges"
+        );
+
+    container.innerHTML = "";
+
+    const changes = [];
+
+    players.forEach(player => {
+
+        if (!player.history)
+            return;
+
+        player.history.forEach(change => {
+
+            changes.push({
+                ...change,
+                player: player.name
             });
 
         });
 
-    document
-        .getElementById("topTierCount")
-        .textContent =
-        highTierPlayers.length;
+    });
+
+    if (changes.length === 0) {
+
+        container.innerHTML =
+            '<div style="color:#687381;font-size:12px;">No tier changes yet.</div>';
+
+        return;
+
+    }
+
+    changes
+        .slice(0,5)
+        .forEach(change => {
+
+            const item =
+                document.createElement("div");
+
+            item.className =
+                "change-item";
+
+            item.innerHTML = `
+
+                <strong>
+                    ${escapeHTML(change.player)}
+                    →
+                    ${escapeHTML(change.to)}
+                    ${escapeHTML(change.mode)}
+                </strong>
+
+                <p>
+                    ${escapeHTML(change.date)}
+                    ·
+                    ${escapeHTML(change.tester)}
+                </p>
+
+            `;
+
+            container.appendChild(item);
+
+        });
 
 }
 
+/* =========================================================
+   SERVER STATISTICS
+========================================================= */
+
+function renderServerStats() {
+
+    const container =
+        document.getElementById(
+            "serverStats"
+        );
+
+    const totalRanked =
+        players.filter(
+            player => player.ranked
+        ).length;
+
+    const totalTests =
+        players.reduce(
+            (sum,p) =>
+                sum + Number(p.stats?.tests || 0),
+            0
+        );
+
+    const totalWins =
+        players.reduce(
+            (sum,p) =>
+                sum + Number(p.stats?.wins || 0),
+            0
+        );
+
+    const tierCounts = {};
+
+    tiers.forEach(
+        tier => tierCounts[tier] = 0
+    );
+
+    players.forEach(player => {
+
+        modes.forEach(mode => {
+
+            const tier =
+                player.rankings[mode];
+
+            if (tier)
+                tierCounts[tier]++;
+
+        });
+
+    });
+
+    const mostCommon =
+        Object.entries(tierCounts)
+            .sort((a,b) => b[1] - a[1])[0];
+
+    const top =
+        getOverallPlayers()[0];
+
+    container.innerHTML = `
+
+        <div class="list-item">
+            <span>Total Players</span>
+            <strong>${players.length}</strong>
+        </div>
+
+        <div class="list-item">
+            <span>Ranked Players</span>
+            <strong>${totalRanked}</strong>
+        </div>
+
+        <div class="list-item">
+            <span>Total Tests</span>
+            <strong>${totalTests}</strong>
+        </div>
+
+        <div class="list-item">
+            <span>Total Wins</span>
+            <strong>${totalWins}</strong>
+        </div>
+
+        <div class="list-item">
+            <span>Most Common Tier</span>
+            <strong>
+                ${mostCommon?.[0] || "N/A"}
+            </strong>
+        </div>
+
+        <div class="list-item">
+            <span>Highest Overall</span>
+            <strong>
+                ${top ? escapeHTML(top.name) : "N/A"}
+            </strong>
+        </div>
+
+    `;
+
+}
 
 /* =========================================================
    PROFILE
@@ -2117,202 +2713,161 @@ function updateDashboard() {
 function openProfile(name) {
 
     const player =
-        players.find(p =>
-            p.name === name
-        );
+        getPlayer(name);
 
     if (!player)
         return;
 
-    const overallRank =
-        getOverallRank(player);
+    document.getElementById(
+        "profileSkin"
+    ).src =
+        skinURL(player.name,150);
 
-    document
-        .getElementById("profileOverall")
-        .textContent =
-        overallRank
-            ? "🏆 #" + overallRank + " Overall"
-            : "Unranked";
-
-    document
-        .getElementById("profileName")
-        .textContent =
+    document.getElementById(
+        "profileName"
+    ).textContent =
         player.name;
 
-    const skin =
-        document.getElementById("profileSkin");
-
-    skin.src =
-        skinURL(player.name, 150);
-
-    const status =
-        document.getElementById("profileStatus");
-
-    const ranked =
-        modes.some(mode =>
-            player.rankings?.[mode]
-        );
-
-    status.textContent =
-        ranked
-            ? "● Ranked Player"
-            : "● Unranked";
-
-    status.style.color =
-        ranked
-            ? "#39ff78"
-            : "#ff626b";
-
-    /* Rankings */
+    document.getElementById(
+        "profileOverall"
+    ).textContent =
+        "#" +
+        getOverallRank(player) +
+        " Overall";
 
     const ranks =
-        document.getElementById("profileRanks");
+        document.getElementById(
+            "profileRanks"
+        );
 
     ranks.innerHTML = "";
 
     modes.forEach(mode => {
 
-        const row =
+        const tier =
+            player.rankings[mode];
+
+        const box =
             document.createElement("div");
 
-        row.className = "rank";
+        box.className =
+            "rank-box";
 
-        const left =
-            document.createElement("span");
+        box.innerHTML = `
 
-        left.textContent = mode;
+            <span>${mode}</span>
 
-        const right =
-            document.createElement("span");
+            ${
+                tier
+                    ? `<strong
+                        class="tiny-tier ${tier}">
+                        ${tier}
+                       </strong>`
+                    : `<span style="color:#687381">
+                        N/A
+                       </span>`
+            }
 
-        const tier =
-            player.rankings?.[mode];
+        `;
 
-        if (tier) {
-
-            right.className =
-                "tier-badge " +
-                tier;
-
-            right.textContent =
-                tier;
-
-        } else {
-
-            right.className = "muted";
-            right.textContent = "N/A";
-
-        }
-
-        row.appendChild(left);
-        row.appendChild(right);
-
-        ranks.appendChild(row);
+        ranks.appendChild(box);
 
     });
 
-    /* Stats */
-
     const stats =
-        player.stats || {};
+        document.getElementById(
+            "profileStats"
+        );
 
-    const wins =
-        Number(stats.wins || 0);
+    stats.innerHTML = `
 
-    const losses =
-        Number(stats.losses || 0);
+        <div class="profile-stat">
+            <strong>
+                ${player.stats?.wins ?? "N/A"}
+            </strong>
+            <span>Wins</span>
+        </div>
 
-    const tests =
-        stats.tests === null ||
-        stats.tests === undefined
-            ? "N/A"
-            : stats.tests;
+        <div class="profile-stat">
+            <strong>
+                ${player.stats?.losses ?? "N/A"}
+            </strong>
+            <span>Losses</span>
+        </div>
 
-    const winRate =
-        getWinRate(player);
+        <div class="profile-stat">
+            <strong>
+                ${getWinRate(player)}%
+            </strong>
+            <span>Win Rate</span>
+        </div>
 
-    document
-        .getElementById("profileStats")
-        .innerHTML = `
+        <div class="profile-stat">
+            <strong>
+                ${player.stats?.tests ?? "N/A"}
+            </strong>
+            <span>Tests</span>
+        </div>
 
-            <div class="profile-stat-grid">
+    `;
 
-                <div class="profile-stat">
+    const achievements =
+        document.getElementById(
+            "profileAchievements"
+        );
 
-                    <div class="profile-stat-number">
-                        ${wins}
-                    </div>
+    achievements.innerHTML = "";
 
-                    <div class="profile-stat-label">
-                        Wins
-                    </div>
+    getAchievements(player)
+        .forEach(achievement => {
 
-                </div>
+            const badge =
+                document.createElement("div");
 
-                <div class="profile-stat">
+            badge.className =
+                "achievement";
 
-                    <div class="profile-stat-number">
-                        ${losses}
-                    </div>
+            badge.textContent =
+                achievement;
 
-                    <div class="profile-stat-label">
-                        Losses
-                    </div>
+            achievements.appendChild(badge);
 
-                </div>
+        });
 
-                <div class="profile-stat">
+    document.getElementById(
+        "profileTesting"
+    ).innerHTML = `
 
-                    <div class="profile-stat-number">
-                        ${tests}
-                    </div>
+        <div class="info-box">
 
-                    <div class="profile-stat-label">
-                        Tests
-                    </div>
+            <span>Tester / Reviewer</span>
 
-                </div>
+            <strong>
+                ${escapeHTML(
+                    player.tester || "N/A"
+                )}
+            </strong>
 
-            </div>
+        </div>
 
-            <div class="winrate">
+        <div class="info-box">
 
-                📊 Win Rate:
+            <span>Test Date</span>
 
-                <strong>
-                    ${winRate === null ? "N/A" : winRate + "%"}
-                </strong>
+            <strong>
+                ${escapeHTML(
+                    player.testedDate || "N/A"
+                )}
+            </strong>
 
-            </div>
+        </div>
 
-        `;
-
-    /* Testing */
-
-    document
-        .getElementById("profileTesting")
-        .innerHTML = `
-
-            <div class="testing-row">
-                <span>Tester</span>
-                <strong>
-                    ${escapeHTML(player.tester || "N/A")}
-                </strong>
-            </div>
-
-            <div class="testing-row">
-                <span>Test Date</span>
-                <strong>
-                    ${escapeHTML(player.testedDate || "N/A")}
-                </strong>
-            </div>
-
-        `;
-
-    /* History */
+    `;
 
     const history =
-        document.getElementById("profileHistory");
+        document.getElementById(
+            "profileHistory"
+        );
 
     history.innerHTML = "";
 
@@ -2323,9 +2878,7 @@ function openProfile(name) {
 
         history.innerHTML = `
             <div class="history-item">
-                <span class="muted">
-                    No tier changes recorded.
-                </span>
+                No tier changes yet.
             </div>
         `;
 
@@ -2341,21 +2894,21 @@ function openProfile(name) {
 
             item.innerHTML = `
 
-                <div class="history-mode">
+                <strong>
                     ${escapeHTML(change.mode)}
-                </div>
+                </strong>
 
-                <div class="history-change">
+                <div style="margin-top:4px;">
                     ${escapeHTML(change.from)}
                     →
                     ${escapeHTML(change.to)}
                 </div>
 
-                <div class="history-date">
+                <small>
                     ${escapeHTML(change.date)}
                     ·
                     ${escapeHTML(change.tester)}
-                </div>
+                </small>
 
             `;
 
@@ -2371,75 +2924,77 @@ function openProfile(name) {
 
 }
 
-
-/* =========================================================
-   MODALS
-========================================================= */
-
-function closeModal(id) {
+function closeProfile() {
 
     document
-        .getElementById(id)
+        .getElementById("profileModal")
         .classList.remove("show");
 
 }
 
+function outsideModal(event) {
 
-function outside(event, id) {
+    if (
+        event.target.id ===
+        "profileModal"
+    ) {
 
-    if (event.target.id === id) {
-        closeModal(id);
+        closeProfile();
+
     }
 
 }
 
-
 /* =========================================================
-   ESCAPE HTML
+   SECURITY
 ========================================================= */
 
 function escapeHTML(value) {
 
     return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
 
-
 /* =========================================================
-   ESCAPE KEY
+   KEYBOARD
 ========================================================= */
 
 document.addEventListener(
     "keydown",
-    function(event) {
+    event => {
 
-        if (event.key === "Escape") {
-
-            closeModal("profileModal");
-
-        }
+        if (event.key === "Escape")
+            closeProfile();
 
     }
 );
-
 
 /* =========================================================
    START
 ========================================================= */
 
-function startArchTiers() {
+function start() {
 
-    render();
-    updateDashboard();
+    renderHome();
+
+    renderTierList();
+
+    renderLeaderboard();
+
+    renderDistribution();
+
+    renderServerStats();
+
+    setupComparison();
 
 }
 
-startArchTiers();
+start();
 
 </script>
 
