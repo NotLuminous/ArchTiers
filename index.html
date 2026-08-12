@@ -619,9 +619,7 @@ main{
     font-weight:950;
 }
 
-/* =========================================================
-   INDIVIDUAL TIER COLORS
-========================================================= */
+/* TIER COLORS */
 
 .HT1{
     --tier:#ff3030;
@@ -683,7 +681,7 @@ main{
     --tierGlow:rgba(154,108,255,.30);
 }
 
-/* TIER BADGES */
+/* BADGES */
 
 .badge,
 .tier-badge{
@@ -697,12 +695,11 @@ main{
     font-size:10px;
     font-weight:1000;
     text-shadow:0 1px 3px rgba(0,0,0,.45);
-    background:
-        linear-gradient(
-            135deg,
-            var(--tier),
-            var(--tier2)
-        );
+    background:linear-gradient(
+        135deg,
+        var(--tier),
+        var(--tier2)
+    );
     box-shadow:
         0 3px 10px rgba(0,0,0,.15),
         0 0 12px var(--tierGlow);
@@ -716,22 +713,13 @@ main{
     text-shadow:none;
 }
 
-/* =========================================================
-   TIER-REACTIVE PLAYER CARDS
-========================================================= */
+/* TIER REACTIVE */
 
-.player,
-.search-result-card,
-.leader-row,
-.podium-card{
+.tier-reactive{
     --active-tier:#ff3030;
     --active-tier2:#8b0015;
     --active-glow:rgba(255,48,48,.2);
-}
 
-/* The card receives the strongest-ranked tier */
-
-.tier-reactive{
     border-color:color-mix(
         in srgb,
         var(--active-tier) 38%,
@@ -777,7 +765,7 @@ main{
     box-shadow:0 0 12px var(--active-glow);
 }
 
-/* ADVANCED SEARCH */
+/* SEARCH */
 
 .search-panel{
     position:relative;
@@ -932,12 +920,11 @@ main{
     color:#fff;
     font-size:17px;
     font-weight:1000;
-    background:
-        linear-gradient(
-            135deg,
-            var(--tier),
-            var(--tier2)
-        );
+    background:linear-gradient(
+        135deg,
+        var(--tier),
+        var(--tier2)
+    );
 }
 
 .tier-name::after{
@@ -1106,6 +1093,7 @@ main{
 }
 
 .change strong{color:#fff}
+
 .change small{
     display:block;
     margin-top:5px;
@@ -1155,17 +1143,28 @@ main{
 }
 
 .profile{
+    --profile-tier:#ff3030;
+    --profile-tier2:#8b0015;
+    --profile-glow:rgba(255,48,48,.25);
+
     position:relative;
     width:min(850px,100%);
     max-height:92vh;
     overflow-y:auto;
-    border:1px solid rgba(255,255,255,.10);
+    border:1px solid color-mix(
+        in srgb,
+        var(--profile-tier) 45%,
+        rgba(255,255,255,.1)
+    );
     border-radius:21px;
     background:#0b1016;
     box-shadow:
         0 35px 100px rgba(0,0,0,.72),
-        0 0 60px rgba(255,48,48,.055);
+        0 0 80px var(--profile-glow);
     animation:profileIn .25s ease;
+    transition:
+        border-color .35s ease,
+        box-shadow .35s ease;
 }
 
 @keyframes profileIn{
@@ -1179,15 +1178,129 @@ main{
     }
 }
 
+/* NEW FULL PROFILE TIER THEMES */
+
+.profile.profile-HT1{
+    --profile-tier:#ff3030;
+    --profile-tier2:#8b0015;
+    --profile-glow:rgba(255,48,48,.32);
+}
+
+.profile.profile-LT1{
+    --profile-tier:#ff4f69;
+    --profile-tier2:#a91f3d;
+    --profile-glow:rgba(255,79,105,.30);
+}
+
+.profile.profile-HT2{
+    --profile-tier:#ff7a18;
+    --profile-tier2:#b83b00;
+    --profile-glow:rgba(255,122,24,.30);
+}
+
+.profile.profile-LT2{
+    --profile-tier:#ffad32;
+    --profile-tier2:#b66a00;
+    --profile-glow:rgba(255,173,50,.28);
+}
+
+.profile.profile-HT3{
+    --profile-tier:#e8d33f;
+    --profile-tier2:#9b8210;
+    --profile-glow:rgba(232,211,63,.28);
+}
+
+.profile.profile-LT3{
+    --profile-tier:#a8d83e;
+    --profile-tier2:#5d8610;
+    --profile-glow:rgba(168,216,62,.28);
+}
+
+.profile.profile-HT4{
+    --profile-tier:#32e37c;
+    --profile-tier2:#08763a;
+    --profile-glow:rgba(50,227,124,.28);
+}
+
+.profile.profile-LT4{
+    --profile-tier:#26d8c7;
+    --profile-tier2:#087d72;
+    --profile-glow:rgba(38,216,199,.28);
+}
+
+.profile.profile-HT5{
+    --profile-tier:#4b9cff;
+    --profile-tier2:#164e9b;
+    --profile-glow:rgba(75,156,255,.28);
+}
+
+.profile.profile-LT5{
+    --profile-tier:#9a6cff;
+    --profile-tier2:#4d269b;
+    --profile-glow:rgba(154,108,255,.28);
+}
+
 .profile-banner{
     height:160px;
     position:relative;
     overflow:hidden;
     background:
-        radial-gradient(circle at 20% 20%,rgba(255,48,48,.22),transparent 35%),
-        radial-gradient(circle at 85% 0%,rgba(255,48,48,.12),transparent 35%),
-        linear-gradient(135deg,#10161c,#0c1117);
-    border-bottom:1px solid #29313b;
+        radial-gradient(
+            circle at 20% 20%,
+            color-mix(
+                in srgb,
+                var(--profile-tier) 27%,
+                transparent
+            ),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 0%,
+            color-mix(
+                in srgb,
+                var(--profile-tier) 20%,
+                transparent
+            ),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            color-mix(
+                in srgb,
+                var(--profile-tier) 9%,
+                #10161c
+            ),
+            #0c1117
+        );
+    border-bottom:1px solid color-mix(
+        in srgb,
+        var(--profile-tier) 35%,
+        #29313b
+    );
+}
+
+.profile-banner::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            115deg,
+            transparent 25%,
+            color-mix(
+                in srgb,
+                var(--profile-tier) 12%,
+                transparent
+            ) 50%,
+            transparent 75%
+        );
+    background-size:220% 100%;
+    animation:profileShine 7s linear infinite;
+}
+
+@keyframes profileShine{
+    from{background-position:200% 0}
+    to{background-position:-200% 0}
 }
 
 .profile-body{
@@ -1207,14 +1320,17 @@ main{
     object-fit:cover;
     image-rendering:pixelated;
     border-radius:16px;
-    border:3px solid var(--red);
+    border:3px solid var(--profile-tier);
     margin-top:-62px;
     position:relative;
     z-index:5;
     background:#080b0f;
     box-shadow:
         0 0 0 7px rgba(11,16,22,1),
-        0 0 35px rgba(255,48,48,.22);
+        0 0 35px var(--profile-glow);
+    transition:
+        border-color .35s ease,
+        box-shadow .35s ease;
 }
 
 .profile-name{
@@ -1222,11 +1338,14 @@ main{
     font-size:31px;
     font-weight:1000;
     letter-spacing:-.7px;
+    color:#fff;
+    text-shadow:
+        0 0 22px var(--profile-glow);
 }
 
 .overall{
     margin-top:6px;
-    color:#ff5555;
+    color:var(--profile-tier);
     font-weight:900;
     font-size:12px;
 }
@@ -1236,15 +1355,28 @@ main{
     width:100%;
     height:320px;
     margin-top:-100px;
-    border:1px solid rgba(255,48,48,.22);
+    border:1px solid color-mix(
+        in srgb,
+        var(--profile-tier) 45%,
+        #29313b
+    );
     border-radius:16px;
     overflow:hidden;
     background:
-        radial-gradient(circle at 50% 35%,rgba(255,48,48,.12),transparent 45%),
+        radial-gradient(
+            circle at 50% 35%,
+            color-mix(
+                in srgb,
+                var(--profile-tier) 15%,
+                transparent
+            ),
+            transparent 45%
+        ),
         linear-gradient(180deg,#10161d,#080c11);
     box-shadow:
         inset 0 1px rgba(255,255,255,.04),
-        0 15px 40px rgba(0,0,0,.25);
+        0 15px 40px rgba(0,0,0,.25),
+        0 0 25px var(--profile-glow);
 }
 
 .model-box::before{
@@ -1253,7 +1385,11 @@ main{
     top:12px;
     left:14px;
     z-index:5;
-    color:rgba(255,255,255,.45);
+    color:color-mix(
+        in srgb,
+        var(--profile-tier) 70%,
+        #fff
+    );
     font-size:8px;
     font-weight:900;
     letter-spacing:1.5px;
@@ -1296,8 +1432,12 @@ main{
 }
 
 .close:hover{
-    border-color:rgba(255,48,48,.45);
-    background:rgba(255,48,48,.12);
+    border-color:var(--profile-tier);
+    background:color-mix(
+        in srgb,
+        var(--profile-tier) 15%,
+        rgba(21,27,34,.9)
+    );
     transform:rotate(90deg);
 }
 
@@ -1312,9 +1452,34 @@ main{
     position:relative;
     overflow:hidden;
     padding:15px;
-    border:1px solid #252d37;
+    border:1px solid color-mix(
+        in srgb,
+        var(--profile-tier) 20%,
+        #252d37
+    );
     border-radius:10px;
-    background:linear-gradient(135deg,#121820,#0e141b);
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            color-mix(
+                in srgb,
+                var(--profile-tier) 7%,
+                transparent
+            ),
+            transparent 50%
+        ),
+        linear-gradient(135deg,#121820,#0e141b);
+    transition:.25s ease;
+}
+
+.profile-stat:hover{
+    transform:translateY(-2px);
+    border-color:color-mix(
+        in srgb,
+        var(--profile-tier) 50%,
+        #252d37
+    );
+    box-shadow:0 0 18px var(--profile-glow);
 }
 
 .profile-stat span{
@@ -1330,6 +1495,7 @@ main{
     display:block;
     margin-top:4px;
     font-size:19px;
+    color:#fff;
 }
 
 .profile-section{
@@ -1338,7 +1504,7 @@ main{
 
 .profile-section h3{
     margin-bottom:10px;
-    color:#ff5555;
+    color:var(--profile-tier);
     font-size:12px;
     text-transform:uppercase;
     letter-spacing:1px;
@@ -1350,21 +1516,39 @@ main{
     align-items:center;
     padding:11px 13px;
     margin-bottom:6px;
-    border:1px solid #252d37;
+    border:1px solid color-mix(
+        in srgb,
+        var(--profile-tier) 16%,
+        #252d37
+    );
     border-radius:8px;
-    background:#121820;
+    background:
+        linear-gradient(
+            90deg,
+            color-mix(
+                in srgb,
+                var(--profile-tier) 5%,
+                #121820
+            ),
+            #121820
+        );
 }
 
 .history-item{
     position:relative;
     padding:12px 14px;
     margin-bottom:7px;
-    border-left:3px solid var(--red);
-    background:linear-gradient(
-        90deg,
-        rgba(255,48,48,.07),
-        #121820 35%
-    );
+    border-left:3px solid var(--profile-tier);
+    background:
+        linear-gradient(
+            90deg,
+            color-mix(
+                in srgb,
+                var(--profile-tier) 9%,
+                transparent
+            ),
+            #121820 35%
+        );
     border-radius:5px;
 }
 
@@ -1649,7 +1833,7 @@ footer strong{color:var(--red)}
                 id="advancedSearch"
                 type="text"
                 placeholder="🔎 Search by Minecraft IGN..."
-                oninput="renderSearchResults()"
+                oninput="renderSearchResults"
             >
 
             <select
@@ -1812,7 +1996,7 @@ footer strong{color:var(--red)}
 
 <div class="modal" id="profileModal" onclick="outside(event)">
 
-    <div class="profile">
+    <div class="profile" id="profileCard">
 
         <button class="close" onclick="closeProfile()">×</button>
 
@@ -1996,7 +2180,7 @@ const players = [
 
         stats:{
             wins:1,
-            losses:4,
+            losses:5,
             tests:1
         },
 
@@ -2018,10 +2202,52 @@ const players = [
         stats:{
             wins:8,
             losses:2,
-            tests:1
+            tests:2
         },
 
         tester:"Tester",
+        testDate:"8/12/2026",
+        history:[]
+    },
+
+    {
+        name:"Cloroxwipes11o",
+
+        rankings:{
+            Bedfight:null,
+            Bedwars:null,
+            UHC:null,
+            Sumo:"LT3"
+        },
+
+        stats:{
+            wins:3,
+            losses:5,
+            tests:1
+        },
+
+        tester:"Head Tester",
+        testDate:"8/12/2026",
+        history:[]
+    },
+
+    {
+        name:"nyxen_",
+
+        rankings:{
+            Bedfight:"LT3",
+            Bedwars:null,
+            UHC:null,
+            Sumo:null
+        },
+
+        stats:{
+            wins:2,
+            losses:5,
+            tests:1
+        },
+
+        tester:"Head Tester",
         testDate:"8/12/2026",
         history:[]
     }
@@ -2055,7 +2281,6 @@ const modes=[
 
 let currentMode="Bedfight";
 let leaderboardMode="Overall";
-
 let skinViewer=null;
 
 
@@ -2083,35 +2308,18 @@ function tierScore(tier){
 
 
 /* =========================================================
-   NEW STACKING OVERALL SCORE
+   OVERALL SCORE
 ========================================================= */
 
 function overallScore(player){
 
-    const rankedModes=
-        modes.filter(mode=>player.rankings[mode]);
-
-    if(!rankedModes.length)
-        return 0;
-
-    /*
-       Every ranked mode adds its full tier value.
-
-       Example:
-
-       HT3 = 80
-       HT3 + LT3 = 155
-       HT3 + LT3 + HT5 = 215
-
-       This means multi-mode players receive
-       more overall points.
-    */
-
-    return rankedModes.reduce(
-        (total,mode)=>
-            total + tierScore(player.rankings[mode]),
-        0
-    );
+    return modes
+        .filter(mode=>player.rankings[mode])
+        .reduce(
+            (total,mode)=>
+                total+tierScore(player.rankings[mode]),
+            0
+        );
 }
 
 
@@ -2121,30 +2329,22 @@ function overallScore(player){
 
 function sortedOverall(){
 
-    return [...players].sort(
-        (a,b)=>{
+    return [...players].sort((a,b)=>{
 
-            const scoreDifference=
-                overallScore(b)-overallScore(a);
+        const scoreDifference=
+            overallScore(b)-overallScore(a);
 
-            if(scoreDifference!==0)
-                return scoreDifference;
+        if(scoreDifference!==0)
+            return scoreDifference;
 
-            /*
-               If two players have the same score,
-               give the player with more ranked modes
-               the advantage.
-            */
+        const modesA=
+            modes.filter(m=>a.rankings[m]).length;
 
-            const modesA=
-                modes.filter(m=>a.rankings[m]).length;
+        const modesB=
+            modes.filter(m=>b.rankings[m]).length;
 
-            const modesB=
-                modes.filter(m=>b.rankings[m]).length;
-
-            return modesB-modesA;
-        }
-    );
+        return modesB-modesA;
+    });
 }
 
 
@@ -2167,7 +2367,7 @@ function winRate(player){
 
 
 /* =========================================================
-   TIER RANK
+   BEST TIER
 ========================================================= */
 
 function bestTier(player){
@@ -2187,50 +2387,12 @@ function bestTier(player){
 
 
 /* =========================================================
-   TIER REACTIVE CLASS
-========================================================= */
-
-function applyTierStyle(element,player){
-
-    const tier=bestTier(player);
-
-    if(!tier)
-        return;
-
-    element.classList.add("tier-reactive");
-
-    element.style.setProperty(
-        "--active-tier",
-        `var(--tier)`
-    );
-
-    element.style.setProperty(
-        "--active-tier2",
-        `var(--tier2)`
-    );
-
-    element.style.setProperty(
-        "--active-glow",
-        `var(--tierGlow)`
-    );
-
-    /*
-       The CSS variables above need the actual tier
-       variables. Add them directly from the tier class.
-    */
-
-    element.classList.add(tier);
-}
-
-
-/* =========================================================
    ACHIEVEMENTS
 ========================================================= */
 
 function getAchievements(player){
 
     const list=[];
-
     const ranking=sortedOverall();
 
     const position=
@@ -2288,7 +2450,7 @@ function getAchievements(player){
 
 
 /* =========================================================
-   SKIN URLS
+   SKINS
 ========================================================= */
 
 function skinURL(name,size=100){
@@ -2462,10 +2624,15 @@ function renderPodium(){
             document.createElement("div");
 
         card.className=
-            "podium-card "+
-            (position===1?"first ":"");
+            "podium-card";
 
-        applyTierStyle(card,player);
+        const tier=bestTier(player);
+
+        if(tier)
+            card.classList.add("tier-reactive",tier);
+
+        if(position===1)
+            card.classList.add("first");
 
         card.onclick=
             ()=>openProfile(player.name);
@@ -2505,7 +2672,7 @@ function renderPodium(){
 
 
 /* =========================================================
-   ADVANCED SEARCH
+   SEARCH
 ========================================================= */
 
 function renderSearchResults(){
@@ -2882,8 +3049,6 @@ function renderTierList(){
 
     box.innerHTML="";
 
-    let any=false;
-
     tiers.forEach((tier,index)=>{
 
         const matching=
@@ -2891,9 +3056,6 @@ function renderTierList(){
                 player=>
                     player.rankings[currentMode]===tier
             );
-
-        if(matching.length)
-            any=true;
 
         const row=
             document.createElement("div");
@@ -2945,7 +3107,7 @@ function renderTierList(){
                     document.createElement("div");
 
                 card.className=
-                    "player "+tier;
+                    "player tier-reactive "+tier;
 
                 card.onclick=
                     ()=>openProfile(player.name);
@@ -3291,24 +3453,30 @@ function openProfile(name){
 
     const best=bestTier(player);
 
+    const profileCard=
+        document.getElementById("profileCard");
+
+    /*
+       Remove every previous tier theme before
+       applying the player's current best tier.
+    */
+
+    tiers.forEach(tier=>{
+        profileCard.classList.remove("profile-"+tier);
+    });
+
+    if(best){
+        profileCard.classList.add("profile-"+best);
+    }
+
     const profileSkin=
         document.getElementById("profileSkin");
 
     profileSkin.src=
         skinURL(name,120);
 
-    if(best){
-
-        profileSkin.style.borderColor=
-            `var(--tier)`;
-
-        profileSkin.style.boxShadow=
-            `0 0 0 7px rgba(11,16,22,1),
-             0 0 35px var(--tierGlow)`;
-
-        profileSkin.className=
-            "profile-skin "+best;
-    }
+    profileSkin.className=
+        "profile-skin";
 
     document
         .getElementById("profileName")
@@ -3494,6 +3662,11 @@ function openProfile(name){
                             style="
                                 padding:3px 6px;
                                 border-radius:4px;
+                                background:linear-gradient(
+                                    135deg,
+                                    var(--tier),
+                                    var(--tier2)
+                                );
                             "
                         >
                             ${escapeHTML(change.to)}
@@ -3635,6 +3808,18 @@ document.addEventListener(
 
     }
 );
+
+
+/* =========================================================
+   SEARCH INPUT FIX
+========================================================= */
+
+document
+    .getElementById("advancedSearch")
+    .addEventListener(
+        "input",
+        renderSearchResults
+    );
 
 
 /* =========================================================
