@@ -2,2252 +2,4808 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Arch Tiers</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07090d">
+<meta name="color-scheme" content="dark">
+<title>ARCH TIERS — Minecraft PvP Competitive Rankings</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/skinview3d@3.2.0/bundles/skinview3d.bundle.min.js"></script>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+/* =========================================================
+   ARCH TIERS — PREMIUM UI
+========================================================= */
 
 :root{
- --red:#ff3030;
- --red2:#ff4545;
- --darkred:#9e1515;
- --bg:#050608;
- --card:#0d1117;
- --card2:#11161d;
- --border:rgba(255,255,255,.08);
- --text:#f5f7fa;
- --muted:#7c8795;
+  --red:#ff3030;
+  --red-bright:#ff4b4b;
+  --red-deep:#a4141c;
+  --red-dark:#5e0b11;
+
+  --bg:#050608;
+  --bg-soft:#080b10;
+  --surface:#0c1016;
+  --surface-2:#111720;
+  --surface-3:#151c25;
+
+  --text:#f7f8fa;
+  --text-soft:#c8ced7;
+  --muted:#788290;
+  --muted-2:#596370;
+
+  --line:rgba(255,255,255,.075);
+  --line-strong:rgba(255,255,255,.12);
+
+  --shadow:0 20px 70px rgba(0,0,0,.38);
+  --shadow-heavy:0 35px 110px rgba(0,0,0,.68);
+
+  --radius-sm:10px;
+  --radius-md:15px;
+  --radius-lg:21px;
+  --radius-xl:27px;
+
+  --content-width:1320px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
- min-height:100vh;
- color:var(--text);
- font-family:Inter,Arial,Helvetica,sans-serif;
- background:
- radial-gradient(circle at 15% -10%,rgba(255,48,48,.16),transparent 30%),
- radial-gradient(circle at 85% 0%,rgba(160,15,15,.12),transparent 32%),
- var(--bg);
- overflow-x:hidden;
+  min-height:100vh;
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 12% -8%,rgba(255,48,48,.15),transparent 29%),
+    radial-gradient(circle at 88% 3%,rgba(138,12,25,.12),transparent 30%),
+    radial-gradient(circle at 50% 55%,rgba(255,48,48,.025),transparent 42%),
+    var(--bg);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
 }
 
-body:before{
- content:"";
- position:fixed;
- inset:0;
- pointer-events:none;
- z-index:-1;
- opacity:.35;
- background-image:
- linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
- linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
- background-size:45px 45px;
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px);
+  background-size:52px 52px;
+  mask-image:linear-gradient(to bottom,black,transparent 85%);
 }
 
-::-webkit-scrollbar{width:8px}
-::-webkit-scrollbar-track{background:#050608}
-::-webkit-scrollbar-thumb{background:#292d34;border-radius:20px}
-::-webkit-scrollbar-thumb:hover{background:var(--red)}
+body::after{
+  content:"";
+  position:fixed;
+  width:650px;
+  height:650px;
+  left:-330px;
+  top:35%;
+  z-index:-2;
+  pointer-events:none;
+  border-radius:50%;
+  background:rgba(255,30,30,.055);
+  filter:blur(130px);
+}
+
+::selection{
+  color:#fff;
+  background:rgba(255,48,48,.35);
+}
+
+::-webkit-scrollbar{
+  width:9px;
+}
+
+::-webkit-scrollbar-track{
+  background:#050608;
+}
+
+::-webkit-scrollbar-thumb{
+  border:2px solid #050608;
+  border-radius:999px;
+  background:#2a3039;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:#454c57;
+}
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+button{
+  -webkit-tap-highlight-color:transparent;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible{
+  outline:2px solid rgba(255,75,75,.9);
+  outline-offset:3px;
+}
+
+/* =========================================================
+   AMBIENT / UTILITY
+========================================================= */
+
+.page-glow{
+  position:fixed;
+  width:480px;
+  height:480px;
+  top:18%;
+  right:-250px;
+  z-index:-2;
+  pointer-events:none;
+  border-radius:50%;
+  background:rgba(255,48,48,.045);
+  filter:blur(120px);
+}
+
+.glass{
+  background:
+    linear-gradient(145deg,rgba(20,26,34,.88),rgba(8,11,16,.82));
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+}
+
+.section{
+  margin-bottom:46px;
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  min-height:28px;
+  margin-bottom:17px;
+  color:#f4f5f7;
+  font-family:Manrope,Inter,sans-serif;
+  font-size:20px;
+  font-weight:800;
+  letter-spacing:-.025em;
+}
+
+.section-title .section-icon{
+  display:grid;
+  width:30px;
+  height:30px;
+  place-items:center;
+  flex:none;
+  border:1px solid rgba(255,48,48,.18);
+  border-radius:9px;
+  background:rgba(255,48,48,.07);
+  font-size:13px;
+}
+
+.section-title::after{
+  content:"";
+  flex:1;
+  height:1px;
+  margin-left:5px;
+  background:linear-gradient(90deg,rgba(255,48,48,.25),transparent);
+}
+
+.muted{
+  color:var(--muted);
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 header{
- position:relative;
- text-align:center;
- padding:75px 20px 60px;
- overflow:hidden;
- border-bottom:1px solid var(--border);
- background:linear-gradient(180deg,#0b0e13,#06080b);
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  padding:91px 20px 73px;
+  text-align:center;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(circle at 50% -80%,rgba(255,48,48,.18),transparent 48%),
+    linear-gradient(180deg,#0b0e13 0%,#080a0e 100%);
 }
 
-header:before{
- content:"";
- position:absolute;
- width:600px;
- height:240px;
- left:50%;
- top:-150px;
- transform:translateX(-50%);
- background:var(--red);
- filter:blur(130px);
- opacity:.13;
+header::before{
+  content:"";
+  position:absolute;
+  width:700px;
+  height:270px;
+  left:50%;
+  top:-170px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:var(--red);
+  filter:blur(135px);
+  opacity:.12;
+  pointer-events:none;
+}
+
+header::after{
+  content:"";
+  position:absolute;
+  width:900px;
+  height:1px;
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,rgba(255,48,48,.28),transparent);
+}
+
+.brand{
+  position:relative;
+  z-index:1;
 }
 
 .logo{
- position:relative;
- font-size:clamp(48px,9vw,92px);
- line-height:.9;
- font-weight:1000;
- letter-spacing:-5px;
- text-transform:uppercase;
+  font-family:Manrope,Inter,sans-serif;
+  font-size:clamp(48px,8vw,94px);
+  line-height:.88;
+  font-weight:900;
+  letter-spacing:-.075em;
+  text-transform:uppercase;
 }
 
-.arch{color:#fff}
+.arch{
+  color:#fff;
+}
+
 .tiers{
- color:var(--red);
- text-shadow:0 0 25px rgba(255,48,48,.4);
+  color:var(--red);
+  text-shadow:
+    0 0 18px rgba(255,48,48,.3),
+    0 0 45px rgba(255,48,48,.14);
 }
 
 .subtitle{
- margin-top:20px;
- color:#8993a0;
- font-size:12px;
- font-weight:800;
- letter-spacing:5px;
- text-transform:uppercase;
+  margin-top:21px;
+  color:#8d97a4;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:4px;
+  line-height:1.6;
+  text-transform:uppercase;
+}
+
+.header-meta{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:22px;
+}
+
+.header-status,
+.header-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  min-height:31px;
+  padding:7px 12px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:999px;
+  background:rgba(255,255,255,.025);
+  color:#9ba4af;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:1.15px;
+  text-transform:uppercase;
 }
 
 .header-status{
- display:inline-flex;
- align-items:center;
- gap:8px;
- margin-top:22px;
- padding:7px 13px;
- border:1px solid rgba(255,48,48,.18);
- border-radius:100px;
- background:rgba(255,48,48,.055);
- color:#c6ccd4;
- font-size:10px;
- font-weight:850;
- letter-spacing:1.2px;
- text-transform:uppercase;
+  border-color:rgba(255,48,48,.2);
+  background:rgba(255,48,48,.055);
+  color:#c9ced5;
 }
 
 .status-dot{
- width:7px;
- height:7px;
- border-radius:50%;
- background:var(--red);
- box-shadow:0 0 12px var(--red);
+  width:7px;
+  height:7px;
+  flex:none;
+  border-radius:50%;
+  background:#ff4040;
+  box-shadow:0 0 0 4px rgba(255,48,48,.08),0 0 14px rgba(255,48,48,.8);
+  animation:statusPulse 2.7s ease-in-out infinite;
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav-wrap{
+  position:sticky;
+  top:12px;
+  z-index:100;
+  width:max-content;
+  max-width:calc(100% - 24px);
+  margin:-23px auto 0;
 }
 
 nav{
- position:sticky;
- top:12px;
- z-index:100;
- display:flex;
- justify-content:center;
- gap:7px;
- flex-wrap:wrap;
- width:max-content;
- max-width:calc(100% - 24px);
- margin:14px auto 0;
- padding:7px;
- border:1px solid rgba(255,255,255,.09);
- border-radius:16px;
- background:rgba(8,10,14,.82);
- backdrop-filter:blur(22px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  padding:6px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:17px;
+  background:rgba(8,10,14,.78);
+  box-shadow:0 15px 45px rgba(0,0,0,.35);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
 }
 
-nav button,.tab{
- border:1px solid transparent;
- background:transparent;
- color:#818b98;
- border-radius:10px;
- padding:11px 17px;
- cursor:pointer;
- font-weight:850;
- font-size:12px;
- transition:.2s;
+nav button,
+.tab{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-height:42px;
+  padding:10px 17px;
+  border:1px solid transparent;
+  border-radius:11px;
+  background:transparent;
+  color:#7f8996;
+  cursor:pointer;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.01em;
+  transition:
+    color .25s var(--ease),
+    background .25s var(--ease),
+    border-color .25s var(--ease),
+    transform .25s var(--ease);
 }
 
-nav button:hover,.tab:hover{
- color:#fff;
- background:rgba(255,255,255,.045);
+nav button:hover,
+.tab:hover{
+  color:#fff;
+  background:rgba(255,255,255,.045);
 }
 
-nav button.active,.tab.active{
- color:#fff;
- background:linear-gradient(135deg,rgba(255,48,48,.22),rgba(150,15,15,.14));
- border-color:rgba(255,48,48,.3);
+nav button:active,
+.tab:active{
+  transform:scale(.97);
 }
+
+nav button.active,
+.tab.active{
+  color:#fff;
+  border-color:rgba(255,48,48,.24);
+  background:
+    linear-gradient(135deg,rgba(255,48,48,.18),rgba(142,15,25,.09));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+nav button.active::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-6px;
+  width:18px;
+  height:2px;
+  transform:translateX(-50%);
+  border-radius:99px;
+  background:var(--red);
+  box-shadow:0 0 12px rgba(255,48,48,.65);
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
 
 main{
- width:min(1250px,94%);
- margin:40px auto 75px;
+  width:min(var(--content-width),calc(100% - 40px));
+  margin:48px auto 80px;
 }
 
-.section{margin-bottom:32px}
-
-.section-title{
- display:flex;
- align-items:center;
- gap:10px;
- margin-bottom:16px;
- font-size:20px;
- font-weight:950;
-}
-
-.section-title:after{
- content:"";
- height:1px;
- flex:1;
- background:linear-gradient(90deg,rgba(255,48,48,.3),transparent);
-}
+/* =========================================================
+   HOME / FEATURED
+========================================================= */
 
 .dashboard{
- display:grid;
- grid-template-columns:1.55fr 1fr;
- gap:16px;
- margin-bottom:34px;
-}
-
-.featured,.search-panel,.leaderboard,.profile-stat,.stat-card,.podium-card,.change{
- border:1px solid #252d37;
- border-radius:16px;
- background:linear-gradient(135deg,#11161d,#0b1016);
+  display:grid;
+  grid-template-columns:minmax(0,1.55fr) minmax(340px,1fr);
+  gap:18px;
+  margin-bottom:45px;
 }
 
 .featured{
- min-height:285px;
- padding:30px;
- background:
- radial-gradient(circle at 88% 15%,rgba(255,48,48,.17),transparent 35%),
- linear-gradient(135deg,#11161c,#0a0d12);
+  position:relative;
+  min-height:318px;
+  overflow:hidden;
+  padding:32px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius-xl);
+  background:
+    radial-gradient(circle at 89% 12%,rgba(255,48,48,.16),transparent 34%),
+    radial-gradient(circle at 15% 100%,rgba(255,48,48,.035),transparent 34%),
+    linear-gradient(145deg,rgba(20,26,34,.92),rgba(8,11,16,.92));
+  box-shadow:var(--shadow);
+}
+
+.featured::before{
+  content:"";
+  position:absolute;
+  width:270px;
+  height:270px;
+  top:-170px;
+  right:-80px;
+  border-radius:50%;
+  background:rgba(255,48,48,.14);
+  filter:blur(70px);
+  pointer-events:none;
+}
+
+.featured::after{
+  content:"";
+  position:absolute;
+  left:32px;
+  right:32px;
+  bottom:0;
+  height:1px;
+  background:linear-gradient(90deg,rgba(255,48,48,.35),transparent);
 }
 
 .featured-label{
- color:var(--red);
- font-size:10px;
- font-weight:950;
- letter-spacing:2px;
- text-transform:uppercase;
+  position:relative;
+  z-index:1;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:#ff6666;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
 }
 
 .featured-content{
- display:flex;
- align-items:center;
- gap:25px;
- margin-top:25px;
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  gap:26px;
+  margin-top:29px;
+}
+
+.featured-skin-wrap{
+  position:relative;
+  width:128px;
+  height:128px;
+  flex:none;
+}
+
+.featured-skin-wrap::before{
+  content:"";
+  position:absolute;
+  inset:-9px;
+  border:1px solid rgba(255,48,48,.12);
+  border-radius:22px;
+  background:rgba(255,48,48,.035);
 }
 
 .featured-skin{
- width:120px;
- height:120px;
- object-fit:cover;
- image-rendering:pixelated;
- border-radius:17px;
- border:2px solid rgba(255,48,48,.7);
- box-shadow:0 0 40px rgba(255,48,48,.18);
+  position:relative;
+  display:block;
+  width:128px;
+  height:128px;
+  object-fit:cover;
+  image-rendering:pixelated;
+  border:2px solid rgba(255,48,48,.62);
+  border-radius:19px;
+  background:#080b0f;
+  box-shadow:0 0 42px rgba(255,48,48,.19);
+  opacity:0;
+  transition:opacity .35s ease;
+}
+
+.featured-skin.loaded{
+  opacity:1;
 }
 
 .featured-name{
- font-size:34px;
- font-weight:1000;
+  max-width:520px;
+  overflow:hidden;
+  font-family:Manrope,Inter,sans-serif;
+  font-size:clamp(27px,4vw,39px);
+  font-weight:900;
+  letter-spacing:-.045em;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .featured-rank{
- display:inline-flex;
- margin-top:9px;
- padding:6px 10px;
- border:1px solid rgba(255,48,48,.2);
- border-radius:7px;
- background:rgba(255,48,48,.08);
- color:#ff6868;
- font-size:11px;
- font-weight:900;
+  display:inline-flex;
+  align-items:center;
+  margin-top:10px;
+  padding:6px 10px;
+  border:1px solid rgba(255,48,48,.2);
+  border-radius:8px;
+  background:rgba(255,48,48,.065);
+  color:#ff7070;
+  font-size:10px;
+  font-weight:900;
 }
 
 .featured-score{
- margin-top:10px;
- color:#7d8794;
- font-size:11px;
+  margin-top:11px;
+  color:#7d8794;
+  font-size:11px;
+  font-weight:600;
 }
 
-.featured-score strong{color:#fff;font-size:17px}
+.featured-score strong{
+  margin-left:3px;
+  color:#fff;
+  font-family:Manrope,Inter,sans-serif;
+  font-size:18px;
+  font-weight:900;
+}
 
 .featured-tiers{
- display:flex;
- flex-wrap:wrap;
- gap:7px;
- margin-top:15px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:16px;
 }
 
+/* =========================================================
+   STAT CARDS
+========================================================= */
+
 .stat-grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
 }
 
 .stat-card{
- padding:21px;
- transition:.2s;
+  position:relative;
+  overflow:hidden;
+  min-width:0;
+  padding:22px;
+  border:1px solid var(--line);
+  border-radius:17px;
+  background:
+    linear-gradient(145deg,rgba(20,26,34,.86),rgba(9,12,17,.88));
+  box-shadow:0 14px 45px rgba(0,0,0,.18);
+  transition:
+    transform .35s var(--ease),
+    border-color .35s ease,
+    box-shadow .35s ease;
+}
+
+.stat-card::after{
+  content:"";
+  position:absolute;
+  left:20px;
+  bottom:0;
+  width:35%;
+  height:1px;
+  background:linear-gradient(90deg,rgba(255,48,48,.45),transparent);
 }
 
 .stat-card:hover{
- transform:translateY(-3px);
- border-color:rgba(255,48,48,.3);
+  transform:translateY(-4px);
+  border-color:rgba(255,48,48,.23);
+  box-shadow:0 20px 50px rgba(0,0,0,.28),0 0 25px rgba(255,48,48,.045);
 }
 
 .stat-card .number{
- font-size:28px;
- font-weight:1000;
+  overflow:hidden;
+  color:#fff;
+  font-family:Manrope,Inter,sans-serif;
+  font-size:30px;
+  font-weight:900;
+  letter-spacing:-.045em;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .stat-card .label{
- margin-top:5px;
- color:#687381;
- font-size:10px;
- font-weight:800;
- text-transform:uppercase;
- letter-spacing:1.2px;
+  margin-top:6px;
+  color:#687381;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:1.2px;
+  line-height:1.4;
+  text-transform:uppercase;
 }
 
+/* =========================================================
+   PODIUM
+========================================================= */
+
 .podium{
- display:grid;
- grid-template-columns:1fr 1.12fr 1fr;
- align-items:end;
- gap:12px;
+  display:grid;
+  grid-template-columns:1fr 1.08fr 1fr;
+  align-items:end;
+  gap:14px;
 }
 
 .podium-card{
- padding:22px 15px;
- text-align:center;
- cursor:pointer;
- transition:.25s;
+  position:relative;
+  overflow:hidden;
+  padding:23px 16px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:
+    linear-gradient(145deg,rgba(20,26,34,.9),rgba(9,12,17,.88));
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 15px 45px rgba(0,0,0,.2);
+  transition:
+    transform .4s var(--ease),
+    border-color .35s ease,
+    box-shadow .35s ease;
+}
+
+.podium-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 50% 0,var(--glow),transparent 46%);
+  opacity:.45;
+  pointer-events:none;
 }
 
 .podium-card:hover{
- transform:translateY(-7px);
- border-color:rgba(255,48,48,.4);
+  transform:translateY(-7px);
+  border-color:rgba(255,255,255,.14);
+  box-shadow:0 25px 60px rgba(0,0,0,.35),0 0 28px var(--glow);
 }
 
 .podium-card.first{
- padding-top:31px;
- padding-bottom:31px;
+  padding-top:31px;
+  padding-bottom:31px;
+}
+
+.podium-medal{
+  position:relative;
+  font-size:28px;
+  line-height:1;
+}
+
+.podium-skin-wrap{
+  position:relative;
+  width:70px;
+  height:70px;
+  margin:13px auto;
 }
 
 .podium-skin{
- width:67px;
- height:67px;
- object-fit:cover;
- image-rendering:pixelated;
- margin:11px auto;
- border-radius:10px;
- border:1px solid rgba(255,255,255,.09);
+  width:70px;
+  height:70px;
+  display:block;
+  object-fit:cover;
+  image-rendering:pixelated;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;
+  background:#080b0f;
+  opacity:0;
+  transition:opacity .35s ease;
 }
 
-.podium-name{font-weight:950}
+.podium-skin.loaded{
+  opacity:1;
+}
+
+.podium-name{
+  position:relative;
+  overflow:hidden;
+  font-family:Manrope,Inter,sans-serif;
+  font-size:13px;
+  font-weight:900;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
 .podium-score{
- margin-top:5px;
- color:#ff5555;
- font-size:11px;
- font-weight:850;
+  position:relative;
+  margin-top:6px;
+  color:var(--tier);
+  font-size:10px;
+  font-weight:850;
 }
 
-.tabs{
- display:flex;
- flex-wrap:wrap;
- gap:7px;
- margin-bottom:14px;
-}
+/* =========================================================
+   TIER SYSTEM
+========================================================= */
 
-.leaderboard{overflow:hidden}
-
-.leader-row{
- display:grid;
- grid-template-columns:60px 1fr 130px 100px;
- align-items:center;
- gap:10px;
- padding:14px 16px;
- border-bottom:1px solid #202832;
- cursor:pointer;
- transition:.2s;
-}
-
-.leader-row:last-child{border-bottom:0}
-.leader-row:hover{
- background:#141a21;
- transform:translateX(3px);
-}
-
-.leader-position{font-weight:950;color:#707b88}
-
-.leader-player{
- display:flex;
- align-items:center;
- gap:11px;
- min-width:0;
-}
-
-.leader-head{
- width:37px;
- height:37px;
- object-fit:cover;
- image-rendering:pixelated;
- border-radius:7px;
- border:2px solid rgba(255,255,255,.08);
-}
-
-.leader-name{
- font-weight:850;
- overflow:hidden;
- text-overflow:ellipsis;
- white-space:nowrap;
-}
-
-.leader-tier{text-align:center}
-.leader-score{
- text-align:right;
- color:#ff4b4b;
- font-weight:950;
-}
-
-.HT1{--tier:#ff3030;--tier2:#8b0015;--glow:rgba(255,48,48,.35)}
-.LT1{--tier:#ff4f69;--tier2:#a91f3d;--glow:rgba(255,79,105,.32)}
-.HT2{--tier:#ff7a18;--tier2:#b83b00;--glow:rgba(255,122,24,.32)}
-.LT2{--tier:#ffad32;--tier2:#b66a00;--glow:rgba(255,173,50,.32)}
-.HT3{--tier:#e8d33f;--tier2:#9b8210;--glow:rgba(232,211,63,.3)}
-.LT3{--tier:#a8d83e;--tier2:#5d8610;--glow:rgba(168,216,62,.3)}
-.HT4{--tier:#32e37c;--tier2:#08763a;--glow:rgba(50,227,124,.3)}
-.LT4{--tier:#26d8c7;--tier2:#087d72;--glow:rgba(38,216,199,.3)}
-.HT5{--tier:#4b9cff;--tier2:#164e9b;--glow:rgba(75,156,255,.3)}
-.LT5{--tier:#9a6cff;--tier2:#4d269b;--glow:rgba(154,108,255,.3)}
+.HT1{--tier:#ff3030;--tier2:#8b0015;--glow:rgba(255,48,48,.34)}
+.LT1{--tier:#ff4f69;--tier2:#a91f3d;--glow:rgba(255,79,105,.31)}
+.HT2{--tier:#ff7a18;--tier2:#b83b00;--glow:rgba(255,122,24,.31)}
+.LT2{--tier:#ffad32;--tier2:#b66a00;--glow:rgba(255,173,50,.28)}
+.HT3{--tier:#e8d33f;--tier2:#9b8210;--glow:rgba(232,211,63,.27)}
+.LT3{--tier:#a8d83e;--tier2:#5d8610;--glow:rgba(168,216,62,.28)}
+.HT4{--tier:#32e37c;--tier2:#08763a;--glow:rgba(50,227,124,.27)}
+.LT4{--tier:#26d8c7;--tier2:#087d72;--glow:rgba(38,216,199,.27)}
+.HT5{--tier:#4b9cff;--tier2:#164e9b;--glow:rgba(75,156,255,.29)}
+.LT5{--tier:#9a6cff;--tier2:#4d269b;--glow:rgba(154,108,255,.29)}
 
 .badge{
- display:inline-flex;
- align-items:center;
- justify-content:center;
- min-width:50px;
- padding:5px 9px;
- border-radius:6px;
- color:#fff;
- font-size:10px;
- font-weight:1000;
- text-shadow:0 1px 3px rgba(0,0,0,.45);
- background:linear-gradient(135deg,var(--tier),var(--tier2));
- box-shadow:0 0 12px var(--glow);
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:50px;
+  min-height:25px;
+  overflow:hidden;
+  padding:4px 9px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:7px;
+  color:#fff;
+  background:
+    linear-gradient(135deg,var(--tier),var(--tier2));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.16),
+    0 0 15px var(--glow);
+  font-family:Manrope,Inter,sans-serif;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.03em;
+  line-height:1;
+  text-shadow:0 1px 3px rgba(0,0,0,.45);
+  transition:
+    transform .3s var(--ease),
+    box-shadow .3s ease,
+    filter .3s ease;
 }
 
-.HT3 .badge,.LT2 .badge{
- color:#171006;
- text-shadow:none;
+.badge::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  width:38%;
+  transform:translateX(-170%) skewX(-20deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+  transition:transform .55s var(--ease);
+}
+
+.badge:hover{
+  transform:translateY(-1px) scale(1.035);
+  filter:saturate(1.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.18),
+    0 0 20px var(--glow);
+}
+
+.badge:hover::after{
+  transform:translateX(390%) skewX(-20deg);
+}
+
+.HT3 .badge,
+.LT2 .badge{
+  color:#171006;
+  text-shadow:none;
 }
 
 .tier-reactive{
- border-color:color-mix(in srgb,var(--tier) 38%,#29313b)!important;
- box-shadow:inset 3px 0 var(--tier),0 0 22px var(--glow);
+  border-color:color-mix(in srgb,var(--tier) 23%,rgba(255,255,255,.08)) !important;
 }
 
 .tier-reactive:hover{
- border-color:var(--tier)!important;
- box-shadow:inset 3px 0 var(--tier),0 10px 30px var(--glow);
+  border-color:color-mix(in srgb,var(--tier) 62%,rgba(255,255,255,.1)) !important;
+  box-shadow:
+    0 18px 48px rgba(0,0,0,.32),
+    0 0 26px var(--glow);
 }
 
+/* =========================================================
+   TABS
+========================================================= */
+
+.tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-bottom:15px;
+}
+
+/* =========================================================
+   LEADERBOARD
+========================================================= */
+
+.leaderboard{
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:19px;
+  background:
+    linear-gradient(145deg,rgba(16,21,28,.91),rgba(7,10,14,.91));
+  box-shadow:var(--shadow);
+}
+
+.leader-row{
+  position:relative;
+  display:grid;
+  grid-template-columns:68px minmax(0,1fr) 130px 105px;
+  align-items:center;
+  gap:12px;
+  min-height:76px;
+  padding:13px 19px;
+  border-bottom:1px solid rgba(255,255,255,.055);
+  cursor:pointer;
+  opacity:0;
+  animation:leaderIn .5s var(--ease) forwards;
+  transition:
+    background .3s ease,
+    transform .3s var(--ease),
+    border-color .3s ease;
+}
+
+.leader-row:last-child{
+  border-bottom:0;
+}
+
+.leader-row::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:17px;
+  bottom:17px;
+  width:2px;
+  border-radius:0 4px 4px 0;
+  background:var(--tier);
+  opacity:.5;
+  transition:opacity .3s ease,width .3s ease;
+}
+
+.leader-row:hover{
+  z-index:1;
+  background:rgba(255,255,255,.027);
+  transform:translateX(4px);
+}
+
+.leader-row:hover::before{
+  width:3px;
+  opacity:1;
+  box-shadow:0 0 12px var(--glow);
+}
+
+.leader-position{
+  color:#697482;
+  font-family:Manrope,Inter,sans-serif;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:-.02em;
+}
+
+.leader-row:nth-child(1) .leader-position{
+  color:#ffd76a;
+  text-shadow:0 0 14px rgba(255,190,50,.18);
+}
+
+.leader-row:nth-child(2) .leader-position{
+  color:#cfd5dc;
+}
+
+.leader-row:nth-child(3) .leader-position{
+  color:#cd9270;
+}
+
+.leader-player{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  min-width:0;
+}
+
+.leader-head-wrap{
+  position:relative;
+  width:42px;
+  height:42px;
+  flex:none;
+}
+
+.leader-head{
+  display:block;
+  width:42px;
+  height:42px;
+  object-fit:cover;
+  image-rendering:pixelated;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:9px;
+  background:#090c11;
+  opacity:0;
+  transition:opacity .35s ease,border-color .25s ease;
+}
+
+.leader-head.loaded{
+  opacity:1;
+}
+
+.leader-row:hover .leader-head{
+  border-color:rgba(255,255,255,.18);
+}
+
+.leader-name{
+  min-width:0;
+  overflow:hidden;
+  color:#edf0f4;
+  font-family:Manrope,Inter,sans-serif;
+  font-size:13px;
+  font-weight:800;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.leader-tier{
+  display:flex;
+  justify-content:center;
+}
+
+.leader-score{
+  color:#ff5a5a;
+  font-family:Manrope,Inter,sans-serif;
+  font-size:14px;
+  font-weight:900;
+  text-align:right;
+}
+
+.leader-row:nth-child(1){
+  background:linear-gradient(90deg,rgba(255,196,70,.035),transparent 65%);
+}
+
+.leader-row:nth-child(1) .leader-score{
+  color:#ffd36b;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
 .search-panel{
- padding:20px;
- margin-bottom:18px;
+  position:relative;
+  overflow:hidden;
+  padding:23px;
+  margin-bottom:17px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:
+    linear-gradient(145deg,rgba(19,25,33,.9),rgba(8,11,16,.9));
+  box-shadow:var(--shadow);
+}
+
+.search-panel::before{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  top:-150px;
+  right:-80px;
+  border-radius:50%;
+  background:rgba(255,48,48,.07);
+  filter:blur(55px);
 }
 
 .search-panel-title{
- margin-bottom:13px;
- font-size:12px;
- font-weight:900;
- text-transform:uppercase;
- letter-spacing:1.4px;
+  position:relative;
+  margin-bottom:14px;
+  color:#dce0e6;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
 }
 
 .search-controls{
- display:grid;
- grid-template-columns:1.6fr 1fr 1fr;
- gap:10px;
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1.6fr) minmax(150px,1fr) minmax(150px,1fr);
+  gap:10px;
 }
 
-.search-input,.filter-select{
- width:100%;
- padding:12px 14px;
- border:1px solid #29313b;
- border-radius:10px;
- outline:none;
- background:#0c1117;
- color:#fff;
- font-size:12px;
+.input-wrap{
+  position:relative;
 }
 
-.search-input:focus,.filter-select:focus{
- border-color:rgba(255,48,48,.55);
- box-shadow:0 0 0 3px rgba(255,48,48,.06);
+.input-icon{
+  position:absolute;
+  top:50%;
+  left:14px;
+  z-index:1;
+  transform:translateY(-50%);
+  color:#697482;
+  pointer-events:none;
+  font-size:13px;
 }
 
-.filter-select option{background:#0d1117}
+.search-input,
+.filter-select{
+  width:100%;
+  min-height:46px;
+  padding:12px 14px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:11px;
+  outline:none;
+  background:rgba(5,8,12,.74);
+  color:#f3f5f7;
+  font-size:11px;
+  font-weight:600;
+  transition:
+    border-color .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+
+.search-input{
+  padding-left:39px;
+}
+
+.search-input::placeholder{
+  color:#59636f;
+}
+
+.search-input:hover,
+.filter-select:hover{
+  border-color:rgba(255,255,255,.13);
+}
+
+.search-input:focus,
+.filter-select:focus{
+  border-color:rgba(255,48,48,.55);
+  background:rgba(8,11,16,.92);
+  box-shadow:
+    0 0 0 3px rgba(255,48,48,.055),
+    0 8px 25px rgba(0,0,0,.18);
+}
+
+.filter-select{
+  cursor:pointer;
+}
+
+.filter-select option{
+  background:#0d1117;
+  color:#fff;
+}
 
 .search-results{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:10px;
- margin-bottom:22px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:11px;
+  margin-bottom:39px;
 }
 
 .search-result-card{
- display:flex;
- align-items:center;
- gap:12px;
- padding:12px;
- border:1px solid #29313b;
- border-radius:12px;
- background:linear-gradient(135deg,#151b22,#0d1218);
- cursor:pointer;
- transition:.2s;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+  padding:13px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:
+    linear-gradient(145deg,rgba(20,27,35,.84),rgba(10,14,19,.86));
+  cursor:pointer;
+  box-shadow:0 10px 32px rgba(0,0,0,.15);
+  transition:
+    transform .35s var(--ease),
+    border-color .3s ease,
+    box-shadow .3s ease;
 }
 
-.search-result-card:hover{transform:translateY(-3px)}
+.search-result-card:hover{
+  transform:translateY(-4px);
+}
+
+.search-result-head-wrap{
+  width:47px;
+  height:47px;
+  flex:none;
+}
 
 .search-result-head{
- width:44px;
- height:44px;
- object-fit:cover;
- image-rendering:pixelated;
- border-radius:8px;
- border:2px solid rgba(255,255,255,.08);
+  display:block;
+  width:47px;
+  height:47px;
+  object-fit:cover;
+  image-rendering:pixelated;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:9px;
+  background:#090c11;
+  opacity:0;
+  transition:opacity .35s ease;
 }
 
-.search-result-info{min-width:0;flex:1}
+.search-result-head.loaded{
+  opacity:1;
+}
+
+.search-result-info{
+  min-width:0;
+  flex:1;
+}
+
 .search-result-name{
- font-size:13px;
- font-weight:900;
- overflow:hidden;
- white-space:nowrap;
- text-overflow:ellipsis;
+  overflow:hidden;
+  color:#eef0f3;
+  font-family:Manrope,Inter,sans-serif;
+  font-size:12px;
+  font-weight:850;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .search-result-mode{
- margin-top:4px;
- color:#687381;
- font-size:9px;
+  margin-top:4px;
+  color:#66717e;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.04em;
 }
 
 .search-result-tiers{
- display:flex;
- gap:4px;
- flex-wrap:wrap;
- margin-top:6px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  margin-top:7px;
 }
 
 .search-result-tiers .badge{
- min-width:38px;
- padding:3px 6px;
- font-size:8px;
+  min-width:35px;
+  min-height:20px;
+  padding:3px 6px;
+  border-radius:5px;
+  font-size:7px;
 }
 
+/* =========================================================
+   TIER LIST
+========================================================= */
+
 .tier-list{
- display:flex;
- flex-direction:column;
- gap:9px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
 
 .tier{
- display:grid;
- grid-template-columns:108px 1fr;
- min-height:82px;
- overflow:hidden;
- border:1px solid rgba(255,255,255,.065);
- border-radius:13px;
- background:#0d1218;
+  display:grid;
+  grid-template-columns:116px minmax(0,1fr);
+  min-height:86px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.065);
+  border-radius:16px;
+  background:
+    linear-gradient(145deg,rgba(15,20,27,.92),rgba(8,11,15,.9));
+  box-shadow:0 12px 34px rgba(0,0,0,.16);
+  transition:
+    border-color .3s ease,
+    box-shadow .3s ease;
+}
+
+.tier:hover{
+  border-color:rgba(255,255,255,.12);
 }
 
 .tier-name{
- display:flex;
- justify-content:center;
- align-items:center;
- flex-direction:column;
- color:#fff;
- background:linear-gradient(135deg,var(--tier),var(--tier2));
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  color:#fff;
+  background:
+    radial-gradient(circle at 50% 25%,rgba(255,255,255,.15),transparent 38%),
+    linear-gradient(135deg,var(--tier),var(--tier2));
+  box-shadow:inset -1px 0 rgba(255,255,255,.1);
 }
 
-.tier-name strong{font-size:17px}
+.tier-name::after{
+  content:"";
+  position:absolute;
+  width:80px;
+  height:180%;
+  transform:rotate(25deg) translateX(-160px);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);
+  transition:transform .7s var(--ease);
+}
+
+.tier:hover .tier-name::after{
+  transform:rotate(25deg) translateX(180px);
+}
+
+.tier-name strong{
+  position:relative;
+  z-index:1;
+  font-family:Manrope,Inter,sans-serif;
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:-.04em;
+}
+
 .tier-name small{
- margin-top:4px;
- font-size:8px;
- letter-spacing:1.5px;
- opacity:.7;
+  position:relative;
+  z-index:1;
+  margin-top:4px;
+  color:rgba(255,255,255,.72);
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
 }
 
 .players{
- display:flex;
- align-items:center;
- flex-wrap:wrap;
- gap:8px;
- padding:11px 13px;
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+  min-width:0;
+  padding:13px 15px;
 }
 
 .player{
- display:flex;
- align-items:center;
- gap:8px;
- padding:5px 11px 5px 5px;
- min-height:44px;
- border:1px solid #29313c;
- border-radius:9px;
- background:linear-gradient(135deg,#1a212a,#11161d);
- cursor:pointer;
- transition:.2s;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-height:45px;
+  padding:5px 11px 5px 5px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;
+  background:
+    linear-gradient(145deg,rgba(25,32,42,.92),rgba(13,18,24,.92));
+  cursor:pointer;
+  transition:
+    transform .3s var(--ease),
+    border-color .25s ease,
+    box-shadow .25s ease;
 }
 
-.player:hover{transform:translateY(-3px)}
+.player:hover{
+  transform:translateY(-3px);
+}
+
+.player-head-wrap{
+  width:34px;
+  height:34px;
+  flex:none;
+}
 
 .player-head{
- width:33px;
- height:33px;
- object-fit:cover;
- image-rendering:pixelated;
- border-radius:6px;
+  display:block;
+  width:34px;
+  height:34px;
+  object-fit:cover;
+  image-rendering:pixelated;
+  border-radius:7px;
+  background:#090c11;
+  opacity:0;
+  transition:opacity .3s ease;
 }
 
-.player-name{font-size:12px;font-weight:850}
+.player-head.loaded{
+  opacity:1;
+}
 
-.empty{color:#4f5966;font-size:12px}
+.player-name{
+  max-width:170px;
+  overflow:hidden;
+  color:#dce1e7;
+  font-size:10px;
+  font-weight:800;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.empty{
+  color:#505b68;
+  font-size:10px;
+  font-weight:600;
+}
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+#bigStats{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+
+#bigStats .stat-card{
+  min-height:112px;
+}
 
 .distribution{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:9px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
 .dist-row{
- display:flex;
- align-items:center;
- gap:12px;
- padding:13px;
- border:1px solid #252d37;
- border-radius:10px;
- background:#11171e;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+  padding:13px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:
+    linear-gradient(145deg,rgba(17,23,30,.9),rgba(10,14,19,.88));
+}
+
+.dist-row .badge{
+  flex:none;
 }
 
 .dist-bar{
- flex:1;
- height:7px;
- overflow:hidden;
- border-radius:10px;
- background:#202832;
+  flex:1;
+  min-width:30px;
+  height:7px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#202731;
 }
 
 .dist-fill{
- height:100%;
- border-radius:10px;
- background:linear-gradient(90deg,var(--darkred),var(--red2));
+  width:0;
+  height:100%;
+  border-radius:999px;
+  background:
+    linear-gradient(90deg,var(--tier2),var(--tier));
+  box-shadow:0 0 12px var(--glow);
+  animation:barIn .75s var(--ease) forwards;
 }
 
 .dist-count{
- min-width:25px;
- text-align:right;
- color:#aeb7c2;
- font-size:12px;
- font-weight:900;
+  min-width:24px;
+  color:#adb5bf;
+  font-family:Manrope,Inter,sans-serif;
+  font-size:11px;
+  font-weight:900;
+  text-align:right;
 }
 
-.achievements{
- display:flex;
- flex-wrap:wrap;
- gap:7px;
-}
-
-.achievement{
- padding:7px 10px;
- border:1px solid #303945;
- border-radius:7px;
- background:linear-gradient(135deg,rgba(255,48,48,.09),#151b22);
- color:#cbd2da;
- font-size:10px;
- font-weight:850;
+.changes{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
 }
 
 .change{
- position:relative;
- padding:14px 16px;
- margin-bottom:8px;
+  position:relative;
+  overflow:hidden;
+  padding:16px 17px 15px 20px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:
+    linear-gradient(145deg,rgba(18,24,32,.9),rgba(9,12,17,.9));
+  transition:
+    transform .3s var(--ease),
+    border-color .3s ease;
 }
 
-.change:before{
- content:"";
- position:absolute;
- left:0;
- top:0;
- bottom:0;
- width:3px;
- background:var(--red);
+.change:hover{
+  transform:translateY(-3px);
+  border-color:rgba(255,48,48,.18);
+}
+
+.change::before{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  width:2px;
+  background:linear-gradient(180deg,var(--red),transparent);
+  box-shadow:0 0 15px rgba(255,48,48,.22);
+}
+
+.change-icon{
+  display:inline-flex;
+  width:27px;
+  height:27px;
+  align-items:center;
+  justify-content:center;
+  margin-right:7px;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:7px;
+  background:rgba(255,255,255,.025);
+}
+
+.change strong{
+  color:#e7eaf0;
+  font-size:11px;
+  font-weight:850;
 }
 
 .change small{
- display:block;
- margin-top:5px;
- color:#687381;
+  display:block;
+  margin-top:7px;
+  color:#687381;
+  font-size:9px;
+  line-height:1.5;
 }
 
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
 .no-results{
- padding:45px 20px;
- text-align:center;
- border:1px dashed #303945;
- border-radius:13px;
- color:#687381;
+  padding:46px 20px;
+  border:1px dashed rgba(255,255,255,.1);
+  border-radius:15px;
+  background:rgba(255,255,255,.012);
+  color:#687381;
+  text-align:center;
+  font-size:10px;
+  line-height:1.6;
 }
 
 .no-results strong{
- display:block;
- margin-bottom:7px;
- color:#fff;
- font-size:18px;
+  display:block;
+  margin-bottom:6px;
+  color:#eef1f4;
+  font-family:Manrope,Inter,sans-serif;
+  font-size:17px;
+  font-weight:850;
 }
 
-/* PROFILE */
+/* =========================================================
+   PROFILE MODAL
+========================================================= */
 
 .modal{
- display:none;
- position:fixed;
- inset:0;
- z-index:1000;
- align-items:center;
- justify-content:center;
- padding:15px;
- background:rgba(0,0,0,.86);
- backdrop-filter:blur(13px);
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  opacity:0;
 }
 
-.modal.show{display:flex}
+.modal.show{
+  display:flex;
+  animation:modalBackdropIn .3s ease forwards;
+}
 
 .profile{
- --profile-tier:#ff3030;
- --profile-tier2:#8b0015;
- --profile-glow:rgba(255,48,48,.25);
- width:min(900px,100%);
- max-height:92vh;
- overflow-y:auto;
- border:1px solid var(--profile-tier);
- border-radius:21px;
- background:#0b1016;
- box-shadow:0 35px 100px rgba(0,0,0,.72),0 0 80px var(--profile-glow);
+  --profile-tier:#ff3030;
+  --profile-tier2:#8b0015;
+  --profile-glow:rgba(255,48,48,.25);
+
+  position:relative;
+  width:min(1020px,100%);
+  max-height:94vh;
+  overflow-y:auto;
+  border:1px solid var(--profile-tier);
+  border-radius:25px;
+  background:
+    linear-gradient(145deg,rgba(14,19,26,.97),rgba(6,9,13,.98));
+  box-shadow:
+    var(--shadow-heavy),
+    0 0 80px var(--profile-glow);
+  transform:translateY(20px) scale(.975);
+  animation:modalPanelIn .45s var(--ease) forwards;
 }
 
-.profile-HT1{--profile-tier:#ff3030;--profile-tier2:#8b0015;--profile-glow:rgba(255,48,48,.32)}
-.profile-LT1{--profile-tier:#ff4f69;--profile-tier2:#a91f3d;--profile-glow:rgba(255,79,105,.3)}
-.profile-HT2{--profile-tier:#ff7a18;--profile-tier2:#b83b00;--profile-glow:rgba(255,122,24,.3)}
-.profile-LT2{--profile-tier:#ffad32;--profile-tier2:#b66a00;--profile-glow:rgba(255,173,50,.28)}
-.profile-HT3{--profile-tier:#e8d33f;--profile-tier2:#9b8210;--profile-glow:rgba(232,211,63,.28)}
-.profile-LT3{--profile-tier:#a8d83e;--profile-tier2:#5d8610;--profile-glow:rgba(168,216,62,.28)}
-.profile-HT4{--profile-tier:#32e37c;--profile-tier2:#08763a;--profile-glow:rgba(50,227,124,.28)}
-.profile-LT4{--profile-tier:#26d8c7;--profile-tier2:#087d72;--profile-glow:rgba(38,216,199,.28)}
+.profile-HT1{--profile-tier:#ff3030;--profile-tier2:#8b0015;--profile-glow:rgba(255,48,48,.31)}
+.profile-LT1{--profile-tier:#ff4f69;--profile-tier2:#a91f3d;--profile-glow:rgba(255,79,105,.29)}
+.profile-HT2{--profile-tier:#ff7a18;--profile-tier2:#b83b00;--profile-glow:rgba(255,122,24,.29)}
+.profile-LT2{--profile-tier:#ffad32;--profile-tier2:#b66a00;--profile-glow:rgba(255,173,50,.27)}
+.profile-HT3{--profile-tier:#e8d33f;--profile-tier2:#9b8210;--profile-glow:rgba(232,211,63,.27)}
+.profile-LT3{--profile-tier:#a8d83e;--profile-tier2:#5d8610;--profile-glow:rgba(168,216,62,.27)}
+.profile-HT4{--profile-tier:#32e37c;--profile-tier2:#08763a;--profile-glow:rgba(50,227,124,.27)}
+.profile-LT4{--profile-tier:#26d8c7;--profile-tier2:#087d72;--profile-glow:rgba(38,216,199,.27)}
 .profile-HT5{--profile-tier:#4b9cff;--profile-tier2:#164e9b;--profile-glow:rgba(75,156,255,.28)}
 .profile-LT5{--profile-tier:#9a6cff;--profile-tier2:#4d269b;--profile-glow:rgba(154,108,255,.28)}
 
 .profile-banner{
- height:160px;
- background:
- radial-gradient(circle at 20% 20%,var(--profile-glow),transparent 35%),
- radial-gradient(circle at 85% 0%,var(--profile-glow),transparent 35%),
- linear-gradient(135deg,#10161c,#0c1117);
- border-bottom:1px solid var(--profile-tier);
+  position:relative;
+  height:184px;
+  overflow:hidden;
+  border-bottom:1px solid color-mix(in srgb,var(--profile-tier) 36%,transparent);
+  background:
+    radial-gradient(circle at 16% 35%,var(--profile-glow),transparent 33%),
+    radial-gradient(circle at 82% 0,var(--profile-glow),transparent 34%),
+    linear-gradient(135deg,#11171e,#080c11);
 }
 
-.profile-body{padding:0 28px 28px}
+.profile-banner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(120deg,transparent 0 30%,rgba(255,255,255,.025) 45%,transparent 60%),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.015) 0 1px,transparent 1px 50px);
+}
+
+.profile-banner::after{
+  content:"";
+  position:absolute;
+  width:380px;
+  height:380px;
+  right:-180px;
+  top:-270px;
+  border-radius:50%;
+  background:var(--profile-tier);
+  filter:blur(100px);
+  opacity:.12;
+}
+
+.profile-body{
+  padding:0 32px 32px;
+}
 
 .profile-top{
- display:grid;
- grid-template-columns:1fr 330px;
- gap:25px;
- align-items:start;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 370px;
+  gap:28px;
+  align-items:start;
+}
+
+.profile-identity{
+  min-width:0;
+}
+
+.profile-skin-wrap{
+  position:relative;
+  width:132px;
+  height:132px;
+  margin-top:-65px;
 }
 
 .profile-skin{
- width:125px;
- height:125px;
- object-fit:cover;
- image-rendering:pixelated;
- border-radius:16px;
- border:3px solid var(--profile-tier);
- margin-top:-62px;
- background:#080b0f;
- box-shadow:0 0 0 7px #0b1016,0 0 35px var(--profile-glow);
+  position:relative;
+  z-index:1;
+  display:block;
+  width:132px;
+  height:132px;
+  object-fit:cover;
+  image-rendering:pixelated;
+  border:3px solid var(--profile-tier);
+  border-radius:18px;
+  background:#080b0f;
+  box-shadow:
+    0 0 0 7px #0d1218,
+    0 0 38px var(--profile-glow);
+  opacity:0;
+  transition:opacity .35s ease;
+}
+
+.profile-skin.loaded{
+  opacity:1;
 }
 
 .profile-name{
- margin-top:14px;
- font-size:31px;
- font-weight:1000;
- text-shadow:0 0 22px var(--profile-glow);
+  max-width:100%;
+  margin-top:16px;
+  overflow:hidden;
+  color:#f7f8fa;
+  font-family:Manrope,Inter,sans-serif;
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:-.05em;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  text-shadow:0 0 24px var(--profile-glow);
 }
 
 .overall{
- margin-top:6px;
- color:var(--profile-tier);
- font-weight:900;
- font-size:12px;
+  margin-top:7px;
+  color:var(--profile-tier);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.02em;
+}
+
+.profile-verification{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:12px;
+  padding:6px 9px;
+  border:1px solid color-mix(in srgb,var(--profile-tier) 25%,transparent);
+  border-radius:8px;
+  background:color-mix(in srgb,var(--profile-tier) 7%,transparent);
+  color:#c7cdd5;
+  font-size:8px;
+  font-weight:850;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+}
+
+.profile-verification span{
+  color:var(--profile-tier);
 }
 
 .model-box{
- position:relative;
- width:100%;
- height:320px;
- margin-top:-100px;
- border:1px solid var(--profile-tier);
- border-radius:16px;
- overflow:hidden;
- background:radial-gradient(circle at 50% 35%,var(--profile-glow),transparent 45%),#080c11;
+  position:relative;
+  width:100%;
+  height:340px;
+  margin-top:-112px;
+  overflow:hidden;
+  border:1px solid color-mix(in srgb,var(--profile-tier) 42%,rgba(255,255,255,.07));
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 50% 35%,var(--profile-glow),transparent 46%),
+    radial-gradient(circle at 50% 100%,rgba(255,255,255,.02),transparent 50%),
+    #080c11;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 18px 45px rgba(0,0,0,.25);
+}
+
+.model-box::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:35px 35px;
+  mask-image:linear-gradient(to bottom,black,transparent);
 }
 
 #skinViewer{
- width:100%;
- height:100%;
- display:block;
+  position:relative;
+  z-index:1;
+  display:block;
+  width:100%;
+  height:100%;
 }
 
 .model-label{
- position:absolute;
- top:12px;
- left:14px;
- color:var(--profile-tier);
- font-size:8px;
- font-weight:900;
- letter-spacing:1.5px;
+  position:absolute;
+  z-index:3;
+  top:12px;
+  left:14px;
+  color:var(--profile-tier);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1.5px;
 }
 
 .model-hint{
- position:absolute;
- bottom:10px;
- left:50%;
- transform:translateX(-50%);
- padding:5px 9px;
- border-radius:20px;
- background:rgba(0,0,0,.45);
- color:#687381;
- font-size:8px;
- white-space:nowrap;
+  position:absolute;
+  z-index:3;
+  bottom:11px;
+  left:50%;
+  padding:6px 10px;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:999px;
+  background:rgba(0,0,0,.42);
+  color:#687381;
+  font-size:8px;
+  white-space:nowrap;
+  transform:translateX(-50%);
+}
+
+.model-fallback{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  color:#5f6975;
+  font-size:10px;
+  text-align:center;
+  pointer-events:none;
 }
 
 .close{
- position:absolute;
- z-index:10;
- right:15px;
- top:15px;
- width:37px;
- height:37px;
- border:1px solid #38414c;
- border-radius:9px;
- background:rgba(21,27,34,.9);
- color:#fff;
- cursor:pointer;
- font-size:20px;
+  position:absolute;
+  z-index:20;
+  top:14px;
+  right:14px;
+  display:grid;
+  width:40px;
+  height:40px;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:11px;
+  background:rgba(12,16,22,.78);
+  color:#fff;
+  cursor:pointer;
+  font-size:21px;
+  line-height:1;
+  box-shadow:0 8px 25px rgba(0,0,0,.25);
+  transition:
+    transform .25s var(--ease),
+    background .25s ease,
+    border-color .25s ease;
 }
 
-.profile-section{margin-top:25px}
+.close:hover{
+  transform:rotate(4deg) scale(1.05);
+  border-color:rgba(255,48,48,.35);
+  background:rgba(255,48,48,.1);
+}
+
+.profile-section{
+  margin-top:29px;
+}
 
 .profile-section h3{
- margin-bottom:10px;
- color:var(--profile-tier);
- font-size:12px;
- text-transform:uppercase;
- letter-spacing:1px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:11px;
+  color:var(--profile-tier);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.25px;
+  text-transform:uppercase;
+}
+
+.profile-section h3::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--profile-tier) 25%,transparent),transparent);
 }
 
 .profile-grid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:9px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:9px;
 }
 
 .profile-stat{
- padding:15px;
- border-color:color-mix(in srgb,var(--profile-tier) 20%,#252d37);
+  min-width:0;
+  padding:16px;
+  border:1px solid color-mix(in srgb,var(--profile-tier) 16%,rgba(255,255,255,.06));
+  border-radius:12px;
+  background:
+    linear-gradient(145deg,rgba(18,24,32,.9),rgba(9,13,18,.88));
+  transition:
+    transform .3s var(--ease),
+    border-color .25s ease;
+}
+
+.profile-stat:hover{
+  transform:translateY(-2px);
+  border-color:color-mix(in srgb,var(--profile-tier) 35%,rgba(255,255,255,.08));
 }
 
 .profile-stat span{
- display:block;
- color:#6d7784;
- font-size:9px;
- font-weight:850;
- text-transform:uppercase;
- letter-spacing:1px;
+  display:block;
+  color:#687381;
+  font-size:8px;
+  font-weight:850;
+  letter-spacing:1px;
+  text-transform:uppercase;
 }
 
 .profile-stat b{
- display:block;
- margin-top:4px;
- font-size:19px;
+  display:block;
+  margin-top:5px;
+  overflow:hidden;
+  color:#f4f5f7;
+  font-family:Manrope,Inter,sans-serif;
+  font-size:19px;
+  font-weight:900;
+  letter-spacing:-.03em;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .rank-row{
- display:flex;
- justify-content:space-between;
- align-items:center;
- padding:11px 13px;
- margin-bottom:6px;
- border:1px solid color-mix(in srgb,var(--profile-tier) 16%,#252d37);
- border-radius:8px;
- background:#121820;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  min-height:47px;
+  padding:10px 13px;
+  margin-bottom:7px;
+  border:1px solid color-mix(in srgb,var(--profile-tier) 12%,rgba(255,255,255,.06));
+  border-radius:10px;
+  background:
+    linear-gradient(145deg,rgba(18,24,32,.87),rgba(10,14,19,.87));
+  color:#aab2bd;
+  font-size:10px;
+  font-weight:700;
+}
+
+.rank-row b{
+  color:#e8ebef;
+  font-weight:850;
+}
+
+.rank-row:last-child{
+  margin-bottom:0;
+}
+
+.achievements{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+
+.achievement{
+  display:inline-flex;
+  align-items:center;
+  min-height:29px;
+  padding:7px 10px;
+  border:1px solid color-mix(in srgb,var(--profile-tier) 18%,rgba(255,255,255,.08));
+  border-radius:8px;
+  background:
+    linear-gradient(145deg,color-mix(in srgb,var(--profile-tier) 8%,transparent),rgba(16,22,29,.88));
+  color:#cdd3db;
+  font-size:8px;
+  font-weight:850;
+  box-shadow:0 0 16px color-mix(in srgb,var(--profile-tier) 7%,transparent);
+  animation:achievementIn .45s var(--ease) both;
+  transition:
+    transform .25s var(--ease),
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+.achievement:hover{
+  transform:translateY(-2px);
+  border-color:color-mix(in srgb,var(--profile-tier) 40%,transparent);
+  box-shadow:0 0 20px color-mix(in srgb,var(--profile-tier) 14%,transparent);
 }
 
 .history-item{
- position:relative;
- padding:14px;
- margin-bottom:8px;
- border-left:3px solid var(--profile-tier);
- border-radius:6px;
- background:linear-gradient(90deg,var(--profile-glow),#121820 40%);
+  position:relative;
+  padding:15px 16px;
+  margin-bottom:8px;
+  border:1px solid color-mix(in srgb,var(--profile-tier) 12%,rgba(255,255,255,.06));
+  border-left:3px solid var(--profile-tier);
+  border-radius:9px;
+  background:
+    linear-gradient(90deg,var(--profile-glow),rgba(17,23,30,.82) 45%);
+}
+
+.history-item:last-child{
+  margin-bottom:0;
 }
 
 .history-change{
- display:flex;
- align-items:center;
- gap:9px;
- flex-wrap:wrap;
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.history-change strong{
+  color:#e7eaee;
+  font-size:10px;
+  font-weight:850;
 }
 
 .history-arrow{
- color:#687381;
- font-weight:900;
+  color:#66717e;
+  font-weight:900;
 }
 
 .history-meta{
- margin-top:8px;
- color:#687381;
- font-size:10px;
+  margin-top:8px;
+  color:#687381;
+  font-size:8px;
+  font-weight:600;
 }
+
+.profile-scroll-hint{
+  margin-top:12px;
+  color:#56616d;
+  font-size:8px;
+  text-align:center;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer{
- padding:35px 20px;
- text-align:center;
- color:#4e5865;
- border-top:1px solid rgba(255,255,255,.05);
- font-size:11px;
- background:#06080b;
+  padding:38px 20px 44px;
+  border-top:1px solid rgba(255,255,255,.05);
+  background:#06080b;
+  color:#4e5865;
+  font-size:10px;
+  text-align:center;
 }
 
-footer strong{color:var(--red)}
+footer strong{
+  color:var(--red);
+  font-weight:900;
+}
+
+/* =========================================================
+   SKELETON / IMAGE LOADING
+========================================================= */
+
+.skeleton{
+  position:relative;
+  overflow:hidden;
+  background:#151b23;
+}
+
+.skeleton::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  transform:translateX(-120%);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.065),transparent);
+  animation:skeletonShimmer 1.4s ease-in-out infinite;
+}
+
+.image-loading{
+  position:relative;
+}
+
+.image-loading::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  border-radius:inherit;
+  background:#151b23;
+  animation:skeletonPulse 1.6s ease-in-out infinite;
+}
+
+.image-loading img{
+  position:relative;
+  z-index:1;
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes statusPulse{
+  0%,100%{box-shadow:0 0 0 4px rgba(255,48,48,.07),0 0 10px rgba(255,48,48,.45)}
+  50%{box-shadow:0 0 0 5px rgba(255,48,48,.11),0 0 18px rgba(255,48,48,.8)}
+}
+
+@keyframes skeletonShimmer{
+  to{transform:translateX(120%)}
+}
+
+@keyframes skeletonPulse{
+  0%,100%{opacity:.7}
+  50%{opacity:1}
+}
+
+@keyframes leaderIn{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes barIn{
+  from{width:0}
+}
+
+@keyframes achievementIn{
+  from{
+    opacity:0;
+    transform:translateY(5px) scale(.98);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+@keyframes modalBackdropIn{
+  to{opacity:1}
+}
+
+@keyframes modalPanelIn{
+  to{
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1050px){
+  .dashboard{
+    grid-template-columns:1fr;
+  }
+
+  .featured{
+    min-height:300px;
+  }
+
+  .search-results{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .profile-top{
+    grid-template-columns:minmax(0,1fr) 330px;
+  }
+
+  .model-box{
+    height:315px;
+  }
+}
 
 @media(max-width:900px){
- .dashboard{grid-template-columns:1fr}
- .search-results{grid-template-columns:1fr 1fr}
- .profile-top{grid-template-columns:1fr}
- .model-box{margin-top:15px}
+  main{
+    width:min(94%,760px);
+  }
+
+  .podium{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+
+  .leader-row{
+    grid-template-columns:52px minmax(0,1fr) 90px;
+  }
+
+  .leader-score{
+    display:none;
+  }
+
+  .profile-top{
+    grid-template-columns:1fr;
+  }
+
+  .model-box{
+    margin-top:18px;
+    height:320px;
+  }
+
+  #bigStats{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
 }
 
-@media(max-width:800px){
- .podium{grid-template-columns:1fr}
- .podium-card.first{order:-1}
- .leader-row{grid-template-columns:40px 1fr 75px}
- .leader-score{display:none}
+@media(max-width:760px){
+  header{
+    padding:66px 15px 55px;
+  }
+
+  .logo{
+    letter-spacing:-.065em;
+  }
+
+  .subtitle{
+    max-width:340px;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:9px;
+    letter-spacing:2.8px;
+  }
+
+  .nav-wrap{
+    position:relative;
+    top:auto;
+    width:calc(100% - 20px);
+    max-width:none;
+    margin:12px auto 0;
+  }
+
+  nav{
+    width:100%;
+    overflow-x:auto;
+    justify-content:flex-start;
+    scrollbar-width:none;
+  }
+
+  nav::-webkit-scrollbar{
+    display:none;
+  }
+
+  nav button{
+    flex:1 0 auto;
+    min-width:112px;
+  }
+
+  nav button.active::after{
+    display:none;
+  }
+
+  main{
+    width:calc(100% - 26px);
+    margin-top:33px;
+  }
+
+  .section{
+    margin-bottom:38px;
+  }
+
+  .section-title{
+    font-size:18px;
+  }
+
+  .dashboard{
+    gap:12px;
+    margin-bottom:38px;
+  }
+
+  .featured{
+    padding:24px;
+    border-radius:19px;
+  }
+
+  .featured-content{
+    gap:19px;
+  }
+
+  .featured-skin-wrap,
+  .featured-skin{
+    width:92px;
+    height:92px;
+  }
+
+  .featured-name{
+    font-size:25px;
+  }
+
+  .stat-grid{
+    gap:9px;
+  }
+
+  .stat-card{
+    padding:18px;
+  }
+
+  .podium{
+    grid-template-columns:1fr;
+    gap:9px;
+  }
+
+  .podium-card,
+  .podium-card.first{
+    display:grid;
+    grid-template-columns:42px 60px minmax(0,1fr) auto;
+    align-items:center;
+    gap:11px;
+    padding:13px 15px;
+    text-align:left;
+  }
+
+  .podium-medal{
+    text-align:center;
+  }
+
+  .podium-skin-wrap{
+    width:54px;
+    height:54px;
+    margin:0;
+  }
+
+  .podium-skin{
+    width:54px;
+    height:54px;
+  }
+
+  .podium-name{
+    min-width:0;
+  }
+
+  .podium-score{
+    margin-top:0;
+    text-align:right;
+  }
+
+  .search-controls{
+    grid-template-columns:1fr;
+  }
+
+  .search-panel{
+    padding:17px;
+  }
+
+  .search-results{
+    grid-template-columns:1fr;
+  }
+
+  .tier{
+    grid-template-columns:76px minmax(0,1fr);
+  }
+
+  .players{
+    padding:10px;
+  }
+
+  .player{
+    width:100%;
+  }
+
+  .player-name{
+    max-width:none;
+    flex:1;
+  }
+
+  .distribution,
+  .changes{
+    grid-template-columns:1fr;
+  }
+
+  .profile{
+    max-height:95vh;
+    border-radius:20px;
+  }
+
+  .profile-banner{
+    height:145px;
+  }
+
+  .profile-body{
+    padding:0 18px 23px;
+  }
+
+  .profile-skin-wrap{
+    width:105px;
+    height:105px;
+    margin-top:-52px;
+  }
+
+  .profile-skin{
+    width:105px;
+    height:105px;
+  }
+
+  .profile-name{
+    font-size:28px;
+  }
+
+  .model-box{
+    height:280px;
+  }
+
+  .profile-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
 }
 
-@media(max-width:600px){
- header{padding:55px 15px 42px}
- .logo{letter-spacing:-3px}
- .subtitle{font-size:9px;letter-spacing:3px}
- nav{position:relative;top:auto;width:calc(100% - 20px);max-width:none}
- nav button{flex:1;padding:10px 7px;font-size:10px}
- main{width:95%;margin-top:27px}
- .featured{padding:23px}
- .featured-content{align-items:flex-start;gap:17px}
- .featured-skin{width:82px;height:82px}
- .featured-name{font-size:23px}
- .stat-grid,.distribution,.profile-grid{grid-template-columns:1fr}
- .search-controls{grid-template-columns:1fr}
- .search-results{grid-template-columns:1fr}
- .tier{grid-template-columns:68px 1fr}
- .tier-name strong{font-size:13px}
- .player{width:100%}
- .profile{max-height:95vh}
- .profile-body{padding:0 18px 20px}
- .profile-skin{width:95px;height:95px;margin-top:-48px}
- .profile-name{font-size:25px}
- .model-box{height:260px}
+@media(max-width:480px){
+  header{
+    padding:55px 13px 43px;
+  }
+
+  .logo{
+    font-size:clamp(43px,13vw,66px);
+  }
+
+  .subtitle{
+    margin-top:16px;
+    font-size:8px;
+    letter-spacing:2px;
+  }
+
+  .header-chip{
+    display:none;
+  }
+
+  .header-status{
+    font-size:8px;
+  }
+
+  main{
+    width:calc(100% - 20px);
+    margin-top:27px;
+  }
+
+  .section-title{
+    gap:8px;
+    font-size:16px;
+  }
+
+  .section-title .section-icon{
+    width:27px;
+    height:27px;
+    border-radius:8px;
+  }
+
+  .featured{
+    min-height:0;
+    padding:20px;
+  }
+
+  .featured-content{
+    align-items:flex-start;
+    gap:15px;
+    margin-top:22px;
+  }
+
+  .featured-skin-wrap,
+  .featured-skin{
+    width:75px;
+    height:75px;
+  }
+
+  .featured-name{
+    font-size:20px;
+  }
+
+  .featured-rank{
+    font-size:8px;
+    padding:5px 8px;
+  }
+
+  .featured-score{
+    font-size:9px;
+  }
+
+  .featured-score strong{
+    font-size:15px;
+  }
+
+  .featured-tiers{
+    gap:4px;
+    margin-top:11px;
+  }
+
+  .featured-tiers .badge{
+    min-width:39px;
+    min-height:22px;
+    padding:4px 6px;
+    font-size:7px;
+  }
+
+  .stat-card .number{
+    font-size:25px;
+  }
+
+  .stat-card .label{
+    font-size:8px;
+  }
+
+  .tabs{
+    overflow-x:auto;
+    flex-wrap:nowrap;
+    padding-bottom:2px;
+    scrollbar-width:none;
+  }
+
+  .tabs::-webkit-scrollbar{
+    display:none;
+  }
+
+  .tab{
+    flex:none;
+    min-height:38px;
+    padding:9px 12px;
+    font-size:9px;
+  }
+
+  .leader-row{
+    grid-template-columns:37px minmax(0,1fr) 62px;
+    gap:8px;
+    min-height:67px;
+    padding:10px 12px;
+  }
+
+  .leader-position{
+    font-size:10px;
+  }
+
+  .leader-player{
+    gap:9px;
+  }
+
+  .leader-head-wrap,
+  .leader-head{
+    width:35px;
+    height:35px;
+  }
+
+  .leader-name{
+    font-size:10px;
+  }
+
+  .leader-tier .badge{
+    min-width:38px;
+    min-height:22px;
+    padding:4px 6px;
+    font-size:7px;
+  }
+
+  .tier{
+    grid-template-columns:61px minmax(0,1fr);
+  }
+
+  .tier-name strong{
+    font-size:13px;
+  }
+
+  .tier-name small{
+    font-size:6px;
+  }
+
+  .players{
+    gap:6px;
+  }
+
+  .player{
+    min-height:42px;
+    padding-right:8px;
+  }
+
+  .player-head-wrap,
+  .player-head{
+    width:32px;
+    height:32px;
+  }
+
+  .player-name{
+    font-size:9px;
+  }
+
+  #bigStats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  #bigStats .stat-card{
+    min-height:100px;
+  }
+
+  .dist-row{
+    gap:8px;
+    padding:10px;
+  }
+
+  .dist-row .badge{
+    min-width:43px;
+  }
+
+  .profile{
+    width:100%;
+    max-height:96vh;
+    border-radius:18px;
+  }
+
+  .profile-banner{
+    height:128px;
+  }
+
+  .profile-body{
+    padding:0 15px 20px;
+  }
+
+  .profile-skin-wrap{
+    width:88px;
+    height:88px;
+    margin-top:-43px;
+  }
+
+  .profile-skin{
+    width:88px;
+    height:88px;
+    border-width:2px;
+    box-shadow:0 0 0 5px #0d1218,0 0 30px var(--profile-glow);
+  }
+
+  .profile-name{
+    margin-top:13px;
+    font-size:23px;
+  }
+
+  .profile-verification{
+    font-size:7px;
+  }
+
+  .model-box{
+    height:250px;
+    border-radius:14px;
+  }
+
+  .model-hint{
+    max-width:calc(100% - 20px);
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .profile-grid{
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+  }
+
+  .profile-stat{
+    padding:13px;
+  }
+
+  .profile-stat b{
+    font-size:17px;
+  }
+
+  .rank-row{
+    min-height:43px;
+    padding:9px 10px;
+  }
+
+  .close{
+    top:10px;
+    right:10px;
+    width:36px;
+    height:36px;
+  }
+}
+
+@media(max-width:375px){
+  .featured-content{
+    gap:11px;
+  }
+
+  .featured-skin-wrap,
+  .featured-skin{
+    width:65px;
+    height:65px;
+  }
+
+  .featured-name{
+    font-size:18px;
+  }
+
+  .stat-card{
+    padding:15px;
+  }
+
+  .stat-card .number{
+    font-size:22px;
+  }
+
+  .profile-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+  html{
+    scroll-behavior:auto;
+  }
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+
+  .status-dot{
+    animation:none !important;
+  }
+
+  .leader-row{
+    opacity:1;
+    animation:none !important;
+  }
+
+  .dist-fill{
+    animation:none !important;
+  }
+
+  .modal.show{
+    opacity:1;
+  }
+
+  .profile{
+    transform:none;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<div class="page-glow"></div>
+
 <header>
- <div class="logo">
-  <span class="arch">ARCH</span>
-  <span class="tiers"> TIERS</span>
- </div>
+  <div class="brand">
+    <div class="logo">
+      <span class="arch">ARCH</span>
+      <span class="tiers"> TIERS</span>
+    </div>
 
- <div class="subtitle">Minecraft PvP Competitive Rankings</div>
+    <div class="subtitle">Minecraft PvP Competitive Rankings</div>
 
- <div class="header-status">
-  <span class="status-dot"></span>
-  Competitive Rankings Online
- </div>
+    <div class="header-meta">
+      <div class="header-status">
+        <span class="status-dot"></span>
+        Competitive Rankings Online
+      </div>
+
+      <div class="header-chip">
+        10 Tiers · 4 Modes
+      </div>
+    </div>
+  </div>
 </header>
 
-<nav>
- <button class="active" onclick="showSection('home',this)">🏠 Home</button>
- <button onclick="showSection('leaderboards',this)">🏆 Leaderboards</button>
- <button onclick="showSection('tiers',this)">⚔ Tier List</button>
- <button onclick="showSection('stats',this)">📊 Statistics</button>
-</nav>
+<div class="nav-wrap">
+  <nav aria-label="Primary navigation">
+    <button class="active" onclick="showSection('home',this)" type="button">
+      🏠 Home
+    </button>
+
+    <button onclick="showSection('leaderboards',this)" type="button">
+      🏆 Leaderboards
+    </button>
+
+    <button onclick="showSection('tiers',this)" type="button">
+      ⚔ Tier List
+    </button>
+
+    <button onclick="showSection('stats',this)" type="button">
+      📊 Statistics
+    </button>
+  </nav>
+</div>
 
 <main>
 
+<!-- =======================================================
+     HOME
+======================================================= -->
+
 <section id="home">
 
- <div class="dashboard">
-  <div class="featured" id="featured"></div>
-  <div class="stat-grid" id="quickStats"></div>
- </div>
+  <div class="dashboard">
+    <div class="featured" id="featured"></div>
 
- <div class="section">
-  <div class="section-title">🥇 <span>Top 3 Overall</span></div>
-  <div class="podium" id="podium"></div>
- </div>
+    <div class="stat-grid" id="quickStats"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      <span class="section-icon">🥇</span>
+      <span>Top 3 Overall</span>
+    </div>
+
+    <div class="podium" id="podium"></div>
+  </div>
 
 </section>
+
+<!-- =======================================================
+     LEADERBOARDS
+======================================================= -->
 
 <section id="leaderboards" style="display:none">
 
- <div class="section-title">🏆 <span>Leaderboards</span></div>
+  <div class="section-title">
+    <span class="section-icon">🏆</span>
+    <span>Leaderboards</span>
+  </div>
 
- <div class="tabs">
-  <button class="tab active" onclick="leaderboardMode='Overall';updateLeaderboardTabs(this);renderLeaderboards()">Overall</button>
-  <button class="tab" onclick="leaderboardMode='Bedfight';updateLeaderboardTabs(this);renderLeaderboards()">⚔ Bedfight</button>
-  <button class="tab" onclick="leaderboardMode='Bedwars';updateLeaderboardTabs(this);renderLeaderboards()">🛏 Bedwars</button>
-  <button class="tab" onclick="leaderboardMode='UHC';updateLeaderboardTabs(this);renderLeaderboards()">💎 UHC</button>
-  <button class="tab" onclick="leaderboardMode='Sumo';updateLeaderboardTabs(this);renderLeaderboards()">🥊 Sumo</button>
- </div>
+  <div class="tabs" role="tablist" aria-label="Leaderboard modes">
+    <button
+      class="tab active"
+      onclick="leaderboardMode='Overall';updateLeaderboardTabs(this);renderLeaderboards()"
+      type="button">
+      Overall
+    </button>
 
- <div class="leaderboard" id="leaderboard"></div>
+    <button
+      class="tab"
+      onclick="leaderboardMode='Bedfight';updateLeaderboardTabs(this);renderLeaderboards()"
+      type="button">
+      ⚔ Bedfight
+    </button>
+
+    <button
+      class="tab"
+      onclick="leaderboardMode='Bedwars';updateLeaderboardTabs(this);renderLeaderboards()"
+      type="button">
+      🛏 Bedwars
+    </button>
+
+    <button
+      class="tab"
+      onclick="leaderboardMode='UHC';updateLeaderboardTabs(this);renderLeaderboards()"
+      type="button">
+      💎 UHC
+    </button>
+
+    <button
+      class="tab"
+      onclick="leaderboardMode='Sumo';updateLeaderboardTabs(this);renderLeaderboards()"
+      type="button">
+      🥊 Sumo
+    </button>
+  </div>
+
+  <div class="leaderboard" id="leaderboard"></div>
 
 </section>
+
+<!-- =======================================================
+     TIER LIST / SEARCH
+======================================================= -->
 
 <section id="tiers" style="display:none">
 
- <div class="section-title">🔎 <span>Advanced Player Search</span></div>
-
- <div class="search-panel">
-  <div class="search-panel-title">Search Players</div>
-
-  <div class="search-controls">
-   <input class="search-input" id="advancedSearch"
-    type="text"
-    placeholder="🔎 Search by Minecraft IGN..."
-    oninput="renderSearchResults()">
-
-   <select class="filter-select" id="searchMode" onchange="renderSearchResults()">
-    <option value="All">All Game Modes</option>
-    <option value="Bedfight">⚔ Bedfight</option>
-    <option value="Bedwars">🛏 Bedwars</option>
-    <option value="UHC">💎 UHC</option>
-    <option value="Sumo">🥊 Sumo</option>
-   </select>
-
-   <select class="filter-select" id="searchTier" onchange="renderSearchResults()">
-    <option value="All">All Tiers</option>
-    <option value="HT1">HT1</option>
-    <option value="LT1">LT1</option>
-    <option value="HT2">HT2</option>
-    <option value="LT2">LT2</option>
-    <option value="HT3">HT3</option>
-    <option value="LT3">LT3</option>
-    <option value="HT4">HT4</option>
-    <option value="LT4">LT4</option>
-    <option value="HT5">HT5</option>
-    <option value="LT5">LT5</option>
-    <option value="N/A">N/A</option>
-   </select>
+  <div class="section-title">
+    <span class="section-icon">🔎</span>
+    <span>Advanced Player Search</span>
   </div>
- </div>
 
- <div class="search-results" id="searchResults"></div>
+  <div class="search-panel">
+    <div class="search-panel-title">Search Players</div>
 
- <div class="section">
-  <div class="section-title">⚔ <span id="tierTitle">Bedfight Rankings</span></div>
+    <div class="search-controls">
 
-  <div class="tabs">
-   <button class="tab active" onclick="setMode('Bedfight',this)">⚔ Bedfight</button>
-   <button class="tab" onclick="setMode('Bedwars',this)">🛏 Bedwars</button>
-   <button class="tab" onclick="setMode('UHC',this)">💎 UHC</button>
-   <button class="tab" onclick="setMode('Sumo',this)">🥊 Sumo</button>
+      <div class="input-wrap">
+        <span class="input-icon">⌕</span>
+
+        <input
+          class="search-input"
+          id="advancedSearch"
+          type="text"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="Search by Minecraft IGN..."
+          oninput="renderSearchResults()">
+      </div>
+
+      <select
+        class="filter-select"
+        id="searchMode"
+        onchange="renderSearchResults()"
+        aria-label="Filter by game mode">
+
+        <option value="All">All Game Modes</option>
+        <option value="Bedfight">⚔ Bedfight</option>
+        <option value="Bedwars">🛏 Bedwars</option>
+        <option value="UHC">💎 UHC</option>
+        <option value="Sumo">🥊 Sumo</option>
+      </select>
+
+      <select
+        class="filter-select"
+        id="searchTier"
+        onchange="renderSearchResults()"
+        aria-label="Filter by tier">
+
+        <option value="All">All Tiers</option>
+        <option value="HT1">HT1</option>
+        <option value="LT1">LT1</option>
+        <option value="HT2">HT2</option>
+        <option value="LT2">LT2</option>
+        <option value="HT3">HT3</option>
+        <option value="LT3">LT3</option>
+        <option value="HT4">HT4</option>
+        <option value="LT4">LT4</option>
+        <option value="HT5">HT5</option>
+        <option value="LT5">LT5</option>
+        <option value="N/A">N/A</option>
+      </select>
+
+    </div>
   </div>
- </div>
 
- <div class="tier-list" id="tierList"></div>
+  <div class="search-results" id="searchResults"></div>
+
+  <div class="section">
+    <div class="section-title">
+      <span class="section-icon">⚔</span>
+      <span id="tierTitle">Bedfight Rankings</span>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Tier list modes">
+      <button class="tab active" onclick="setMode('Bedfight',this)" type="button">
+        ⚔ Bedfight
+      </button>
+
+      <button class="tab" onclick="setMode('Bedwars',this)" type="button">
+        🛏 Bedwars
+      </button>
+
+      <button class="tab" onclick="setMode('UHC',this)" type="button">
+        💎 UHC
+      </button>
+
+      <button class="tab" onclick="setMode('Sumo',this)" type="button">
+        🥊 Sumo
+      </button>
+    </div>
+  </div>
+
+  <div class="tier-list" id="tierList"></div>
 
 </section>
 
+<!-- =======================================================
+     STATISTICS
+======================================================= -->
+
 <section id="stats" style="display:none">
 
- <div class="section-title">📊 <span>Statistics Dashboard</span></div>
-
- <div class="stat-grid" id="bigStats"></div>
-
- <div class="section" style="margin-top:30px">
-  <div class="section-title">📊 <span>Tier Distribution</span></div>
-  <div class="distribution" id="distribution"></div>
- </div>
-
- <div class="section">
-  <div class="section-title">🎖️ <span>Achievement System</span></div>
-
-  <div class="changes">
-
-   <div class="change">🥇 <strong>#1 Overall</strong><small>Ranked first overall.</small></div>
-   <div class="change">🏆 <strong>Top 3</strong><small>Ranks within the top three overall.</small></div>
-   <div class="change">⭐ <strong>Top 10</strong><small>Ranks within the top ten overall.</small></div>
-   <div class="change">👑 <strong>HT1 Player</strong><small>Has achieved HT1 in at least one mode.</small></div>
-   <div class="change">🔥 <strong>HT2 Player</strong><small>Has achieved HT2 in at least one mode.</small></div>
-   <div class="change">⚡ <strong>Elite Player</strong><small>Has achieved HT1–LT3 in at least one mode.</small></div>
-   <div class="change">🔥 <strong>Multi-Mode</strong><small>Ranked in two or more game modes.</small></div>
-   <div class="change">🌟 <strong>All Modes</strong><small>Ranked in all four game modes.</small></div>
-   <div class="change">💯 <strong>100 Wins</strong><small>Has reached 100 competitive wins.</small></div>
-   <div class="change">🧪 <strong>10 Tests</strong><small>Has completed at least ten tests.</small></div>
-   <div class="change">⚔️ <strong>10-Win Streak</strong><small>Has reached a ten-win streak.</small></div>
-   <div class="change">💯 <strong>Undefeated</strong><small>Has wins and zero losses.</small></div>
-   <div class="change">🧪 <strong>Tested Player</strong><small>Has completed a competitive test.</small></div>
-
+  <div class="section-title">
+    <span class="section-icon">📊</span>
+    <span>Statistics Dashboard</span>
   </div>
- </div>
+
+  <div class="stat-grid" id="bigStats"></div>
+
+  <div class="section" style="margin-top:40px">
+    <div class="section-title">
+      <span class="section-icon">📈</span>
+      <span>Tier Distribution</span>
+    </div>
+
+    <div class="distribution" id="distribution"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      <span class="section-icon">🎖</span>
+      <span>Achievement System</span>
+    </div>
+
+    <div class="changes">
+
+      <div class="change">
+        <span class="change-icon">🥇</span>
+        <strong>#1 Overall</strong>
+        <small>Ranked first overall.</small>
+      </div>
+
+      <div class="change">
+        <span class="change-icon">🏆</span>
+        <strong>Top 3</strong>
+        <small>Ranks within the top three overall.</small>
+      </div>
+
+      <div class="change">
+        <span class="change-icon">⭐</span>
+        <strong>Top 10</strong>
+        <small>Ranks within the top ten overall.</small>
+      </div>
+
+      <div class="change">
+        <span class="change-icon">👑</span>
+        <strong>HT1 Player</strong>
+        <small>Has achieved HT1 in at least one mode.</small>
+      </div>
+
+      <div class="change">
+        <span class="change-icon">🔥</span>
+        <strong>HT2 Player</strong>
+        <small>Has achieved HT2 in at least one mode.</small>
+      </div>
+
+      <div class="change">
+        <span class="change-icon">⚡</span>
+        <strong>Elite Player</strong>
+        <small>Has achieved HT1–LT3 in at least one mode.</small>
+      </div>
+
+      <div class="change">
+        <span class="change-icon">🔥</span>
+        <strong>Multi-Mode</strong>
+        <small>Ranked in two or more game modes.</small>
+      </div>
+
+      <div class="change">
+        <span class="change-icon">🌟</span>
+        <strong>All Modes</strong>
+        <small>Ranked in all four game modes.</small>
+      </div>
+
+      <div class="change">
+        <span class="change-icon">💯</span>
+        <strong>100 Wins</strong>
+        <small>Has reached 100 competitive wins.</small>
+      </div>
+
+      <div class="change">
+        <span class="change-icon">🧪</span>
+        <strong>10 Tests</strong>
+        <small>Has completed at least ten tests.</small>
+      </div>
+
+      <div class="change">
+        <span class="change-icon">⚔️</span>
+        <strong>10-Win Streak</strong>
+        <small>Has reached a ten-win streak.</small>
+      </div>
+
+      <div class="change">
+        <span class="change-icon">💯</span>
+        <strong>Undefeated</strong>
+        <small>Has wins and zero losses.</small>
+      </div>
+
+      <div class="change">
+        <span class="change-icon">🧪</span>
+        <strong>Tested Player</strong>
+        <small>Has completed a competitive test.</small>
+      </div>
+
+    </div>
+  </div>
 
 </section>
 
 </main>
 
 <footer>
- <strong>ARCH TIERS</strong> · Minecraft PvP Rankings
+  <strong>ARCH TIERS</strong> · Minecraft PvP Rankings
 </footer>
 
-<div class="modal" id="profileModal" onclick="outside(event)">
+<!-- =======================================================
+     PROFILE MODAL
+======================================================= -->
 
- <div class="profile" id="profileCard">
+<div
+  class="modal"
+  id="profileModal"
+  onclick="outside(event)"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="profileName">
 
-  <button class="close" onclick="closeProfile()">×</button>
+  <div class="profile" id="profileCard">
 
-  <div class="profile-banner"></div>
+    <button
+      class="close"
+      onclick="closeProfile()"
+      type="button"
+      aria-label="Close player profile">
+      ×
+    </button>
 
-  <div class="profile-body">
+    <div class="profile-banner"></div>
 
-   <div class="profile-top">
+    <div class="profile-body">
 
-    <div>
-     <img id="profileSkin" class="profile-skin" alt="Minecraft Skin">
+      <div class="profile-top">
 
-     <div id="profileName" class="profile-name"></div>
-     <div id="profileOverall" class="overall"></div>
+        <div class="profile-identity">
 
-     <div id="profileAchievements" class="achievements" style="margin-top:12px"></div>
+          <div class="profile-skin-wrap image-loading skeleton">
+            <img
+              id="profileSkin"
+              class="profile-skin"
+              alt="Minecraft skin"
+              decoding="async">
+          </div>
+
+          <div id="profileName" class="profile-name"></div>
+
+          <div id="profileOverall" class="overall"></div>
+
+          <div class="profile-verification">
+            <span>✓</span>
+            Competitive ranking verified
+          </div>
+
+          <div
+            id="profileAchievements"
+            class="achievements"
+            style="margin-top:13px">
+          </div>
+
+        </div>
+
+        <div class="model-box">
+
+          <canvas id="skinViewer"></canvas>
+
+          <div class="model-fallback" id="modelFallback">
+            Loading 3D player model…
+          </div>
+
+          <div class="model-label">3D PLAYER MODEL</div>
+
+          <div class="model-hint">
+            Drag to rotate · Scroll to zoom
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="profile-section">
+        <h3>🏆 Competitive Rankings</h3>
+        <div id="profileRanks"></div>
+      </div>
+
+      <div class="profile-section">
+        <h3>📊 Statistics</h3>
+        <div class="profile-grid" id="profileStats"></div>
+      </div>
+
+      <div class="profile-section">
+        <h3>🧪 Testing Information</h3>
+        <div id="profileTesting"></div>
+      </div>
+
+      <div class="profile-section">
+        <h3>📜 Full Tier History</h3>
+        <div id="profileHistory"></div>
+      </div>
+
+      <div class="profile-scroll-hint">
+        ESC to close · Click outside the profile to close
+      </div>
+
     </div>
-
-    <div class="model-box">
-     <canvas id="skinViewer"></canvas>
-     <div class="model-label">3D PLAYER MODEL</div>
-     <div class="model-hint">Drag to rotate · Scroll to zoom</div>
-    </div>
-
-   </div>
-
-   <div class="profile-section">
-    <h3>🏆 Competitive Rankings</h3>
-    <div id="profileRanks"></div>
-   </div>
-
-   <div class="profile-section">
-    <h3>📊 Statistics</h3>
-    <div class="profile-grid" id="profileStats"></div>
-   </div>
-
-   <div class="profile-section">
-    <h3>🧪 Testing Information</h3>
-    <div id="profileTesting"></div>
-   </div>
-
-   <div class="profile-section">
-    <h3>📜 Full Tier History</h3>
-    <div id="profileHistory"></div>
-   </div>
-
   </div>
- </div>
 </div>
 
 <script>
-
-/* =========================
+/* =========================================================
    PLAYER DATABASE
-========================= */
+========================================================= */
 
-const players=[
+const players = [
 
-{
- name:"Luminous",
- rankings:{Bedfight:null,Bedwars:"HT3",UHC:null,Sumo:null},
- stats:{wins:5,losses:0,tests:1,winStreak:5},
- tester:"Head Tester",
- testDate:"8/12/2026",
- history:[]
-},
+  {
+    name:"Luminous",
+    rankings:{
+      Bedfight:null,
+      Bedwars:"HT3",
+      UHC:null,
+      Sumo:null
+    },
+    stats:{
+      wins:5,
+      losses:0,
+      tests:1,
+      winStreak:5
+    },
+    tester:"Head Tester",
+    testDate:"8/12/2026",
+    history:[]
+  },
 
-{
- name:"Ehlendas",
- rankings:{Bedfight:null,Bedwars:null,UHC:null,Sumo:"LT3"},
- stats:{wins:2,losses:5,tests:1,winStreak:0},
- tester:"Head Tester",
- testDate:"8/12/2026",
- history:[]
-},
+  {
+    name:"Ehlendas",
+    rankings:{
+      Bedfight:null,
+      Bedwars:null,
+      UHC:null,
+      Sumo:"LT3"
+    },
+    stats:{
+      wins:2,
+      losses:5,
+      tests:1,
+      winStreak:0
+    },
+    tester:"Head Tester",
+    testDate:"8/12/2026",
+    history:[]
+  },
 
-{
- name:"_kaaam",
- rankings:{Bedfight:"LT3",Bedwars:null,UHC:null,Sumo:null},
- stats:{wins:2,losses:5,tests:1,winStreak:0},
- tester:"Head Tester",
- testDate:"8/12/2026",
- history:[]
-},
+  {
+    name:"_kaaam",
+    rankings:{
+      Bedfight:"LT3",
+      Bedwars:null,
+      UHC:null,
+      Sumo:null
+    },
+    stats:{
+      wins:2,
+      losses:5,
+      tests:1,
+      winStreak:0
+    },
+    tester:"Head Tester",
+    testDate:"8/12/2026",
+    history:[]
+  },
 
-{
- name:"Anles_Gamer",
- rankings:{Bedfight:null,Bedwars:null,UHC:null,Sumo:"HT5"},
- stats:{wins:2,losses:5,tests:1,winStreak:0},
- tester:"Tester",
- testDate:"8/12/2026",
- history:[]
-},
+  {
+    name:"Anles_Gamer",
+    rankings:{
+      Bedfight:null,
+      Bedwars:null,
+      UHC:null,
+      Sumo:"HT5"
+    },
+    stats:{
+      wins:2,
+      losses:5,
+      tests:1,
+      winStreak:0
+    },
+    tester:"Tester",
+    testDate:"8/12/2026",
+    history:[]
+  },
 
-{
- name:"Zerphat",
- rankings:{Bedfight:null,Bedwars:"HT5",UHC:null,Sumo:null},
- stats:{wins:1,losses:5,tests:1,winStreak:0},
- tester:"Head Tester",
- testDate:"8/12/2026",
- history:[]
-},
+  {
+    name:"Zerphat",
+    rankings:{
+      Bedfight:null,
+      Bedwars:"HT5",
+      UHC:null,
+      Sumo:null
+    },
+    stats:{
+      wins:1,
+      losses:5,
+      tests:1,
+      winStreak:0
+    },
+    tester:"Head Tester",
+    testDate:"8/12/2026",
+    history:[]
+  },
 
-{
- name:"Mr_Elite_noob",
- rankings:{Bedfight:"LT3",Bedwars:null,UHC:"LT3",Sumo:null},
- stats:{wins:8,losses:2,tests:2,winStreak:3},
- tester:"Tester",
- testDate:"8/12/2026",
- history:[]
-},
+  {
+    name:"Mr_Elite_noob",
+    rankings:{
+      Bedfight:"LT3",
+      Bedwars:null,
+      UHC:"LT3",
+      Sumo:null
+    },
+    stats:{
+      wins:8,
+      losses:2,
+      tests:2,
+      winStreak:3
+    },
+    tester:"Tester",
+    testDate:"8/12/2026",
+    history:[]
+  },
 
-{
- name:"Cloroxwipes11o",
- rankings:{Bedfight:null,Bedwars:null,UHC:null,Sumo:"LT3"},
- stats:{wins:3,losses:5,tests:1,winStreak:0},
- tester:"Head Tester",
- testDate:"8/12/2026",
- history:[]
-},
+  {
+    name:"Cloroxwipes11o",
+    rankings:{
+      Bedfight:null,
+      Bedwars:null,
+      UHC:null,
+      Sumo:"LT3"
+    },
+    stats:{
+      wins:3,
+      losses:5,
+      tests:1,
+      winStreak:0
+    },
+    tester:"Head Tester",
+    testDate:"8/12/2026",
+    history:[]
+  },
 
-{
- name:"nyxen_",
- rankings:{Bedfight:"LT3",Bedwars:null,UHC:null,Sumo:null},
- stats:{wins:2,losses:5,tests:1,winStreak:0},
- tester:"Head Tester",
- testDate:"8/12/2026",
- history:[]
-},
+  {
+    name:"nyxen_",
+    rankings:{
+      Bedfight:"LT3",
+      Bedwars:null,
+      UHC:null,
+      Sumo:null
+    },
+    stats:{
+      wins:2,
+      losses:5,
+      tests:1,
+      winStreak:0
+    },
+    tester:"Head Tester",
+    testDate:"8/12/2026",
+    history:[]
+  },
 
-{
- name:"hmmelite",
- rankings:{Bedfight:"HT4",Bedwars:null,UHC:null,Sumo:null},
- stats:{wins:4,losses:5,tests:1,winStreak:0},
- tester:"tester",
- testDate:"8/13/2026",
- history:[]
-},
+  {
+    name:"hmmelite",
+    rankings:{
+      Bedfight:"HT4",
+      Bedwars:null,
+      UHC:null,
+      Sumo:null
+    },
+    stats:{
+      wins:4,
+      losses:5,
+      tests:1,
+      winStreak:0
+    },
+    tester:"Tester",
+    testDate:"8/13/2026",
+    history:[]
+  },
 
-{
- name:"IndusVerse",
- rankings:{Bedfight:null,Bedwars:"HT5",UHC:null,Sumo:null},
- stats:{wins:1,losses:5,tests:1,winStreak:0},
- tester:"tester",
- testDate:"8/14/2026",
- history:[]
-}
+  {
+    name:"IndusVerse",
+    rankings:{
+      Bedfight:null,
+      Bedwars:"HT5",
+      UHC:null,
+      Sumo:null
+    },
+    stats:{
+      wins:2,
+      losses:5,
+      tests:1,
+      winStreak:0
+    },
+    tester:"Tester",
+    testDate:"8/14/2026",
+    history:[]
+  }
 
 ];
 
-
-/* =========================
+/* =========================================================
    SETTINGS
-========================= */
+========================================================= */
 
-const tiers=[
- "HT1","LT1","HT2","LT2","HT3",
- "LT3","HT4","LT4","HT5","LT5"
+const tiers = [
+  "HT1",
+  "LT1",
+  "HT2",
+  "LT2",
+  "HT3",
+  "LT3",
+  "HT4",
+  "LT4",
+  "HT5",
+  "LT5"
 ];
 
-const modes=["Bedfight","Bedwars","UHC","Sumo"];
+const modes = [
+  "Bedfight",
+  "Bedwars",
+  "UHC",
+  "Sumo"
+];
 
-let currentMode="Bedfight";
-let leaderboardMode="Overall";
-let skinViewer=null;
+let currentMode = "Bedfight";
+let leaderboardMode = "Overall";
+let skinViewer = null;
+let currentProfileName = null;
 
-
-/* =========================
+/* =========================================================
    SCORE
-========================= */
+========================================================= */
 
 function tierScore(tier){
 
- const scores={
-  HT1:100,
-  LT1:95,
-  HT2:90,
-  LT2:85,
-  HT3:80,
-  LT3:75,
-  HT4:70,
-  LT4:65,
-  HT5:60,
-  LT5:55
- };
+  const scores = {
+    HT1:100,
+    LT1:95,
+    HT2:90,
+    LT2:85,
+    HT3:80,
+    LT3:75,
+    HT4:70,
+    LT4:65,
+    HT5:60,
+    LT5:55
+  };
 
- return scores[tier]||0;
+  return scores[tier] || 0;
 }
 
 function overallScore(player){
 
- return modes.reduce(
-  (total,mode)=>
-   total+tierScore(player.rankings[mode]),
-  0
- );
+  return modes.reduce(
+    (total,mode) => total + tierScore(player.rankings[mode]),
+    0
+  );
 }
 
 function sortedOverall(){
 
- return [...players].sort((a,b)=>{
+  return [...players].sort((a,b)=>{
 
-  const score=tierScore(bestTier(b))-tierScore(bestTier(a));
+    const bestDifference =
+      tierScore(bestTier(b)) -
+      tierScore(bestTier(a));
 
-  const difference=overallScore(b)-overallScore(a);
+    const difference =
+      overallScore(b) -
+      overallScore(a);
 
-  if(difference!==0)return difference;
+    if(bestDifference !== 0){
+      return bestDifference;
+    }
 
-  return modes.filter(m=>a.rankings[m]).length-
-         modes.filter(m=>b.rankings[m]).length;
- });
+    if(difference !== 0){
+      return difference;
+    }
+
+    const modeDifference =
+      modes.filter(mode=>a.rankings[mode]).length -
+      modes.filter(mode=>b.rankings[mode]).length;
+
+    if(modeDifference !== 0){
+      return modeDifference;
+    }
+
+    return a.name.localeCompare(b.name);
+  });
 }
 
 function winRate(player){
 
- const w=Number(player.stats?.wins||0);
- const l=Number(player.stats?.losses||0);
+  const wins = Number(player.stats?.wins || 0);
+  const losses = Number(player.stats?.losses || 0);
 
- return w+l?Math.round(w/(w+l)*100):0;
+  return wins + losses
+    ? Math.round((wins / (wins + losses)) * 100)
+    : 0;
 }
 
 function bestTier(player){
 
- const ranked=modes
-  .map(m=>player.rankings[m])
-  .filter(Boolean);
+  const ranked = modes
+    .map(mode=>player.rankings[mode])
+    .filter(Boolean);
 
- if(!ranked.length)return null;
+  if(!ranked.length){
+    return null;
+  }
 
- return ranked.sort(
-  (a,b)=>tierScore(b)-tierScore(a)
- )[0];
+  return ranked.sort(
+    (a,b)=>tierScore(b)-tierScore(a)
+  )[0];
 }
 
-
-/* =========================
+/* =========================================================
    ACHIEVEMENTS
-========================= */
+========================================================= */
 
 function getAchievements(player){
 
- const list=[];
- const ranking=sortedOverall();
- const position=
-  ranking.findIndex(p=>p.name===player.name)+1;
+  const list = [];
 
- const rankedTiers=
-  modes.map(m=>player.rankings[m]).filter(Boolean);
+  const ranking = sortedOverall();
 
- const wins=Number(player.stats?.wins||0);
- const tests=Number(player.stats?.tests||0);
- const streak=Number(player.stats?.winStreak||0);
+  const position =
+    ranking.findIndex(p=>p.name===player.name) + 1;
 
- if(position===1)list.push("🥇 #1 Overall");
- if(position<=3 && position>0)list.push("🏆 Top 3");
- if(position<=10 && position>3)list.push("⭐ Top 10");
+  const rankedTiers =
+    modes
+      .map(mode=>player.rankings[mode])
+      .filter(Boolean);
 
- if(rankedTiers.includes("HT1"))
-  list.push("👑 HT1 Player");
+  const wins =
+    Number(player.stats?.wins || 0);
 
- if(rankedTiers.includes("HT2"))
-  list.push("🔥 HT2 Player");
+  const tests =
+    Number(player.stats?.tests || 0);
 
- if(
-  rankedTiers.some(t=>[
-   "HT1","LT1","HT2","LT2","HT3","LT3"
-  ].includes(t))
- )
-  list.push("⚡ Elite Player");
+  const streak =
+    Number(player.stats?.winStreak || 0);
 
- if(rankedTiers.length>=2)
-  list.push("🔥 Multi-Mode");
+  if(position === 1){
+    list.push("🥇 #1 Overall");
+  }
 
- if(rankedTiers.length===4)
-  list.push("🌟 Ranked in All Modes");
+  if(position <= 3 && position > 0){
+    list.push("🏆 Top 3");
+  }
 
- if(wins>=100)
-  list.push("💯 100 Wins");
+  if(position <= 10 && position > 3){
+    list.push("⭐ Top 10");
+  }
 
- if(tests>=10)
-  list.push("🧪 10 Tests");
+  if(rankedTiers.includes("HT1")){
+    list.push("👑 HT1 Player");
+  }
 
- if(streak>=10)
-  list.push("⚔️ 10-Win Streak");
+  if(rankedTiers.includes("HT2")){
+    list.push("🔥 HT2 Player");
+  }
 
- if(wins>0 && Number(player.stats?.losses||0)===0)
-  list.push("💯 Undefeated");
+  if(
+    rankedTiers.some(tier=>[
+      "HT1",
+      "LT1",
+      "HT2",
+      "LT2",
+      "HT3",
+      "LT3"
+    ].includes(tier))
+  ){
+    list.push("⚡ Elite Player");
+  }
 
- if(tests>0)
-  list.push("🧪 Tested Player");
+  if(rankedTiers.length >= 2){
+    list.push("🔥 Multi-Mode");
+  }
 
- return list;
+  if(rankedTiers.length === 4){
+    list.push("🌟 Ranked in All Modes");
+  }
+
+  if(wins >= 100){
+    list.push("💯 100 Wins");
+  }
+
+  if(tests >= 10){
+    list.push("🧪 10 Tests");
+  }
+
+  if(streak >= 10){
+    list.push("⚔️ 10-Win Streak");
+  }
+
+  if(
+    wins > 0 &&
+    Number(player.stats?.losses || 0) === 0
+  ){
+    list.push("💯 Undefeated");
+  }
+
+  if(tests > 0){
+    list.push("🧪 Tested Player");
+  }
+
+  return list;
 }
 
-
-/* =========================
+/* =========================================================
    SKINS
-========================= */
+========================================================= */
 
 function skinURL(name,size=100){
- return "https://mc-heads.net/avatar/"+
- encodeURIComponent(name)+"/"+size;
+
+  return "https://mc-heads.net/avatar/" +
+    encodeURIComponent(name) +
+    "/" +
+    size;
 }
 
 function fullSkinURL(name){
- return "https://mc-heads.net/skin/"+
- encodeURIComponent(name);
+
+  return "https://mc-heads.net/skin/" +
+    encodeURIComponent(name);
 }
 
+function markImageLoaded(image){
 
-/* =========================
+  if(!image){
+    return;
+  }
+
+  image.addEventListener("load",()=>{
+    image.classList.add("loaded");
+
+    const wrapper =
+      image.closest(".image-loading");
+
+    if(wrapper){
+      wrapper.classList.remove("skeleton");
+      wrapper.classList.remove("image-loading");
+    }
+  },{
+    once:true
+  });
+
+  image.addEventListener("error",()=>{
+    image.classList.add("loaded");
+
+    const wrapper =
+      image.closest(".image-loading");
+
+    if(wrapper){
+      wrapper.classList.remove("skeleton");
+      wrapper.classList.remove("image-loading");
+    }
+  },{
+    once:true
+  });
+}
+
+/* =========================================================
    HOME
-========================= */
+========================================================= */
 
 function renderHome(){
 
- const ranking=sortedOverall();
- const featured=ranking[0];
+  const ranking = sortedOverall();
 
- const featuredBox=document.getElementById("featured");
+  const featured = ranking.find(
+    player=>overallScore(player)>0
+  );
 
- if(featured){
+  const featuredBox =
+    document.getElementById("featured");
 
-  featuredBox.innerHTML=`
-   <div class="featured-label">🌟 Featured Player</div>
+  if(featured){
 
-   <div class="featured-content">
+    const featuredSkin =
+      skinURL(featured.name,110);
 
-    <img class="featured-skin"
-     src="${skinURL(featured.name,110)}">
+    featuredBox.innerHTML = `
+      <div class="featured-label">
+        <span>✦</span>
+        Featured Player
+      </div>
 
-    <div>
+      <div class="featured-content">
 
-     <div class="featured-name">
-      ${escapeHTML(featured.name)}
-     </div>
+        <div class="featured-skin-wrap image-loading skeleton">
+          <img
+            class="featured-skin"
+            src="${featuredSkin}"
+            alt="${escapeHTML(featured.name)} Minecraft head"
+            loading="eager"
+            decoding="async">
+        </div>
 
-     <div class="featured-rank">
-      🥇 Ranked #1 Overall
-     </div>
+        <div>
 
-     <div class="featured-score">
-      Overall Score:
-      <strong>${overallScore(featured)}</strong>
-     </div>
+          <div class="featured-name">
+            ${escapeHTML(featured.name)}
+          </div>
 
-     <div class="featured-tiers">
+          <div class="featured-rank">
+            🥇 Ranked #1 Overall
+          </div>
 
-      ${modes.map(mode=>{
+          <div class="featured-score">
+            Overall Score:
+            <strong>${overallScore(featured)}</strong>
+          </div>
 
-       const tier=featured.rankings[mode];
+          <div class="featured-tiers">
 
-       return tier
-        ?`<span class="badge ${tier}">${tier}</span>`
-        :`<span class="badge" style="background:#252d37">N/A</span>`;
+            ${modes.map(mode=>{
 
-      }).join("")}
+              const tier =
+                featured.rankings[mode];
 
-     </div>
+              return tier
+                ? `<span class="badge ${tier}">${tier}</span>`
+                : `<span class="badge" style="--tier:#3a424d;--tier2:#242a32;--glow:rgba(0,0,0,0)">N/A</span>`;
 
+            }).join("")}
+
+          </div>
+
+        </div>
+      </div>
+    `;
+
+    const image =
+      featuredBox.querySelector(".featured-skin");
+
+    markImageLoaded(image);
+  }
+
+  const totalWins =
+    players.reduce(
+      (sum,player)=>
+        sum + Number(player.stats?.wins || 0),
+      0
+    );
+
+  const totalTests =
+    players.reduce(
+      (sum,player)=>
+        sum + Number(player.stats?.tests || 0),
+      0
+    );
+
+  document.getElementById("quickStats").innerHTML = `
+
+    <div class="stat-card">
+      <div class="number">${players.length}</div>
+      <div class="label">Players Ranked</div>
     </div>
-   </div>
+
+    <div class="stat-card">
+      <div class="number">${totalTests}</div>
+      <div class="label">Total Tests</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="number">${totalWins}</div>
+      <div class="label">Total Wins</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="number">${mostCommonTier()}</div>
+      <div class="label">Most Common Tier</div>
+    </div>
   `;
- }
 
- const totalWins=players.reduce(
-  (s,p)=>s+Number(p.stats?.wins||0),0
- );
-
- const totalTests=players.reduce(
-  (s,p)=>s+Number(p.stats?.tests||0),0
- );
-
- document.getElementById("quickStats").innerHTML=`
-
-  <div class="stat-card">
-   <div class="number">${players.length}</div>
-   <div class="label">Players Ranked</div>
-  </div>
-
-  <div class="stat-card">
-   <div class="number">${totalTests}</div>
-   <div class="label">Total Tests</div>
-  </div>
-
-  <div class="stat-card">
-   <div class="number">${totalWins}</div>
-   <div class="label">Total Wins</div>
-  </div>
-
-  <div class="stat-card">
-   <div class="number">${mostCommonTier()}</div>
-   <div class="label">Most Common Tier</div>
-  </div>
- `;
-
- renderPodium();
+  renderPodium();
 }
 
-
-/* =========================
+/* =========================================================
    PODIUM
-========================= */
+========================================================= */
 
 function renderPodium(){
 
- const ranking=sortedOverall()
-  .filter(p=>overallScore(p)>0)
-  .slice(0,3);
+  const ranking =
+    sortedOverall()
+      .filter(player=>overallScore(player)>0)
+      .slice(0,3);
 
- const box=document.getElementById("podium");
+  const box =
+    document.getElementById("podium");
 
- box.innerHTML=ranking.map((player,index)=>{
+  if(!ranking.length){
+    box.innerHTML = `
+      <div class="no-results" style="grid-column:1/-1">
+        <strong>No Ranked Players</strong>
+        No players currently have an overall score.
+      </div>
+    `;
+    return;
+  }
 
-  const tier=bestTier(player);
+  box.innerHTML = ranking.map((player,index)=>{
 
-  return `
-   <div
-    class="podium-card tier-reactive ${tier||""} ${index===0?"first":""}"
-    onclick="openProfile('${escapeJS(player.name)}')">
+    const tier = bestTier(player);
 
-    <div style="font-size:30px">
-     ${index===0?"🥇":index===1?"🥈":"🥉"}
-    </div>
+    const medal =
+      index === 0
+        ? "🥇"
+        : index === 1
+          ? "🥈"
+          : "🥉";
 
-    <img class="podium-skin"
-     src="${skinURL(player.name,64)}">
+    return `
+      <div
+        class="podium-card tier-reactive ${tier || ""} ${index===0?"first":""}"
+        onclick="openProfile('${escapeJS(player.name)}')"
+        role="button"
+        tabindex="0"
+        aria-label="Open ${escapeHTML(player.name)} profile"
+        onkeydown="handleCardKey(event,'${escapeJS(player.name)}')">
 
-    <div class="podium-name">
-     ${escapeHTML(player.name)}
-    </div>
+        <div class="podium-medal">
+          ${medal}
+        </div>
 
-    <div class="podium-score">
-     ${overallScore(player)} Overall Score
-    </div>
-   </div>
-  `;
+        <div class="podium-skin-wrap image-loading skeleton">
+          <img
+            class="podium-skin"
+            src="${skinURL(player.name,64)}"
+            alt="${escapeHTML(player.name)} Minecraft head"
+            loading="lazy"
+            decoding="async">
+        </div>
 
- }).join("");
+        <div class="podium-name">
+          ${escapeHTML(player.name)}
+        </div>
+
+        <div class="podium-score">
+          ${overallScore(player)} pts
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+  box.querySelectorAll(".podium-skin")
+    .forEach(markImageLoaded);
 }
 
-
-/* =========================
+/* =========================================================
    SEARCH
-========================= */
+========================================================= */
 
 function renderSearchResults(){
 
- const box=document.getElementById("searchResults");
+  const box =
+    document.getElementById("searchResults");
 
- const search=
-  document.getElementById("advancedSearch")
-   .value.toLowerCase().trim();
+  const search =
+    document
+      .getElementById("advancedSearch")
+      .value
+      .toLowerCase()
+      .trim();
 
- const mode=document.getElementById("searchMode").value;
- const selectedTier=document.getElementById("searchTier").value;
+  const mode =
+    document.getElementById("searchMode").value;
 
- const results=players.filter(player=>{
+  const selectedTier =
+    document.getElementById("searchTier").value;
 
-  const nameMatch=
-   !search||player.name.toLowerCase().includes(search);
+  const results =
+    players.filter(player=>{
 
-  let modeMatch=true;
-  let tierMatch=true;
+      const nameMatch =
+        !search ||
+        player.name
+          .toLowerCase()
+          .includes(search);
 
-  if(mode!=="All")
-   modeMatch=Boolean(player.rankings[mode]);
+      let modeMatch = true;
+      let tierMatch = true;
 
-  if(selectedTier!=="All"){
+      if(mode !== "All"){
+        modeMatch =
+          Boolean(player.rankings[mode]);
+      }
 
-   if(selectedTier==="N/A"){
+      if(selectedTier !== "All"){
 
-    tierMatch=
-     mode==="All"
-      ?modes.some(m=>!player.rankings[m])
-      :!player.rankings[mode];
+        if(selectedTier === "N/A"){
 
-   }else{
+          tierMatch =
+            mode === "All"
+              ? modes.some(
+                  currentMode =>
+                    !player.rankings[currentMode]
+                )
+              : !player.rankings[mode];
 
-    tierMatch=
-     mode==="All"
-      ?modes.some(m=>player.rankings[m]===selectedTier)
-      :player.rankings[mode]===selectedTier;
-   }
+        }else{
+
+          tierMatch =
+            mode === "All"
+              ? modes.some(
+                  currentMode =>
+                    player.rankings[currentMode] === selectedTier
+                )
+              : player.rankings[mode] === selectedTier;
+        }
+      }
+
+      return nameMatch && modeMatch && tierMatch;
+    });
+
+  if(
+    !search &&
+    mode === "All" &&
+    selectedTier === "All"
+  ){
+
+    box.innerHTML = `
+      <div
+        class="no-results"
+        style="grid-column:1/-1;padding:27px">
+
+        <strong>Search Players</strong>
+
+        Enter an IGN or use the filters above
+        to explore the player database.
+
+      </div>
+    `;
+
+    return;
   }
 
-  return nameMatch&&modeMatch&&tierMatch;
- });
+  if(!results.length){
 
- if(!search&&mode==="All"&&selectedTier==="All"){
+    box.innerHTML = `
+      <div
+        class="no-results"
+        style="grid-column:1/-1;padding:35px">
 
-  box.innerHTML=`
-   <div class="no-results" style="grid-column:1/-1;padding:25px">
-    <strong>Search Players</strong>
-    Enter an IGN or use the filters above.
-   </div>
-  `;
+        <strong>No Players Found</strong>
 
-  return;
- }
+        Try changing your search or filters.
 
- if(!results.length){
+      </div>
+    `;
 
-  box.innerHTML=`
-   <div class="no-results" style="grid-column:1/-1;padding:25px">
-    <strong>No Players Found</strong>
-    Try changing your search or filters.
-   </div>
-  `;
+    return;
+  }
 
-  return;
- }
+  box.innerHTML =
+    results.map(player=>{
 
- box.innerHTML=results.map(player=>{
+      const tier = bestTier(player);
 
-  const tier=bestTier(player);
+      return `
+        <div
+          class="search-result-card tier-reactive ${tier || ""}"
+          onclick="openProfile('${escapeJS(player.name)}')"
+          role="button"
+          tabindex="0"
+          aria-label="Open ${escapeHTML(player.name)} profile"
+          onkeydown="handleCardKey(event,'${escapeJS(player.name)}')">
 
-  return `
-   <div
-    class="search-result-card tier-reactive ${tier||""}"
-    onclick="openProfile('${escapeJS(player.name)}')">
+          <div class="search-result-head-wrap image-loading skeleton">
+            <img
+              class="search-result-head"
+              src="${skinURL(player.name,48)}"
+              alt="${escapeHTML(player.name)} Minecraft head"
+              loading="lazy"
+              decoding="async">
+          </div>
 
-    <img
-     class="search-result-head"
-     src="${skinURL(player.name,48)}">
+          <div class="search-result-info">
 
-    <div class="search-result-info">
+            <div class="search-result-name">
+              ${escapeHTML(player.name)}
+            </div>
 
-     <div class="search-result-name">
-      ${escapeHTML(player.name)}
-     </div>
+            <div class="search-result-mode">
+              ${modes.filter(mode=>player.rankings[mode]).length}
+              ranked mode(s)
+              ·
+              ${overallScore(player)}
+              points
+            </div>
 
-     <div class="search-result-mode">
-      ${modes.filter(m=>player.rankings[m]).length} ranked mode(s)
-      · ${overallScore(player)} points
-     </div>
+            <div class="search-result-tiers">
 
-     <div class="search-result-tiers">
-      ${modes.map(m=>{
+              ${modes.map(mode=>{
 
-       const t=player.rankings[m];
+                const tier =
+                  player.rankings[mode];
 
-       return t
-        ?`<span class="badge ${t}">${t}</span>`
-        :`<span class="badge" style="background:#252d37">N/A</span>`;
+                return tier
+                  ? `<span class="badge ${tier}">${tier}</span>`
+                  : `<span class="badge" style="--tier:#3a424d;--tier2:#242a32;--glow:rgba(0,0,0,0)">N/A</span>`;
 
-      }).join("")}
-     </div>
+              }).join("")}
 
-    </div>
-   </div>
-  `;
+            </div>
 
- }).join("");
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+
+  box.querySelectorAll(".search-result-head")
+    .forEach(markImageLoaded);
 }
 
-
-/* =========================
+/* =========================================================
    LEADERBOARDS
-========================= */
+========================================================= */
 
 function updateLeaderboardTabs(button){
 
- document.querySelectorAll("#leaderboards .tab")
-  .forEach(t=>t.classList.remove("active"));
+  document
+    .querySelectorAll("#leaderboards .tab")
+    .forEach(tab=>{
+      tab.classList.remove("active");
+    });
 
- button.classList.add("active");
+  button.classList.add("active");
 }
 
 function renderLeaderboards(){
 
- const box=document.getElementById("leaderboard");
+  const box =
+    document.getElementById("leaderboard");
 
- let ranking=[...players];
+  let ranking = [...players];
 
- ranking.sort((a,b)=>{
+  ranking.sort((a,b)=>{
 
-  if(leaderboardMode==="Overall")
-   return overallScore(b)-overallScore(a);
+    if(leaderboardMode === "Overall"){
 
-  return tierScore(b.rankings[leaderboardMode])-
-         tierScore(a.rankings[leaderboardMode]);
- });
+      const scoreDifference =
+        overallScore(b)-overallScore(a);
 
- ranking=ranking.filter(p=>
-  leaderboardMode==="Overall"
-   ?overallScore(p)>0
-   :Boolean(p.rankings[leaderboardMode])
- );
+      if(scoreDifference !== 0){
+        return scoreDifference;
+      }
 
- box.innerHTML=ranking.map((player,index)=>{
+      return b.name.localeCompare(a.name);
+    }
 
-  const tier=
-   leaderboardMode==="Overall"
-    ?bestTier(player)
-    :player.rankings[leaderboardMode];
+    const tierDifference =
+      tierScore(b.rankings[leaderboardMode]) -
+      tierScore(a.rankings[leaderboardMode]);
 
-  const score=
-   leaderboardMode==="Overall"
-    ?overallScore(player)
-    :tierScore(tier);
+    if(tierDifference !== 0){
+      return tierDifference;
+    }
 
-  return `
-   <div
-    class="leader-row tier-reactive ${tier||""}"
-    onclick="openProfile('${escapeJS(player.name)}')">
+    return a.name.localeCompare(b.name);
+  });
 
-    <div class="leader-position">
-     #${index+1}
-    </div>
+  ranking =
+    ranking.filter(player=>
+      leaderboardMode === "Overall"
+        ? overallScore(player) > 0
+        : Boolean(player.rankings[leaderboardMode])
+    );
 
-    <div class="leader-player">
+  if(!ranking.length){
 
-     <img class="leader-head"
-      src="${skinURL(player.name,35)}">
+    box.innerHTML = `
+      <div class="no-results">
+        <strong>No Rankings Available</strong>
+        No players are currently ranked in this category.
+      </div>
+    `;
 
-     <span class="leader-name">
-      ${escapeHTML(player.name)}
-     </span>
+    return;
+  }
 
-    </div>
+  box.innerHTML =
+    ranking.map((player,index)=>{
 
-    <div class="leader-tier">
-     ${tier
-      ?`<span class="badge ${tier}">${tier}</span>`
-      :"N/A"}
-    </div>
+      const tier =
+        leaderboardMode === "Overall"
+          ? bestTier(player)
+          : player.rankings[leaderboardMode];
 
-    <div class="leader-score">
-     ${score}${leaderboardMode==="Overall"?" pts":""}
-    </div>
+      const score =
+        leaderboardMode === "Overall"
+          ? overallScore(player)
+          : tierScore(tier);
 
-   </div>
-  `;
+      return `
+        <div
+          class="leader-row tier-reactive ${tier || ""}"
+          style="animation-delay:${Math.min(index * 45,500)}ms"
+          onclick="openProfile('${escapeJS(player.name)}')"
+          role="button"
+          tabindex="0"
+          aria-label="Open ${escapeHTML(player.name)} profile"
+          onkeydown="handleCardKey(event,'${escapeJS(player.name)}')">
 
- }).join("");
+          <div class="leader-position">
+            #${index+1}
+          </div>
+
+          <div class="leader-player">
+
+            <div class="leader-head-wrap image-loading skeleton">
+              <img
+                class="leader-head"
+                src="${skinURL(player.name,35)}"
+                alt="${escapeHTML(player.name)} Minecraft head"
+                loading="lazy"
+                decoding="async">
+            </div>
+
+            <span class="leader-name">
+              ${escapeHTML(player.name)}
+            </span>
+
+          </div>
+
+          <div class="leader-tier">
+            ${
+              tier
+                ? `<span class="badge ${tier}">${tier}</span>`
+                : `<span class="muted">N/A</span>`
+            }
+          </div>
+
+          <div class="leader-score">
+            ${score}${leaderboardMode==="Overall" ? " pts" : ""}
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+
+  box.querySelectorAll(".leader-head")
+    .forEach(markImageLoaded);
 }
 
-
-/* =========================
+/* =========================================================
    TIER LIST
-========================= */
+========================================================= */
 
 function setMode(mode,button){
 
- currentMode=mode;
+  currentMode = mode;
 
- document.querySelectorAll("#tiers .tab")
-  .forEach(b=>b.classList.remove("active"));
+  document
+    .querySelectorAll("#tiers .tab")
+    .forEach(tab=>{
+      tab.classList.remove("active");
+    });
 
- button.classList.add("active");
+  button.classList.add("active");
 
- document.getElementById("tierTitle").textContent=
-  mode+" Rankings";
+  document.getElementById("tierTitle").textContent =
+    mode + " Rankings";
 
- renderTierList();
+  renderTierList();
 }
 
 function renderTierList(){
 
- const box=document.getElementById("tierList");
+  const box =
+    document.getElementById("tierList");
 
- box.innerHTML=tiers.map((tier,index)=>{
+  box.innerHTML =
+    tiers.map((tier,index)=>{
 
-  const matching=players.filter(
-   p=>p.rankings[currentMode]===tier
-  );
+      const matching =
+        players.filter(
+          player =>
+            player.rankings[currentMode] === tier
+        );
 
-  return `
-   <div class="tier ${tier}">
+      return `
+        <div class="tier ${tier}">
 
-    <div class="tier-name">
-     <strong>${tier}</strong>
-     <small>
-      ${index===0?"ELITE":index<=3?"HIGH":index<=6?"MID":"LOW"}
-     </small>
-    </div>
+          <div class="tier-name">
 
-    <div class="players">
+            <strong>${tier}</strong>
 
-     ${
-      matching.length
-       ?matching.map(player=>`
-        <div
-         class="player tier-reactive ${tier}"
-         onclick="openProfile('${escapeJS(player.name)}')">
+            <small>
+              ${
+                index === 0
+                  ? "ELITE"
+                  : index <= 3
+                    ? "HIGH"
+                    : index <= 6
+                      ? "MID"
+                      : "LOW"
+              }
+            </small>
 
-         <img class="player-head"
-          src="${skinURL(player.name,32)}">
+          </div>
 
-         <span class="player-name">
-          ${escapeHTML(player.name)}
-         </span>
+          <div class="players">
+
+            ${
+              matching.length
+                ? matching.map(player=>`
+
+                  <div
+                    class="player tier-reactive ${tier}"
+                    onclick="openProfile('${escapeJS(player.name)}')"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Open ${escapeHTML(player.name)} profile"
+                    onkeydown="handleCardKey(event,'${escapeJS(player.name)}')">
+
+                    <div class="player-head-wrap image-loading skeleton">
+
+                      <img
+                        class="player-head"
+                        src="${skinURL(player.name,32)}"
+                        alt="${escapeHTML(player.name)} Minecraft head"
+                        loading="lazy"
+                        decoding="async">
+
+                    </div>
+
+                    <span class="player-name">
+                      ${escapeHTML(player.name)}
+                    </span>
+
+                  </div>
+
+                `).join("")
+                : `
+                  <span class="empty">
+                    No players in this tier
+                  </span>
+                `
+            }
+
+          </div>
 
         </div>
-       `).join("")
-       :`<span class="empty">No players in this tier</span>`
-     }
+      `;
 
-    </div>
-   </div>
-  `;
+    }).join("");
 
- }).join("");
+  box.querySelectorAll(".player-head")
+    .forEach(markImageLoaded);
 }
 
-
-/* =========================
+/* =========================================================
    STATISTICS
-========================= */
+========================================================= */
 
 function renderStatistics(){
 
- const wins=players.reduce(
-  (s,p)=>s+Number(p.stats?.wins||0),0
- );
+  const wins =
+    players.reduce(
+      (sum,player)=>
+        sum + Number(player.stats?.wins || 0),
+      0
+    );
 
- const losses=players.reduce(
-  (s,p)=>s+Number(p.stats?.losses||0),0
- );
+  const losses =
+    players.reduce(
+      (sum,player)=>
+        sum + Number(player.stats?.losses || 0),
+      0
+    );
 
- const tests=players.reduce(
-  (s,p)=>s+Number(p.stats?.tests||0),0
- );
+  const tests =
+    players.reduce(
+      (sum,player)=>
+        sum + Number(player.stats?.tests || 0),
+      0
+    );
 
- const overall=sortedOverall().find(
-  p=>overallScore(p)>0
- );
+  const overall =
+    sortedOverall().find(
+      player=>overallScore(player)>0
+    );
 
- document.getElementById("bigStats").innerHTML=`
+  document.getElementById("bigStats").innerHTML = `
 
-  <div class="stat-card">
-   <div class="number">${players.length}</div>
-   <div class="label">Total Players</div>
-  </div>
+    <div class="stat-card">
+      <div class="number">${players.length}</div>
+      <div class="label">Total Players</div>
+    </div>
 
-  <div class="stat-card">
-   <div class="number">${tests}</div>
-   <div class="label">Total Tests</div>
-  </div>
+    <div class="stat-card">
+      <div class="number">${tests}</div>
+      <div class="label">Total Tests</div>
+    </div>
 
-  <div class="stat-card">
-   <div class="number">${wins}</div>
-   <div class="label">Total Wins</div>
-  </div>
+    <div class="stat-card">
+      <div class="number">${wins}</div>
+      <div class="label">Total Wins</div>
+    </div>
 
-  <div class="stat-card">
-   <div class="number">${losses}</div>
-   <div class="label">Total Losses</div>
-  </div>
+    <div class="stat-card">
+      <div class="number">${losses}</div>
+      <div class="label">Total Losses</div>
+    </div>
 
-  <div class="stat-card">
-   <div class="number">${mostCommonTier()}</div>
-   <div class="label">Most Common Tier</div>
-  </div>
+    <div class="stat-card">
+      <div class="number">${mostCommonTier()}</div>
+      <div class="label">Most Common Tier</div>
+    </div>
 
-  <div class="stat-card">
-   <div class="number">${overall?escapeHTML(overall.name):"N/A"}</div>
-   <div class="label">Highest Ranked Player</div>
-  </div>
- `;
+    <div class="stat-card">
+      <div class="number">
+        ${overall ? escapeHTML(overall.name) : "N/A"}
+      </div>
+      <div class="label">Highest Ranked Player</div>
+    </div>
+  `;
 
- renderDistribution();
+  renderDistribution();
 }
 
-
-/* =========================
+/* =========================================================
    DISTRIBUTION
-========================= */
+========================================================= */
 
 function renderDistribution(){
 
- const counts={};
+  const counts = {};
 
- tiers.forEach(t=>counts[t]=0);
-
- players.forEach(player=>{
-  modes.forEach(mode=>{
-   const tier=player.rankings[mode];
-   if(tier)counts[tier]++;
+  tiers.forEach(tier=>{
+    counts[tier] = 0;
   });
- });
 
- const max=Math.max(...Object.values(counts),1);
+  players.forEach(player=>{
+    modes.forEach(mode=>{
 
- document.getElementById("distribution").innerHTML=
- tiers.map(tier=>`
+      const tier =
+        player.rankings[mode];
 
-  <div class="dist-row">
+      if(tier){
+        counts[tier]++;
+      }
+    });
+  });
 
-   <span class="badge ${tier}">${tier}</span>
+  const max =
+    Math.max(...Object.values(counts),1);
 
-   <div class="dist-bar">
-    <div
-     class="dist-fill"
-     style="width:${counts[tier]/max*100}%">
-    </div>
-   </div>
+  document.getElementById("distribution").innerHTML =
+    tiers.map((tier,index)=>`
 
-   <div class="dist-count">${counts[tier]}</div>
+      <div class="dist-row">
 
-  </div>
+        <span class="badge ${tier}">
+          ${tier}
+        </span>
 
- `).join("");
+        <div class="dist-bar">
+          <div
+            class="dist-fill ${tier}"
+            style="width:${(counts[tier]/max)*100}%;animation-delay:${index*45}ms">
+          </div>
+        </div>
+
+        <div class="dist-count">
+          ${counts[tier]}
+        </div>
+
+      </div>
+
+    `).join("");
 }
 
 function mostCommonTier(){
 
- const counts={};
+  const counts = {};
 
- tiers.forEach(t=>counts[t]=0);
-
- players.forEach(p=>{
-  modes.forEach(m=>{
-   if(p.rankings[m])counts[p.rankings[m]]++;
+  tiers.forEach(tier=>{
+    counts[tier] = 0;
   });
- });
 
- let best="N/A";
- let amount=0;
+  players.forEach(player=>{
+    modes.forEach(mode=>{
 
- Object.keys(counts).forEach(t=>{
-  if(counts[t]>amount){
-   amount=counts[t];
-   best=t;
-  }
- });
+      const tier =
+        player.rankings[mode];
 
- return best;
+      if(tier){
+        counts[tier]++;
+      }
+    });
+  });
+
+  let best = "N/A";
+  let amount = 0;
+
+  Object.keys(counts).forEach(tier=>{
+
+    if(counts[tier] > amount){
+      amount = counts[tier];
+      best = tier;
+    }
+  });
+
+  return best;
 }
 
-
-/* =========================
+/* =========================================================
    3D MODEL
-========================= */
+========================================================= */
 
 async function load3DModel(name){
 
- const canvas=document.getElementById("skinViewer");
+  const canvas =
+    document.getElementById("skinViewer");
 
- if(!canvas)return;
+  const fallback =
+    document.getElementById("modelFallback");
 
- if(skinViewer){
+  const modelBox =
+    canvas?.closest(".model-box");
 
-  try{skinViewer.dispose()}catch(e){}
+  if(!canvas || !modelBox){
+    return;
+  }
 
-  skinViewer=null;
- }
+  if(skinViewer){
 
- try{
+    try{
+      if(typeof skinViewer.dispose === "function"){
+        skinViewer.dispose();
+      }
+    }catch(error){
+      console.warn("Skin viewer cleanup failed:",error);
+    }
 
-  skinViewer=new skinview3d.SkinViewer({
-   canvas:canvas,
-   width:330,
-   height:320
-  });
+    skinViewer = null;
+  }
 
-  skinViewer.controls.enableRotate=true;
-  skinViewer.controls.enableZoom=true;
-  skinViewer.controls.enablePan=false;
+  if(!window.skinview3d){
 
-  skinViewer.camera.position.set(0,0,70);
+    if(fallback){
+      fallback.textContent =
+        "3D viewer unavailable. Minecraft skin preview remains available.";
+    }
 
-  skinViewer.animation=
-   new skinview3d.IdleAnimation();
+    return;
+  }
 
-  await skinViewer.loadSkin(fullSkinURL(name));
+  const width =
+    Math.max(220,modelBox.clientWidth);
 
- }catch(error){
+  const height =
+    Math.max(220,modelBox.clientHeight);
 
-  console.error(error);
+  try{
 
- }
+    skinViewer =
+      new skinview3d.SkinViewer({
+        canvas,
+        width,
+        height,
+        skin: fullSkinURL(name)
+      });
+
+    skinViewer.controls.enableRotate = true;
+    skinViewer.controls.enableZoom = true;
+    skinViewer.controls.enablePan = false;
+
+    skinViewer.camera.position.set(0,0,70);
+
+    if(
+      skinview3d.IdleAnimation &&
+      skinViewer
+    ){
+      skinViewer.animation =
+        new skinview3d.IdleAnimation();
+    }
+
+    if(fallback){
+      fallback.style.display = "none";
+    }
+
+    await skinViewer.loadSkin(
+      fullSkinURL(name)
+    );
+
+  }catch(error){
+
+    console.error("Unable to load Minecraft skin:",error);
+
+    if(fallback){
+      fallback.style.display = "flex";
+      fallback.textContent =
+        "Unable to load the 3D skin preview.";
+    }
+  }
 }
 
+function resizeSkinViewer(){
 
-/* =========================
+  if(!skinViewer){
+    return;
+  }
+
+  const canvas =
+    document.getElementById("skinViewer");
+
+  const modelBox =
+    canvas?.closest(".model-box");
+
+  if(!canvas || !modelBox){
+    return;
+  }
+
+  try{
+
+    const width =
+      Math.max(220,modelBox.clientWidth);
+
+    const height =
+      Math.max(220,modelBox.clientHeight);
+
+    if(typeof skinViewer.setSize === "function"){
+      skinViewer.setSize(width,height);
+    }else{
+      skinViewer.width = width;
+      skinViewer.height = height;
+    }
+
+  }catch(error){
+    console.warn("Skin viewer resize failed:",error);
+  }
+}
+
+/* =========================================================
    PROFILE
-========================= */
+========================================================= */
 
 function openProfile(name){
 
- const player=players.find(p=>p.name===name);
+  const player =
+    players.find(
+      currentPlayer => currentPlayer.name === name
+    );
 
- if(!player)return;
+  if(!player){
+    return;
+  }
 
- const ranking=sortedOverall();
+  currentProfileName = name;
 
- const ranked=
-  ranking.filter(p=>overallScore(p)>0);
+  const ranking = sortedOverall();
 
- const position=
-  ranked.findIndex(p=>p.name===name)+1;
+  const ranked =
+    ranking.filter(
+      currentPlayer =>
+        overallScore(currentPlayer)>0
+    );
 
- const best=bestTier(player);
+  const position =
+    ranked.findIndex(
+      currentPlayer =>
+        currentPlayer.name === name
+    ) + 1;
 
- const card=document.getElementById("profileCard");
+  const best =
+    bestTier(player);
 
- tiers.forEach(t=>
-  card.classList.remove("profile-"+t)
- );
+  const card =
+    document.getElementById("profileCard");
 
- if(best)
-  card.classList.add("profile-"+best);
+  tiers.forEach(tier=>{
+    card.classList.remove("profile-"+tier);
+  });
 
- document.getElementById("profileSkin").src=
-  skinURL(name,120);
+  if(best){
+    card.classList.add("profile-"+best);
+  }
 
- document.getElementById("profileName").textContent=name;
+  const profileSkin =
+    document.getElementById("profileSkin");
 
- document.getElementById("profileOverall").textContent=
-  position
-   ?`🏆 #${position} Overall · ${overallScore(player)} Points`
-   :"Unranked";
+  profileSkin.classList.remove("loaded");
 
- document.getElementById("profileAchievements").innerHTML=
-  getAchievements(player).map(a=>
-   `<span class="achievement">${a}</span>`
-  ).join("");
+  profileSkin.src =
+    skinURL(name,120);
 
- document.getElementById("profileRanks").innerHTML=
-  modes.map(mode=>{
+  profileSkin.alt =
+    escapeHTML(name) + " Minecraft skin";
 
-   const tier=player.rankings[mode];
+  markImageLoaded(profileSkin);
 
-   return `
-    <div class="rank-row">
-     <span>${mode}</span>
-     ${
-      tier
-       ?`<span class="badge ${tier}">${tier}</span>`
-       :`<span style="color:#687381">N/A</span>`
-     }
+  document.getElementById("profileName")
+    .textContent = name;
+
+  document.getElementById("profileOverall")
+    .textContent =
+      position
+        ? `🏆 #${position} Overall · ${overallScore(player)} Points`
+        : "Unranked";
+
+  document.getElementById("profileAchievements").innerHTML =
+    getAchievements(player)
+      .map((achievement,index)=>`
+        <span
+          class="achievement"
+          style="animation-delay:${index*45}ms">
+          ${escapeHTML(achievement)}
+        </span>
+      `)
+      .join("");
+
+  document.getElementById("profileRanks").innerHTML =
+    modes.map(mode=>{
+
+      const tier =
+        player.rankings[mode];
+
+      return `
+        <div class="rank-row">
+
+          <span>${escapeHTML(mode)}</span>
+
+          ${
+            tier
+              ? `<span class="badge ${tier}">${tier}</span>`
+              : `<span style="color:#687381">N/A</span>`
+          }
+
+        </div>
+      `;
+
+    }).join("");
+
+  const wins =
+    Number(player.stats?.wins || 0);
+
+  const losses =
+    Number(player.stats?.losses || 0);
+
+  const tests =
+    Number(player.stats?.tests || 0);
+
+  const streak =
+    Number(player.stats?.winStreak || 0);
+
+  document.getElementById("profileStats").innerHTML = `
+
+    <div class="profile-stat">
+      <span>Overall Points</span>
+      <b>${overallScore(player)}</b>
     </div>
-   `;
 
-  }).join("");
+    <div class="profile-stat">
+      <span>Best Tier</span>
+      <b>${best || "N/A"}</b>
+    </div>
 
- const wins=Number(player.stats?.wins||0);
- const losses=Number(player.stats?.losses||0);
- const tests=Number(player.stats?.tests||0);
- const streak=Number(player.stats?.winStreak||0);
+    <div class="profile-stat">
+      <span>Ranked Modes</span>
+      <b>${modes.filter(mode=>player.rankings[mode]).length}/4</b>
+    </div>
 
- document.getElementById("profileStats").innerHTML=`
+    <div class="profile-stat">
+      <span>Wins</span>
+      <b>${wins}</b>
+    </div>
 
-  <div class="profile-stat">
-   <span>Overall Points</span>
-   <b>${overallScore(player)}</b>
-  </div>
+    <div class="profile-stat">
+      <span>Losses</span>
+      <b>${losses}</b>
+    </div>
 
-  <div class="profile-stat">
-   <span>Best Tier</span>
-   <b>${best||"N/A"}</b>
-  </div>
+    <div class="profile-stat">
+      <span>Win Rate</span>
+      <b>${winRate(player)}%</b>
+    </div>
 
-  <div class="profile-stat">
-   <span>Ranked Modes</span>
-   <b>${modes.filter(m=>player.rankings[m]).length}/4</b>
-  </div>
+    <div class="profile-stat">
+      <span>Tests</span>
+      <b>${tests}</b>
+    </div>
 
-  <div class="profile-stat">
-   <span>Wins</span>
-   <b>${wins}</b>
-  </div>
+    <div class="profile-stat">
+      <span>Win Streak</span>
+      <b>🔥 ${streak}</b>
+    </div>
 
-  <div class="profile-stat">
-   <span>Losses</span>
-   <b>${losses}</b>
-  </div>
-
-  <div class="profile-stat">
-   <span>Win Rate</span>
-   <b>${winRate(player)}%</b>
-  </div>
-
-  <div class="profile-stat">
-   <span>Tests</span>
-   <b>${tests}</b>
-  </div>
-
-  <div class="profile-stat">
-   <span>Win Streak</span>
-   <b>🔥 ${streak}</b>
-  </div>
-
-  <div class="profile-stat">
-   <span>Achievements</span>
-   <b>${getAchievements(player).length}</b>
-  </div>
- `;
-
- document.getElementById("profileTesting").innerHTML=`
-
-  <div class="rank-row">
-   <span>Tester</span>
-   <b>${escapeHTML(player.tester||"N/A")}</b>
-  </div>
-
-  <div class="rank-row">
-   <span>Test Date</span>
-   <b>${escapeHTML(player.testDate||"N/A")}</b>
-  </div>
-
-  <div class="rank-row">
-   <span>Total Tests</span>
-   <b>${tests}</b>
-  </div>
- `;
-
- const history=player.history||[];
-
- if(!history.length){
-
-  document.getElementById("profileHistory").innerHTML=`
-   <div class="no-results">
-    <strong>No Tier Changes Recorded</strong>
-    This player has no previous tier changes recorded yet.
-   </div>
+    <div class="profile-stat">
+      <span>Achievements</span>
+      <b>${getAchievements(player).length}</b>
+    </div>
   `;
 
- }else{
+  document.getElementById("profileTesting").innerHTML = `
 
-  document.getElementById("profileHistory").innerHTML=
-   history.map(change=>`
-
-    <div class="history-item">
-
-     <div class="history-change">
-
-      <strong>${escapeHTML(change.mode)}</strong>
-
-      <span class="badge ${escapeHTML(change.from)}">
-       ${escapeHTML(change.from)}
-      </span>
-
-      <span class="history-arrow">→</span>
-
-      <span class="badge ${escapeHTML(change.to)}">
-       ${escapeHTML(change.to)}
-      </span>
-
-     </div>
-
-     <div class="history-meta">
-      📅 ${escapeHTML(change.date)}
-      · 🧪 Tester: ${escapeHTML(change.tester)}
-     </div>
-
+    <div class="rank-row">
+      <span>Tester</span>
+      <b>${escapeHTML(player.tester || "N/A")}</b>
     </div>
 
-   `).join("");
- }
+    <div class="rank-row">
+      <span>Test Date</span>
+      <b>${escapeHTML(player.testDate || "N/A")}</b>
+    </div>
 
- document.getElementById("profileModal").classList.add("show");
+    <div class="rank-row">
+      <span>Total Tests</span>
+      <b>${tests}</b>
+    </div>
+  `;
 
- setTimeout(()=>load3DModel(name),100);
+  const history =
+    player.history || [];
+
+  if(!history.length){
+
+    document.getElementById("profileHistory").innerHTML = `
+      <div class="no-results">
+        <strong>No Tier Changes Recorded</strong>
+        This player has no previous tier changes recorded yet.
+      </div>
+    `;
+
+  }else{
+
+    document.getElementById("profileHistory").innerHTML =
+      history.map(change=>`
+
+        <div class="history-item">
+
+          <div class="history-change">
+
+            <strong>
+              ${escapeHTML(change.mode)}
+            </strong>
+
+            <span class="badge ${escapeHTML(change.from)}">
+              ${escapeHTML(change.from)}
+            </span>
+
+            <span class="history-arrow">→</span>
+
+            <span class="badge ${escapeHTML(change.to)}">
+              ${escapeHTML(change.to)}
+            </span>
+
+          </div>
+
+          <div class="history-meta">
+            📅 ${escapeHTML(change.date)}
+            · 🧪 Tester:
+            ${escapeHTML(change.tester)}
+          </div>
+
+        </div>
+
+      `).join("");
+  }
+
+  const modal =
+    document.getElementById("profileModal");
+
+  modal.classList.add("show");
+
+  document.body.style.overflow = "hidden";
+
+  const fallback =
+    document.getElementById("modelFallback");
+
+  if(fallback){
+    fallback.style.display = "flex";
+    fallback.textContent =
+      "Loading 3D player model…";
+  }
+
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      load3DModel(name);
+    });
+  });
 }
 
-
-/* =========================
-   CLOSE
-========================= */
+/* =========================================================
+   CLOSE PROFILE
+========================================================= */
 
 function closeProfile(){
 
- document.getElementById("profileModal")
-  .classList.remove("show");
+  const modal =
+    document.getElementById("profileModal");
+
+  modal.classList.remove("show");
+
+  document.body.style.overflow = "";
+
+  currentProfileName = null;
+
+  if(skinViewer){
+
+    try{
+      if(typeof skinViewer.dispose === "function"){
+        skinViewer.dispose();
+      }
+    }catch(error){
+      console.warn("Skin viewer cleanup failed:",error);
+    }
+
+    skinViewer = null;
+  }
 }
 
 function outside(event){
 
- if(event.target.id==="profileModal")
-  closeProfile();
+  if(event.target.id === "profileModal"){
+    closeProfile();
+  }
 }
 
+function handleCardKey(event,name){
 
-/* =========================
+  if(
+    event.key === "Enter" ||
+    event.key === " "
+  ){
+    event.preventDefault();
+    openProfile(name);
+  }
+}
+
+/* =========================================================
    NAVIGATION
-========================= */
+========================================================= */
 
 function showSection(section,button){
 
- ["home","leaderboards","tiers","stats"].forEach(id=>{
-  document.getElementById(id).style.display=
-   id===section?"block":"none";
- });
+  const sections = [
+    "home",
+    "leaderboards",
+    "tiers",
+    "stats"
+  ];
 
- document.querySelectorAll("nav button")
-  .forEach(b=>b.classList.remove("active"));
+  sections.forEach(id=>{
 
- button.classList.add("active");
+    const element =
+      document.getElementById(id);
 
- if(section==="home")renderHome();
- if(section==="leaderboards")renderLeaderboards();
+    element.style.display =
+      id === section
+        ? "block"
+        : "none";
+  });
 
- if(section==="tiers"){
-  renderSearchResults();
-  renderTierList();
- }
+  document
+    .querySelectorAll("nav button")
+    .forEach(navButton=>{
+      navButton.classList.remove("active");
+    });
 
- if(section==="stats")renderStatistics();
+  button.classList.add("active");
 
- window.scrollTo({top:0,behavior:"smooth"});
+  if(section === "home"){
+    renderHome();
+  }
+
+  if(section === "leaderboards"){
+    renderLeaderboards();
+  }
+
+  if(section === "tiers"){
+    renderSearchResults();
+    renderTierList();
+  }
+
+  if(section === "stats"){
+    renderStatistics();
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth"
+  });
 }
 
-
-/* =========================
+/* =========================================================
    HELPERS
-========================= */
+========================================================= */
 
 function escapeHTML(value){
 
- return String(value??"")
-  .replace(/&/g,"&amp;")
-  .replace(/</g,"&lt;")
-  .replace(/>/g,"&gt;")
-  .replace(/"/g,"&quot;")
-  .replace(/'/g,"&#039;");
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
 function escapeJS(value){
 
- return String(value)
-  .replace(/\\/g,"\\\\")
-  .replace(/'/g,"\\'");
+  return String(value)
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'");
 }
 
-
-/* =========================
+/* =========================================================
    KEYBOARD
-========================= */
+========================================================= */
 
 document.addEventListener("keydown",event=>{
- if(event.key==="Escape")
-  closeProfile();
+
+  if(event.key === "Escape"){
+    closeProfile();
+  }
 });
 
+/* =========================================================
+   WINDOW / VIEWER RESIZE
+========================================================= */
 
-/* =========================
-   START
-========================= */
+window.addEventListener(
+  "resize",
+  resizeSkinViewer,
+  {passive:true}
+);
+
+window.addEventListener(
+  "orientationchange",
+  ()=>{
+    setTimeout(resizeSkinViewer,150);
+  },
+  {passive:true}
+);
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
 renderHome();
 renderLeaderboards();
