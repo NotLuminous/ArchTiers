@@ -1733,6 +1733,31 @@ main{
  font-size:10px;
 }
 
+ .rating-history{
+ position:relative;overflow:hidden;padding:18px;
+ border:1px solid color-mix(in srgb,var(--profile-tier) 20%,#252d37);
+ border-radius:14px;
+ background:radial-gradient(circle at 50% 0,var(--profile-glow),transparent 45%),rgba(10,15,21,.82);
+ box-shadow:inset 0 1px rgba(255,255,255,.03);
+}
+.rating-history-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:13px}
+.rating-history-title{color:#f4f6f8;font-family:"Manrope",sans-serif;font-size:12px;font-weight:900}
+.rating-history-current{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border:1px solid color-mix(in srgb,var(--profile-tier) 35%,#303945);border-radius:999px;color:var(--profile-tier);background:var(--profile-glow);font-size:8px;font-weight:900;text-transform:uppercase;letter-spacing:.7px}
+.rating-chart-wrap{position:relative;width:100%;min-height:250px;border-radius:11px;background:linear-gradient(180deg,rgba(255,255,255,.018),rgba(255,255,255,.006));border:1px solid rgba(255,255,255,.045)}
+.rating-chart{display:block;width:100%;height:250px}
+.rating-grid{stroke:rgba(255,255,255,.07);stroke-width:1}
+.rating-line{fill:none;stroke:var(--profile-tier);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 7px var(--profile-glow));stroke-dasharray:1000;stroke-dashoffset:1000;animation:ratingLineDraw 1.1s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes ratingLineDraw{to{stroke-dashoffset:0}}
+.rating-area{fill:var(--profile-glow);opacity:.2}
+.rating-point{fill:#080c11;stroke:var(--profile-tier);stroke-width:4;filter:drop-shadow(0 0 8px var(--profile-glow));animation:ratingPointIn .35s ease both}
+@keyframes ratingPointIn{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+.rating-label{fill:#7f8997;font-size:9px;font-weight:800}
+.rating-tier-label{fill:#fff;font-size:10px;font-weight:900}
+.rating-score-label{fill:var(--profile-tier);font-size:9px;font-weight:900}
+.rating-history-summary{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:7px;margin-top:12px}
+.rating-history-arrow{color:#687381;font-weight:900}
+.rating-history-empty{padding:24px;text-align:center;border:1px dashed #303945;border-radius:12px;color:#687381;font-size:10px}
+
 .history-item{
  position:relative;
  padding:15px;
@@ -2535,6 +2560,14 @@ footer strong{
 
    </div>
 
+    <div class="profile-section">
+
+     <h3>📈 Rating History</h3>
+
+     <div id="profileRatingHistory"></div>
+
+    </div>
+
    <div class="profile-section">
 
     <h3>📜 Full Tier History</h3>
@@ -2612,7 +2645,29 @@ const players=[
  },
  tester:"Head Tester",
  testDate:"8/15/2026",
- history:[]
+ history:[
+  {
+   mode:"Bedfight",
+   from:"LT3",
+   to:"HT3",
+   date:"8/15/2026",
+   tester:"Head Tester"
+  }
+ ],
+ ratingHistory:[
+  {
+   mode:"Bedfight",
+   tier:"LT3",
+   score:75,
+   label:"Started"
+  },
+  {
+   mode:"Bedfight",
+   tier:"HT3",
+   score:80,
+   label:"8/15/2026"
+  }
+ ]
 },
 
 {
@@ -3885,6 +3940,118 @@ async function load3DModel(name){
    PROFILE
 ========================= */
 
+function renderRatingHistory(player){
+
+ const container=document.getElementById("profileRatingHistory");
+ if(!container)return;
+
+ const history=(player.ratingHistory||[])
+  .filter(entry=>entry && entry.tier)
+  .map(entry=>({
+   mode:entry.mode||"Overall",
+   tier:entry.tier,
+   score:Number(entry.score??tierScore(entry.tier)),
+   label:entry.label||entry.date||""
+  }));
+
+ if(!history.length){
+  container.innerHTML=`
+   <div class="rating-history-empty">
+    No rating history recorded yet.
+   </div>`;
+  return;
+ }
+
+ const grouped=[...new Set(history.map(entry=>entry.mode))];
+
+ container.innerHTML=grouped.map(mode=>{
+
+  const points=history.filter(entry=>entry.mode===mode);
+  const width=1000,height=250,left=65,right=28,top=24,bottom=48;
+  const chartWidth=width-left-right;
+  const chartHeight=height-top-bottom;
+  const minScore=55,maxScore=100;
+
+  const xFor=index=>points.length===1
+   ?left+chartWidth/2
+   :left+(chartWidth/(points.length-1))*index;
+
+  const yFor=score=>top+
+   ((maxScore-Math.max(minScore,Math.min(maxScore,score)))/
+    (maxScore-minScore))*chartHeight;
+
+  const coords=points.map((point,index)=>({
+   ...point,x:xFor(index),y:yFor(point.score)
+  }));
+
+  const linePath=coords.map((point,index)=>
+   `${index===0?"M":"L"} ${point.x.toFixed(1)} ${point.y.toFixed(1)}`
+  ).join(" ");
+
+  const areaPath=coords.length>1
+   ?`${linePath} L ${coords[coords.length-1].x.toFixed(1)} ${(top+chartHeight).toFixed(1)} L ${coords[0].x.toFixed(1)} ${(top+chartHeight).toFixed(1)} Z`
+   :"";
+
+  const gridScores=[55,65,75,85,95,100];
+
+  return `
+   <div class="rating-history">
+    <div class="rating-history-header">
+     <div class="rating-history-title">
+      ${escapeHTML(mode)} Rating Progression
+     </div>
+     <div class="rating-history-current">
+      ${escapeHTML(points[points.length-1].tier)} · ${points[points.length-1].score} pts
+     </div>
+    </div>
+
+    <div class="rating-chart-wrap">
+     <svg class="rating-chart" viewBox="0 0 ${width} ${height}"
+      preserveAspectRatio="none"
+      role="img"
+      aria-label="${escapeHTML(mode)} rating history">
+
+      ${gridScores.map(score=>`
+       <line class="rating-grid"
+        x1="${left}" x2="${width-right}"
+        y1="${yFor(score)}" y2="${yFor(score)}"></line>
+       <text class="rating-label"
+        x="${left-12}" y="${yFor(score)+3}"
+        text-anchor="end">${score}</text>
+      `).join("")}
+
+      ${areaPath?`<path class="rating-area" d="${areaPath}"></path>`:""}
+      <path class="rating-line" d="${linePath}"></path>
+
+      ${coords.map((point,index)=>`
+       <circle class="rating-point"
+        cx="${point.x}" cy="${point.y}" r="7"
+        style="animation-delay:${index*120}ms"></circle>
+       <text class="rating-tier-label"
+        x="${point.x}" y="${point.y-14}"
+        text-anchor="middle">${escapeHTML(point.tier)}</text>
+       <text class="rating-score-label"
+        x="${point.x}" y="${height-27}"
+        text-anchor="middle">${escapeHTML(String(point.label))}</text>
+      `).join("")}
+     </svg>
+    </div>
+
+    <div class="rating-history-summary">
+     ${points.map((point,index)=>`
+      ${index?`<span class="rating-history-arrow">→</span>`:""}
+      <span class="badge ${escapeHTML(point.tier)}">
+       ${escapeHTML(point.tier)}
+      </span>
+     `).join("")}
+    </div>
+   </div>
+  `;
+
+ }).join("");
+}
+
+
 function openProfile(name){
 
  const player=
@@ -4122,6 +4289,8 @@ function openProfile(name){
 
    `).join("");
  }
+
+ renderRatingHistory(player);
 
  const modal=
   document.getElementById(
