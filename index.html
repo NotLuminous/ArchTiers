@@ -2746,8 +2746,7 @@ const players=[
  tester:"Tester",
  testDate:"8/14/2026",
  history:[]
-}
-
+},
 
 {
  name:"AurynBear",
@@ -3781,7 +3780,6 @@ function mostCommonTier(){
 /* =========================
    3D MODEL
 ========================= */
-
 async function load3DModel(name){
 
  const canvas=
@@ -3790,11 +3788,9 @@ async function load3DModel(name){
  if(!canvas)return;
 
  if(skinViewer){
-
   try{
    skinViewer.dispose();
   }catch(error){}
-
   skinViewer=null;
  }
 
@@ -3830,14 +3826,55 @@ async function load3DModel(name){
   skinViewer.animation=
    new skinview3d.IdleAnimation();
 
-  await skinViewer.loadSkin(
-   fullSkinURL(name)
-  );
+  /*
+   * Load the skin directly. If one skin host fails for a player,
+   * retry with a second public skin host instead of leaving the
+   * 3D viewer empty.
+   */
+  const skinSources=[
+   fullSkinURL(name),
+   "https://minotar.net/skin/"+
+    encodeURIComponent(name)
+  ];
+
+  let loaded=false;
+  let lastError=null;
+
+  for(const skinSource of skinSources){
+
+   try{
+
+    await skinViewer.loadSkin(
+     skinSource
+    );
+
+    loaded=true;
+    break;
+
+   }catch(error){
+
+    lastError=error;
+    console.warn(
+     "3D skin source failed:",
+     skinSource,
+     error
+    );
+   }
+  }
+
+  if(!loaded){
+
+   console.error(
+    "Unable to load 3D skin:",
+    name,
+    lastError
+   );
+  }
 
  }catch(error){
 
   console.error(
-   "Unable to load 3D skin:",
+   "Unable to initialize 3D skin viewer:",
    error
   );
  }
