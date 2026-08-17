@@ -1154,6 +1154,15 @@ main{
  color:#5f6976;
 }
 
+.player-manager{margin-top:12px}
+.player-manager-controls{grid-template-columns:1.6fr 1fr 1fr}
+.manager-btn{border:1px solid rgba(255,48,48,.35);border-radius:11px;padding:13px 17px;background:linear-gradient(135deg,rgba(255,48,48,.22),rgba(120,10,10,.16));color:#fff;cursor:pointer;font-size:10px;font-weight:900;letter-spacing:.5px;transition:.22s ease;white-space:nowrap}
+.manager-btn:hover{transform:translateY(-2px);border-color:rgba(255,48,48,.7);box-shadow:0 10px 28px rgba(255,48,48,.12)}
+.manager-note{margin-top:10px;color:#687381;font-size:9px;line-height:1.5}.manager-note strong{color:#aeb7c2}
+.promotion-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.promote-btn{margin-left:auto;border:1px solid color-mix(in srgb,var(--tier) 55%,white 5%);border-radius:9px;padding:7px 11px;background:linear-gradient(135deg,var(--tier),var(--tier2));color:#fff;cursor:pointer;font-size:8px;font-weight:1000;letter-spacing:.6px;box-shadow:0 0 14px var(--glow);transition:.2s ease}
+.promote-btn:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 24px var(--glow)}
+@media(max-width:760px){.player-manager-controls{grid-template-columns:1fr}}
 .filter-select option{
  background:#0d1117;
  color:#fff;
@@ -2164,384 +2173,7 @@ footer strong{
 
 <body>
 
-<header>
-
- <div class="logo">
-  <span class="arch">ARCH</span>
-  <span class="tiers"> TIERS</span>
- </div>
-
- <div class="subtitle">
-  Minecraft PvP Competitive Rankings
- </div>
-
- <div class="header-status">
-  <span class="status-dot"></span>
-  Competitive Rankings Online
- </div>
-
-</header>
-
-<nav aria-label="Primary navigation">
-
- <button class="active" onclick="showSection('home',this)">
-  🏠 Home
- </button>
-
- <button onclick="showSection('leaderboards',this)">
-  🏆 Leaderboards
- </button>
-
- <button onclick="showSection('tiers',this)">
-  ⚔ Tier List
- </button>
-
- <button onclick="showSection('stats',this)">
-  📊 Statistics
- </button>
-
-</nav>
-
-<main>
-
-<section id="home">
-
- <div class="dashboard">
-
-  <div class="featured" id="featured"></div>
-
-  <div class="stat-grid" id="quickStats"></div>
-
- </div>
-
- <div class="section">
-
-  <div class="section-title">
-   🥇 <span>Top 3 Overall</span>
-  </div>
-
-  <div class="podium" id="podium"></div>
-
- </div>
-
-</section>
-
-
-<section id="leaderboards" style="display:none">
-
- <div class="section-title">
-  🏆 <span>Leaderboards</span>
- </div>
-
- <div class="tabs">
-
-  <button class="tab active"
-   onclick="leaderboardMode='Overall';updateLeaderboardTabs(this);renderLeaderboards()">
-   Overall
-  </button>
-
-  <button class="tab"
-   onclick="leaderboardMode='Bedfight';updateLeaderboardTabs(this);renderLeaderboards()">
-   ⚔ Bedfight
-  </button>
-
-  <button class="tab"
-   onclick="leaderboardMode='Bedwars';updateLeaderboardTabs(this);renderLeaderboards()">
-   🛏 Bedwars
-  </button>
-
-  <button class="tab"
-   onclick="leaderboardMode='UHC';updateLeaderboardTabs(this);renderLeaderboards()">
-   💎 UHC
-  </button>
-
-  <button class="tab"
-   onclick="leaderboardMode='Sumo';updateLeaderboardTabs(this);renderLeaderboards()">
-   🥊 Sumo
-  </button>
-
- </div>
-
- <div class="leaderboard" id="leaderboard"></div>
-
-</section>
-
-
-<section id="tiers" style="display:none">
-
- <div class="section-title">
-  🔎 <span>Advanced Player Search</span>
- </div>
-
- <div class="search-panel">
-
-  <div class="search-panel-title">
-   Search Players
-  </div>
-
-  <div class="search-controls">
-
-   <input
-    class="search-input"
-    id="advancedSearch"
-    type="text"
-    placeholder="🔎 Search by Minecraft IGN..."
-    autocomplete="off"
-    oninput="renderSearchResults()">
-
-   <select
-    class="filter-select"
-    id="searchMode"
-    onchange="renderSearchResults()">
-
-    <option value="All">All Game Modes</option>
-    <option value="Bedfight">⚔ Bedfight</option>
-    <option value="Bedwars">🛏 Bedwars</option>
-    <option value="UHC">💎 UHC</option>
-    <option value="Sumo">🥊 Sumo</option>
-
-   </select>
-
-   <select
-    class="filter-select"
-    id="searchTier"
-    onchange="renderSearchResults()">
-
-    <option value="All">All Tiers</option>
-    <option value="HT1">HT1</option>
-    <option value="LT1">LT1</option>
-    <option value="HT2">HT2</option>
-    <option value="LT2">LT2</option>
-    <option value="HT3">HT3</option>
-    <option value="LT3">LT3</option>
-    <option value="HT4">HT4</option>
-    <option value="LT4">LT4</option>
-    <option value="HT5">HT5</option>
-    <option value="LT5">LT5</option>
-    <option value="N/A">N/A</option>
-
-   </select>
-
-  </div>
-
- </div>
-
- <div class="search-results" id="searchResults"></div>
-
- <div class="section">
-
-  <div class="section-title">
-   ⚔ <span id="tierTitle">Bedfight Rankings</span>
-  </div>
-
-  <div class="tabs">
-
-   <button class="tab active"
-    onclick="setMode('Bedfight',this)">
-    ⚔ Bedfight
-   </button>
-
-   <button class="tab"
-    onclick="setMode('Bedwars',this)">
-    🛏 Bedwars
-   </button>
-
-   <button class="tab"
-    onclick="setMode('UHC',this)">
-    💎 UHC
-   </button>
-
-   <button class="tab"
-    onclick="setMode('Sumo',this)">
-    🥊 Sumo
-   </button>
-
-  </div>
-
- </div>
-
- <div class="tier-list" id="tierList"></div>
-
-</section>
-
-
-<section id="stats" style="display:none">
-
- <div class="section-title">
-  📊 <span>Statistics Dashboard</span>
- </div>
-
- <div class="stat-grid" id="bigStats"></div>
-
- <div class="section" style="margin-top:32px">
-
-  <div class="section-title">
-   📊 <span>Tier Distribution</span>
-  </div>
-
-  <div class="distribution" id="distribution"></div>
-
- </div>
-
- <div class="section">
-
-  <div class="section-title">
-   🎖️ <span>Achievement System</span>
-  </div>
-
-  <div class="changes">
-
-   <div class="change">
-    🥇 <strong>#1 Overall</strong>
-    <small>Ranked first overall.</small>
-   </div>
-
-   <div class="change">
-    🏆 <strong>Top 3</strong>
-    <small>Ranks within the top three overall.</small>
-   </div>
-
-   <div class="change">
-    ⭐ <strong>Top 10</strong>
-    <small>Ranks within the top ten overall.</small>
-   </div>
-
-   <div class="change">
-    👑 <strong>HT1 Player</strong>
-    <small>Has achieved HT1 in at least one mode.</small>
-   </div>
-
-   <div class="change">
-    🔥 <strong>HT2 Player</strong>
-    <small>Has achieved HT2 in at least one mode.</small>
-   </div>
-
-   <div class="change">
-    ⚡ <strong>Elite Player</strong>
-    <small>Has achieved HT1–LT3 in at least one mode.</small>
-   </div>
-
-   <div class="change">
-    🔥 <strong>Multi-Mode</strong>
-    <small>Ranked in two or more game modes.</small>
-   </div>
-
-   <div class="change">
-    🌟 <strong>All Modes</strong>
-    <small>Ranked in all four game modes.</small>
-   </div>
-
-   <div class="change">
-    💯 <strong>100 Wins</strong>
-    <small>Has reached 100 competitive wins.</small>
-   </div>
-
-   <div class="change">
-    🧪 <strong>10 Tests</strong>
-    <small>Has completed at least ten tests.</small>
-   </div>
-
-   <div class="change">
-    ⚔️ <strong>10-Win Streak</strong>
-    <small>Has reached a ten-win streak.</small>
-   </div>
-
-   <div class="change">
-    💯 <strong>Undefeated</strong>
-    <small>Has wins and zero losses.</small>
-   </div>
-
-   <div class="change">
-    🧪 <strong>Tested Player</strong>
-    <small>Has completed a competitive test.</small>
-   </div>
-
-  </div>
-
- </div>
-
-</section>
-
-</main>
-
-<footer>
- <strong>ARCH TIERS</strong> · Minecraft PvP Rankings
-</footer>
-
-
-<div
- class="modal"
- id="profileModal"
- onclick="outside(event)"
- role="dialog"
- aria-modal="true"
- aria-label="Player profile">
-
- <div class="profile" id="profileCard">
-
-  <button
-   class="close"
-   onclick="closeProfile()"
-   aria-label="Close player profile">
-   ×
-  </button>
-
-  <div class="profile-banner"></div>
-
-  <div class="profile-body">
-
-   <div class="profile-top">
-
-    <div>
-
-     <img
-      id="profileSkin"
-      class="profile-skin"
-      alt="Minecraft Skin">
-
-     <div
-      id="profileName"
-      class="profile-name">
-     </div>
-
-     <div
-      id="profileOverall"
-      class="overall">
-     </div>
-
-     <div
-      id="profileAchievements"
-      class="achievements"
-      style="margin-top:13px">
-     </div>
-
-    </div>
-
-    <div class="model-box">
-
-     <canvas id="skinViewer"></canvas>
-
-     <div class="model-label">
-      3D PLAYER MODEL
-     </div>
-
-     <div class="model-hint">
-      Drag to rotate · Scroll to zoom
-     </div>
-
-    </div>
-
-   </div>
-
-   <div class="profile-section">
-
-    <h3>🏆 Competitive Rankings</h3>
-
-    <div id="profileRanks"></div>
-
-   </div>
-
-   <div class="profile-section">
+<header><div class="profile-section">
 
     <h3>📊 Statistics</h3>
 
@@ -2589,275 +2221,134 @@ footer strong{
    PLAYER DATABASE
 ========================= */
 
-const players=[
+let players=[
 
 {
  name:"Luminous",
- rankings:{
-  Bedfight:null,
-  Bedwars:"HT3",
-  UHC:null,
-  Sumo:null
- },
- stats:{
-  wins:5,
-  losses:0,
-  tests:1,
-  winStreak:5
- },
- tester:"Head Tester",
- testDate:"8/12/2026",
- history:[]
+ rankings:{Bedfight:null,Bedwars:"HT3",UHC:null,Sumo:null},
+ stats:{wins:5,losses:0,tests:1,winStreak:5},
+ tester:"Head Tester",testDate:"8/12/2026",history:[]
 },
 
 {
  name:"Ehlendas",
- rankings:{
-  Bedfight:null,
-  Bedwars:null,
-  UHC:null,
-  Sumo:"LT3"
- },
- stats:{
-  wins:2,
-  losses:5,
-  tests:1,
-  winStreak:0
- },
- tester:"Head Tester",
- testDate:"8/12/2026",
- history:[]
+ rankings:{Bedfight:null,Bedwars:null,UHC:null,Sumo:"LT3"},
+ stats:{wins:2,losses:5,tests:1,winStreak:0},
+ tester:"Head Tester",testDate:"8/12/2026",history:[]
 },
 
 {
  name:"_kaaam",
- rankings:{
-  Bedfight:"HT3",
-  Bedwars:null,
-  UHC:null,
-  Sumo:null
- },
- stats:{
-  wins:7,
-  losses:6,
-  tests:2,
-  winStreak:5
- },
- tester:"Head Tester",
- testDate:"8/15/2026",
+ rankings:{Bedfight:"HT3",Bedwars:null,UHC:null,Sumo:"LT3"},
+ stats:{wins:11,losses:11,tests:3,winStreak:0},
+ tester:"Head Tester",testDate:"8/16/2026",
  history:[
-  {
-   mode:"Bedfight",
-   from:"LT3",
-   to:"HT3",
-   date:"8/15/2026",
-   tester:"Head Tester"
-  }
+  {mode:"Bedfight",from:"LT3",to:"HT3",date:"8/15/2026",tester:"Head Tester"},
+  {mode:"Sumo",from:null,to:"LT3",date:"8/16/2026",tester:"Head Tester"}
  ],
  ratingHistory:[
-  {
-   mode:"Bedfight",
-   tier:"LT3",
-   score:75,
-   label:"Started"
-  },
-  {
-   mode:"Bedfight",
-   tier:"HT3",
-   score:80,
-   label:"8/15/2026"
-  }
+  {mode:"Bedfight",tier:"LT3",score:75,label:"Started"},
+  {mode:"Bedfight",tier:"HT3",score:80,label:"8/15/2026"},
+  {mode:"Sumo",tier:"LT3",score:75,label:"8/16/2026"}
  ]
 },
 
 {
  name:"Anles_Gamer",
- rankings:{
-  Bedfight:null,
-  Bedwars:null,
-  UHC:null,
-  Sumo:"HT5"
- },
- stats:{
-  wins:2,
-  losses:5,
-  tests:1,
-  winStreak:0
- },
- tester:"Tester",
- testDate:"8/12/2026",
- history:[]
+ rankings:{Bedfight:null,Bedwars:null,UHC:null,Sumo:"HT5"},
+ stats:{wins:2,losses:5,tests:1,winStreak:0},
+ tester:"Tester",testDate:"8/12/2026",history:[]
 },
 
 {
  name:"Zerphat",
- rankings:{
-  Bedfight:null,
-  Bedwars:"HT5",
-  UHC:null,
-  Sumo:null
- },
- stats:{
-  wins:1,
-  losses:5,
-  tests:1,
-  winStreak:0
- },
- tester:"Head Tester",
- testDate:"8/12/2026",
- history:[]
+ rankings:{Bedfight:null,Bedwars:"HT5",UHC:null,Sumo:null},
+ stats:{wins:1,losses:5,tests:1,winStreak:0},
+ tester:"Head Tester",testDate:"8/12/2026",history:[]
 },
 
 {
  name:"Mr_Elite_noob",
- rankings:{
-  Bedfight:"LT3",
-  Bedwars:null,
-  UHC:"LT3",
-  Sumo:null
- },
- stats:{
-  wins:8,
-  losses:2,
-  tests:2,
-  winStreak:3
- },
- tester:"Tester",
- testDate:"8/12/2026",
- history:[]
+ rankings:{Bedfight:"HT3",Bedwars:null,UHC:"LT3",Sumo:null},
+ stats:{wins:13,losses:2,tests:3,winStreak:0},
+ tester:"Head Tester",testDate:"8/16/2026",
+ history:[
+  {mode:"Bedfight",from:"LT3",to:"HT3",date:"8/16/2026",tester:"Head Tester"}
+ ],
+ ratingHistory:[
+  {mode:"Bedfight",tier:"LT3",score:75,label:"Started"},
+  {mode:"Bedfight",tier:"HT3",score:80,label:"8/16/2026"}
+ ]
 },
 
 {
  name:"Cloroxwipes11o",
- rankings:{
-  Bedfight:null,
-  Bedwars:null,
-  UHC:null,
-  Sumo:"LT3"
- },
- stats:{
-  wins:3,
-  losses:5,
-  tests:1,
-  winStreak:0
- },
- tester:"Head Tester",
- testDate:"8/12/2026",
- history:[]
+ rankings:{Bedfight:null,Bedwars:null,UHC:null,Sumo:"LT3"},
+ stats:{wins:3,losses:5,tests:1,winStreak:0},
+ tester:"Head Tester",testDate:"8/12/2026",history:[]
 },
 
 {
  name:"nyxen_",
- rankings:{
-  Bedfight:"LT3",
-  Bedwars:null,
-  UHC:null,
-  Sumo:null
- },
- stats:{
-  wins:2,
-  losses:5,
-  tests:1,
-  winStreak:0
- },
- tester:"Head Tester",
- testDate:"8/12/2026",
- history:[]
+ rankings:{Bedfight:"LT3",Bedwars:null,UHC:null,Sumo:null},
+ stats:{wins:2,losses:5,tests:1,winStreak:0},
+ tester:"Head Tester",testDate:"8/12/2026",history:[]
 },
 
 {
  name:"hmmelite",
- rankings:{
-  Bedfight:"HT4",
-  Bedwars:null,
-  UHC:null,
-  Sumo:null
- },
- stats:{
-  wins:4,
-  losses:5,
-  tests:1,
-  winStreak:0
- },
- tester:"Tester",
- testDate:"8/13/2026",
- history:[]
+ rankings:{Bedfight:null,Bedwars:"LT3",UHC:null,Sumo:"HT5"},
+ stats:{wins:7,losses:10,tests:3,winStreak:0},
+ tester:"Head Tester",testDate:"8/16/2026",
+ history:[
+  {mode:"Bedwars",from:null,to:"LT3",date:"8/16/2026",tester:"Head Tester"},
+  {mode:"Sumo",from:null,to:"HT5",date:"8/16/2026",tester:"Head Tester"}
+ ],
+ ratingHistory:[
+  {mode:"Bedwars",tier:"LT3",score:75,label:"8/16/2026"},
+  {mode:"Sumo",tier:"HT5",score:65,label:"8/16/2026"}
+ ]
 },
 
 {
  name:"IndusVerse",
- rankings:{
-  Bedfight:null,
-  Bedwars:"HT5",
-  UHC:null,
-  Sumo:null
- },
- stats:{
-  wins:2,
-  losses:5,
-  tests:1,
-  winStreak:0
- },
- tester:"Tester",
- testDate:"8/14/2026",
- history:[]
+ rankings:{Bedfight:null,Bedwars:"HT5",UHC:null,Sumo:null},
+ stats:{wins:2,losses:5,tests:1,winStreak:0},
+ tester:"Tester",testDate:"8/14/2026",history:[]
 },
 
 {
  name:"AurynBear",
- rankings:{
-  Bedfight:null,
-  Bedwars:null,
-  UHC:"LT4",
-  Sumo:null
- },
- stats:{
-  wins:3,
-  losses:5,
-  tests:1,
-  winStreak:0
- },
- tester:"Head Tester",
- testDate:"8/14/2026",
- history:[]
+ rankings:{Bedfight:null,Bedwars:null,UHC:"LT4",Sumo:null},
+ stats:{wins:3,losses:5,tests:1,winStreak:0},
+ tester:"Head Tester",testDate:"8/14/2026",history:[]
 },
 
 {
  name:"DeskStar",
- rankings:{
-  Bedfight:"LT3",
-  Bedwars:null,
-  UHC:null,
-  Sumo:null
- },
- stats:{
-  wins:5,
-  losses:4,
-  tests:1,
-  winStreak:0
- },
- tester:"Head Tester",
- testDate:"8/15/2026",
- history:[]
+ rankings:{Bedfight:"LT3",Bedwars:null,UHC:null,Sumo:null},
+ stats:{wins:5,losses:4,tests:1,winStreak:0},
+ tester:"Head Tester",testDate:"8/15/2026",history:[]
 },
 
 {
  name:"Potato",
- rankings:{
-  Bedfight:"HT5",
-  Bedwars:null,
-  UHC:null,
-  Sumo:null
- },
- stats:{
-  wins:2,
-  losses:5,
-  tests:1,
-  winStreak:0
- },
- tester:"Tester",
- testDate:"8/15/2026",
- history:[]
+ rankings:{Bedfight:"HT5",Bedwars:null,UHC:null,Sumo:null},
+ stats:{wins:2,losses:5,tests:1,winStreak:0},
+ tester:"Tester",testDate:"8/15/2026",history:[]
+},
+
+{
+ name:"Sammyytu",
+ rankings:{Bedfight:"HT4",Bedwars:null,UHC:null,Sumo:null},
+ stats:{wins:4,losses:5,tests:1,winStreak:0},
+ tester:"Head Tester",testDate:"8/16/2026",
+ history:[
+  {mode:"Bedfight",from:null,to:"HT4",date:"8/16/2026",tester:"Head Tester"}
+ ],
+ ratingHistory:[
+  {mode:"Bedfight",tier:"HT4",score:70,label:"8/16/2026"}
+ ]
 }
 
 ];
@@ -2980,6 +2471,88 @@ function winRate(player){
   :0;
 }
 
+
+/* =========================
+   PLAYER MANAGEMENT
+========================= */
+
+function savePlayers(){
+ try{localStorage.setItem("archTiersPlayers",JSON.stringify(players));}catch(error){}
+}
+
+function loadSavedPlayers(){
+ try{
+  const saved=localStorage.getItem("archTiersPlayers");
+  if(!saved)return;
+  const parsed=JSON.parse(saved);
+  if(Array.isArray(parsed))players=parsed;
+ }catch(error){}
+}
+
+function today(){
+ const d=new Date();
+ return `${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`;
+}
+
+function addPlayer(){
+ const nameInput=document.getElementById("newPlayerName");
+ const modeInput=document.getElementById("newPlayerMode");
+ const tierInput=document.getElementById("newPlayerTier");
+ const testerInput=document.getElementById("newPlayerTester");
+ const name=nameInput.value.trim(),mode=modeInput.value,tier=tierInput.value||null;
+ const tester=testerInput.value.trim()||"Tester";
+ if(!name){alert("Enter a Minecraft IGN first.");nameInput.focus();return;}
+ if(players.some(p=>p.name.toLowerCase()===name.toLowerCase())){alert("That player is already in ARCH TIERS.");return;}
+ const newPlayer={name,rankings:{Bedfight:null,Bedwars:null,UHC:null,Sumo:null},stats:{wins:0,losses:0,tests:tier?1:0,winStreak:0},tester,testDate:tier?today():"",history:[],ratingHistory:[]};
+ if(tier){newPlayer.rankings[mode]=tier;newPlayer.ratingHistory.push({mode,tier,score:tierScore(tier),label:"Started"});}
+ players.push(newPlayer);savePlayers();
+ nameInput.value="";testerInput.value="";
+ renderHome();renderLeaderboards();renderTierList();renderStatistics();renderSearchResults();
+ alert(`${name} has been added${tier?` as ${tier} in ${mode}`:" as an unranked player"}.`);
+}
+
+function nextTier(tier){
+ const index=tiers.indexOf(tier);
+ return index>0?tiers[index-1]:null;
+}
+
+function promotePlayer(name,mode){
+ const player=players.find(p=>p.name===name);
+ if(!player)return;
+ const current=player.rankings[mode];
+ if(!current){alert(`${name} is not ranked in ${mode} yet.`);return;}
+ const next=nextTier(current);
+ if(!next){alert(`${name} is already HT1 in ${mode}.`);return;}
+ const tester=prompt("Tester / promoter name:",player.tester||"Tester");
+ if(tester===null)return;
+ const date=prompt("Promotion date:",today());
+ if(date===null)return;
+ player.rankings[mode]=next;player.tester=tester.trim()||"Tester";player.testDate=date.trim()||today();
+ player.stats=player.stats||{};player.stats.tests=Number(player.stats.tests||0)+1;
+ player.history=player.history||[];player.ratingHistory=player.ratingHistory||[];
+ player.history.push({mode,from:current,to:next,date:player.testDate,tester:player.tester});
+ player.ratingHistory.push({mode,tier:next,score:tierScore(next),label:player.testDate});
+ savePlayers();
+ renderHome();renderLeaderboards();renderTierList();renderStatistics();renderSearchResults();openProfile(name);
+}
+
+function renderPlayerManagement(player){
+ const box=document.getElementById("profileManagement");
+ if(!box)return;
+ box.innerHTML=modes.map(mode=>{
+  const current=player.rankings[mode],next=current?nextTier(current):null;
+  return `<div class="rank-row promotion-row">
+   <span>${escapeHTML(mode)}</span>
+   ${current
+    ? `<span class="badge ${current}">${current}</span><span class="history-arrow">→</span>
+       ${next
+        ? `
+`
+        : `<span style="color:#687381;font-size:8px">MAX TIER</span>`}`
+    : `<span style="color:#687381">N/A</span>`}
+  </div>`;
+ }).join("");
+}
 
 /* =========================
    ACHIEVEMENTS
@@ -4147,6 +3720,8 @@ function openProfile(name){
 
   }).join("");
 
+ renderPlayerManagement(player);
+
  const wins=
   Number(player.stats?.wins||0);
 
@@ -4470,6 +4045,8 @@ document.addEventListener(
 /* =========================
    START
 ========================= */
+
+loadSavedPlayers();
 
 renderHome();
 renderLeaderboards();
