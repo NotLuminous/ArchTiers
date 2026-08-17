@@ -448,10 +448,12 @@ main{
 ========================= */
 
 .dashboard{
- display:grid;
- grid-template-columns:1.55fr 1fr;
- gap:18px;
- margin-bottom:38px;
+ display:block;
+ margin-bottom:28px;
+}
+
+.home-dashboard .featured{
+ width:100%;
 }
 
 .featured{
@@ -682,143 +684,28 @@ main{
 ========================= */
 
 .podium{
- display:grid;
- grid-template-columns:1fr 1.1fr 1fr;
- align-items:end;
- gap:14px;
-}
-
-.podium-card{
- position:relative;
- padding:23px 16px;
- text-align:center;
- cursor:pointer;
- border-radius:17px;
- overflow:visible;
- transition:
-  transform .3s cubic-bezier(.2,.8,.2,1),
-  border-color .25s ease,
-  box-shadow .25s ease;
- animation:podiumRise .7s cubic-bezier(.2,.8,.2,1) both;
-}
-
-.podium-card:nth-child(1){animation-delay:.08s}
-.podium-card:nth-child(2){animation-delay:.16s}
-.podium-card:nth-child(3){animation-delay:.24s}
-
-@keyframes podiumRise{
- from{
-  opacity:0;
-  transform:translateY(35px) scale(.96);
- }
- to{
-  opacity:1;
-  transform:none;
- }
-}
-
-.podium-card:after{
- content:"";
- position:absolute;
- inset:0;
- pointer-events:none;
- border-radius:inherit;
- background:linear-gradient(135deg,rgba(255,255,255,.045),transparent 40%);
-}
-
-.podium-card:hover{
- transform:translateY(-9px) scale(1.015);
- border-color:rgba(255,48,48,.4);
- box-shadow:
-  0 22px 55px rgba(0,0,0,.36),
-  0 0 28px var(--glow);
-}
-
-.podium-card.first{
- padding-top:34px;
- padding-bottom:31px;
- box-shadow:
-  0 20px 55px rgba(0,0,0,.35),
-  0 0 40px rgba(255,48,48,.13);
-}
-
-.podium-card.first:before{
- content:"";
- position:absolute;
- left:50%;
- top:-40px;
- transform:translateX(-50%);
- font-size:31px;
- width:60px;
- height:40px;
- background:linear-gradient(180deg,#fff5a0,#ffb51b);
- clip-path:polygon(
-  50% 0,
-  63% 31%,
-  96% 18%,
-  87% 52%,
-  100% 88%,
-  50% 74%,
-  0 88%,
-  13% 52%,
-  4% 18%,
-  37% 31%
- );
- filter:
-  drop-shadow(0 0 8px rgba(255,196,45,.8))
-  drop-shadow(0 5px 18px rgba(255,154,0,.45));
- animation:crownFloat 2.5s ease-in-out infinite;
- z-index:5;
-}
-
-.podium-card.first:after{
- box-shadow:
-  inset 0 0 0 1px rgba(255,210,80,.15),
-  0 0 35px rgba(255,200,50,.06);
-}
-
-@keyframes crownFloat{
- 0%,100%{
-  transform:translateX(-50%) translateY(0) rotate(-2deg);
- }
- 50%{
-  transform:translateX(-50%) translateY(-9px) rotate(2deg);
- }
-}
-
-.podium-skin{
- display:block;
- width:69px;
- height:69px;
- object-fit:cover;
- image-rendering:pixelated;
- margin:12px auto;
- border-radius:11px;
- border:1px solid rgba(255,255,255,.1);
- box-shadow:0 10px 30px rgba(0,0,0,.25);
- opacity:0;
- animation:
-  imageFade .45s ease forwards,
-  podiumSkinFloat 3.5s ease-in-out 1s infinite;
-}
-
-@keyframes podiumSkinFloat{
- 0%,100%{transform:translateY(0)}
- 50%{transform:translateY(-5px)}
-}
-
-.podium-name{
- position:relative;
- z-index:1;
- font-weight:900;
-}
-
-.podium-score{
- margin-top:6px;
- color:#ff5555;
- font-size:10px;
- font-weight:850;
-}
+ display:grid;grid-template-columns:1fr 1.12fr 1fr;align-items:end;gap:18px;padding:54px 12px 18px;min-height:430px;border:1px solid rgba(255,255,255,.07);border-radius:22px;background:radial-gradient(circle at 50% 0,rgba(255,48,48,.12),transparent 42%),linear-gradient(180deg,rgba(10,14,20,.92),rgba(4,7,11,.96));box-shadow:0 25px 80px rgba(0,0,0,.38),inset 0 1px rgba(255,255,255,.035);overflow:hidden}
+.podium-card{position:relative;min-height:270px;padding:0 14px 18px;text-align:center;cursor:pointer;border:0;background:transparent;overflow:visible;transition:transform .3s cubic-bezier(.2,.8,.2,1),filter .25s ease;animation:podiumRise .7s cubic-bezier(.2,.8,.2,1) both;--podium-main:#737b86;--podium-dark:#1b2027;--podium-glow:rgba(190,200,215,.18)}
+.podium-rank-1{min-height:345px;--podium-main:#f4bd35;--podium-dark:#6f4308;--podium-glow:rgba(255,190,45,.32)}
+.podium-rank-2{min-height:295px;--podium-main:#cbd1d8;--podium-dark:#4d545d;--podium-glow:rgba(210,220,230,.2)}
+.podium-rank-3{min-height:250px;--podium-main:#c97943;--podium-dark:#5c2c19;--podium-glow:rgba(210,110,55,.22)}
+.podium-card:nth-child(1){animation-delay:.08s}.podium-card:nth-child(2){animation-delay:.16s}.podium-card:nth-child(3){animation-delay:.24s}
+@keyframes podiumRise{from{opacity:0;transform:translateY(35px) scale(.96)}to{opacity:1;transform:none}}
+.podium-card:hover{transform:translateY(-9px) scale(1.015);filter:brightness(1.08)}
+.podium-player-info{position:relative;z-index:4;display:flex;flex-direction:column;align-items:center;gap:4px;min-height:78px;margin-bottom:4px}
+.podium-rank{color:var(--podium-main);font-family:"Manrope",sans-serif;font-size:13px;font-weight:1000;letter-spacing:1.2px;text-shadow:0 0 18px var(--podium-glow)}
+.podium-medal{font-size:22px;line-height:1;filter:drop-shadow(0 0 8px var(--podium-glow));animation:podiumEmoji 2.2s ease-in-out infinite}
+.podium-name{max-width:100%;color:#fff;font-family:"Manrope",sans-serif;font-size:16px;font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+.podium-skin{position:relative;z-index:3;display:block;width:112px;height:150px;margin:0 auto -4px;object-fit:contain;image-rendering:auto;border:0;border-radius:0;background:transparent;filter:drop-shadow(0 18px 15px rgba(0,0,0,.55));opacity:0;animation:imageFade .45s ease forwards,podiumSkinFloat 3.5s ease-in-out 1s infinite}
+.podium-rank-1 .podium-skin{width:132px;height:175px;margin-bottom:-12px}
+@keyframes podiumSkinFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.podium-platform{position:relative;z-index:2;width:100%;height:92px;margin:0 auto;border:1px solid color-mix(in srgb,var(--podium-main) 58%,#fff 4%);border-radius:14px 14px 24px 24px;background:radial-gradient(ellipse at 50% 0,rgba(255,255,255,.16),transparent 35%),linear-gradient(180deg,var(--podium-main),var(--podium-dark) 18%,#090d12 82%);box-shadow:inset 0 1px rgba(255,255,255,.35),0 18px 35px rgba(0,0,0,.55),0 0 32px var(--podium-glow)}
+.podium-platform:before{content:"";position:absolute;left:5%;right:5%;top:-7px;height:22px;border:1px solid color-mix(in srgb,var(--podium-main) 70%,white 8%);border-radius:50%;background:linear-gradient(180deg,#242a31,var(--podium-dark));box-shadow:inset 0 2px rgba(255,255,255,.18),0 0 20px var(--podium-glow)}
+.podium-platform span{position:absolute;left:50%;top:50%;transform:translate(-50%,-45%);color:var(--podium-main);font-family:"Manrope",sans-serif;font-size:42px;line-height:1;font-weight:900;text-shadow:0 3px 10px rgba(0,0,0,.7),0 0 20px var(--podium-glow)}
+.podium-rank-1 .podium-platform{height:115px;box-shadow:inset 0 1px rgba(255,255,255,.4),0 22px 45px rgba(0,0,0,.58),0 0 48px var(--podium-glow)}
+.podium-rank-1 .podium-platform span{font-size:54px}
+.podium-score{position:relative;z-index:3;margin-top:10px;color:#8f9aa7;font-size:9px;font-weight:900;letter-spacing:.5px}
+@keyframes podiumEmoji{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 
 /* =========================
    TABS
@@ -1992,6 +1879,16 @@ footer strong{
   font-size:23px;
  }
 
+ .podium{
+  grid-template-columns:1fr;
+  min-height:0;
+  padding:34px 14px;
+  gap:18px;
+ }
+
+ .podium-card,.podium-rank-1,.podium-rank-2,.podium-rank-3{min-height:275px}
+ .podium-rank-1{order:1}.podium-rank-2{order:2}.podium-rank-3{order:3}
+
  .stat-grid,
  .distribution,
  .profile-grid{
@@ -2215,18 +2112,16 @@ footer strong{
 
 <section id="home">
 
- <div class="dashboard">
+ <div class="dashboard home-dashboard">
 
   <div class="featured" id="featured"></div>
 
-  <div class="stat-grid" id="quickStats"></div>
-
  </div>
 
- <div class="section">
+ <div class="section home-podium-section">
 
   <div class="section-title">
-   🥇 <span>Top 3 Overall</span>
+   🏆 <span>Top 3 Overall</span>
   </div>
 
   <div class="podium" id="podium"></div>
@@ -3021,6 +2916,12 @@ function fullSkinURL(name){
   encodeURIComponent(name);
 }
 
+function playerSkinURL(name,size=160){
+
+ return "https://mc-heads.net/player/"+
+  encodeURIComponent(name)+"/"+size;
+}
+
 function markImageLoaded(img){
 
  if(img.complete){
@@ -3122,40 +3023,8 @@ function renderHome(){
   `;
  }
 
- const totalWins=players.reduce(
-  (sum,player)=>
-   sum+Number(player.stats?.wins||0),
-  0
- );
-
- const totalTests=players.reduce(
-  (sum,player)=>
-   sum+Number(player.stats?.tests||0),
-  0
- );
-
- document.getElementById("quickStats").innerHTML=`
-
-  <div class="stat-card">
-   <div class="number">${players.length}</div>
-   <div class="label">Players Ranked</div>
-  </div>
-
-  <div class="stat-card">
-   <div class="number">${totalTests}</div>
-   <div class="label">Total Tests</div>
-  </div>
-
-  <div class="stat-card">
-   <div class="number">${totalWins}</div>
-   <div class="label">Total Wins</div>
-  </div>
-
-  <div class="stat-card">
-   <div class="number">${mostCommonTier()}</div>
-   <div class="label">Most Common Tier</div>
-  </div>
- `;
+ // The home page now focuses on the competitive Top 3 podium
+ // instead of the old quick-stat cards.
 
  renderPodium();
  initializeImageAnimations();
@@ -3174,46 +3043,49 @@ function renderPodium(){
 
  const box=document.getElementById("podium");
 
- box.innerHTML=ranking.map(
-  (player,index)=>{
+ // Desktop layout intentionally uses the classic 2 / 1 / 3 podium order.
+ const visualRanking=[ranking[1],ranking[0],ranking[2]].filter(Boolean);
 
-   const tier=bestTier(player);
+ box.innerHTML=visualRanking.map(player=>{
 
-   return `
+  const rank=ranking.indexOf(player)+1;
+  const tier=bestTier(player);
+  const rankClass=`podium-rank-${rank}`;
+  const medal=rank===1?"🥇":rank===2?"🥈":"🥉";
 
-    <div
-     class="podium-card tier-reactive ${tier||""} ${index===0?"first":""}"
-     onclick="openProfile('${escapeJS(player.name)}')"
-     role="button"
-     tabindex="0"
-     aria-label="${escapeHTML(player.name)} profile"
-     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProfile('${escapeJS(player.name)}')}">
+  return `
 
-     <div style="
-      font-size:30px;
-      position:relative;
-      z-index:2;
-      animation:podiumEmoji 2s ease-in-out infinite">
-      ${index===0?"🥇":index===1?"🥈":"🥉"}
-     </div>
+   <div
+    class="podium-card tier-reactive ${tier||""} ${rankClass}"
+    onclick="openProfile('${escapeJS(player.name)}')"
+    role="button"
+    tabindex="0"
+    aria-label="${escapeHTML(player.name)} ranked #${rank}"
+    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProfile('${escapeJS(player.name)}')}">
 
-     <img
-      class="podium-skin"
-      src="${skinURL(player.name,64)}"
-      alt="${escapeHTML(player.name)} Minecraft skin">
-
-     <div class="podium-name">
-      ${escapeHTML(player.name)}
-     </div>
-
-     <div class="podium-score">
-      ${overallScore(player)} Overall Score
-     </div>
-
+    <div class="podium-player-info">
+     <div class="podium-rank">#${rank}</div>
+     <div class="podium-medal">${medal}</div>
+     <div class="podium-name">${escapeHTML(player.name)}</div>
     </div>
-   `;
-  }
- ).join("");
+
+    <img
+     class="podium-skin"
+     src="${playerSkinURL(player.name,150)}"
+     alt="${escapeHTML(player.name)} Minecraft skin"
+     loading="eager">
+
+    <div class="podium-platform">
+     <span>${rank}</span>
+    </div>
+
+    <div class="podium-score">
+     ${overallScore(player)} Overall Score
+    </div>
+
+   </div>
+  `;
+ }).join("");
 
  initializeImageAnimations();
 }
