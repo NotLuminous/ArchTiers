@@ -2066,312 +2066,155 @@ footer strong{
  }
 }
 </style>
+
+<style id="arch-modern-home">
+:root{
+ --red:#ff1727;--red2:#ff3341;--gold:#ffd02f;--silver:#d8dde4;--bronze:#d77a3f;
+ --bg:#020304;--panel:rgba(6,8,12,.82);--line:rgba(255,255,255,.09);--muted:#8e949e;
+}
+*{box-sizing:border-box}
+body{
+ background:#010203;
+ color:#fff;
+ font-family:"Manrope","Space Grotesk",sans-serif;
+ overflow-x:hidden;
+}
+body:before{
+ opacity:.16;
+ background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+ background-size:58px 58px;
+ mask-image:linear-gradient(to bottom,black 0%,transparent 75%);
+}
+body:after{
+ content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+ background:
+  radial-gradient(circle at 18% 43%,rgba(255,20,30,.16),transparent 24%),
+  radial-gradient(circle at 82% 38%,rgba(255,20,30,.11),transparent 28%),
+  linear-gradient(180deg,#000 0%,#040609 55%,#010203 100%);
+}
+header{
+ position:fixed;z-index:100;left:0;right:0;top:0;height:78px;padding:0 2.8vw;
+ display:flex;align-items:center;background:rgba(2,3,5,.84);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+ border:1px solid rgba(255,255,255,.12);border-radius:0 0 18px 18px;box-shadow:0 16px 55px rgba(0,0,0,.5);
+}
+header:before,header:after{display:none}
+.header-inner{display:flex;align-items:center;gap:48px;width:100%;min-width:0}
+.logo{font-size:30px;line-height:1;letter-spacing:-2.4px;white-space:nowrap;animation:none;flex:0 0 auto}
+.logo .arch,.footer-brand .arch{color:#f5f5f7}.logo .tiers,.footer-brand span{color:var(--red)}
+.subtitle,.header-status{display:none}
+nav{position:static;height:78px;width:auto;margin:0;display:flex;align-items:stretch;gap:4px;background:transparent;border:0;box-shadow:none;flex:0 0 auto}
+nav button{position:relative;flex:0 0 auto;border:0;border-radius:0;background:transparent;color:#d2d4d9;font-size:13px;font-weight:850;letter-spacing:.15px;padding:0 15px;transition:.22s ease}
+nav button:hover{color:#fff;background:rgba(255,255,255,.025)}
+nav button.active{color:var(--red)}
+nav button.active:after{content:"";position:absolute;left:13px;right:13px;bottom:0;height:3px;background:var(--red);box-shadow:0 0 18px rgba(255,23,39,.85)}
+.header-spacer{margin-left:auto;display:flex;align-items:center}
+.header-discord{display:inline-flex;align-items:center;gap:10px;padding:12px 21px;border:1px solid #5865f2;border-radius:7px;color:#fff;text-decoration:none;font-size:13px;font-weight:900;background:rgba(25,24,50,.36);box-shadow:0 0 22px rgba(88,101,242,.08);transition:.22s ease}
+.header-discord:hover{transform:translateY(-1px);background:rgba(88,101,242,.13);box-shadow:0 0 30px rgba(88,101,242,.22)}
+.discord-mark{font-size:18px;line-height:1}
+main{width:min(1536px,100vw);margin:0 auto;padding-top:78px}
+#home{padding-bottom:34px}
+.featured{
+ position:relative;min-height:620px;padding:26px 4.2vw 8px;overflow:hidden;border:0;border-radius:0;background:
+ radial-gradient(circle at 25% 75%,rgba(255,20,30,.16),transparent 30%),
+ radial-gradient(circle at 78% 32%,rgba(255,20,30,.08),transparent 34%);
+ display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);align-items:center;gap:18px;
+}
+.featured:before{content:"";position:absolute;z-index:0;left:0;bottom:8px;width:57%;height:160px;background:linear-gradient(90deg,rgba(255,28,38,.23),transparent 70%);filter:blur(24px);pointer-events:none}
+.featured:after{content:"";position:absolute;z-index:0;right:4%;top:22px;width:480px;height:480px;border:2px solid rgba(255,27,38,.22);clip-path:polygon(50% 0,100% 100%,0 100%);filter:drop-shadow(0 0 30px rgba(255,24,35,.16));opacity:.8;pointer-events:none}
+.hero-podium-wrap{position:relative;z-index:3;min-width:0;height:500px}
+.hero-copy{position:relative;z-index:4;width:100%;padding:0 0 12px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.hero-eyebrow{display:none}
+.hero-title{font-family:"Manrope",sans-serif;font-size:clamp(62px,6.7vw,116px);line-height:.95;letter-spacing:-7px;font-weight:950;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 35px rgba(255,255,255,.035)}
+.hero-title .hero-arch{color:#fff;display:inline}.hero-title .hero-tiers{color:var(--red);display:inline;text-shadow:0 0 35px rgba(255,30,40,.2)}
+.hero-subtitle{margin-top:25px;font-size:21px;font-weight:700;color:#e7e8eb;max-width:none;line-height:1.35}
+.hero-actions{display:none}
+.podium{position:absolute;inset:0;height:auto;display:grid;grid-template-columns:1fr 1.12fr 1fr;align-items:end;gap:8px;padding:0 2px 18px}
+.podium-card{min-height:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:0!important;overflow:visible!important;filter:none!important}
+.podium-card:hover{transform:translateY(-8px) scale(1.012)!important;filter:brightness(1.08)!important}
+.podium-player-info{min-height:68px;margin-bottom:0;gap:4px;display:flex;flex-direction:column;align-items:center}
+.podium-rank{font-size:11px;color:#d5d7dc;font-weight:950;letter-spacing:.5px}.podium-rank-1 .podium-rank{color:var(--gold)}.podium-rank-3 .podium-rank{color:#ff9a39}
+.podium-medal{display:none}.podium-name{font-size:18px;font-weight:900;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.8);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.podium-skin{width:112px!important;height:166px!important;margin:0 auto -7px!important;object-fit:contain;filter:drop-shadow(0 18px 12px rgba(0,0,0,.7))!important;opacity:1!important}
+.podium-rank-1 .podium-skin{width:134px!important;height:194px!important;margin-bottom:-14px!important}
+.podium-platform{position:relative;z-index:2;width:100%;height:94px!important;margin:0 auto;border:1px solid rgba(255,255,255,.14);border-radius:14px 14px 28px 28px!important;background:linear-gradient(180deg,#30343a 0%,#15191e 17%,#050608 78%,#0b0d11 100%);box-shadow:inset 0 1px rgba(255,255,255,.35),0 20px 35px rgba(0,0,0,.65),0 0 30px rgba(255,255,255,.06)}
+.podium-rank-2 .podium-platform{border-color:rgba(210,220,230,.62);background:radial-gradient(ellipse at 50% 0,rgba(255,255,255,.26),transparent 36%),linear-gradient(180deg,#555b63,#171b20 22%,#07090c 82%);box-shadow:inset 0 1px rgba(255,255,255,.45),0 20px 35px rgba(0,0,0,.65),0 0 26px rgba(210,220,230,.13)}
+.podium-rank-1 .podium-platform{height:124px!important;border-color:#e2a91e;background:radial-gradient(ellipse at 50% 0,rgba(255,231,126,.5),transparent 34%),linear-gradient(180deg,#8a6110,#211706 20%,#050505 82%);box-shadow:inset 0 1px rgba(255,255,255,.5),0 24px 45px rgba(0,0,0,.7),0 0 48px rgba(255,195,40,.3)}
+.podium-rank-3 .podium-platform{border-color:#c66f37;background:radial-gradient(ellipse at 50% 0,rgba(255,165,105,.38),transparent 35%),linear-gradient(180deg,#69391e,#1b0d08 20%,#050505 82%);box-shadow:inset 0 1px rgba(255,255,255,.42),0 20px 35px rgba(0,0,0,.65),0 0 30px rgba(210,100,45,.16)}
+.podium-platform:before{content:"";position:absolute;left:5%;right:5%;top:-8px;height:23px;border-radius:50%;background:linear-gradient(180deg,#43474c,#17191d);border:1px solid rgba(255,255,255,.2);box-shadow:inset 0 2px rgba(255,255,255,.15)}
+.podium-rank-1 .podium-platform:before{background:linear-gradient(180deg,#d39d20,#4b3209);border-color:#f1c84c}.podium-rank-3 .podium-platform:before{background:linear-gradient(180deg,#b76231,#472212);border-color:#d47d49}
+.podium-platform span{position:absolute;left:50%;top:50%;transform:translate(-50%,-45%);font-size:48px;font-weight:950;color:#dce0e5;text-shadow:0 3px 12px rgba(0,0,0,.8)}
+.podium-rank-1 .podium-platform span{font-size:66px;color:#ffd03b}.podium-rank-3 .podium-platform span{color:#d98349}
+.podium-score{font-size:8px;margin-top:7px;color:#7f8791;font-weight:900}.podium-rank-2{transform:translateY(36px)}.podium-rank-3{transform:translateY(50px)}.podium-rank-1{transform:translateY(0)}
+.home-leaderboard{grid-column:1/-1;position:relative;z-index:5;margin:0 5.8vw;border:1px solid rgba(255,37,48,.35);border-radius:12px;background:linear-gradient(180deg,rgba(9,10,13,.91),rgba(3,4,6,.96));box-shadow:0 0 40px rgba(255,20,30,.06),inset 0 1px rgba(255,255,255,.04);overflow:hidden}
+.home-leaderboard-head{display:flex;align-items:center;gap:18px;padding:20px 28px 14px;border-bottom:1px solid rgba(255,255,255,.07)}
+.home-leaderboard-icon{width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--red);border-radius:8px;color:#fff;font-size:21px;box-shadow:0 0 22px rgba(255,20,30,.14)}
+.home-leaderboard-title{font-size:25px;font-weight:950;letter-spacing:-.5px}
+.home-table{width:100%;border-collapse:collapse}.home-table th{padding:11px 18px;color:#777f8a;font-size:10px;font-weight:900;text-align:left;letter-spacing:.7px;text-transform:uppercase}.home-table td{padding:10px 18px;border-top:1px solid rgba(255,255,255,.065);font-size:14px;color:#e8eaed}.home-table th:first-child,.home-table td:first-child{width:8%;text-align:center}.home-table th:nth-child(3),.home-table td:nth-child(3){text-align:center}.home-table th:nth-child(4),.home-table td:nth-child(4),.home-table th:nth-child(5),.home-table td:nth-child(5){text-align:center}.home-player{display:flex;align-items:center;gap:14px;font-weight:850}.home-avatar{width:34px;height:34px;object-fit:contain;image-rendering:auto;border-radius:4px;background:#07090c}.home-rank-num{font-weight:950}.home-rank-num.r1{color:#ffe000}.home-rank-num.r2{color:#fff}.home-rank-num.r3{color:#ff8b22}.home-tier{display:inline-flex;min-width:52px;justify-content:center;padding:5px 9px;border:1px solid currentColor;border-radius:6px;font-size:10px;font-weight:950}.home-wins{color:#ff2434!important;font-weight:900}
+footer{padding:48px max(4vw,20px) 28px;text-align:left;color:#69717c;background:#020305;border-top:1px solid rgba(255,255,255,.06);font-size:10px}footer .footer-grid{max-width:1380px;margin:auto;display:grid;grid-template-columns:1.4fr 1fr;gap:30px}footer .footer-brand{font-size:23px;font-weight:900;color:#fff;letter-spacing:-1.5px}footer h4{font-size:9px;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}footer a{display:block;color:#727985;text-decoration:none;margin:6px 0}footer a:hover{color:#fff}footer .copyright{max-width:1380px;margin:30px auto 0;padding-top:17px;border-top:1px solid rgba(255,255,255,.05);text-align:center;color:#4d555f;font-size:8px}
+@media(max-width:1100px){.header-inner{gap:24px}.logo{font-size:27px}.header-discord{padding:10px 16px}.featured{grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding-left:2.5vw;padding-right:2.5vw}.hero-title{font-size:clamp(52px,6.4vw,92px)}.home-leaderboard{margin:0 3vw}.podium-skin{width:98px!important;height:150px!important}.podium-rank-1 .podium-skin{width:118px!important;height:176px!important}}
+@media(max-width:800px){header{height:64px;padding:0 14px}.header-inner{gap:14px}.logo{font-size:22px;letter-spacing:-1.6px}nav{height:64px;overflow-x:auto;scrollbar-width:none;min-width:0}nav::-webkit-scrollbar{display:none}nav button{font-size:9px;padding:0 8px}.header-discord{font-size:0;padding:9px 11px}.discord-mark{font-size:17px}main{padding-top:64px}.featured{min-height:850px;padding:28px 12px 18px;display:flex;flex-direction:column;gap:0}.hero-copy{order:1;padding-top:15px}.hero-podium-wrap{order:2;width:100%;height:500px}.hero-title{font-size:clamp(48px,12vw,78px);letter-spacing:-4px}.hero-subtitle{font-size:16px;margin-top:14px}.podium{gap:2px;padding-bottom:8px}.podium-name{font-size:12px}.podium-rank{font-size:9px}.podium-skin{width:76px!important;height:122px!important}.podium-rank-1 .podium-skin{width:96px!important;height:146px!important}.podium-platform{height:74px!important}.podium-rank-1 .podium-platform{height:98px!important}.podium-platform span{font-size:32px}.podium-rank-1 .podium-platform span{font-size:45px}.podium-rank-2{transform:translateY(30px)}.podium-rank-3{transform:translateY(42px)}.home-leaderboard{margin:0 10px}.home-leaderboard-head{padding:16px 16px 12px}.home-leaderboard-title{font-size:20px}.home-table th,.home-table td{padding:9px 8px;font-size:11px}.home-player{gap:8px}.home-avatar{width:27px;height:27px}.home-table th:nth-child(4),.home-table td:nth-child(4){display:none}}
+@media(max-width:520px){.header-inner{gap:8px}.logo{font-size:19px}nav button{font-size:8px;padding:0 6px}.header-discord{padding:8px 9px}.featured{min-height:760px}.hero-title{font-size:42px;letter-spacing:-3px}.hero-subtitle{font-size:14px}.hero-podium-wrap{height:430px}.podium-name{font-size:10px}.podium-skin{width:62px!important;height:102px!important}.podium-rank-1 .podium-skin{width:80px!important;height:122px!important}.podium-platform{height:58px!important}.podium-rank-1 .podium-platform{height:76px!important}.podium-platform span{font-size:25px}.podium-rank-1 .podium-platform span{font-size:36px}.home-leaderboard{margin:0 6px}.home-leaderboard-title{font-size:17px}.home-table th{font-size:8px}.home-table td{font-size:10px;padding:8px 5px}.home-table th:nth-child(3),.home-table td:nth-child(3){display:none}.home-avatar{width:24px;height:24px}.home-player{gap:6px}}
+</style>
+
 </head>
 
 <body>
-
 <header>
-
- <div class="logo">
-  <span class="arch">ARCH</span>
-  <span class="tiers"> TIERS</span>
+ <div class="header-inner">
+  <div class="logo"><span class="arch">ARCH</span><span class="tiers">TIERS</span></div>
+  <nav aria-label="Primary navigation">
+   <button class="active" onclick="showSection('home',this)">HOME</button>
+   <button onclick="showSection('leaderboards',this)">RANKINGS</button>
+   <button onclick="showSection('tiers',this)">TIERS</button>
+   <button onclick="showSection('stats',this)">TESTS</button>
+  </nav>
+  <div class="header-spacer"></div>
+  <a class="header-discord" href="https://discord.gg/zt79PVtfyZ" target="_blank" rel="noopener noreferrer"><span class="discord-mark">◉</span><span>DISCORD</span></a>
  </div>
-
- <div class="subtitle">
-  Minecraft PvP Competitive Rankings
- </div>
-
- <div class="header-status">
-  <span class="status-dot"></span>
-  Competitive Rankings Online
- </div>
-
 </header>
-
-<nav aria-label="Primary navigation">
-
- <button class="active" onclick="showSection('home',this)">
-  🏠 Home
- </button>
-
- <button onclick="showSection('leaderboards',this)">
-  🏆 Leaderboards
- </button>
-
- <button onclick="showSection('tiers',this)">
-  ⚔ Tier List
- </button>
-
- <button onclick="showSection('stats',this)">
-  📊 Statistics
- </button>
-
-</nav>
-
 <main>
-
 <section id="home">
-
- <div class="dashboard home-dashboard">
-
-  <div class="featured" id="featured"></div>
-
- </div>
-
- <div class="section home-podium-section">
-
-  <div class="section-title">
-   🏆 <span>Top 3 Overall</span>
-  </div>
-
-  <div class="podium" id="podium"></div>
-
- </div>
-
+ <div class="featured" id="featured"></div>
 </section>
-
-
 <section id="leaderboards" style="display:none">
-
- <div class="section-title">
-  🏆 <span>Leaderboards</span>
- </div>
-
+ <div class="section-title">🏆 <span>Leaderboards</span></div>
  <div class="tabs">
-
-  <button class="tab active"
-   onclick="leaderboardMode='Overall';updateLeaderboardTabs(this);renderLeaderboards()">
-   Overall
-  </button>
-
-  <button class="tab"
-   onclick="leaderboardMode='Bedfight';updateLeaderboardTabs(this);renderLeaderboards()">
-   ⚔ Bedfight
-  </button>
-
-  <button class="tab"
-   onclick="leaderboardMode='Bedwars';updateLeaderboardTabs(this);renderLeaderboards()">
-   🛏 Bedwars
-  </button>
-
-  <button class="tab"
-   onclick="leaderboardMode='UHC';updateLeaderboardTabs(this);renderLeaderboards()">
-   💎 UHC
-  </button>
-
-  <button class="tab"
-   onclick="leaderboardMode='Sumo';updateLeaderboardTabs(this);renderLeaderboards()">
-   🥊 Sumo
-  </button>
-
+  <button class="tab active" onclick="leaderboardMode='Overall';updateLeaderboardTabs(this);renderLeaderboards()">Overall</button>
+  <button class="tab" onclick="leaderboardMode='Bedfight';updateLeaderboardTabs(this);renderLeaderboards()">⚔ Bedfight</button>
+  <button class="tab" onclick="leaderboardMode='Bedwars';updateLeaderboardTabs(this);renderLeaderboards()">🛏 Bedwars</button>
+  <button class="tab" onclick="leaderboardMode='UHC';updateLeaderboardTabs(this);renderLeaderboards()">💎 UHC</button>
+  <button class="tab" onclick="leaderboardMode='Sumo';updateLeaderboardTabs(this);renderLeaderboards()">🥊 Sumo</button>
  </div>
-
  <div class="leaderboard" id="leaderboard"></div>
-
 </section>
-
-
 <section id="tiers" style="display:none">
-
- <div class="section-title">
-  🔎 <span>Advanced Player Search</span>
- </div>
-
- <div class="search-panel">
-
-  <div class="search-panel-title">
-   Search Players
-  </div>
-
-  <div class="search-controls">
-
-   <input
-    class="search-input"
-    id="advancedSearch"
-    type="text"
-    placeholder="🔎 Search by Minecraft IGN..."
-    autocomplete="off"
-    oninput="renderSearchResults()">
-
-   <select
-    class="filter-select"
-    id="searchMode"
-    onchange="renderSearchResults()">
-
-    <option value="All">All Game Modes</option>
-    <option value="Bedfight">⚔ Bedfight</option>
-    <option value="Bedwars">🛏 Bedwars</option>
-    <option value="UHC">💎 UHC</option>
-    <option value="Sumo">🥊 Sumo</option>
-
-   </select>
-
-   <select
-    class="filter-select"
-    id="searchTier"
-    onchange="renderSearchResults()">
-
-    <option value="All">All Tiers</option>
-    <option value="HT1">HT1</option>
-    <option value="LT1">LT1</option>
-    <option value="HT2">HT2</option>
-    <option value="LT2">LT2</option>
-    <option value="HT3">HT3</option>
-    <option value="LT3">LT3</option>
-    <option value="HT4">HT4</option>
-    <option value="LT4">LT4</option>
-    <option value="HT5">HT5</option>
-    <option value="LT5">LT5</option>
-    <option value="N/A">N/A</option>
-
-   </select>
-
-  </div>
-
- </div>
-
+ <div class="section-title">🔎 <span>Advanced Player Search</span></div>
+ <div class="search-panel"><div class="search-panel-title">Search Players</div><div class="search-controls">
+  <input class="search-input" id="advancedSearch" type="text" placeholder="🔎 Search by Minecraft IGN..." autocomplete="off" oninput="renderSearchResults()">
+  <select class="filter-select" id="searchMode" onchange="renderSearchResults()"><option value="All">All Game Modes</option><option value="Bedfight">⚔ Bedfight</option><option value="Bedwars">🛏 Bedwars</option><option value="UHC">💎 UHC</option><option value="Sumo">🥊 Sumo</option></select>
+  <select class="filter-select" id="searchTier" onchange="renderSearchResults()"><option value="All">All Tiers</option><option value="HT1">HT1</option><option value="LT1">LT1</option><option value="HT2">HT2</option><option value="LT2">LT2</option><option value="HT3">HT3</option><option value="LT3">LT3</option><option value="HT4">HT4</option><option value="LT4">LT4</option><option value="HT5">HT5</option><option value="LT5">LT5</option><option value="N/A">N/A</option></select>
+ </div></div>
  <div class="search-results" id="searchResults"></div>
-
- <div class="section">
-
-  <div class="section-title">
-   ⚔ <span id="tierTitle">Bedfight Rankings</span>
-  </div>
-
-  <div class="tabs">
-
-   <button class="tab active"
-    onclick="setMode('Bedfight',this)">
-    ⚔ Bedfight
-   </button>
-
-   <button class="tab"
-    onclick="setMode('Bedwars',this)">
-    🛏 Bedwars
-   </button>
-
-   <button class="tab"
-    onclick="setMode('UHC',this)">
-    💎 UHC
-   </button>
-
-   <button class="tab"
-    onclick="setMode('Sumo',this)">
-    🥊 Sumo
-   </button>
-
-  </div>
-
- </div>
-
+ <div class="section"><div class="section-title">⚔ <span id="tierTitle">Bedfight Rankings</span></div><div class="tabs">
+  <button class="tab active" onclick="setMode('Bedfight',this)">⚔ Bedfight</button><button class="tab" onclick="setMode('Bedwars',this)">🛏 Bedwars</button><button class="tab" onclick="setMode('UHC',this)">💎 UHC</button><button class="tab" onclick="setMode('Sumo',this)">🥊 Sumo</button>
+ </div></div>
  <div class="tier-list" id="tierList"></div>
-
 </section>
-
-
 <section id="stats" style="display:none">
-
- <div class="section-title">
-  📊 <span>Statistics Dashboard</span>
- </div>
-
- <div class="stat-grid" id="bigStats"></div>
-
- <div class="section" style="margin-top:32px">
-
-  <div class="section-title">
-   📊 <span>Tier Distribution</span>
-  </div>
-
-  <div class="distribution" id="distribution"></div>
-
- </div>
-
- <div class="section">
-
-  <div class="section-title">
-   🎖️ <span>Achievement System</span>
-  </div>
-
-  <div class="changes">
-
-   <div class="change">
-    🥇 <strong>#1 Overall</strong>
-    <small>Ranked first overall.</small>
-   </div>
-
-   <div class="change">
-    🏆 <strong>Top 3</strong>
-    <small>Ranks within the top three overall.</small>
-   </div>
-
-   <div class="change">
-    ⭐ <strong>Top 10</strong>
-    <small>Ranks within the top ten overall.</small>
-   </div>
-
-   <div class="change">
-    👑 <strong>HT1 Player</strong>
-    <small>Has achieved HT1 in at least one mode.</small>
-   </div>
-
-   <div class="change">
-    🔥 <strong>HT2 Player</strong>
-    <small>Has achieved HT2 in at least one mode.</small>
-   </div>
-
-   <div class="change">
-    ⚡ <strong>Elite Player</strong>
-    <small>Has achieved HT1–LT3 in at least one mode.</small>
-   </div>
-
-   <div class="change">
-    🔥 <strong>Multi-Mode</strong>
-    <small>Ranked in two or more game modes.</small>
-   </div>
-
-   <div class="change">
-    🌟 <strong>All Modes</strong>
-    <small>Ranked in all four game modes.</small>
-   </div>
-
-   <div class="change">
-    💯 <strong>100 Wins</strong>
-    <small>Has reached 100 competitive wins.</small>
-   </div>
-
-   <div class="change">
-    🧪 <strong>10 Tests</strong>
-    <small>Has completed at least ten tests.</small>
-   </div>
-
-   <div class="change">
-    ⚔️ <strong>10-Win Streak</strong>
-    <small>Has reached a ten-win streak.</small>
-   </div>
-
-   <div class="change">
-    💯 <strong>Undefeated</strong>
-    <small>Has wins and zero losses.</small>
-   </div>
-
-   <div class="change">
-    🧪 <strong>Tested Player</strong>
-    <small>Has completed a competitive test.</small>
-   </div>
-
-  </div>
-
- </div>
-
+ <div class="section-title">📊 <span>Statistics Dashboard</span></div><div class="stat-grid" id="bigStats"></div>
+ <div class="section" style="margin-top:32px"><div class="section-title">📊 <span>Tier Distribution</span></div><div class="distribution" id="distribution"></div></div>
+ <div class="section"><div class="section-title">🎖️ <span>Achievement System</span></div><div class="changes">
+  <div class="change">🥇 <strong>#1 Overall</strong><small>Ranked first overall.</small></div><div class="change">🏆 <strong>Top 3</strong><small>Ranks within the top three overall.</small></div><div class="change">⭐ <strong>Top 10</strong><small>Ranks within the top ten overall.</small></div><div class="change">👑 <strong>HT1 Player</strong><small>Has achieved HT1 in at least one mode.</small></div><div class="change">🔥 <strong>HT2 Player</strong><small>Has achieved HT2 in at least one mode.</small></div><div class="change">⚡ <strong>Elite Player</strong><small>Has achieved HT1–LT3 in at least one mode.</small></div><div class="change">🔥 <strong>Multi-Mode</strong><small>Ranked in two or more game modes.</small></div><div class="change">🌟 <strong>All Modes</strong><small>Ranked in all four game modes.</small></div><div class="change">💯 <strong>100 Wins</strong><small>Has reached 100 competitive wins.</small></div><div class="change">🧪 <strong>10 Tests</strong><small>Has completed at least ten tests.</small></div><div class="change">⚔️ <strong>10-Win Streak</strong><small>Has reached a ten-win streak.</small></div><div class="change">💯 <strong>Undefeated</strong><small>Has wins and zero losses.</small></div><div class="change">🧪 <strong>Tested Player</strong><small>Has completed a competitive test.</small></div>
+ </div></div>
 </section>
-
 </main>
-
 <footer>
- <strong>ARCH TIERS</strong> · Minecraft PvP Rankings
+ <div class="footer-grid">
+  <div><div class="footer-brand">ARCH<span>TIERS</span></div><p style="margin-top:12px;max-width:220px;line-height:1.6;color:#6f7782">The ultimate Minecraft PvP ranking system.</p></div>
+  <div><h4>Navigation</h4><a href="#" onclick="showSection('home',document.querySelector('nav button:nth-child(1)'));return false">Home</a><a href="#" onclick="showSection('leaderboards',document.querySelector('nav button:nth-child(2)'));return false">Rankings</a><a href="#" onclick="showSection('tiers',document.querySelector('nav button:nth-child(3)'));return false">Tiers</a><a href="#" onclick="showSection('stats',document.querySelector('nav button:nth-child(4)'));return false">Tests</a></div>
+ </div>
+ <div class="copyright">© 2026 ARCH TIERS. All rights reserved.</div>
 </footer>
-
 
 <div
  class="modal"
@@ -2917,9 +2760,7 @@ function fullSkinURL(name){
 }
 
 function playerSkinURL(name,size=160){
-
- return "https://mc-heads.net/player/"+
-  encodeURIComponent(name)+"/"+size;
+ return "https://minotar.net/armor/body/"+encodeURIComponent(name)+"/"+size+".png";
 }
 
 function markImageLoaded(img){
@@ -2960,76 +2801,50 @@ function initializeImageAnimations(){
 ========================= */
 
 function renderHome(){
-
- const ranking=sortedOverall();
-
- const featured=ranking.find(
-  player=>overallScore(player)>0
- );
-
- const featuredBox=
-  document.getElementById("featured");
-
- if(featured){
-
-  featuredBox.innerHTML=`
-
-   <div class="featured-label">
-    🌟 Featured Player
-   </div>
-
-   <div class="featured-content">
-
-    <img
-     class="featured-skin"
-     src="${skinURL(featured.name,110)}"
-     alt="${escapeHTML(featured.name)} Minecraft skin">
-
-    <div>
-
-     <div class="featured-name">
-      ${escapeHTML(featured.name)}
-     </div>
-
-     <div class="featured-rank">
-      👑 Ranked #1 Overall
-     </div>
-
-     <div class="featured-score">
-      Overall Score:
-      <strong>${overallScore(featured)}</strong>
-     </div>
-
-     <div class="featured-tiers">
-
-      ${modes.map(mode=>{
-
-       const tier=featured.rankings[mode];
-
-       return tier
-        ?`<span class="badge ${tier}">${tier}</span>`
-        :`<span class="badge"
-          style="--tier:#39424d;--tier2:#252d37;--glow:transparent">
-          N/A
-         </span>`;
-
-      }).join("")}
-
-     </div>
-
-    </div>
-
-   </div>
-  `;
- }
-
- // The home page now focuses on the competitive Top 3 podium
- // instead of the old quick-stat cards.
-
+ const ranking=sortedOverall().filter(player=>overallScore(player)>0);
+ const featured=ranking[0];
+ const featuredBox=document.getElementById("featured");
+ if(!featured){featuredBox.innerHTML="";return;}
+ featuredBox.innerHTML=`
+  <div class="hero-podium-wrap">
+   <div class="podium" id="podium" aria-label="Top three players"></div>
+  </div>
+  <div class="hero-copy">
+   <div class="hero-title"><span class="hero-arch">ARCH</span><span class="hero-tiers">TIERS</span></div>
+   <div class="hero-subtitle">The ultimate Minecraft PvP ranking system.</div>
+  </div>
+  <div class="home-leaderboard" id="homeLeaderboard"></div>`;
  renderPodium();
+ renderHomeLeaderboard();
  initializeImageAnimations();
 }
 
+function renderHomeLeaderboard(){
+ const box=document.getElementById("homeLeaderboard");
+ if(!box)return;
+ const ranking=sortedOverall().filter(player=>overallScore(player)>0).slice(0,10);
+ box.innerHTML=`
+  <div class="home-leaderboard-head">
+   <div class="home-leaderboard-icon">🏆</div>
+   <div class="home-leaderboard-title">TOP 10 PLAYERS</div>
+  </div>
+  <table class="home-table">
+   <thead><tr><th>#</th><th>PLAYER</th><th>TIER</th><th>RATING</th><th>WINS</th></tr></thead>
+   <tbody>${ranking.map((player,index)=>{
+    const rank=index+1;
+    const tier=bestTier(player)||"N/A";
+    const cls=rank===1?"r1":rank===2?"r2":rank===3?"r3":"";
+    return `<tr onclick="openProfile('${escapeJS(player.name)}')" style="cursor:pointer">
+      <td><span class="home-rank-num ${cls}">${rank}</span></td>
+      <td><div class="home-player"><img class="home-avatar" src="${skinURL(player.name,64)}" alt="${escapeHTML(player.name)} skin"><span>${escapeHTML(player.name)}</span></div></td>
+      <td><span class="home-tier tier-reactive ${tier}">${escapeHTML(tier)}</span></td>
+      <td>${Number(overallScore(player)).toLocaleString()}</td>
+      <td class="home-wins">${Number((player.stats&&player.stats.wins)||0).toLocaleString()}</td>
+    </tr>`;
+   }).join("")}</tbody>
+  </table>`;
+ initializeImageAnimations();
+}
 
 /* =========================
    PODIUM
