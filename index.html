@@ -10,7 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/skinview3d@3.2.0/bundles/skinview3d.bundle.min.js"></script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Chakra+Petch:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Chakra+Petch:wght@500;600;700&family=Anton&display=swap');
 
 *{
  box-sizing:border-box;
@@ -2572,6 +2572,174 @@ body{
 .champion-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 
+<style id="arch-bold-redesign">
+/* =========================================================
+   BOLD / DRAMATIC PASS
+   Signature: ghost scoreboard numerals + impact typography + motion
+========================================================= */
+
+/* ---- impact display face for anything numeric/rank-driven ---- */
+.podium-platform span,.leader-position,.home-rank-num,.podium-rank,
+.stat-card .number,.podium-score,.leader-score,.compare-winner-badge,
+.rating-tier-label,.overall{
+ font-family:"Anton","Chakra Petch",sans-serif;
+}
+
+/* ---- hero title: bigger, louder, condensed impact treatment ---- */
+.hero-title{
+ font-family:"Anton","Manrope",sans-serif;
+ font-size:clamp(76px,9.2vw,168px);
+ letter-spacing:-4px;
+ line-height:.86;
+ position:relative;
+}
+.hero-title .hero-arch{font-weight:400}
+.hero-title .hero-tiers{font-weight:400}
+@media(max-width:800px){.hero-title{font-size:clamp(54px,15vw,96px);letter-spacing:-2px}}
+
+/* one-time light sweep across the hero on page load */
+.featured{position:relative}
+.featured::before{
+ /* keep existing glow (defined earlier); add sweep via a dedicated layer instead */
+}
+.hero-sweep{
+ position:absolute;inset:0;z-index:6;pointer-events:none;overflow:hidden;
+}
+.hero-sweep::after{
+ content:"";position:absolute;top:-20%;bottom:-20%;left:-30%;width:26%;
+ background:linear-gradient(100deg,transparent,rgba(255,255,255,.16) 45%,rgba(255,48,48,.22) 52%,transparent 100%);
+ transform:skewX(-18deg) translateX(-40%);
+ animation:heroSweepOnce 1.6s cubic-bezier(.16,.8,.2,1) .35s 1 both;
+}
+@keyframes heroSweepOnce{
+ 0%{transform:skewX(-18deg) translateX(-40%);opacity:0}
+ 12%{opacity:1}
+ 100%{transform:skewX(-18deg) translateX(560%);opacity:0}
+}
+
+/* ---- logo glitch micro-interaction on hover ---- */
+.logo{cursor:default;transition:transform .2s ease}
+.logo:hover{animation:logoGlitch .38s steps(2,end) both}
+@keyframes logoGlitch{
+ 0%{transform:translate(0,0)}
+ 20%{transform:translate(-2px,1px);text-shadow:2px 0 0 rgba(255,48,48,.7),-2px 0 0 rgba(75,156,255,.5)}
+ 40%{transform:translate(2px,-1px);text-shadow:-2px 0 0 rgba(255,48,48,.7),2px 0 0 rgba(75,156,255,.5)}
+ 60%{transform:translate(-1px,0);text-shadow:1px 0 0 rgba(255,48,48,.5)}
+ 80%{transform:translate(1px,0);text-shadow:none}
+ 100%{transform:translate(0,0);text-shadow:none}
+}
+
+/* ---- ghost scoreboard numerals: the signature element ---- */
+/* Podium: a huge translucent rank numeral stamped behind each card */
+.podium-card{isolation:isolate}
+.podium-card[data-rank]::after{
+ content:attr(data-rank);
+ position:absolute;
+ left:50%;top:38%;
+ transform:translate(-50%,-50%);
+ font-family:"Anton",sans-serif;
+ font-size:340px;
+ line-height:1;
+ color:transparent;
+ -webkit-text-stroke:2px rgba(255,255,255,.07);
+ z-index:-1;
+ pointer-events:none;
+ user-select:none;
+ white-space:nowrap;
+}
+.podium-rank-1[data-rank]::after{
+ font-size:420px;
+ -webkit-text-stroke:2px rgba(255,208,47,.14);
+}
+@media(max-width:800px){
+ .podium-card[data-rank]::after{font-size:180px}
+ .podium-rank-1[data-rank]::after{font-size:220px}
+}
+
+/* Leaderboard rows: faded numeral bleeding off the right edge */
+.leader-row{position:relative;isolation:isolate;overflow:hidden}
+.leader-row[data-rank]::after{
+ content:attr(data-rank);
+ position:absolute;
+ right:-6px;top:50%;
+ transform:translateY(-50%);
+ font-family:"Anton",sans-serif;
+ font-size:88px;
+ line-height:1;
+ color:transparent;
+ -webkit-text-stroke:1.5px rgba(255,255,255,.05);
+ z-index:-1;
+ pointer-events:none;
+ user-select:none;
+}
+.leader-row:first-child[data-rank]::after{
+ -webkit-text-stroke:1.5px rgba(255,208,47,.12);
+}
+@media(max-width:600px){.leader-row[data-rank]::after{font-size:56px}}
+
+/* Home top-10 table rows get the same treatment, subtler */
+.home-table tbody tr{position:relative;isolation:isolate}
+.home-table tbody tr[data-rank]::after{
+ content:attr(data-rank);
+ position:absolute;right:6px;top:50%;transform:translateY(-50%);
+ font-family:"Anton",sans-serif;font-size:46px;color:transparent;
+ -webkit-text-stroke:1px rgba(255,255,255,.05);z-index:-1;pointer-events:none;
+}
+
+/* ---- rank #1 leaderboard row: louder tier-colored pulse ----
+   NOTE: combined with the original leaderIn entrance animation
+   (comma-separated) instead of overwriting it — the base .leader-row
+   rule already sets `animation: leaderIn ... forwards`, and this
+   selector has higher specificity, so setting `animation` alone here
+   would silently cancel the entrance fade for the #1 row. */
+.leader-row:first-child{
+ box-shadow:inset 0 0 0 1px rgba(255,208,47,.14);
+ animation:
+  leaderIn .5s cubic-bezier(.2,.8,.2,1) forwards,
+  championRowGlow 3.4s ease-in-out .5s infinite;
+}
+@keyframes championRowGlow{
+ 0%,100%{box-shadow:inset 0 0 0 1px rgba(255,208,47,.1),0 0 0 rgba(255,208,47,0)}
+ 50%{box-shadow:inset 0 0 0 1px rgba(255,208,47,.28),0 0 26px rgba(255,208,47,.08)}
+}
+
+/* ---- section titles: bigger, heavier, louder accent ---- */
+.section-title{
+ font-size:26px;
+ letter-spacing:.8px;
+ gap:14px;
+}
+.section-title:before{
+ width:10px;height:10px;
+}
+.section-title:after{
+ height:2px;
+ background:linear-gradient(90deg,var(--red),rgba(255,48,48,.05));
+}
+
+/* Tier list: since tiers are a genuine ordered sequence, show the ordinal */
+.tier{position:relative}
+.tier-name{position:relative}
+.tier-name:after{
+ content:attr(data-ordinal);
+ position:absolute;
+ top:6px;left:8px;
+ font-family:"Anton",sans-serif;
+ font-size:10px;
+ letter-spacing:1px;
+ color:rgba(255,255,255,.55);
+ opacity:.75;
+}
+
+/* ---- count-up numerals: settle state used once JS finishes animating ---- */
+.count-target{font-variant-numeric:tabular-nums}
+
+@media(prefers-reduced-motion:reduce){
+ .hero-sweep::after,.logo:hover{animation:none!important}
+ .leader-row:first-child{animation:none!important;opacity:1!important}
+}
+</style>
+
 </head>
 
 <body>
@@ -3251,6 +3419,7 @@ function renderHome(){
  const featuredBox=document.getElementById("featured");
  if(!featured){featuredBox.innerHTML="";return;}
  featuredBox.innerHTML=`
+  <div class="hero-sweep" aria-hidden="true"></div>
   <div class="hero-podium-wrap">
    <div class="stage-glow"></div>
    <div class="stage-particles" id="stageParticles"></div>
@@ -3301,16 +3470,17 @@ function renderHomeLeaderboard(){
     const rank=index+1;
     const tier=bestTier(player)||"N/A";
     const cls=rank===1?"r1":rank===2?"r2":rank===3?"r3":"";
-    return `<tr onclick="openProfile('${escapeJS(player.name)}')" style="cursor:pointer">
+    return `<tr data-rank="${rank}" onclick="openProfile('${escapeJS(player.name)}')" style="cursor:pointer">
       <td><span class="home-rank-num ${cls}">${rank}</span></td>
       <td><div class="home-player"><img class="home-avatar" src="${skinURL(player.name,64)}" alt="${escapeHTML(player.name)} skin"><span>${escapeHTML(player.name)}</span></div></td>
       <td><span class="home-tier tier-reactive ${tier}">${escapeHTML(tier)}</span></td>
-      <td>${Number(overallScore(player)).toLocaleString()}</td>
-      <td class="home-wins">${Number((player.stats&&player.stats.wins)||0).toLocaleString()}</td>
+      <td><span class="count-target" data-count-to="${overallScore(player)}">0</span></td>
+      <td class="home-wins"><span class="count-target" data-count-to="${Number((player.stats&&player.stats.wins)||0)}">0</span></td>
     </tr>`;
    }).join("")}</tbody>
   </table>`;
  initializeImageAnimations();
+ initCountUps(box);
 }
 
 /* =========================
@@ -3339,6 +3509,7 @@ function renderPodium(){
 
    <div
     class="podium-card tier-reactive ${tier||""} ${rankClass}"
+    data-rank="${rank}"
     onclick="openProfile('${escapeJS(player.name)}')"
     role="button"
     tabindex="0"
@@ -3376,7 +3547,7 @@ function renderPodium(){
     </div>
 
     <div class="podium-score">
-     ${overallScore(player)} Overall Score
+     <span class="count-target" data-count-to="${overallScore(player)}">0</span> Overall Score
     </div>
 
     <div class="podium-embers" aria-hidden="true">${podiumEmbersHTML(rank)}</div>
@@ -3386,6 +3557,7 @@ function renderPodium(){
  }).join("");
 
  initializeImageAnimations();
+ initCountUps(box);
 }
 
 /* Small rising embers per podium card — more of them, and faster, for #1. */
@@ -3657,6 +3829,7 @@ function renderLeaderboards(){
 
     <div
      class="leader-row tier-reactive ${tier||""}"
+     data-rank="${index+1}"
      onclick="openProfile('${escapeJS(player.name)}')"
      role="button"
      tabindex="0"
@@ -3690,7 +3863,7 @@ function renderLeaderboards(){
      </div>
 
      <div class="leader-score">
-      ${score}${leaderboardMode==="Overall"?" pts":""}
+      <span class="count-target" data-count-to="${score}" data-count-suffix="${leaderboardMode==="Overall"?" pts":""}">0</span>
      </div>
 
     </div>
@@ -3699,6 +3872,7 @@ function renderLeaderboards(){
  ).join("");
 
  initializeImageAnimations();
+ initCountUps(box);
 }
 
 
@@ -3740,7 +3914,7 @@ function renderTierList(){
 
     <div class="tier ${tier}">
 
-     <div class="tier-name">
+     <div class="tier-name" data-ordinal="TIER ${String(index+1).padStart(2,"0")}/10">
 
       <strong>${tier}</strong>
 
@@ -3835,22 +4009,22 @@ function renderStatistics(){
  document.getElementById("bigStats").innerHTML=`
 
   <div class="stat-card">
-   <div class="number">${players.length}</div>
+   <div class="number"><span class="count-target" data-count-to="${players.length}">0</span></div>
    <div class="label">Total Players</div>
   </div>
 
   <div class="stat-card">
-   <div class="number">${tests}</div>
+   <div class="number"><span class="count-target" data-count-to="${tests}">0</span></div>
    <div class="label">Total Tests</div>
   </div>
 
   <div class="stat-card">
-   <div class="number">${wins}</div>
+   <div class="number"><span class="count-target" data-count-to="${wins}">0</span></div>
    <div class="label">Total Wins</div>
   </div>
 
   <div class="stat-card">
-   <div class="number">${losses}</div>
+   <div class="number"><span class="count-target" data-count-to="${losses}">0</span></div>
    <div class="label">Total Losses</div>
   </div>
 
@@ -3867,6 +4041,7 @@ function renderStatistics(){
   </div>
  `;
 
+ initCountUps(document.getElementById("bigStats"));
  renderDistribution();
 }
 
@@ -4565,6 +4740,57 @@ function escapeJS(value){
  return String(value)
   .replace(/\\/g,"\\\\")
   .replace(/'/g,"\\'");
+}
+
+
+/* =========================
+   COUNT-UP NUMERALS
+========================= */
+
+function formatCountValue(value,el){
+ const suffix=el.getAttribute("data-count-suffix")||"";
+ return Number(value).toLocaleString()+suffix;
+}
+
+function animateCountUp(el){
+
+ if(!el)return;
+
+ const target=parseFloat(el.getAttribute("data-count-to"));
+ if(isNaN(target))return;
+
+ if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+  el.textContent=formatCountValue(target,el);
+  return;
+ }
+
+ const duration=850;
+ const start=performance.now();
+
+ function step(now){
+
+  const progress=Math.min(1,(now-start)/duration);
+  const eased=1-Math.pow(1-progress,3);
+  const value=Math.round(target*eased);
+
+  el.textContent=formatCountValue(value,el);
+
+  if(progress<1)
+   requestAnimationFrame(step);
+  else
+   el.textContent=formatCountValue(target,el);
+ }
+
+ requestAnimationFrame(step);
+}
+
+function initCountUps(scopeEl){
+
+ const root=scopeEl||document;
+
+ root.querySelectorAll("[data-count-to]").forEach(
+  el=>animateCountUp(el)
+ );
 }
 
 
